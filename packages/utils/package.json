@@ -1,0 +1,27 @@
+{
+  "name": "@ohbug/utils",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "chenyueban <jasonchan0527@gmail.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "index.js",
+  "module": "dist/utils.esm.js",
+  "unpkg": "dist/utils.global.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "index.js",
+    "dist"
+  ],
+  "buildOptions": {
+    "name": "OhbugUtils",
+    "formats": [
+      "esm",
+      "umd",
+      "global"
+    ]
+  },
+  "dependencies": {
+    "@ohbug/core": "^0.0.0"
+  }
+}

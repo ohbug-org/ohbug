@@ -1,0 +1,28 @@
+{
+  "name": "@ohbug/browser",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "chenyueban <jasonchan0527@gmail.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "index.js",
+  "module": "dist/browser.esm.js",
+  "unpkg": "dist/browser.global.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "index.js",
+    "dist"
+  ],
+  "buildOptions": {
+    "name": "OhbugBrowser",
+    "formats": [
+      "esm",
+      "umd",
+      "global"
+    ]
+  },
+  "dependencies": {
+    "@ohbug/core": "^0.0.0",
+    "@ohbug/utils": "^0.0.0"
+  }
+}

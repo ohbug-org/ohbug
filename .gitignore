@@ -1,0 +1,13 @@
+node_modules
+coverage
+.DS_Store
+*.log
+.vscode
+.idea
+dist
+.cache
+build
+.env
+example
+todos.md
+yarn.lock

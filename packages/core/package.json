@@ -1,0 +1,28 @@
+{
+  "name": "@ohbug/core",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "chenyueban <jasonchan0527@gmail.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "index.js",
+  "module": "dist/core.esm.js",
+  "unpkg": "dist/core.global.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "index.js",
+    "dist"
+  ],
+  "buildOptions": {
+    "name": "OhbugCore",
+    "formats": [
+      "esm",
+      "umd",
+      "global"
+    ]
+  },
+  "dependencies": {
+    "@ohbug/utils": "^0.0.0",
+    "fast-deep-equal": "^3.0.0-beta.2"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./packages",
+    "sourceMap": false,
+    "target": "es5",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "allowJs": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "noImplicitThis": false,
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "removeComments": false,
+    "lib": ["esnext", "dom"],
+    "types": ["node"],
+    "paths": {
+      "@ohbug/core": ["packages/core/src"],
+      "@ohbug/browser": ["packages/browser/src"],
+      "@ohbug/utils": ["packages/utils/src"]
+    }
+  },
+  "include": [
+    "packages/global.d.ts",
+    "packages/*/src",
+    "packages/*/__tests__"
+  ]
+}
