@@ -21,14 +21,14 @@ export interface WrappedIssue<T> {
 }
 
 export type Platform = 'browser' | 'node'
-
+export interface OhbugObject {
+  platform: Platform
+  version: string
+  auth?: boolean
+  config?: Config
+  enhancer?: Enhancer
+  _report?: (issues: WrappedIssue<any>[]) => void
+}
 export interface OhbugGlobal {
-  __OHBUG__: {
-    platform: Platform
-    version: string
-    auth?: boolean
-    config?: Config
-    enhancer?: Enhancer
-    _report?: (issues: WrappedIssue<any>[]) => void
-  }
+  __OHBUG__: OhbugObject
 }

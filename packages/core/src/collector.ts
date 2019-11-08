@@ -16,8 +16,13 @@ function issueProcessor(issues: WrappedIssue<any>[]) {
 
 const hub = new Hub(issueProcessor)
 
+/**
+ * Used to store the wrappedIssue in the hub and handle the collector in the middleware
+ *
+ * @param wrappedIssue issues
+ */
 function collector(wrappedIssue: WrappedIssue<any>) {
-  // 嵌入 middleware
+  // Insert middleware
   const enhancer = getEnhancer()
   if (enhancer) {
     const { collectors } = enhancer
