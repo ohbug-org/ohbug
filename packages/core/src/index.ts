@@ -4,6 +4,7 @@ export { default as capturer } from './capturer'
 export { default as collector } from './collector'
 export { default as report } from './report'
 export { default as createIssue } from './createIssue'
+export { default as captureMessage } from './captureMessage'
 
 export * from './config'
 export * from './enhancer'

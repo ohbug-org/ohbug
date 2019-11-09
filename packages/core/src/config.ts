@@ -11,8 +11,6 @@ export interface Config {
   beforeReport?: (issues: WrappedIssue<any>[]) => WrappedIssue<any>[] | []
   // 上传后回调
   reported?: (issues: WrappedIssue<any>[]) => void
-  // 收集指定用户的特定信息
-  include?: () => boolean
 }
 
 export const defaultConfig: Config = {

@@ -1,4 +1,5 @@
-import init from './init'
-import { captureMessageHandler } from './handler'
+import { captureMessage } from '@ohbug/core'
 
-export { init, captureMessageHandler as captureMessage }
+import init from './init'
+
+export { init, captureMessage }

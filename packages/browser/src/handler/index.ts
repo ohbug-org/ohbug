@@ -1,5 +1,4 @@
 // script
-import captureMessageHandler from './captureMessageHandler'
 import uncaughtErrorHandler from './uncaughtErrorHandler'
 import resourceErrorHandler from './resourceErrorHandler'
 import unhandledrejectionErrorHandler from './unhandledrejectionErrorHandler'
@@ -10,7 +9,6 @@ import fetchErrorHandler from './fetchErrorHandler'
 import websocketErrorHandler from './websocketErrorHandler'
 
 export {
-  captureMessageHandler,
   uncaughtErrorHandler,
   resourceErrorHandler,
   unhandledrejectionErrorHandler,
