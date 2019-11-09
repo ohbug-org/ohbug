@@ -2,6 +2,11 @@ import { getEnhancer } from './enhancer'
 import createIssue from './createIssue'
 import collector from './collector'
 
+export interface MiddlewareCapturerContext {
+  createIssue: typeof createIssue
+  collector: typeof collector
+}
+
 /**
  * Used to execute all capture functions
  *

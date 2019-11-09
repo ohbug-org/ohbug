@@ -1,6 +1,6 @@
 export { default as init } from './init'
 export { default as applyMiddleware } from './applyMiddleware'
-export { default as capturer } from './capturer'
+export { default as capturer, MiddlewareCapturerContext } from './capturer'
 export { default as collector } from './collector'
 export { default as report } from './report'
 export { default as createIssue } from './createIssue'
