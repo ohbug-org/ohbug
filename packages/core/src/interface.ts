@@ -1,8 +1,7 @@
 import { Config } from './config'
 import { Enhancer } from './enhancer'
 
-export interface Base {
-  appid: string
+export interface Tags {
   platform: Platform
   version: string
   time: number
@@ -14,9 +13,10 @@ export interface Base {
 }
 
 export interface WrappedIssue<T> {
+  appid: string
   type: string
   detail: T
-  base: Base
+  tags: Tags
   state?: any
 }
 

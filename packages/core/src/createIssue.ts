@@ -1,41 +1,41 @@
 import { getGlobal } from '@ohbug/utils'
 import { getConfig } from './config'
-import { WrappedIssue, Base } from './interface'
+import { WrappedIssue, Tags } from './interface'
 import { version } from './version'
 
 const global = getGlobal()
 
-function getBase(): Base {
-  const { appid } = getConfig()
+function getTags(): Tags {
   const { platform } = global.__OHBUG__
   const time = new Date().getTime()
-  const base: Base = {
-    appid,
+  const tags: Tags = {
     platform,
     version,
     time
   }
   if (navigator) {
     const { language, userAgent } = navigator
-    base.language = language
-    base.userAgent = userAgent
+    tags.language = language
+    tags.userAgent = userAgent
   }
   if (document) {
     const { title } = document
-    base.title = title
+    tags.title = title
   }
   if (location) {
     const { href: url } = location
-    base.url = url
+    tags.url = url
   }
-  return base
+  return tags
 }
 
 function createIssue<T>(type: string, detail: T): WrappedIssue<T> {
-  const base = getBase()
+  const { appid } = getConfig()
+  const tags = getTags()
   return {
+    appid,
     type,
-    base,
+    tags,
     detail
   }
 }
