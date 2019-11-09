@@ -26,8 +26,8 @@ function getTags<T>(): Tags {
   return tags
 }
 
-function createIssue<T>(type: string, detail: T): WrappedIssue<T> {
-  const { appid } = getConfig()
+function createIssue<D, T = Window>(type: string, detail: D): WrappedIssue<D> {
+  const { appid } = getConfig<T>()
   const tags = getTags<T>()
   return {
     appid,

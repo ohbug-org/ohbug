@@ -4,7 +4,7 @@ import { WrappedIssue } from './interface'
 
 function report<T>(issues: WrappedIssue<any>[]) {
   try {
-    const config = getConfig()
+    const config = getConfig<T>()
     if (config) {
       let result = issues
       if (config.beforeReport) {

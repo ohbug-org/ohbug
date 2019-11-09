@@ -1,5 +1,6 @@
 import { Config } from './config'
 import { Enhancer } from './enhancer'
+import { Hub } from './hub'
 
 export interface Tags {
   platform: Platform
@@ -24,9 +25,9 @@ export type Platform = 'browser' | 'node'
 export interface OhbugObject {
   platform: Platform
   version: string
-  auth?: boolean
   config?: Config
   enhancer?: Enhancer
+  hub?: Hub
   _report?: (issues: WrappedIssue<any>[]) => void
 }
 export interface OhbugGlobal {

@@ -27,40 +27,33 @@ function init<T>(
   )
   if (!global) return
 
-  if (global) {
-    if (global.__OHBUG__ === undefined) {
-      warning(Boolean(config.appid), `Ohbug: Please pass in appid!`)
-      if (!config.appid) return
+  if (global.__OHBUG__ === undefined) {
+    warning(Boolean(config.appid), `Ohbug: Please pass in appid!`)
+    if (!config.appid) return
 
-      global.__OHBUG__ = {
-        platform,
-        version
-      }
-      init(config, platform, handleCapture, handleReport, enhancer)
-    } else {
-      // TODO: remove auth
-      global.__OHBUG__.auth = true
-      let _c: Config
-      global.__OHBUG__.config = _c = {
-        ...defaultConfig,
-        ...config
-      }
-
-      if (global.__OHBUG__.auth) {
-        // Insert middleware
-        if (enhancer) {
-          warning(
-            typeof enhancer === 'function',
-            '`enhancer` is not a function, please check `Ohbug.init`!'
-          )
-          if (typeof enhancer !== 'function') return
-          const _enhancer = enhancer(_c)
-          global.__OHBUG__.enhancer = _enhancer
-        }
-        global.__OHBUG__._report = handleReport
-        handleCapture()
-      }
+    const _config = {
+      ...defaultConfig,
+      ...config
     }
+
+    global.__OHBUG__ = {
+      platform,
+      version,
+      config: _config
+    }
+
+    // Insert middleware
+    if (enhancer) {
+      warning(
+        typeof enhancer === 'function',
+        '`enhancer` is not a function, please check `Ohbug.init`!'
+      )
+      if (typeof enhancer !== 'function') return
+      const _enhancer = enhancer(_config)
+      global.__OHBUG__.enhancer = _enhancer
+    }
+    global.__OHBUG__._report = handleReport
+    handleCapture()
   }
 }
 

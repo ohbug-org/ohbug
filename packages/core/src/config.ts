@@ -23,7 +23,7 @@ export function getOhbugObject<T>(): OhbugObject {
   const global = getGlobal<T>()
   warning(Boolean(global.__OHBUG__), 'Failed to get `OhbugObject`, please confirm if `init`')
 
-  return global.__OHBUG__
+  return global.__OHBUG__ as OhbugObject
 }
 
 export function getConfig<T>(): Config {

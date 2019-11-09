@@ -1,12 +1,12 @@
 import { debounce } from '@ohbug/utils'
-import { Hub } from './hub'
+import { getHub } from './hub'
 import { getConfig } from './config'
 import { getEnhancer } from './enhancer'
 import { WrappedIssue } from './interface'
 import report from './report'
 
-function issueProcessor(issues: WrappedIssue<any>[]) {
-  const config = getConfig()
+function issueProcessor<T>(issues: WrappedIssue<any>[]) {
+  const config = getConfig<T>()
   debounce(() => {
     if (issues.length <= (config.maxIssue as number)) {
       report(issues)
@@ -14,16 +14,15 @@ function issueProcessor(issues: WrappedIssue<any>[]) {
   }, config.delay)()
 }
 
-const hub = new Hub(issueProcessor)
-
 /**
  * Used to store the wrappedIssue in the hub and handle the collector in the middleware
  *
  * @param wrappedIssue issues
  */
-function collector(wrappedIssue: WrappedIssue<any>) {
+function collector<T = Window>(wrappedIssue: WrappedIssue<any>) {
+  const hub = getHub(issueProcessor)
   // Insert middleware
-  const enhancer = getEnhancer()
+  const enhancer = getEnhancer<T>()
   if (enhancer) {
     const { collectors } = enhancer
     if (Array.isArray(collectors) && collectors.length) {
