@@ -1,7 +1,7 @@
-import { getGlobal } from '@ohbug/utils'
 import createIssue from './createIssue'
 import collector from './collector'
 import { WrappedIssue } from './interface'
+import { getOhbugObject } from './config'
 
 interface CapturerCtx {
   createIssue: typeof createIssue
@@ -15,6 +15,5 @@ export interface Enhancer {
 }
 
 export function getEnhancer<T>() {
-  const global = getGlobal<T>()
-  return global.__OHBUG__.enhancer
+  return getOhbugObject<T>().enhancer
 }

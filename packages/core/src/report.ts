@@ -1,10 +1,8 @@
-import { logger, getGlobal } from '@ohbug/utils'
-import { getConfig } from './config'
+import { logger } from '@ohbug/utils'
+import { getConfig, getOhbugObject } from './config'
 import { WrappedIssue } from './interface'
 
-const global = getGlobal()
-
-function report(issues: WrappedIssue<any>[]) {
+function report<T>(issues: WrappedIssue<any>[]) {
   try {
     const config = getConfig()
     if (config) {
@@ -12,8 +10,9 @@ function report(issues: WrappedIssue<any>[]) {
       if (config.beforeReport) {
         result = config.beforeReport(issues)
       }
-      if (global.__OHBUG__._report) {
-        global.__OHBUG__._report(result)
+      const ohbugObject = getOhbugObject<T>()
+      if (ohbugObject._report) {
+        ohbugObject._report(result)
         config.reported && config.reported(result)
       }
     }

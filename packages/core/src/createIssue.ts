@@ -1,12 +1,9 @@
-import { getGlobal } from '@ohbug/utils'
-import { getConfig } from './config'
+import { getConfig, getOhbugObject } from './config'
 import { WrappedIssue, Tags } from './interface'
 import { version } from './version'
 
-const global = getGlobal()
-
-function getTags(): Tags {
-  const { platform } = global.__OHBUG__
+function getTags<T>(): Tags {
+  const { platform } = getOhbugObject<T>()
   const time = new Date().getTime()
   const tags: Tags = {
     platform,
@@ -31,7 +28,7 @@ function getTags(): Tags {
 
 function createIssue<T>(type: string, detail: T): WrappedIssue<T> {
   const { appid } = getConfig()
-  const tags = getTags()
+  const tags = getTags<T>()
   return {
     appid,
     type,
