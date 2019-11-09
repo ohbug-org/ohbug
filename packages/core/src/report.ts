@@ -17,7 +17,7 @@ function report<T>(issues: WrappedIssue<any>[]) {
       }
     }
   } catch (e) {
-    logger.error(`Ohbug: 发送日志失败`, e)
+    logger.error(`Ohbug: Send log failed`, e)
   }
 }
 

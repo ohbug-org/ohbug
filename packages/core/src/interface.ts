@@ -13,10 +13,10 @@ export interface Tags {
   url?: string
 }
 
-export interface WrappedIssue<T> {
+export interface WrappedIssue<D> {
   appid: string
   type: string
-  detail: T
+  detail: D
   tags: Tags
   state?: any
 }

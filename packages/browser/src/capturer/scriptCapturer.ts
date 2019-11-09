@@ -8,7 +8,7 @@ const global = getGlobal<Window>()
 function scriptCapturer() {
   warning(
     Boolean(global.addEventListener),
-    'Ohbug: 绑定脚本监控失败，当前环境未发现对象 `addEventListener`'
+    'Ohbug: Binding script monitoring failed, the current environment did not find the object `addEventListener`'
   )
   if (!global.addEventListener) return
 

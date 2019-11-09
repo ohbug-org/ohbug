@@ -4,7 +4,7 @@ import { scriptDispatcher } from '../../dispatcher'
 const global = getGlobal<Window>()
 
 /**
- * 用于捕获 UNHANDLEDREJECTION_ERROR
+ * capture UNHANDLEDREJECTION_ERROR
  */
 function captureUnhandledrejectionError() {
   global.addEventListener(

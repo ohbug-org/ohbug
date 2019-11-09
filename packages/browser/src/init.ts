@@ -3,7 +3,7 @@ import { scriptCapturer, networkCapturer } from './capturer'
 import handleReport from './report'
 
 function handleCapture() {
-  capturer(scriptCapturer, networkCapturer)
+  capturer<Window>(scriptCapturer, networkCapturer)
 }
 
 function initBrowser(config: Config, enhancer?: (config: Config) => Enhancer) {

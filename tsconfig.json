@@ -14,7 +14,7 @@
     "experimentalDecorators": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "removeComments": false,
+    "removeComments": true,
     "lib": ["esnext", "dom"],
     "types": ["node", "jest"],
     "paths": {

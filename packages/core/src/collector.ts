@@ -20,7 +20,7 @@ function issueProcessor<T>(issues: WrappedIssue<any>[]) {
  * @param wrappedIssue issues
  */
 function collector<T = Window>(wrappedIssue: WrappedIssue<any>) {
-  const hub = getHub(issueProcessor)
+  const hub = getHub<T>(issueProcessor)
   // Insert middleware
   const enhancer = getEnhancer<T>()
   if (enhancer) {

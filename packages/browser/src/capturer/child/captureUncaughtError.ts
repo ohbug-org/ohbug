@@ -4,7 +4,7 @@ import { scriptDispatcher } from '../../dispatcher'
 const global = getGlobal<Window>()
 
 /**
- * 用于捕获 UNCAUGHT_ERROR RESOURCE_ERROR
+ * capture UNCAUGHT_ERROR RESOURCE_ERROR
  */
 function captureUncaughtError() {
   global.addEventListener(

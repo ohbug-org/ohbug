@@ -6,12 +6,12 @@ const global = getGlobal<Window>()
 const { AJAX_ERROR } = types
 
 /**
- * 用于捕获 AJAX_ERROR
+ * capture AJAX_ERROR
  */
 function captureAjaxError() {
   warning(
     'XMLHttpRequest' in global,
-    'Ohbug: 绑定 `AJAX` 监控失败，当前环境未发现对象 `XMLHttpRequest`'
+    'Ohbug: Binding `AJAX` monitoring failed, the current environment did not find the object `XMLHttpRequest`'
   )
   if (!('XMLHttpRequest' in global)) return
 

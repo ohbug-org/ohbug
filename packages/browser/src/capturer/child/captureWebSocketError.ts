@@ -6,10 +6,13 @@ const global = getGlobal<Window>()
 const { WEBSOCKET_ERROR } = types
 
 /**
- * 用于捕获 WEBSOCKET_ERROR
+ * capture WEBSOCKET_ERROR
  */
 function captureWebSocketError() {
-  warning('WebSocket' in global, 'Ohbug: 绑定 `WebSocket` 监控失败，当前环境未发现对象 `WebSocket`')
+  warning(
+    'WebSocket' in global,
+    'Ohbug: Binding `WebSocket` monitoring failed, the current environment did not find the object `WebSocket`'
+  )
   if (!('WebSocket' in global)) return
 
   const wsProto = WebSocket.prototype

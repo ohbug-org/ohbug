@@ -6,10 +6,13 @@ const global = getGlobal<Window>()
 const { FETCH_ERROR } = types
 
 /**
- * 用于捕获 FETCH_ERROR
+ * capture FETCH_ERROR
  */
 function captureFetchError() {
-  warning('fetch' in global, 'Ohbug: 绑定 `fetch` 监控失败，当前环境未发现对象 `fetch`')
+  warning(
+    'fetch' in global,
+    'Ohbug: Binding `fetch` monitoring failed, the current environment did not find the object `fetch`'
+  )
   if (!('fetch' in global)) return
 
   replace(
