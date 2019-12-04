@@ -6,13 +6,8 @@ type Callback = (issues: Issue[]) => void
 
 export class Hub {
   private readonly issues: Issue[] = []
-  private readonly callback: Callback
 
-  constructor(callback: Callback) {
-    this.callback = callback
-  }
-
-  public add(issue: Issue) {
+  public add(issue: Issue, callback: Callback) {
     if (this.issues.length) {
       // Filter the merge with the same issue
       const isRepeated = this.issues.find((_issue: Issue) => equal(_issue, issue))
@@ -23,18 +18,22 @@ export class Hub {
       this.issues.push(issue)
     }
 
-    this.callback(this.issues)
+    callback(this.issues)
+  }
+
+  public clear() {
+    this.issues.length = 0
   }
 }
 
-export function getHub<T>(callback: Callback): Hub {
+export function getHub<T>(): Hub {
   const ohbugObject = getOhbugObject<T>()
 
   if (ohbugObject && ohbugObject.hub) {
     return ohbugObject.hub
   }
 
-  const hub = new Hub(callback)
+  const hub = new Hub()
   ohbugObject.hub = hub
   return hub
 }
