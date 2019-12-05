@@ -1,8 +1,8 @@
-import { types, WrappedIssue, createIssue } from '@ohbug/core'
+import { types, WrappedIssue, createIssue, BaseDetail } from '@ohbug/core'
 
 const { WEBSOCKET_ERROR } = types
 
-interface Detail {
+export interface WebsocketErrorDetail extends BaseDetail {
   url: string
   timeStamp: number
   readyState: number
@@ -13,10 +13,10 @@ interface Detail {
 }
 
 function websocketErrorHandler(
-  detail: Detail,
-  collector: (WrappedIssue: WrappedIssue<Detail>) => void
+  detail: WebsocketErrorDetail,
+  collector: (WrappedIssue: WrappedIssue<WebsocketErrorDetail>) => void
 ) {
-  const WrappedIssue = createIssue<Detail>(WEBSOCKET_ERROR, detail)
+  const WrappedIssue = createIssue<WebsocketErrorDetail>(WEBSOCKET_ERROR, detail)
   collector(WrappedIssue)
 }
 

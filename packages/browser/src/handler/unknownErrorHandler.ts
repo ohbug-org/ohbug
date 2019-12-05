@@ -1,9 +1,19 @@
-import { types, WrappedIssue, createIssue } from '@ohbug/core'
+import { types, WrappedIssue, createIssue, BaseDetail } from '@ohbug/core'
 
 const { UNKNOWN_ERROR } = types
 
-function unknownErrorHandler(error: any, collector: (wrappedIssue: WrappedIssue<any>) => void) {
-  const wrappedIssue = createIssue<any>(UNKNOWN_ERROR, error)
+export interface UnknownErrorDetail extends BaseDetail {}
+
+function unknownErrorHandler(
+  error: any,
+  collector: (wrappedIssue: WrappedIssue<UnknownErrorDetail>) => void
+) {
+  const detail = error.message
+    ? error
+    : {
+        message: error
+      }
+  const wrappedIssue = createIssue<UnknownErrorDetail>(UNKNOWN_ERROR, detail)
   collector(wrappedIssue)
 }
 

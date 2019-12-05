@@ -1,12 +1,14 @@
 // script
-import uncaughtErrorHandler from './uncaughtErrorHandler'
-import resourceErrorHandler from './resourceErrorHandler'
-import unhandledrejectionErrorHandler from './unhandledrejectionErrorHandler'
-import unknownErrorHandler from './unknownErrorHandler'
+import uncaughtErrorHandler, { UncaughtErrorDetail } from './uncaughtErrorHandler'
+import resourceErrorHandler, { ResourceErrorDetail } from './resourceErrorHandler'
+import unhandledrejectionErrorHandler, {
+  UnhandledrejectionErrorDetail
+} from './unhandledrejectionErrorHandler'
+import unknownErrorHandler, { UnknownErrorDetail } from './unknownErrorHandler'
 // network
-import ajaxErrorHandler from './ajaxErrorHandler'
-import fetchErrorHandler from './fetchErrorHandler'
-import websocketErrorHandler from './websocketErrorHandler'
+import ajaxErrorHandler, { AjaxErrorDetail } from './ajaxErrorHandler'
+import fetchErrorHandler, { FetchErrorDetail } from './fetchErrorHandler'
+import websocketErrorHandler, { WebsocketErrorDetail } from './websocketErrorHandler'
 
 export {
   uncaughtErrorHandler,
@@ -16,4 +18,14 @@ export {
   ajaxErrorHandler,
   fetchErrorHandler,
   websocketErrorHandler
+}
+
+export {
+  UncaughtErrorDetail,
+  ResourceErrorDetail,
+  UnhandledrejectionErrorDetail,
+  UnknownErrorDetail,
+  AjaxErrorDetail,
+  FetchErrorDetail,
+  WebsocketErrorDetail
 }

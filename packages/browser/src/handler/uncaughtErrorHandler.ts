@@ -1,10 +1,9 @@
-import { types, WrappedIssue, createIssue } from '@ohbug/core'
+import { types, WrappedIssue, createIssue, BaseDetail } from '@ohbug/core'
 
 const { UNCAUGHT_ERROR } = types
 
-interface Detail {
+export interface UncaughtErrorDetail extends BaseDetail {
   name: string
-  message: string
   filename: string
   lineno: number
   colno: number
@@ -13,7 +12,7 @@ interface Detail {
 
 function uncaughtErrorHandler(
   error: ErrorEvent,
-  collector: (wrappedIssue: WrappedIssue<Detail>) => void
+  collector: (wrappedIssue: WrappedIssue<UncaughtErrorDetail>) => void
 ) {
   const {
     message,
@@ -23,7 +22,7 @@ function uncaughtErrorHandler(
     error: { stack, name }
   } = error
 
-  const wrappedIssue = createIssue<Detail>(UNCAUGHT_ERROR, {
+  const wrappedIssue = createIssue<UncaughtErrorDetail>(UNCAUGHT_ERROR, {
     name,
     message,
     filename,

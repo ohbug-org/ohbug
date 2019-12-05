@@ -1,8 +1,8 @@
-import { types, WrappedIssue, createIssue } from '@ohbug/core'
+import { types, WrappedIssue, createIssue, BaseDetail } from '@ohbug/core'
 
 const { AJAX_ERROR } = types
 
-interface Detail {
+export interface AjaxErrorDetail extends BaseDetail {
   req: {
     data: string | {}
     method: string
@@ -15,8 +15,11 @@ interface Detail {
   }
 }
 
-function ajaxErrorHandler(detail: Detail, collector: (WrappedIssue: WrappedIssue<Detail>) => void) {
-  const WrappedIssue = createIssue<Detail>(AJAX_ERROR, detail)
+function ajaxErrorHandler(
+  detail: AjaxErrorDetail,
+  collector: (WrappedIssue: WrappedIssue<AjaxErrorDetail>) => void
+) {
+  const WrappedIssue = createIssue<AjaxErrorDetail>(AJAX_ERROR, detail)
   collector(WrappedIssue)
 }
 

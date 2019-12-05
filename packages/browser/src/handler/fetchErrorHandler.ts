@@ -2,7 +2,7 @@ import { types, WrappedIssue, createIssue } from '@ohbug/core'
 
 const { FETCH_ERROR } = types
 
-interface Detail {
+export interface FetchErrorDetail {
   req: {
     url: string
     method: string
@@ -15,10 +15,10 @@ interface Detail {
 }
 
 function fetchErrorHandler(
-  detail: Detail,
-  collector: (WrappedIssue: WrappedIssue<Detail>) => void
+  detail: FetchErrorDetail,
+  collector: (WrappedIssue: WrappedIssue<FetchErrorDetail>) => void
 ) {
-  const WrappedIssue = createIssue<Detail>(FETCH_ERROR, detail)
+  const WrappedIssue = createIssue<FetchErrorDetail>(FETCH_ERROR, detail)
   collector(WrappedIssue)
 }
 

@@ -1,4 +1,4 @@
-import { types, WrappedIssue, createIssue } from '@ohbug/core'
+import { types, WrappedIssue, createIssue, BaseDetail } from '@ohbug/core'
 
 const { RESOURCE_ERROR } = types
 
@@ -15,7 +15,7 @@ function getPath(node: Node) {
   return path
 }
 
-interface Detail {
+export interface ResourceErrorDetail extends BaseDetail {
   outerHTML: string
   src: string
   tagName: string
@@ -30,7 +30,7 @@ interface Detail {
 function resourceErrorHandler(
   error: ErrorEvent,
   immutableTarget: any,
-  collector: (wrappedIssue: WrappedIssue<Detail>) => void
+  collector: (wrappedIssue: WrappedIssue<ResourceErrorDetail>) => void
 ) {
   let target = (error.target || error.srcElement) as Node | null
   // resourceError
@@ -64,7 +64,10 @@ function resourceErrorHandler(
       .filter((v: string): boolean => Boolean(v))
       .join(' > ')
   })()
-  const wrappedIssue = createIssue<Detail>(RESOURCE_ERROR, {
+  const message = `${RESOURCE_ERROR}: { src: ${immutableTarget &&
+    immutableTarget.src}, selector: ${selector} }`
+  const wrappedIssue = createIssue<ResourceErrorDetail>(RESOURCE_ERROR, {
+    message,
     outerHTML,
     src: immutableTarget && immutableTarget.src,
     tagName: immutableTarget && immutableTarget.tagName,

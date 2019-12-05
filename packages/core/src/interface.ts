@@ -33,3 +33,7 @@ export interface OhbugObject {
 export interface OhbugGlobal {
   __OHBUG__: OhbugObject
 }
+
+export interface BaseDetail {
+  message: string
+}
