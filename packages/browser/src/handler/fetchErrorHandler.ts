@@ -1,8 +1,8 @@
-import { types, WrappedIssue, createIssue } from '@ohbug/core'
+import { types, WrappedIssue, createIssue, BaseDetail } from '@ohbug/core'
 
 const { FETCH_ERROR } = types
 
-export interface FetchErrorDetail {
+export interface FetchErrorDetail extends BaseDetail {
   req: {
     url: string
     method: string

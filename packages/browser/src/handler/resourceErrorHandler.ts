@@ -64,10 +64,7 @@ function resourceErrorHandler(
       .filter((v: string): boolean => Boolean(v))
       .join(' > ')
   })()
-  const message = `${RESOURCE_ERROR}: { src: ${immutableTarget &&
-    immutableTarget.src}, selector: ${selector} }`
   const wrappedIssue = createIssue<ResourceErrorDetail>(RESOURCE_ERROR, {
-    message,
     outerHTML,
     src: immutableTarget && immutableTarget.src,
     tagName: immutableTarget && immutableTarget.tagName,

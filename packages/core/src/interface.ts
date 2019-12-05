@@ -35,5 +35,5 @@ export interface OhbugGlobal {
 }
 
 export interface BaseDetail {
-  message: string
+  message?: string
 }

@@ -25,10 +25,7 @@ function captureFetchError() {
           .then((res: Response) => {
             const [url, conf] = args
             if (!res.status || res.status >= 400) {
-              const message = `${FETCH_ERROR}: req { url: ${url}, method: ${conf &&
-                conf.method} }, res { status: ${res.status}, statusText: ${res.statusText} }`
               networkDispatcher(FETCH_ERROR, {
-                message,
                 req: {
                   url,
                   method: conf && conf.method,

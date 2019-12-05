@@ -41,9 +41,7 @@ function captureAjaxError() {
         this.addEventListener('readystatechange', function() {
           if (this.readyState === 4) {
             if (!this.status || this.status >= 400) {
-              const message = `${AJAX_ERROR}: req { url: ${desc.url}, method: ${desc.method} }, res { status: ${this.status}, statusText: ${this.statusText}, response: ${this.response} }`
               networkDispatcher(AJAX_ERROR, {
-                message,
                 req: {
                   url: desc.url,
                   method: desc.method,

@@ -28,9 +28,7 @@ function captureWebSocketError() {
           target: { url, readyState, protocol, extensions, binaryType, bufferedAmount },
           timeStamp
         } = e
-        const message = `${WEBSOCKET_ERROR}: { url: ${url} }`
         networkDispatcher(WEBSOCKET_ERROR, {
-          message,
           url,
           timeStamp,
           readyState,
