@@ -1,4 +1,4 @@
-import createIssue from './createIssue'
+import createEvent from './createEvent'
 import collector from './collector'
 import { MESSAGE } from './types'
 import { BaseDetail } from './interface'
@@ -8,10 +8,10 @@ interface CaptureMessageDetail extends BaseDetail {
 }
 
 function captureMessage<T = Window>(message: string) {
-  const wrappedIssue = createIssue<CaptureMessageDetail, T>(MESSAGE, {
+  const event = createEvent<CaptureMessageDetail, T>(MESSAGE, {
     message
   })
-  collector<T>(wrappedIssue)
+  collector<T>(event)
 }
 
 export default captureMessage

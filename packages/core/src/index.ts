@@ -3,7 +3,7 @@ export { default as applyMiddleware } from './applyMiddleware'
 export { default as capturer, MiddlewareCapturerContext } from './capturer'
 export { default as collector } from './collector'
 export { default as report } from './report'
-export { default as createIssue } from './createIssue'
+export { default as createEvent } from './createEvent'
 export { default as captureMessage } from './captureMessage'
 
 export * from './config'

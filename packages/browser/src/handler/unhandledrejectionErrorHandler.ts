@@ -1,4 +1,4 @@
-import { types, WrappedIssue, createIssue } from '@ohbug/core'
+import { types, Event, createEvent } from '@ohbug/core'
 
 const { UNHANDLEDREJECTION_ERROR } = types
 
@@ -9,13 +9,13 @@ export interface UnhandledrejectionErrorDetail {
 
 function unhandledrejectionErrorHandler(
   error: PromiseRejectionEvent,
-  collector: (wrappedIssue: WrappedIssue<UnhandledrejectionErrorDetail>) => void
+  collector: (event: Event<UnhandledrejectionErrorDetail>) => void
 ) {
-  const wrappedIssue = createIssue<UnhandledrejectionErrorDetail>(UNHANDLEDREJECTION_ERROR, {
+  const event = createEvent<UnhandledrejectionErrorDetail>(UNHANDLEDREJECTION_ERROR, {
     message: error.reason.message || error.reason,
     stack: error.reason.stack
   })
-  collector(wrappedIssue)
+  collector(event)
 }
 
 export default unhandledrejectionErrorHandler

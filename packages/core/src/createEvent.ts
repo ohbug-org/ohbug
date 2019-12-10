@@ -1,5 +1,5 @@
 import { getConfig, getOhbugObject } from './config'
-import { WrappedIssue, Tags } from './interface'
+import { Event, Tags } from './interface'
 import { version } from './version'
 
 function getTags<T>(): Tags {
@@ -26,7 +26,7 @@ function getTags<T>(): Tags {
   return tags
 }
 
-function createIssue<D, T = Window>(type: string, detail: D): WrappedIssue<D> {
+function createEvent<D, T = Window>(type: string, detail: D): Event<D> {
   const { appid } = getConfig<T>()
   const tags = getTags<T>()
   return {
@@ -37,4 +37,4 @@ function createIssue<D, T = Window>(type: string, detail: D): WrappedIssue<D> {
   }
 }
 
-export default createIssue
+export default createEvent

@@ -1,21 +1,21 @@
 import { getGlobal, warning } from '@ohbug/utils'
-import { WrappedIssue, OhbugObject } from './interface'
+import { Event, OhbugObject } from './interface'
 
 export interface Config {
   appid: string
   // 最大上传错误数量
-  maxIssue?: number
+  maxEvent?: number
   // 错误处理间隔时间
   delay?: number
   // 通常用于处理上传的数据
-  beforeReport?: (issues: WrappedIssue<any>[]) => WrappedIssue<any>[] | []
+  beforeReport?: (issues: Event<any>[]) => Event<any>[] | []
   // 上传后回调
-  reported?: (issues: WrappedIssue<any>[]) => void
+  reported?: (issues: Event<any>[]) => void
 }
 
 export const defaultConfig: Config = {
   appid: '',
-  maxIssue: 10,
+  maxEvent: 10,
   delay: 2000
 }
 

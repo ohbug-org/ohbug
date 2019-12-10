@@ -2,7 +2,7 @@ import { getGlobal, warning } from '@ohbug/utils'
 import { version } from './version'
 import { Config, defaultConfig } from './config'
 import { Enhancer } from './enhancer'
-import { Platform, WrappedIssue } from './interface'
+import { Platform, Event } from './interface'
 
 /**
  * An init function common to multiple JavaScript platforms for saving config information and capture report middleware, etc.
@@ -17,7 +17,7 @@ function init<T>(
   config: Config,
   platform: Platform,
   handleCapture: () => void,
-  handleReport: (issues: WrappedIssue<any>[]) => void,
+  handleReport: (issues: Event<any>[]) => void,
   enhancer?: (config: Config) => Enhancer
 ) {
   const global = getGlobal<T>()

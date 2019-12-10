@@ -1,18 +1,18 @@
 import { logger, debounce } from '@ohbug/utils'
 import { getConfig, getOhbugObject } from './config'
-import { WrappedIssue } from './interface'
+import { Event } from './interface'
 import { getHub } from './hub'
 
-function report<T = Window>(issues: WrappedIssue<any>[]) {
+function report<T = Window>(events: Event<any>[]) {
   const config = getConfig<T>()
   const hub = getHub<T>()
   debounce(() => {
-    if (issues.length <= (config.maxIssue as number)) {
+    if (events.length <= (config.maxEvent as number)) {
       try {
         if (config) {
-          let result = issues
+          let result = events
           if (config.beforeReport) {
-            result = config.beforeReport(issues)
+            result = config.beforeReport(events)
           }
           const ohbugObject = getOhbugObject<T>()
           if (ohbugObject._report) {

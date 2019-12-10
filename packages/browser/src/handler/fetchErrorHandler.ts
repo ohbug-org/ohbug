@@ -1,4 +1,4 @@
-import { types, WrappedIssue, createIssue, BaseDetail } from '@ohbug/core'
+import { types, Event, createEvent, BaseDetail } from '@ohbug/core'
 
 const { FETCH_ERROR } = types
 
@@ -16,10 +16,10 @@ export interface FetchErrorDetail extends BaseDetail {
 
 function fetchErrorHandler(
   detail: FetchErrorDetail,
-  collector: (WrappedIssue: WrappedIssue<FetchErrorDetail>) => void
+  collector: (event: Event<FetchErrorDetail>) => void
 ) {
-  const WrappedIssue = createIssue<FetchErrorDetail>(FETCH_ERROR, detail)
-  collector(WrappedIssue)
+  const event = createEvent<FetchErrorDetail>(FETCH_ERROR, detail)
+  collector(event)
 }
 
 export default fetchErrorHandler

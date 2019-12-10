@@ -1,14 +1,14 @@
 import { getHub } from './hub'
 import { getEnhancer } from './enhancer'
-import { WrappedIssue } from './interface'
+import { Event } from './interface'
 import report from './report'
 
 /**
- * Used to store the wrappedIssue in the hub and handle the collector in the middleware
+ * Used to store the event in the hub and handle the collector in the middleware
  *
- * @param wrappedIssue issues
+ * @param event issues
  */
-function collector<T = Window>(wrappedIssue: WrappedIssue<any>) {
+function collector<T = Window>(event: Event<any>) {
   const hub = getHub<T>()
   // Insert middleware
   const enhancer = getEnhancer<T>()
@@ -17,17 +17,17 @@ function collector<T = Window>(wrappedIssue: WrappedIssue<any>) {
     if (Array.isArray(collectors) && collectors.length) {
       const state = collectors
         .filter(c => Boolean(c))
-        .reduce((pre, cur) => ({ ...pre, ...cur(wrappedIssue) }), {})
+        .reduce((pre, cur) => ({ ...pre, ...cur(event) }), {})
       const issue = Object.keys(state).length
         ? {
-            ...wrappedIssue,
+            ...event,
             state
           }
-        : wrappedIssue
+        : event
       hub.add(issue, report)
     }
   } else {
-    hub.add(wrappedIssue, report)
+    hub.add(event, report)
   }
 }
 

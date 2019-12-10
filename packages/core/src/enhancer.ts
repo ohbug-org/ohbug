@@ -1,14 +1,14 @@
-import createIssue from './createIssue'
+import createEvent from './createEvent'
 import collector from './collector'
-import { WrappedIssue } from './interface'
+import { Event } from './interface'
 import { getOhbugObject } from './config'
 
 interface CapturerCtx {
-  createIssue: typeof createIssue
+  createEvent: typeof createEvent
   collector: typeof collector
 }
 type Capturer = (ctx: CapturerCtx) => void
-type Collector = (issue: WrappedIssue<any>) => any
+type Collector = (issue: Event<any>) => any
 export interface Enhancer {
   capturers: Capturer[]
   collectors: Collector[]

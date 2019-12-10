@@ -1,9 +1,9 @@
 import { getEnhancer } from './enhancer'
-import createIssue from './createIssue'
+import createEvent from './createEvent'
 import collector from './collector'
 
 export interface MiddlewareCapturerContext {
-  createIssue: typeof createIssue
+  createEvent: typeof createEvent
   collector: typeof collector
 }
 
@@ -20,7 +20,7 @@ function capturer<T = Window>(...capturers: (() => void)[]) {
     const { capturers: EnhanceCapturers } = enhancer
     if (Array.isArray(EnhanceCapturers) && EnhanceCapturers.length) {
       const ctx = {
-        createIssue,
+        createEvent,
         collector
       }
       EnhanceCapturers.filter(c => Boolean(c)).forEach(c => c(ctx))
