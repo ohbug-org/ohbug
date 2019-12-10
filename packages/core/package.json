@@ -1,6 +1,6 @@
 {
   "name": "@ohbug/core",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "> TODO: description",
   "author": "chenyueban <jasonchan0527@gmail.com>",
   "homepage": "",
@@ -22,7 +22,7 @@
     ]
   },
   "dependencies": {
-    "@ohbug/utils": "^0.0.0",
+    "@ohbug/utils": "^0.0.1",
     "fast-deep-equal": "^3.0.0-beta.2"
   },
   "scripts": {
