@@ -21,6 +21,9 @@
       "global"
     ]
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@ohbug/core": "^0.0.1",
     "@ohbug/utils": "^0.0.1"
