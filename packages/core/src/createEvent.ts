@@ -4,11 +4,9 @@ import { version } from './version'
 
 function getTags<T>(): Tags {
   const { platform } = getOhbugObject<T>()
-  const time = new Date().getTime()
   const tags: Tags = {
     platform,
-    version,
-    time
+    version
   }
   if (navigator) {
     const { language, userAgent } = navigator
@@ -29,8 +27,11 @@ function getTags<T>(): Tags {
 function createEvent<D, T = Window>(type: string, detail: D): Event<D> {
   const { appid } = getConfig<T>()
   const tags = getTags<T>()
+  const time = new Date().getTime()
+
   return {
     appid,
+    time,
     type,
     tags,
     detail

@@ -12,7 +12,7 @@ function report(events: Event<any>[]) {
     navigator.sendBeacon(url, json)
   } else {
     const img = new Image()
-    img.src = `${url}&events=${json}`
+    img.src = `${url}?events=${json}`
   }
 }
 

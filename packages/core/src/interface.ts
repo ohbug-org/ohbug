@@ -5,7 +5,6 @@ import { Hub } from './hub'
 export interface Tags {
   platform: Platform
   version: string
-  time: number
   // browser
   language?: string
   userAgent?: string
@@ -15,6 +14,7 @@ export interface Tags {
 
 export interface Event<D> {
   appid: string
+  time: number | string
   type: string
   detail: D
   tags: Tags

@@ -1,4 +1,4 @@
-import { Event } from '@ohbug/core'
+import { Event } from './interface'
 import equal from 'fast-deep-equal'
 import { getOhbugObject } from './config'
 
