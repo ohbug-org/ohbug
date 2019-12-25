@@ -8,7 +8,7 @@ function handleCapture() {
 
 function initBrowser(config: Config, enhancer?: (config: Config) => Enhancer) {
   const platform = 'browser'
-  init<Window>(config, platform, handleCapture, handleReport, enhancer)
+  init<Window>({ config, platform, handleCapture, handleReport, enhancer })
 }
 
 export default initBrowser

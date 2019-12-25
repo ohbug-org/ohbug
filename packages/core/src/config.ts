@@ -3,8 +3,8 @@ import { Event, OhbugObject } from './interface'
 
 export interface Config {
   appid: string
-  beforeReport?: (issues: Event<any>) => Event<any>
-  reported?: (issues: Event<any>) => void
+  beforeReport?: (event: Event<any>) => Event<any>
+  reported?: (event: Event<any>) => void
 }
 
 export const defaultConfig: Config = {

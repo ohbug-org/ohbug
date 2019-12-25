@@ -5,7 +5,7 @@ import { Event } from './interface'
 /**
  * Used to store the event in the hub and handle the collector in the middleware
  *
- * @param event issues
+ * @param event
  */
 function collector<T = Window>(event: Event<any>) {
   const hub = getHub<T>()

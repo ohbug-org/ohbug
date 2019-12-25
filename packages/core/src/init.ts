@@ -4,6 +4,14 @@ import { Config, defaultConfig } from './config'
 import { Enhancer } from './enhancer'
 import { Platform, Event } from './interface'
 
+interface Init {
+  config: Config
+  platform: Platform
+  handleCapture: () => void
+  handleReport: (event: Event<any>) => void
+  enhancer?: (config: Config) => Enhancer
+}
+
 /**
  * An init function common to multiple JavaScript platforms for saving config information and capture report middleware, etc.
  *
@@ -13,13 +21,7 @@ import { Platform, Event } from './interface'
  * @param handleReport Used to pass the report function
  * @param enhancer Used to pass the return value of the applyMiddleware function
  */
-function init<T>(
-  config: Config,
-  platform: Platform,
-  handleCapture: () => void,
-  handleReport: (issues: Event<any>[]) => void,
-  enhancer?: (config: Config) => Enhancer
-) {
+function init<T>({ config, platform, handleCapture, handleReport, enhancer }: Init) {
   const global = getGlobal<T>()
   warning(
     Boolean(global),
