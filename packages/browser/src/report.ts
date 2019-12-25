@@ -4,15 +4,15 @@ import { Event } from '@ohbug/core'
 // @ts-ignore
 const base_url = BASE_URL
 
-function report(events: Event<any>[]) {
+function report<T>(event: Event<T>) {
   const url = `${base_url}`
-  const json = JSON.stringify(events)
+  const json = JSON.stringify(event)
 
   if (navigator.sendBeacon) {
     navigator.sendBeacon(url, json)
   } else {
     const img = new Image()
-    img.src = `${url}?events=${json}`
+    img.src = `${url}?event=${json}`
   }
 }
 

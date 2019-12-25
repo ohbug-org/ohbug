@@ -3,20 +3,12 @@ import { Event, OhbugObject } from './interface'
 
 export interface Config {
   appid: string
-  // 最大上传错误数量
-  maxEvent?: number
-  // 错误处理间隔时间
-  delay?: number
-  // 通常用于处理上传的数据
-  beforeReport?: (issues: Event<any>[]) => Event<any>[] | []
-  // 上传后回调
-  reported?: (issues: Event<any>[]) => void
+  beforeReport?: (issues: Event<any>) => Event<any>
+  reported?: (issues: Event<any>) => void
 }
 
 export const defaultConfig: Config = {
-  appid: '',
-  maxEvent: 10,
-  delay: 2000
+  appid: ''
 }
 
 export function getOhbugObject<T>(): OhbugObject {

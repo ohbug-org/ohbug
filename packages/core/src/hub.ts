@@ -1,28 +1,15 @@
 import { Event } from './interface'
-import equal from 'fast-deep-equal'
 import { getOhbugObject } from './config'
-
-type Callback = (events: Event<any>[]) => void
+import report from './report'
 
 export class Hub {
   private readonly events: Event<any>[] = []
+  private readonly report = report
 
-  public add(event: Event<any>, callback: Callback) {
-    if (this.events.length) {
-      // Filter the merge with the same event
-      const isRepeated = this.events.find((_event: Event<any>) => equal(_event, event))
-      if (!isRepeated) {
-        this.events.push(event)
-      }
-    } else {
-      this.events.push(event)
-    }
+  public add<T>(event: Event<T>) {
+    this.events.push(event)
 
-    callback(this.events)
-  }
-
-  public clear() {
-    this.events.length = 0
+    this.report(event)
   }
 }
 

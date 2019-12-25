@@ -1,7 +1,8 @@
 {
   "private": true,
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "example"
   ],
   "scripts": {
     "dev": "node scripts/dev.js",
@@ -29,7 +30,7 @@
     "rollup-plugin-terser": "^5.1.2",
     "rollup-plugin-typescript2": "^0.25.1",
     "ts-jest": "^24.1.0",
-    "typescript": "^3.7.0-beta"
+    "typescript": "^3.7.4"
   },
   "config": {
     "commitizen": {

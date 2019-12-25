@@ -1,7 +1,6 @@
 import { getHub } from './hub'
 import { getEnhancer } from './enhancer'
 import { Event } from './interface'
-import report from './report'
 
 /**
  * Used to store the event in the hub and handle the collector in the middleware
@@ -24,10 +23,10 @@ function collector<T = Window>(event: Event<any>) {
             state
           }
         : event
-      hub.add(issue, report)
+      hub.add(issue)
     }
   } else {
-    hub.add(event, report)
+    hub.add(event)
   }
 }
 

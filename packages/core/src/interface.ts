@@ -28,7 +28,7 @@ export interface OhbugObject {
   config?: Config
   enhancer?: Enhancer
   hub?: Hub
-  _report?: (issues: Event<any>[]) => void
+  _report?: (event: Event<any>) => void
 }
 export interface OhbugGlobal {
   __OHBUG__: OhbugObject
