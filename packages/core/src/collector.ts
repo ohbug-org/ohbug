@@ -23,10 +23,10 @@ function collector<T = Window>(event: Event<any>) {
             state
           }
         : event
-      hub.add(issue)
+      hub.addEvent(issue)
     }
   } else {
-    hub.add(event)
+    hub.addEvent(event)
   }
 }
 

@@ -12,12 +12,21 @@ export interface Tags {
   url?: string
 }
 
+export interface Breadcrumb {
+  type: string
+  category: string
+  timestamp: number
+  message?: string
+  data?: { [key: string]: any }
+}
+
 export interface Event<D> {
   appid: string
   time: number | string
   type: string
   detail: D
   tags: Tags
+  breadcrumbs?: Breadcrumb[]
   state?: any
 }
 
