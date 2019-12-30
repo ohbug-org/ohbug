@@ -1,8 +1,7 @@
 {
   "private": true,
   "workspaces": [
-    "packages/*",
-    "example"
+    "packages/*"
   ],
   "scripts": {
     "dev": "node scripts/dev.js",
