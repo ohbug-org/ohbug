@@ -6,3 +6,32 @@ export function replace(source: any, name: string, behavior: (...args: any[]) =>
   const wrapped = behavior(original)
   source[name] = wrapped
 }
+
+export function parseUrl(
+  url: string
+): {
+  host?: string
+  path?: string
+  protocol?: string
+  relative?: string
+} {
+  if (!url) {
+    return {}
+  }
+
+  // eslint-disable-next-line
+  const match = url.match(/^(([^:\/?#]+):)?(\/\/([^\/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?$/)
+
+  if (!match) {
+    return {}
+  }
+
+  const query = match[6] || ''
+  const fragment = match[8] || ''
+  return {
+    host: match[4],
+    path: match[5],
+    protocol: match[2],
+    relative: match[5] + query + fragment
+  }
+}

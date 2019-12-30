@@ -1,9 +1,9 @@
 import { Config, init, Enhancer, capturer } from '@ohbug/core'
-import { scriptCapturer, networkCapturer } from './capturer'
+import { scriptCapturer, networkCapturer, breadcrumbCapturer } from './capturer'
 import handleReport from './report'
 
 function handleCapture() {
-  capturer<Window>(scriptCapturer, networkCapturer)
+  capturer<Window>(scriptCapturer, networkCapturer, breadcrumbCapturer)
 }
 
 function initBrowser(config: Config, enhancer?: (config: Config) => Enhancer) {

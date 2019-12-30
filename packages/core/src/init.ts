@@ -51,8 +51,7 @@ function init<T>({ config, platform, handleCapture, handleReport, enhancer }: In
         '`enhancer` is not a function, please check `Ohbug.init`!'
       )
       if (typeof enhancer !== 'function') return
-      const _enhancer = enhancer(_config)
-      global.__OHBUG__.enhancer = _enhancer
+      global.__OHBUG__.enhancer = enhancer(_config)
     }
     global.__OHBUG__._report = handleReport
     handleCapture()

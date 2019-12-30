@@ -14,7 +14,6 @@ export interface Tags {
 
 export interface Breadcrumb {
   type: string
-  category: string
   timestamp: number
   message?: string
   data?: { [key: string]: any }

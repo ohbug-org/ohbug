@@ -1,5 +1,5 @@
 import { getHub } from './hub'
-import { getEnhancer } from './enhancer'
+import { getEnhancer, Enhancer } from './enhancer'
 import { Event } from './interface'
 
 /**
@@ -10,21 +10,19 @@ import { Event } from './interface'
 function collector<T = Window>(event: Event<any>) {
   const hub = getHub<T>()
   // Insert middleware
-  const enhancer = getEnhancer<T>()
-  if (enhancer) {
-    const { collectors } = enhancer
-    if (Array.isArray(collectors) && collectors.length) {
-      const state = collectors
-        .filter(c => Boolean(c))
-        .reduce((pre, cur) => ({ ...pre, ...cur(event) }), {})
-      const issue = Object.keys(state).length
+  const enhancer = getEnhancer<T>() as Enhancer
+  if (Array.isArray(enhancer.collectors) && enhancer.collectors.length) {
+    const state = enhancer.collectors
+      .filter(c => Boolean(c))
+      .reduce((pre, cur) => ({ ...pre, ...cur(event) }), {})
+    hub.addEvent(
+      Object.keys(state).length
         ? {
             ...event,
             state
           }
         : event
-      hub.addEvent(issue)
-    }
+    )
   } else {
     hub.addEvent(event)
   }

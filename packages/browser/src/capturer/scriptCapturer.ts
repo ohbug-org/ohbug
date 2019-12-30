@@ -1,7 +1,7 @@
 import { getGlobal, warning } from '@ohbug/utils'
 
-import captureUncaughtError from './child/captureUncaughtError'
-import captureUnhandledrejectionError from './child/captureUnhandledrejectionError'
+import captureUncaughtError from './script/captureUncaughtError'
+import captureUnhandledrejectionError from './script/captureUnhandledrejectionError'
 
 const global = getGlobal<Window>()
 

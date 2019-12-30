@@ -1,6 +1,6 @@
-import captureAjaxError from './child/captureAjaxError'
-import captureFetchError from './child/captureFetchError'
-import captureWebSocketError from './child/captureWebSocketError'
+import captureAjaxError from './network/captureAjaxError'
+import captureFetchError from './network/captureFetchError'
+import captureWebSocketError from './network/captureWebSocketError'
 
 function networkCapturer() {
   captureAjaxError()
