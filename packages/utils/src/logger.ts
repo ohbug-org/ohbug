@@ -1,4 +1,4 @@
-import { getGlobal } from './global'
+import { getGlobal } from './get'
 
 const global = getGlobal<Window>()
 

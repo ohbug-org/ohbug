@@ -27,7 +27,7 @@ function handleUrlChange(from?: string, to?: string) {
 
   const timestamp = new Date().getTime()
   hub.addBreadcrumb({
-    type: 'urlChange',
+    type: 'navigation',
     timestamp,
     data: {
       from,

@@ -17,7 +17,7 @@ function scriptDispatcher(e: ErrorEvent | PromiseRejectionEvent) {
       if (message && error) {
         uncaughtErrorHandler(_e, collector)
       } else if (immutableTarget) {
-        resourceErrorHandler(_e, immutableTarget, collector)
+        resourceErrorHandler(_e, collector)
       }
     } else if (type === 'unhandledrejection') {
       unhandledrejectionErrorHandler(e as PromiseRejectionEvent, collector)
