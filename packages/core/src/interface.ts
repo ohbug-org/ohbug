@@ -25,7 +25,7 @@ export interface Event<D> {
   type: string
   detail: D
   tags: Tags
-  breadcrumbs?: Breadcrumb[]
+  breadcrumbs: Breadcrumb[]
   state?: any
 }
 

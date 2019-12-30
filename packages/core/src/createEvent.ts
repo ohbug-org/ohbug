@@ -1,6 +1,7 @@
 import { getConfig, getOhbugObject } from './config'
-import { Event, Tags } from './interface'
+import { Event, Tags, Breadcrumb } from './interface'
 import { version } from './version'
+import { getHub } from './hub'
 
 function getTags<T>(): Tags {
   const { platform } = getOhbugObject<T>()
@@ -24,16 +25,23 @@ function getTags<T>(): Tags {
   return tags
 }
 
+function getBreadcrumbs<T>(): Breadcrumb[] {
+  const hub = getHub<T>()
+  return hub.getBreadcrumbs()
+}
+
 function createEvent<D, T = Window>(type: string, detail: D): Event<D> {
   const { appid } = getConfig<T>()
   const tags = getTags<T>()
   const timestamp = new Date().getTime()
+  const breadcrumbs = getBreadcrumbs<T>()
 
   return {
     appid,
     timestamp,
     type,
     tags,
+    breadcrumbs,
     detail
   }
 }
