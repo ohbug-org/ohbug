@@ -27,11 +27,11 @@ function getTags<T>(): Tags {
 function createEvent<D, T = Window>(type: string, detail: D): Event<D> {
   const { appid } = getConfig<T>()
   const tags = getTags<T>()
-  const time = new Date().getTime()
+  const timestamp = new Date().getTime()
 
   return {
     appid,
-    time,
+    timestamp,
     type,
     tags,
     detail

@@ -21,7 +21,7 @@ export interface Breadcrumb {
 
 export interface Event<D> {
   appid: string
-  time: number | string
+  timestamp: number | string
   type: string
   detail: D
   tags: Tags
