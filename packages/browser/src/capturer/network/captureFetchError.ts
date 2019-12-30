@@ -1,5 +1,5 @@
 import { getGlobal, warning, replace } from '@ohbug/utils'
-import { types } from '@ohbug/core'
+import { types, getHub } from '@ohbug/core'
 import { networkDispatcher } from '../../dispatcher'
 
 const global = getGlobal<Window>()
@@ -15,6 +15,8 @@ function captureFetchError() {
   )
   if (!('fetch' in global)) return
 
+  const hub = getHub<Window>()
+
   replace(
     global,
     'fetch',
@@ -24,18 +26,26 @@ function captureFetchError() {
           .apply(this, args)
           .then((res: Response) => {
             const [url, conf] = args
+            const data = {
+              req: {
+                url,
+                method: conf && conf.method,
+                data: (conf && conf.body) || {}
+              },
+              res: {
+                status: res.status,
+                statusText: res.statusText
+              }
+            }
+            const timestamp = new Date().getTime()
+            hub.addBreadcrumb({
+              type: 'fetch',
+              timestamp,
+              data
+            })
+
             if (!res.status || res.status >= 400) {
-              networkDispatcher(FETCH_ERROR, {
-                req: {
-                  url,
-                  method: conf && conf.method,
-                  data: (conf && conf.body) || {}
-                },
-                res: {
-                  status: res.status,
-                  statusText: res.statusText
-                }
-              })
+              networkDispatcher(FETCH_ERROR, data)
             }
             return res
           })

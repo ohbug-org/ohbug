@@ -9,13 +9,13 @@ const { AJAX_ERROR } = types
  * capture AJAX_ERROR
  */
 function captureAjaxError() {
-  const hub = getHub<Window>()
-
   warning(
     'XMLHttpRequest' in global,
     'Ohbug: Binding `AJAX` monitoring failed, the current environment did not find the object `XMLHttpRequest`'
   )
   if (!('XMLHttpRequest' in global)) return
+
+  const hub = getHub<Window>()
 
   const desc = {
     method: '',
