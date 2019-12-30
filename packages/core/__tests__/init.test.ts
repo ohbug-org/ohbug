@@ -17,7 +17,13 @@ const enhancer = applyMiddleware(middleware)
 
 describe('core init', () => {
   beforeAll(() => {
-    init(config, platform, handleCapture, () => {}, enhancer)
+    init({
+      config,
+      platform,
+      handleCapture,
+      handleReport: () => {},
+      enhancer
+    })
   })
 
   it('the `__OHBUG__` object should be mounted on global', () => {

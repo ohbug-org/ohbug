@@ -17,7 +17,7 @@ const enhancer = applyMiddleware(middleware1, middleware2)
 
 describe('core capturer', () => {
   beforeAll(() => {
-    init(config, platform, () => {}, () => {}, enhancer)
+    init({ config, platform, handleCapture: () => {}, handleReport: () => {}, enhancer })
   })
 
   it('should execute all capture functions', () => {
