@@ -19,9 +19,12 @@ export interface Breadcrumb {
   data?: { [key: string]: any }
 }
 
+export type Category = 'error' | 'message' | 'feedback' | 'other'
+
 export interface Event<D> {
   appid: string
   timestamp: number | string
+  category?: Category
   type: string
   detail: D
   tags: Tags

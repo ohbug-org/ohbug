@@ -8,9 +8,13 @@ interface CaptureMessageDetail extends BaseDetail {
 }
 
 function captureMessage<T = Window>(message: string) {
-  const event = createEvent<CaptureMessageDetail, T>(MESSAGE, {
-    message
-  })
+  const event = createEvent<CaptureMessageDetail, T>(
+    MESSAGE,
+    {
+      message
+    },
+    'message'
+  )
   collector<T>(event)
 }
 
