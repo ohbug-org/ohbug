@@ -9,6 +9,7 @@ interface Init {
   platform: Platform
   handleCapture: () => void
   handleReport: (event: Event<any>) => void
+  handleAsync: () => void
   enhancer?: (config: Config) => Enhancer
 }
 
@@ -21,7 +22,7 @@ interface Init {
  * @param handleReport Used to pass the report function
  * @param enhancer Used to pass the return value of the applyMiddleware function
  */
-function init<T>({ config, platform, handleCapture, handleReport, enhancer }: Init) {
+function init<T>({ config, platform, handleCapture, handleReport, handleAsync, enhancer }: Init) {
   const global = getGlobal<T>()
   warning(
     Boolean(global),
@@ -55,6 +56,7 @@ function init<T>({ config, platform, handleCapture, handleReport, enhancer }: In
     }
     global.__OHBUG__._report = handleReport
     handleCapture()
+    handleAsync()
   }
 }
 

@@ -1,18 +1,16 @@
-import { Event, Breadcrumb } from './interface'
+import { Event, Breadcrumb, Execution } from './interface'
 import { getOhbugObject } from './config'
 import report from './report'
 
 export class Hub {
   private readonly events: Event<any>[] = []
 
-  private readonly report = report
-
   private readonly breadcrumbs: Breadcrumb[] = []
 
-  public addEvent<T>(event: Event<T>): void {
+  public addEvent<T>(event: Event<T>, execution: Execution): void {
     this.events.push(event)
 
-    this.report(event)
+    report(event, execution)
   }
 
   public getBreadcrumbs(): Breadcrumb[] {

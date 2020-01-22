@@ -1,3 +1,4 @@
+import { Queue } from '@ohbug/utils'
 import { Config } from './config'
 import { Enhancer } from './enhancer'
 import { Hub } from './hub'
@@ -20,6 +21,7 @@ export interface Breadcrumb {
 }
 
 export type Category = 'error' | 'message' | 'feedback' | 'other'
+export type Execution = 'sync' | 'async'
 
 export interface Event<D> {
   appid: string
@@ -39,7 +41,8 @@ export interface OhbugObject {
   config?: Config
   enhancer?: Enhancer
   hub?: Hub
-  _report?: (event: Event<any>) => void
+  _asyncQueue?: Queue
+  _report?: (event: Event<any>, execution: Execution) => void
 }
 export interface OhbugGlobal {
   __OHBUG__: OhbugObject

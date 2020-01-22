@@ -1,13 +1,13 @@
 import { getHub } from './hub'
 import { getEnhancer, Enhancer } from './enhancer'
-import { Event } from './interface'
+import { Event, Execution } from './interface'
 
 /**
  * Used to store the event in the hub and handle the collector in the middleware
  *
  * @param event
  */
-function collector<T = Window>(event: Event<any>) {
+function collector<T = Window>(event: Event<any>, execution: Execution = 'sync') {
   const hub = getHub<T>()
   // Insert middleware
   const enhancer = getEnhancer<T>() as Enhancer
@@ -21,10 +21,11 @@ function collector<T = Window>(event: Event<any>) {
             ...event,
             state
           }
-        : event
+        : event,
+      execution
     )
   } else {
-    hub.addEvent(event)
+    hub.addEvent(event, execution)
   }
 }
 
