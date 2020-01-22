@@ -1,11 +1,11 @@
 import init from '../src/init'
-import applyMiddleware from '../src/applyMiddleware'
+import applyPlugin from '../src/applyPlugin'
 
 const appid = 'test_id'
 const config = { appid }
 const platform = 'browser'
 const handleCapture = jest.fn()
-function middleware() {
+function plugin() {
   function capturer() {}
   function collector() {}
   return {
@@ -13,7 +13,7 @@ function middleware() {
     collector
   }
 }
-const enhancer = applyMiddleware(middleware)
+const enhancer = applyPlugin(plugin)
 
 describe('core init', () => {
   beforeAll(() => {

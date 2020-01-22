@@ -2,7 +2,7 @@ import { getEnhancer } from './enhancer'
 import createEvent, { createOtherEvent } from './createEvent'
 import collector from './collector'
 
-export interface MiddlewareCapturerContext {
+export interface PluginCapturerContext {
   createEvent: typeof createEvent
   collector: typeof collector
 }
@@ -14,7 +14,7 @@ export interface MiddlewareCapturerContext {
  */
 function capturer<T = Window>(...capturers: (() => void)[]) {
   capturers.forEach(c => c())
-  // Insert middleware
+  // Insert plugin
   const enhancer = getEnhancer<T>()
   if (enhancer) {
     const { capturers: EnhanceCapturers } = enhancer

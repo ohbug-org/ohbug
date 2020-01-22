@@ -14,13 +14,13 @@ interface Init {
 }
 
 /**
- * An init function common to multiple JavaScript platforms for saving config information and capture report middleware, etc.
+ * An init function common to multiple JavaScript platforms for saving config information and capture report plugin, etc.
  *
  * @param config Config information
  * @param platform Each issue will record its original platform
  * @param handleCapture Used to bind monitoring functions
  * @param handleReport Used to pass the report function
- * @param enhancer Used to pass the return value of the applyMiddleware function
+ * @param enhancer Used to pass the return value of the applyPlugin function
  */
 function init<T>({ config, platform, handleCapture, handleReport, handleAsync, enhancer }: Init) {
   const global = getGlobal<T>()
@@ -45,7 +45,7 @@ function init<T>({ config, platform, handleCapture, handleReport, handleAsync, e
       config: _config
     }
 
-    // Insert middleware
+    // Insert plugin
     if (enhancer) {
       warning(
         typeof enhancer === 'function',

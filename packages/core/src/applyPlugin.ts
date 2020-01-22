@@ -1,11 +1,11 @@
 import { Config } from './config'
 import { Enhancer } from './enhancer'
 
-function applyMiddleware(...middlewares: any[]): (config: Config) => Enhancer {
+function applyPlugin(...plugins: any[]): (config: Config) => Enhancer {
   return (config: Config) =>
-    middlewares.reduce<Enhancer>(
-      (previous, middleware) => {
-        const { capturer, collector } = middleware({ config })
+    plugins.reduce<Enhancer>(
+      (previous, plugin) => {
+        const { capturer, collector } = plugin({ config })
         return {
           capturers: [...previous.capturers, capturer],
           collectors: [...previous.collectors, collector]
@@ -18,4 +18,4 @@ function applyMiddleware(...middlewares: any[]): (config: Config) => Enhancer {
     )
 }
 
-export default applyMiddleware
+export default applyPlugin

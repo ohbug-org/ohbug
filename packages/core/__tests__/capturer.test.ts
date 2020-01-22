@@ -1,19 +1,19 @@
 import init from '../src/init'
 import capturer from '../src/capturer'
-import applyMiddleware from '../src/applyMiddleware'
+import applyPlugin from '../src/applyPlugin'
 
 const appid = 'test_id'
 const config = { appid }
 const platform = 'browser'
-const middlewareCapturer1 = jest.fn()
-const middlewareCapturer2 = jest.fn()
-const middleware1 = () => ({
-  capturer: middlewareCapturer1
+const pluginCapturer1 = jest.fn()
+const pluginCapturer2 = jest.fn()
+const plugin1 = () => ({
+  capturer: pluginCapturer1
 })
-const middleware2 = () => ({
-  capturer: middlewareCapturer2
+const plugin2 = () => ({
+  capturer: pluginCapturer2
 })
-const enhancer = applyMiddleware(middleware1, middleware2)
+const enhancer = applyPlugin(plugin1, plugin2)
 
 describe('core capturer', () => {
   beforeAll(() => {
@@ -30,7 +30,7 @@ describe('core capturer', () => {
 
   it('should execute all enhancer capture functions', () => {
     capturer()
-    expect(middlewareCapturer1).toBeCalled()
-    expect(middlewareCapturer2).toBeCalled()
+    expect(pluginCapturer1).toBeCalled()
+    expect(pluginCapturer2).toBeCalled()
   })
 })
