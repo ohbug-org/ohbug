@@ -1,6 +1,6 @@
 {
   "name": "@ohbug/plugin-nemetric",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "> TODO: description",
   "author": "chenyueban <jasonchan0527@gmail.com>",
   "homepage": "",
@@ -14,7 +14,7 @@
     "dist"
   ],
   "dependencies": {
-    "@ohbug/core": "^0.0.3",
+    "@ohbug/core": "^0.0.4",
     "nemetric": "^1.2.4"
   },
   "buildOptions": {
