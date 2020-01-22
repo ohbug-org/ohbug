@@ -4,7 +4,7 @@
   "description": "> TODO: description",
   "author": "chenyueban <jasonchan0527@gmail.com>",
   "homepage": "",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "main": "index.js",
   "module": "dist/browser.esm.js",
   "unpkg": "dist/browser.global.js",
