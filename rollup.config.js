@@ -44,6 +44,7 @@ const input = resolve('src/index.ts')
 const defaultFormats = ['esm', 'umd']
 const inlineFormats = process.env.FORMATS && process.env.FORMATS.split(',')
 const packageFormats = inlineFormats || packageOptions.formats || defaultFormats
+const external = ['nemetric', 'rrweb']
 
 function createConfig() {
   const output = packageFormats.map(format => {
@@ -61,7 +62,8 @@ function createConfig() {
   return {
     input,
     output,
-    plugins
+    plugins,
+    external
   }
 }
 
@@ -81,7 +83,8 @@ function createProductionConfig() {
   return {
     input,
     output,
-    plugins
+    plugins,
+    external
   }
 }
 

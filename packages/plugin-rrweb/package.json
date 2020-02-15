@@ -1,13 +1,13 @@
 {
-  "name": "@ohbug/plugin-nemetric",
+  "name": "@ohbug/plugin-rrweb",
   "version": "0.0.1",
   "description": "> TODO: description",
   "author": "chenyueban <jasonchan0527@gmail.com>",
   "homepage": "",
   "license": "Apache-2.0",
   "main": "index.js",
-  "module": "dist/plugin-nemetric.esm.js",
-  "unpkg": "dist/plugin-nemetric.global.js",
+  "module": "dist/plugin-rrweb.esm.js",
+  "unpkg": "dist/plugin-rrweb.global.js",
   "types": "dist/index.d.ts",
   "files": [
     "index.js",
@@ -17,10 +17,10 @@
     "@ohbug/core": "^0.0.4"
   },
   "peerDependencies": {
-    "nemetric": "^1.2.4"
+    "rrweb": "^0.7.27"
   },
   "buildOptions": {
-    "name": "OhbugPluginNemetric",
+    "name": "OhbugPluginRrweb",
     "formats": [
       "esm",
       "umd",
