@@ -1,7 +1,7 @@
 import { PluginCapturerContext } from '@ohbug/core'
 import Nemetric from 'nemetric'
 
-function capturer({ createEvent, collector }: PluginCapturerContext) {
+function capturer({ collector }: PluginCapturerContext) {
   new Nemetric({
     // https://github.com/WarrenJones/nemetric#navigation-timing
     navigationTiming: true,
@@ -20,8 +20,7 @@ function capturer({ createEvent, collector }: PluginCapturerContext) {
     logging: process.env.NODE_ENV === 'development',
     logPrefix: 'ohbug-nemetric:',
     analyticsTracker: data => {
-      const event = createEvent('NEMETRIC', data)
-      collector(event, 'async')
+      collector(data, 'async')
     }
   })
 }

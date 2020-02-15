@@ -55,8 +55,8 @@ function init<T>({ config, platform, handleCapture, handleReport, handleAsync, e
       global.__OHBUG__.enhancer = enhancer(_config)
     }
     global.__OHBUG__._report = handleReport
-    handleCapture()
     handleAsync()
+    handleCapture()
   }
 }
 

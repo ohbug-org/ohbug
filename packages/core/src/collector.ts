@@ -6,8 +6,9 @@ import { Event, Execution } from './interface'
  * Used to store the event in the hub and handle the collector in the plugin
  *
  * @param event
+ * @param execution
  */
-function collector<T = Window>(event: Event<any>, execution: Execution = 'sync') {
+function collector<T = Window>(event: Event<any> | any, execution: Execution = 'sync') {
   const hub = getHub<T>()
   // Insert plugin
   const enhancer = getEnhancer<T>() as Enhancer

@@ -1,5 +1,5 @@
 import { getGlobal, Queue } from '@ohbug/utils'
-import { getOhbugObject } from '@ohbug/core'
+import { getOhbugObject, createEvent } from '@ohbug/core'
 
 /**
  * async event 流程
@@ -17,9 +17,8 @@ function async() {
   if (global.addEventListener) {
     global.addEventListener('unload', () => {
       // report
-      queue.forEach(event => {
-        ohbugObject._report && ohbugObject._report(event, 'async')
-      })
+      const event = createEvent('NEMETRIC', queue.get(), 'other')
+      ohbugObject._report && ohbugObject._report(event, 'async')
       queue.clear()
     })
   }

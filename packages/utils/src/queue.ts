@@ -36,4 +36,8 @@ export class Queue {
       callback(event, index, array)
     })
   }
+
+  public get() {
+    return this.events
+  }
 }
