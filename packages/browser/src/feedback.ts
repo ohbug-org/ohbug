@@ -132,6 +132,9 @@ function render(element: OElement, container: Element): HTMLElement {
 
 function feedback() {
   let dom: HTMLElement
+  const handleClose = () => {
+    document.body.removeChild(dom)
+  }
   const element: OElement = {
     type: 'div',
     props: {
@@ -181,6 +184,8 @@ function feedback() {
                 }
                 const event = createEvent('FEEDBACK', data, 'feedback')
                 collector(event, 'sync')
+
+                handleClose()
               }
             },
             children: [
@@ -286,7 +291,7 @@ function feedback() {
                     props: {
                       class: `${prefix}-submit-close`,
                       onClick: () => {
-                        document.body.removeChild(dom)
+                        handleClose()
                       }
                     },
                     children: '关闭'
