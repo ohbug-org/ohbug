@@ -44,7 +44,7 @@ const input = resolve('src/index.ts')
 const defaultFormats = ['esm', 'umd']
 const inlineFormats = process.env.FORMATS && process.env.FORMATS.split(',')
 const packageFormats = inlineFormats || packageOptions.formats || defaultFormats
-const external = ['nemetric', 'rrweb']
+const external = ['perfume.js', 'rrweb']
 
 function createConfig() {
   const output = packageFormats.map(format => {

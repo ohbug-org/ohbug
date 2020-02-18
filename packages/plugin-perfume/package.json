@@ -1,13 +1,13 @@
 {
-  "name": "@ohbug/plugin-nemetric",
+  "name": "@ohbug/plugin-perfume",
   "version": "0.0.1",
   "description": "> TODO: description",
   "author": "chenyueban <jasonchan0527@gmail.com>",
   "homepage": "",
   "license": "Apache-2.0",
   "main": "index.js",
-  "module": "dist/plugin-nemetric.esm.js",
-  "unpkg": "dist/plugin-nemetric.global.js",
+  "module": "dist/plugin-perfume.esm.js",
+  "unpkg": "dist/plugin-perfume.global.js",
   "types": "dist/index.d.ts",
   "files": [
     "index.js",
@@ -17,10 +17,10 @@
     "@ohbug/core": "^0.0.4"
   },
   "peerDependencies": {
-    "nemetric": "^1.2.4"
+    "perfume.js": "^4.7.1"
   },
   "buildOptions": {
-    "name": "OhbugPluginNemetric",
+    "name": "OhbugPluginPerfume",
     "formats": [
       "esm",
       "umd",

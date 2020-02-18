@@ -17,7 +17,7 @@ function async() {
   if (global.addEventListener) {
     global.addEventListener('unload', () => {
       // report
-      const event = createEvent('NEMETRIC', queue.get(), 'other')
+      const event = createEvent('PERFUME', queue.get(), 'other')
       ohbugObject._report && ohbugObject._report(event, 'async')
       queue.clear()
     })

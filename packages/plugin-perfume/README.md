@@ -1,3 +1,3 @@
-# `plugin-nemetric`
+# `plugin-perfume`
 
 > TODO: description
