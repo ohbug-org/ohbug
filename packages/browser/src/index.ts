@@ -1,8 +1,8 @@
 import { captureMessage } from '@ohbug/core'
-
 import init from './init'
+import feedback from './feedback'
 
-export { init, captureMessage }
+export { init, captureMessage, feedback }
 
 export {
   UncaughtErrorDetail,
