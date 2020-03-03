@@ -2,13 +2,13 @@ import { getGlobal, warning } from '@ohbug/utils'
 import { Event, OhbugObject } from './interface'
 
 export interface Config {
-  appid: string
+  apiKey: string
   beforeReport?: (event: Event<any>) => Event<any>
   reported?: (event: Event<any>) => void
 }
 
 export const defaultConfig: Config = {
-  appid: ''
+  apiKey: ''
 }
 
 export function getOhbugObject<T>(): OhbugObject {

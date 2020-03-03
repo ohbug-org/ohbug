@@ -24,7 +24,7 @@ export type Category = 'error' | 'message' | 'feedback' | 'other'
 export type Execution = 'sync' | 'async'
 
 export interface Event<D> {
-  appid: string
+  apiKey: string
   timestamp: number | string
   category?: Category
   type: string

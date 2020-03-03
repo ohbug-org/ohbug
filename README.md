@@ -21,20 +21,20 @@ yarn add @ohbug/core @ohbug/browser
 ```javascript
 import { init } from '@ohbug/browser'
 
-init({ appid: 'demo_appid' })
+init({ apiKey: 'demo_apiKey' })
 ```
 
 ## Config
 
 ```typescript
 interface Config {
-  appid: string
+  apiKey: string
   beforeReport?: (event: Event<any>) => Event<any>
   reported?: (event: Event<any>) => void
 }
 ```
 
-### appid
+### apiKey
 
 这里作为客户端的唯一标识。
 
@@ -67,7 +67,7 @@ import ohbugPluginPerfume from '@ohbug/plugin-perfume'
 import { init } from '@ohbug/browser'
 
 const enhancer = applyPlugin(ohbugPluginPerfume)
-init({ appid: 'demo_appid' }, enhancer)
+init({ apiKey: 'demo_apiKey' }, enhancer)
 ```
 
 ### 自制插件

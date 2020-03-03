@@ -1,8 +1,8 @@
 import init from '../src/init'
 import applyPlugin from '../src/applyPlugin'
 
-const appid = 'test_id'
-const config = { appid }
+const apiKey = 'test_id'
+const config = { apiKey }
 const platform = 'browser'
 const handleCapture = jest.fn()
 function plugin() {

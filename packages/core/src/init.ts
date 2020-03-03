@@ -39,8 +39,8 @@ function init<T>({
   if (!global) return
 
   if (global.__OHBUG__ === undefined) {
-    warning(Boolean(config.appid), `Ohbug: Please pass in appid!`)
-    if (!config.appid) return
+    warning(Boolean(config.apiKey), `Ohbug: Please pass in apiKey!`)
+    if (!config.apiKey) return
 
     const _config = {
       ...defaultConfig,
