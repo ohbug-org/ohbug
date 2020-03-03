@@ -1,5 +1,5 @@
 import { getHub } from './hub'
-import { getEnhancer, Enhancer } from './enhancer'
+import { getEnhancer } from './enhancer'
 import { Event, Execution } from './interface'
 
 /**
@@ -11,8 +11,8 @@ import { Event, Execution } from './interface'
 function collector<T = Window>(event: Event<any> | any, execution: Execution = 'sync') {
   const hub = getHub<T>()
   // Insert plugin
-  const enhancer = getEnhancer<T>() as Enhancer
-  if (Array.isArray(enhancer.collectors) && enhancer.collectors.length) {
+  const enhancer = getEnhancer<T>()
+  if (enhancer && Array.isArray(enhancer.collectors) && enhancer.collectors.length) {
     const state = enhancer.collectors
       .filter(c => Boolean(c))
       .reduce((pre, cur) => ({ ...pre, ...cur(event) }), {})

@@ -13,7 +13,7 @@ Ohbug 是一套集 行为监控、异常监控、自定义行为监控 于一体
 ## 安装
 
 ```
-yarn add @ohbug/core @ohbug/browser
+yarn add @ohbug/browser
 ```
 
 ## 使用
@@ -29,6 +29,8 @@ init({ apiKey: 'demo_apiKey' })
 ```typescript
 interface Config {
   apiKey: string
+  appVersion?: string
+  appType?: string
   beforeReport?: (event: Event<any>) => Event<any>
   reported?: (event: Event<any>) => void
 }
