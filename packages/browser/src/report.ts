@@ -1,8 +1,6 @@
 import { Event } from '@ohbug/core'
 
-// Environment variable
-// @ts-ignore
-const base_url = BASE_URL
+const base_url = `http://localhost:3001/v1/report`
 
 function report<T>(event: Event<T>) {
   const url = `${base_url}`

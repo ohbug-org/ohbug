@@ -10,7 +10,6 @@ const name = path.basename(packageDir)
 const resolve = p => path.resolve(packageDir, p)
 const pkg = require(resolve(`package.json`))
 const packageOptions = pkg.buildOptions || {}
-require('dotenv').config()
 
 const tsPlugin = ts({
   check: process.env.NODE_ENV === 'production',
@@ -50,8 +49,7 @@ function createConfig() {
   const output = packageFormats.map(format => {
     const target = {
       file: resolve(`dist/${name}.${format}.js`),
-      format: configs[format].format,
-      intro: `const BASE_URL = '${process.env.BASE_URL_DEVELOPMENT}'`
+      format: configs[format].format
     }
     if (format === 'umd' || format === 'global') {
       target.name = packageOptions.name
@@ -71,8 +69,7 @@ function createProductionConfig() {
   const output = packageFormats.map(format => {
     const target = {
       file: resolve(`dist/${name}.${format}.prod.js`),
-      format: configs[format].format,
-      intro: `const BASE_URL = '${process.env.BASE_URL_PRODUCTION}'`
+      format: configs[format].format
     }
     if (format === 'umd') {
       target.name = packageOptions.name

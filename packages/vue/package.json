@@ -1,0 +1,33 @@
+{
+  "name": "@ohbug/vue",
+  "version": "0.0.1",
+  "description": "> TODO: description",
+  "author": "chenyueban <jasonchan0527@gmail.com>",
+  "homepage": "",
+  "license": "Apache-2.0",
+  "main": "index.js",
+  "module": "dist/vue.esm.js",
+  "unpkg": "dist/vue.global.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "index.js",
+    "dist"
+  ],
+  "peerDependencies": {
+    "@ohbug/browser": "^0.0.4"
+  },
+  "buildOptions": {
+    "name": "OhbugVue",
+    "formats": [
+      "esm",
+      "umd",
+      "global"
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "jest --config ../../jest.config.js"
+  }
+}
