@@ -1,10 +1,9 @@
 import { getConfig, getOhbugObject } from './config'
 import { Event, Tags, Breadcrumb, Category } from './interface'
-import { version } from './version'
 import { getHub } from './hub'
 
 function getTags<T>(): Tags {
-  const { platform } = getOhbugObject<T>()
+  const { platform, version } = getOhbugObject<T>()
   const tags: Tags = {
     platform,
     version

@@ -1,5 +1,4 @@
 import { getGlobal, warning } from '@ohbug/utils'
-import { version } from './version'
 import { Config, defaultConfig } from './config'
 import { Enhancer } from './enhancer'
 import { Platform, Event } from './interface'
@@ -7,6 +6,7 @@ import { Platform, Event } from './interface'
 interface Init {
   config: Config
   platform: Platform
+  version: string
   handleCapture: () => void
   handleReport: (event: Event<any>) => void
   handleAsync: () => void
@@ -22,7 +22,15 @@ interface Init {
  * @param handleReport Used to pass the report function
  * @param enhancer Used to pass the return value of the applyPlugin function
  */
-function init<T>({ config, platform, handleCapture, handleReport, handleAsync, enhancer }: Init) {
+function init<T>({
+  config,
+  platform,
+  version,
+  handleCapture,
+  handleReport,
+  handleAsync,
+  enhancer
+}: Init) {
   const global = getGlobal<T>()
   warning(
     Boolean(global),
