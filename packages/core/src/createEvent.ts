@@ -32,13 +32,15 @@ function getBreadcrumbs<T>(): Breadcrumb[] {
 function createEvent<D, T = Window>(type: string, detail: D, category?: Category): Event<D> {
   category = category || 'error'
 
-  const { apiKey } = getConfig<T>()
+  const { apiKey, appVersion, appType } = getConfig<T>()
   const timestamp = new Date().getTime()
   const tags = getTags<T>()
   const breadcrumbs = getBreadcrumbs<T>()
 
   return {
     apiKey,
+    appVersion,
+    appType,
     timestamp,
     category,
     type,

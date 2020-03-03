@@ -25,6 +25,8 @@ export type Execution = 'sync' | 'async'
 
 export interface Event<D> {
   apiKey: string
+  appVersion?: string
+  appType?: string
   timestamp: number | string
   category?: Category
   type: string
