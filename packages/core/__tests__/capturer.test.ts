@@ -17,7 +17,15 @@ const enhancer = applyPlugin(plugin1, plugin2)
 
 describe('core capturer', () => {
   beforeAll(() => {
-    init({ config, platform, handleCapture: () => {}, handleReport: () => {}, enhancer })
+    init({
+      config,
+      platform,
+      version: 'test',
+      handleCapture: () => {},
+      handleReport: () => {},
+      handleAsync: () => {},
+      enhancer
+    })
   })
 
   it('should execute all capture functions', () => {

@@ -32,8 +32,7 @@
   },
   "include": [
     "packages/global.d.ts",
-    "packages/*/src",
-    "packages/*/__tests__"
+    "packages/*/src"
   ],
   "exclude": [
     "**/__tests__"
