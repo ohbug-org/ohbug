@@ -37,12 +37,12 @@ const input = resolve('src/index.ts')
 const defaultFormats = ['esm', 'umd']
 const inlineFormats = process.env.FORMATS && process.env.FORMATS.split(',')
 const packageFormats = inlineFormats || packageOptions.formats || defaultFormats
-const external = ['perfume.js', 'rrweb']
+const external = ['perfume.js', 'rrweb', 'react']
 
 function createConfig(isProduction = false) {
   const output = packageFormats.map(format => {
     const target = {
-      file: resolve(`dist/ohbug-${name}.${format}${isProduction ? '.prod' : ''}.js`),
+      file: resolve(`dist/${name}.${format}${isProduction ? '.prod' : ''}.js`),
       format: configs[format].format
     }
     if (format === 'umd' || format === 'global') {

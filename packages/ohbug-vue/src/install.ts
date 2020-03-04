@@ -33,13 +33,13 @@ function install(Vue: any, options: Options) {
 
   init({ apiKey: options.apiKey })
 
-  const handler = (err: any, vm: any, info: string) => {
+  const handler = (error: Error, vm: any, info: string) => {
     const { component, file } = getComponent(vm)
 
     const detail: VueErrorDetail = {
-      name: err.name,
-      message: err.message,
-      stack: err.stack,
+      name: error.name,
+      message: error.message,
+      stack: error.stack,
       errorInfo: info,
       component,
       file,
@@ -48,7 +48,7 @@ function install(Vue: any, options: Options) {
     const event = createEvent<VueErrorDetail>('vue', detail)
     collector(event)
 
-    console.error(err)
+    console.error(error)
   }
 
   Vue.config.errorHandler = handler

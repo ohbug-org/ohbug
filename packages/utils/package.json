@@ -6,8 +6,8 @@
   "homepage": "",
   "license": "Apache-2.0",
   "main": "index.js",
-  "module": "dist/ohbug-utils.esm.js",
-  "unpkg": "dist/ohbug-utils.global.js",
+  "module": "dist/utils.esm.js",
+  "unpkg": "dist/utils.global.js",
   "types": "dist/index.d.ts",
   "files": [
     "index.js",

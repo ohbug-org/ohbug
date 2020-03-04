@@ -6,8 +6,8 @@
   "homepage": "",
   "license": "Apache-2.0",
   "main": "index.js",
-  "module": "dist/ohbug-plugin-perfume.esm.js",
-  "unpkg": "dist/ohbug-plugin-perfume.global.js",
+  "module": "dist/plugin-perfume.esm.js",
+  "unpkg": "dist/plugin-perfume.global.js",
   "types": "dist/index.d.ts",
   "files": [
     "index.js",
