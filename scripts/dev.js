@@ -6,14 +6,16 @@ const target = args._.length ? args._ : 'browser'
 
 const env = 'development'
 
-execa(
-  'rollup',
-  [
-    '-cw',
-    '--environment',
-    [`NODE_ENV:${env}`, `TARGET:${target}`, `FORMATS:${formats || 'esm'}`].join(',')
-  ],
-  {
-    stdio: 'inherit'
-  }
-)
+if (target[0] !== 'types') {
+  execa(
+    'rollup',
+    [
+      '-cw',
+      '--environment',
+      [`NODE_ENV:${env}`, `TARGET:${target}`, `FORMATS:${formats || 'esm'}`].join(',')
+    ],
+    {
+      stdio: 'inherit'
+    }
+  )
+}

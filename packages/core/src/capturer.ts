@@ -1,11 +1,6 @@
 import { getEnhancer } from './enhancer'
-import createEvent, { createOtherEvent } from './createEvent'
+import { createOtherEvent } from './createEvent'
 import collector from './collector'
-
-export interface PluginCapturerContext {
-  createEvent: typeof createEvent
-  collector: typeof collector
-}
 
 /**
  * Used to execute all capture functions

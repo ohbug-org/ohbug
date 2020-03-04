@@ -1,4 +1,4 @@
-import { Event } from '@ohbug/core'
+import { Event } from '@ohbug/types'
 
 const base_url = `http://localhost:3001/v1/report`
 

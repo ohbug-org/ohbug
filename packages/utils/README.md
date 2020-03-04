@@ -1,4 +1,4 @@
-# `utils`
+# `ohbug-utils`
 
 > TODO: description
 

@@ -1,4 +1,4 @@
-import { OhbugGlobal } from '@ohbug/core'
+import { OhbugGlobal } from '@ohbug/types'
 
 function getParentNode(node: Node, path: Node[]) {
   if (node.parentNode) {

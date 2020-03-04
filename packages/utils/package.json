@@ -6,8 +6,8 @@
   "homepage": "",
   "license": "Apache-2.0",
   "main": "index.js",
-  "module": "dist/utils.esm.js",
-  "unpkg": "dist/utils.global.js",
+  "module": "dist/ohbug-utils.esm.js",
+  "unpkg": "dist/ohbug-utils.global.js",
   "types": "dist/index.d.ts",
   "files": [
     "index.js",
@@ -25,7 +25,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@ohbug/core": "^0.0.4"
+    "@ohbug/types": "^0.0.1"
   },
   "scripts": {
     "test": "jest --config ../../jest.config.js"

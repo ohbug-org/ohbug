@@ -1,0 +1,15 @@
+{
+  "name": "@ohbug/types",
+  "version": "0.0.1",
+  "description": "> TODO: description",
+  "author": "chenyueban <jasonchan0527@gmail.com>",
+  "homepage": "",
+  "license": "Apache-2.0",
+  "types": "src/index.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "jest --config ../../jest.config.js"
+  }
+}

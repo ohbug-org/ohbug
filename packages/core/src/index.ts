@@ -10,7 +10,6 @@ export * from './capturer'
 export * from './config'
 export * from './enhancer'
 export * from './hub'
-export * from './interface'
 
 import * as types from './types'
 

@@ -1,9 +1,9 @@
-import { types, Event, createEvent } from '@ohbug/core'
+import { types, createEvent } from '@ohbug/core'
+import { Event, BaseDetail } from '@ohbug/types'
 
 const { UNHANDLEDREJECTION_ERROR } = types
 
-export interface UnhandledrejectionErrorDetail {
-  message: string
+export interface UnhandledrejectionErrorDetail extends BaseDetail {
   stack: string
 }
 

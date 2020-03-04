@@ -1,6 +1,6 @@
-import { Event } from '@ohbug/core'
+import { Event, Queue as IQueue } from '@ohbug/types'
 
-export class Queue {
+export class Queue implements IQueue {
   private events: Event<any>[] = []
 
   public enqueue(event: Event<any>) {

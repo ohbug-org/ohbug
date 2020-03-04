@@ -1,6 +1,6 @@
+import { Event, Execution } from '@ohbug/types'
 import { getHub } from './hub'
 import { getEnhancer } from './enhancer'
-import { Event, Execution } from './interface'
 
 /**
  * Used to store the event in the hub and handle the collector in the plugin

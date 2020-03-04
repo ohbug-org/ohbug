@@ -1,4 +1,4 @@
-import { PluginCapturerContext } from '@ohbug/core'
+import { PluginCapturerContext } from '@ohbug/types'
 import Perfume from 'perfume.js'
 
 function capturer({ collector }: PluginCapturerContext) {

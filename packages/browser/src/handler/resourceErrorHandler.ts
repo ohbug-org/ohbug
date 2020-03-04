@@ -1,4 +1,5 @@
-import { types, Event, createEvent, BaseDetail } from '@ohbug/core'
+import { types, createEvent } from '@ohbug/core'
+import { Event, BaseDetail } from '@ohbug/types'
 import { getSelector } from '@ohbug/utils'
 
 const { RESOURCE_ERROR } = types

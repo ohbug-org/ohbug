@@ -1,4 +1,5 @@
-import { Config, BaseDetail, createEvent, collector } from '@ohbug/core'
+import { createEvent, collector } from '@ohbug/core'
+import { Config, BaseDetail } from '@ohbug/types'
 import { init } from '@ohbug/browser'
 
 interface Options extends Config {}

@@ -6,16 +6,13 @@
   "homepage": "",
   "license": "Apache-2.0",
   "main": "index.js",
-  "module": "dist/plugin-rrweb.esm.js",
-  "unpkg": "dist/plugin-rrweb.global.js",
+  "module": "dist/ohbug-plugin-rrweb.esm.js",
+  "unpkg": "dist/ohbug-plugin-rrweb.global.js",
   "types": "dist/index.d.ts",
   "files": [
     "index.js",
     "dist"
   ],
-  "dependencies": {
-    "@ohbug/core": "^0.0.4"
-  },
   "peerDependencies": {
     "rrweb": "^0.7.27"
   },

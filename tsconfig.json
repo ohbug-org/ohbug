@@ -2,6 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./packages",
     "sourceMap": false,
+    "declaration": true,
     "target": "es5",
     "module": "esnext",
     "moduleResolution": "node",
@@ -15,17 +16,26 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "removeComments": true,
-    "lib": ["esnext", "dom"],
-    "types": ["node", "jest"],
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    "types": [
+      "node",
+      "jest"
+    ],
     "paths": {
-      "@ohbug/core": ["packages/core/src"],
-      "@ohbug/browser": ["packages/browser/src"],
-      "@ohbug/utils": ["packages/utils/src"]
+      "@ohbug/*": [
+        "packages/*/src"
+      ]
     }
   },
   "include": [
     "packages/global.d.ts",
     "packages/*/src",
     "packages/*/__tests__"
+  ],
+  "exclude": [
+    "**/__tests__"
   ]
 }

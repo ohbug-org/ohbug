@@ -6,15 +6,15 @@
   "homepage": "",
   "license": "Apache-2.0",
   "main": "index.js",
-  "module": "dist/plugin-perfume.esm.js",
-  "unpkg": "dist/plugin-perfume.global.js",
+  "module": "dist/ohbug-plugin-perfume.esm.js",
+  "unpkg": "dist/ohbug-plugin-perfume.global.js",
   "types": "dist/index.d.ts",
   "files": [
     "index.js",
     "dist"
   ],
   "dependencies": {
-    "@ohbug/core": "^0.0.4"
+    "@ohbug/types": "^0.0.1"
   },
   "peerDependencies": {
     "perfume.js": "^4.7.1"

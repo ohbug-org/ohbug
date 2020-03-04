@@ -1,4 +1,4 @@
-# `browser`
+# `ohbug-browser`
 
 > TODO: description
 

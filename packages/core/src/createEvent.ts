@@ -1,5 +1,5 @@
+import { Event, Tags, Breadcrumb, Category } from '@ohbug/types'
 import { getConfig, getOhbugObject } from './config'
-import { Event, Tags, Breadcrumb, Category } from './interface'
 import { getHub } from './hub'
 
 function getTags<T>(): Tags {

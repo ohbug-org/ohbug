@@ -1,4 +1,4 @@
-# `core`
+# `ohbug-core`
 
 > TODO: description
 

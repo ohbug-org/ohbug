@@ -13,13 +13,7 @@ const packageOptions = pkg.buildOptions || {}
 
 const tsPlugin = ts({
   check: process.env.NODE_ENV === 'production',
-  tsconfig: resolve('tsconfig.json'),
-  tsconfigOverride: {
-    compilerOptions: {
-      declaration: true
-    },
-    exclude: ['**/__tests__']
-  }
+  tsconfig: resolve('tsconfig.json')
 })
 const extensions = ['.js', '.ts']
 const commonjsOptions = {
@@ -45,10 +39,10 @@ const inlineFormats = process.env.FORMATS && process.env.FORMATS.split(',')
 const packageFormats = inlineFormats || packageOptions.formats || defaultFormats
 const external = ['perfume.js', 'rrweb']
 
-function createConfig() {
+function createConfig(isProduction = false) {
   const output = packageFormats.map(format => {
     const target = {
-      file: resolve(`dist/${name}.${format}.js`),
+      file: resolve(`dist/ohbug-${name}.${format}${isProduction ? '.prod' : ''}.js`),
       format: configs[format].format
     }
     if (format === 'umd' || format === 'global') {
@@ -57,26 +51,9 @@ function createConfig() {
     return target
   })
   const plugins = [tsPlugin, nodeResolve({ extensions }), commonjs(commonjsOptions)]
-  return {
-    input,
-    output,
-    plugins,
-    external
+  if (isProduction) {
+    plugins.push(terser())
   }
-}
-
-function createProductionConfig() {
-  const output = packageFormats.map(format => {
-    const target = {
-      file: resolve(`dist/${name}.${format}.prod.js`),
-      format: configs[format].format
-    }
-    if (format === 'umd') {
-      target.name = packageOptions.name
-    }
-    return target
-  })
-  const plugins = [tsPlugin, nodeResolve({ extensions }), commonjs(commonjsOptions), terser()]
   return {
     input,
     output,
@@ -88,6 +65,6 @@ function createProductionConfig() {
 const NODE_ENV = process.env.NODE_ENV
 
 const packageConfigs = [createConfig()]
-if (NODE_ENV === 'production') packageConfigs.push(createProductionConfig())
+if (NODE_ENV === 'production') packageConfigs.push(createConfig(true))
 
 export default packageConfigs

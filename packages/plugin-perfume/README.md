@@ -1,3 +1,3 @@
-# `plugin-perfume`
+# `ohbug-plugin-perfume`
 
 > TODO: description

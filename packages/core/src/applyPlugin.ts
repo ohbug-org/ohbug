@@ -1,5 +1,4 @@
-import { Config } from './config'
-import { Enhancer } from './enhancer'
+import { Config, Enhancer } from '@ohbug/types'
 
 function applyPlugin(...plugins: any[]): (config: Config) => Enhancer {
   return (config: Config) =>

@@ -1,17 +1,6 @@
 import { getGlobal, warning } from '@ohbug/utils'
-import { Config, defaultConfig } from './config'
-import { Enhancer } from './enhancer'
-import { Platform, Event } from './interface'
-
-interface Init {
-  config: Config
-  platform: Platform
-  version: string
-  handleCapture: () => void
-  handleReport: (event: Event<any>) => void
-  handleAsync: () => void
-  enhancer?: (config: Config) => Enhancer
-}
+import { Init } from '@ohbug/types'
+import { defaultConfig } from './config'
 
 /**
  * An init function common to multiple JavaScript platforms for saving config information and capture report plugin, etc.

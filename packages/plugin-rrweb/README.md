@@ -1,3 +1,3 @@
-# `plugin-rrweb`
+# `ohbug-plugin-rrweb`
 
 > TODO: description

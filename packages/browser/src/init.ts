@@ -1,4 +1,5 @@
-import { Config, init, Enhancer, capturer } from '@ohbug/core'
+import { init, capturer } from '@ohbug/core'
+import { Config, Enhancer } from '@ohbug/types'
 import { scriptCapturer, networkCapturer, breadcrumbCapturer } from './capturer'
 import handleReport from './report'
 import handleAsync from './async'

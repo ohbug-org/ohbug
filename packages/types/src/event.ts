@@ -1,7 +1,4 @@
-import { Queue } from '@ohbug/utils'
-import { Config } from './config'
-import { Enhancer } from './enhancer'
-import { Hub } from './hub'
+export type Platform = 'browser' | 'node'
 
 export interface Tags {
   platform: Platform
@@ -21,7 +18,6 @@ export interface Breadcrumb {
 }
 
 export type Category = 'error' | 'message' | 'feedback' | 'other'
-export type Execution = 'sync' | 'async'
 
 export interface Event<D> {
   apiKey: string
@@ -34,22 +30,4 @@ export interface Event<D> {
   tags: Tags
   breadcrumbs: Breadcrumb[]
   state?: any
-}
-
-export type Platform = 'browser' | 'node'
-export interface OhbugObject {
-  platform: Platform
-  version: string
-  config?: Config
-  enhancer?: Enhancer
-  hub?: Hub
-  _asyncQueue?: Queue
-  _report?: (event: Event<any>, execution: Execution) => void
-}
-export interface OhbugGlobal {
-  __OHBUG__: OhbugObject
-}
-
-export interface BaseDetail {
-  message?: string
 }

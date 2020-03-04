@@ -6,8 +6,8 @@
   "homepage": "",
   "license": "Apache-2.0",
   "main": "index.js",
-  "module": "dist/browser.esm.js",
-  "unpkg": "dist/browser.global.js",
+  "module": "dist/ohbug-browser.esm.js",
+  "unpkg": "dist/ohbug-browser.global.js",
   "types": "dist/index.d.ts",
   "files": [
     "index.js",
@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@ohbug/core": "^0.0.4",
+    "@ohbug/types": "^0.0.1",
     "@ohbug/utils": "^0.0.4"
   },
   "scripts": {

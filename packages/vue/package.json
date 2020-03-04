@@ -6,15 +6,16 @@
   "homepage": "",
   "license": "Apache-2.0",
   "main": "index.js",
-  "module": "dist/vue.esm.js",
-  "unpkg": "dist/vue.global.js",
+  "module": "dist/ohbug-vue.esm.js",
+  "unpkg": "dist/ohbug-vue.global.js",
   "types": "dist/index.d.ts",
   "files": [
     "index.js",
     "dist"
   ],
-  "peerDependencies": {
-    "@ohbug/browser": "^0.0.4"
+  "dependencies": {
+    "@ohbug/browser": "^0.0.4",
+    "@ohbug/types": "^0.0.1"
   },
   "buildOptions": {
     "name": "OhbugVue",
