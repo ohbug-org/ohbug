@@ -1,0 +1,37 @@
+{
+  "name": "@ohbug/webpack-plugin",
+  "version": "0.0.1",
+  "description": "> TODO: description",
+  "author": "chenyueban <jasonchan0527@gmail.com>",
+  "homepage": "",
+  "license": "Apache-2.0",
+  "main": "index.js",
+  "module": "dist/webpack-plugin.esm.js",
+  "unpkg": "dist/webpack-plugin.global.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "index.js",
+    "dist"
+  ],
+  "buildOptions": {
+    "name": "OhbugWebpackPlugin",
+    "formats": [
+      "esm",
+      "umd",
+      "global"
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "jest --config ../../jest.config.js"
+  },
+  "dependencies": {
+    "@ohbug/types": "^0.0.1",
+    "form-data": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/webpack": "^4.41.7"
+  }
+}
