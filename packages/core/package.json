@@ -1,6 +1,6 @@
 {
   "name": "@ohbug/core",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "> TODO: description",
   "author": "chenyueban <jasonchan0527@gmail.com>",
   "homepage": "",
@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "@ohbug/types": "^0.0.1",
-    "@ohbug/utils": "^0.0.4"
+    "@ohbug/utils": "^0.0.5"
   },
   "scripts": {
     "test": "jest --config ../../jest.config.js"

@@ -14,7 +14,7 @@
     "dist"
   ],
   "dependencies": {
-    "@ohbug/browser": "^0.0.4",
+    "@ohbug/browser": "^0.0.5",
     "@ohbug/types": "^0.0.1"
   },
   "devDependencies": {
