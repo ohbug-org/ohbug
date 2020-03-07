@@ -4,7 +4,7 @@ import { LOG_PREFIX } from './constants'
 
 export interface Config {
   apiKey: string
-  appVersion?: string
+  appVersion: string
   appType?: string
 }
 export interface Options extends Config {
@@ -19,7 +19,7 @@ export interface Asset extends Config {
 
 class OhbugWebpackPlugin implements Options {
   apiKey: string
-  appVersion?: string
+  appVersion: string
   appType?: string
   publicPath?: string
 
@@ -36,13 +36,16 @@ class OhbugWebpackPlugin implements Options {
     if (typeof this.apiKey !== 'string' || this.apiKey.length < 1) {
       throw new Error(`${LOG_PREFIX} "apiKey" is required!`)
     }
+    if (typeof this.appVersion !== 'string' || this.appVersion.length < 1) {
+      throw new Error(`${LOG_PREFIX} "appVersion" is required!`)
+    }
   }
 
   getConfig(): Config {
     const config: Config = {
-      apiKey: this.apiKey
+      apiKey: this.apiKey,
+      appVersion: this.appVersion
     }
-    if (this.appVersion) config.appVersion = this.appVersion
     if (this.appType) config.appType = this.appType
     return config
   }

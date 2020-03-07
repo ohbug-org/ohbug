@@ -9,11 +9,10 @@ export const upload = (asset: Asset) => {
 
   const form = new FormData()
   form.append('apiKey', asset.apiKey)
+  form.append('appVersion', asset.appVersion)
   form.append('sourceFile', asset.sourceFile)
   form.append('sourceMap', asset.sourceMap)
   form.append('file', createReadStream(asset.sourceMapPath))
-
-  if (asset.appVersion) form.append('appVersion', asset.appVersion)
   if (asset.appType) form.append('appType', asset.appType)
 
   const request = http.request({
