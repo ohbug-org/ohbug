@@ -18,8 +18,13 @@ interface ErrorBoundaryState {
   info: any
 }
 
-function install(options: Options): any {
-  init({ apiKey: options.apiKey })
+function install(
+  options: Options
+): new (props: ErrorBoundaryProp, state: ErrorBoundaryState) => React.Component<
+  ErrorBoundaryProp,
+  ErrorBoundaryState
+> {
+  init(options)
 
   class OhbugErrorBoundary extends React.Component<ErrorBoundaryProp, ErrorBoundaryState> {
     constructor(props: ErrorBoundaryProp) {

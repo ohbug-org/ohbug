@@ -31,7 +31,7 @@ const getComponent = (vm: any) => {
 function install(Vue: any, options: Options) {
   if (!Vue) throw new Error('Cannot find Vue')
 
-  init({ apiKey: options.apiKey })
+  init(options)
 
   const handler = (error: Error, vm: any, info: string) => {
     const { component, file } = getComponent(vm)
