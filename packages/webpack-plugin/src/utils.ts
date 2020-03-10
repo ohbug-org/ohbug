@@ -19,7 +19,7 @@ export const upload = (asset: Asset) => {
     method: 'POST',
     host: 'localhost',
     port: 3001,
-    path: '/v1/uploadSourceMap',
+    path: '/v1/sourceMap/upload',
     headers: form.getHeaders()
   })
 

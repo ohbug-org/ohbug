@@ -22,7 +22,8 @@
     "formats": [
       "esm",
       "umd",
-      "global"
+      "global",
+      "cjs"
     ]
   },
   "publishConfig": {

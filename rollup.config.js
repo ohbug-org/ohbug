@@ -31,6 +31,9 @@ const configs = {
   },
   global: {
     format: `iife`
+  },
+  cjs: {
+    format: `cjs`
   }
 }
 
