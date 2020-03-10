@@ -1,6 +1,6 @@
 import { Event } from '@ohbug/types'
 
-const base_url = `http://localhost:3001/v1/report`
+const base_url = `http://api.ohbug.io/v1/report`
 
 function report<T>(event: Event<T>) {
   const url = `${base_url}`

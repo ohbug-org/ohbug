@@ -17,8 +17,7 @@ export const upload = (asset: Asset) => {
 
   const request = http.request({
     method: 'POST',
-    host: 'localhost',
-    port: 3001,
+    host: 'api.ohbug.io',
     path: '/v1/sourceMap/upload',
     headers: form.getHeaders()
   })
