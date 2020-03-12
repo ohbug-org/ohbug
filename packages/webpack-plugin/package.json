@@ -18,7 +18,6 @@
     "formats": [
       "esm",
       "umd",
-      "global",
       "cjs"
     ]
   },
@@ -29,8 +28,8 @@
     "test": "jest --config ../../jest.config.js"
   },
   "dependencies": {
-    "@ohbug/types": "^0.0.1",
-    "form-data": "^3.0.0"
+    "@ohbug/cli": "^0.0.2",
+    "@ohbug/types": "^0.0.1"
   },
   "devDependencies": {
     "@types/webpack": "^4.41.7"

@@ -1,5 +1,5 @@
 import { Compiler, compilation } from 'webpack'
-import { upload } from './utils'
+import { uploadSourceMap } from '@ohbug/cli'
 import { LOG_PREFIX } from './constants'
 
 export interface Config {
@@ -11,10 +11,7 @@ export interface Options extends Config {
   publicPath?: string
 }
 export interface Asset extends Config {
-  sourceFile: string
-  sourceFilePath: string
-  sourceMap: string
-  sourceMapPath: string
+  path: string
 }
 
 class OhbugWebpackPlugin implements Options {
@@ -55,18 +52,13 @@ class OhbugWebpackPlugin implements Options {
     const outputPath = compilation.getPath(compiler.outputPath, {})
 
     return chunks?.reduce((result, chunk) => {
-      const sourceFile = chunk.files.find(file => /\.js$/.test(file))
-      const sourceMap = chunk.files.find(file => /\.js\.map$/.test(file))
-      if (!sourceFile || !sourceMap) {
+      const filename = chunk.files.find(file => /\.js\.map$/.test(file))
+      if (!filename) {
         return result
       }
-      const sourceFilePath = compiler.outputFileSystem.join(outputPath, sourceFile)
-      const sourceMapPath = compiler.outputFileSystem.join(outputPath, sourceMap)
+      const path = compiler.outputFileSystem.join(outputPath, filename)
 
-      return [
-        ...result,
-        { sourceFile, sourceFilePath, sourceMap, sourceMapPath, ...this.getConfig() }
-      ]
+      return [...result, { path, ...this.getConfig() }]
     }, [])
   }
 
@@ -76,7 +68,7 @@ class OhbugWebpackPlugin implements Options {
 
       if (assets?.length) {
         assets.forEach(asset => {
-          upload(asset)
+          uploadSourceMap(asset)
         })
       }
 
