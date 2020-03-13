@@ -1,113 +1,37 @@
 # Ohbug
 
-Ohbug 是一套灵活的 JavaScript 监控模块。
+Real-time monitoring reporting for your app.
 
-## 简介
+English | [简体中文](./README-zh_CN.md)
 
-Ohbug 是一套集 行为监控、异常监控、自定义行为监控 于一体的JavaScript 监控模块。
+## Introduction
 
-通过灵活的插件系统，可以实现性能监控、特定信息的采集、黑科技“录屏“等功能。
+Ohbug is a JavaScript monitoring module that integrates behavior monitoring, exception monitoring, and custom behavior monitoring.
 
-将支持 小程序、NodeJS、React Native 等 JavaScript 平台。
+Through the flexible plug-in system, functions such as performance monitoring, collection of specific information, and "screen recording" of black technology can be realized.
 
-## 安装
+Will support Mini Program, NodeJS, React Native and other JavaScript platforms.
 
-```
-yarn add @ohbug/browser
-```
+## Packages
 
-## 使用
+### Platform
 
-```javascript
-import { init } from '@ohbug/browser'
+- [@ohbug/browser](./packages/browser): SDK for Browsers.
+- [@ohbug/react](./packages/ohbug-react): SDK for React.
+- [@ohbug/vue](./packages/ohbug-vue): SDK for Vue.
 
-init({ apiKey: 'demo_apiKey' })
-```
+### Plugins
 
-## Config
+- [@ohbug/plugin-perfume](./packages/plugin-perfume): Package [perfume.js](https://github.com/Zizzamia/perfume.js), to collect performance information.
+- [@ohbug/plugin-rrweb](./packages/plugin-rrweb): Package [rrweb](https://github.com/rrweb-io/rrweb), to "screen recording".
 
-```typescript
-interface Config {
-  apiKey: string
-  appVersion?: string
-  appType?: string
-  beforeReport?: (event: Event<any>) => Event<any>
-  reported?: (event: Event<any>) => void
-}
-```
+### Others
 
-### apiKey
-
-这里作为客户端的唯一标识。
-
-### appVersion
-
-您应该提供 app 的版本号/标识符，以便于定位问题出现的时机。
-
-### appType
-
-如果您的 app 的代码库包含不同的入口，但向同一个服务上报，则可能需要添加 `appType` 表示问题来源的入口类型。
-
-### beforeReport
-
-用于上报前对收集到的信息做一定处理。
-
-### reported
-
-用于上报后的特定操作。
-
-
-## 插件系统
-
-### 简介
-
-主要有两个用途
-1. 捕获更多自定义信息
-2. 在已有的信息基础上附加特定信息
-
-### 使用
-基于 [perfume.js](https://github.com/Zizzamia/perfume.js) 封装的插件使用
-```
-yarn add @ohbug/plugin-perfume
-```
-
-```javascript
-import { applyPlugin } from '@ohbug/core'
-import ohbugPluginPerfume from '@ohbug/plugin-perfume'
-import { init } from '@ohbug/browser'
-
-const enhancer = applyPlugin(ohbugPluginPerfume)
-init({ apiKey: 'demo_apiKey' }, enhancer)
-```
-
-### 自制插件
-
-示例
-```javascript
-// capturer 用于自定义信息的捕获
-// 使用 createEvent 封装捕获到的信息
-// 使用 collector 传递信息给 Ohbug 用于上报
-const capturer = ({ createEvent, collector }) => {}
-
-// collector 用于对已有信息进行二次处理
-// 返回任意格式 object，最终这些信息将出现在 `event.state` 中
-const collector = event => {
-  console.log(event)
-
-  return {
-    user: 'user_1'
-  }
-}
-
-const myPlugin = config => {
-  return { capturer, collector }
-}
-```
-
-### 插件列表
-
-- [plugin-perfume](https://github.com/ohbug-org/ohbug/tree/master/packages/plugin-perfume) 用于性能信息监控
-- [plugin-rrweb](https://github.com/ohbug-org/ohbug/tree/master/packages/plugin-rrweb) 用于还原异常出现时的场景
+- [@ohbug/core](./packages/core): Core function modules.
+- [@ohbug/utils](./packages/utils): Contains some helper/tool programs.
+- [@ohbug/types](./packages/types): Contains types used in all packages.
+- [@ohbug/webpack-plugin](./packages/webpack-plugin): webpack plugin for uploading sourceMap files.
+- [@ohbug/cli](https://github.com/ohbug-org/ohbug-cli): Upload your sourceMap file to Ohbug or other services in one click.
 
 ## License
 

@@ -1,3 +1,3 @@
-# `ohbug-vue`
+# `@ohbug/types`
 
-> TODO: description
+Contains types used in all packages.

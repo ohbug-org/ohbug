@@ -1,14 +1,14 @@
 # `@ohbug/webpack-plugin`
 
-English | [简体中文](./README-zh_CN.md)
+[English](./README.md) | 简体中文
 
-## Installation
+## 安装
 
 ```
 yarn add @ohbug/webpack-plugin --dev
 ```
 
-## Usage
+## 使用
 
 ```javascript
 const OhbugWebpackPlugin = require('@ohbug/webpack-plugin')
@@ -36,12 +36,12 @@ interface Options {
 
 ### apiKey
 
-Your project API key.
+这里作为客户端的唯一标识。
 
 ### appVersion
 
-The version number of your app. Conveniently locate the problem version.
+您应该提供 app 的版本号/标识符，以便于定位问题出现的时机。
 
 ### appType
 
-The type of your app. If your app's codebase contains different entries, but reports to the same service, you may need to add `appType` to indicate the type of entry for the source of the problem.
+如果您的 app 的代码库包含不同的入口，但向同一个服务上报，则可能需要添加 `appType` 表示问题来源的入口类型。
