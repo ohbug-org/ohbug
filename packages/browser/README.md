@@ -124,5 +124,5 @@ const myPlugin = config => {
 
 ### List of plugins
 
-- [plugin-perfume](https://github.com/ohbug-org/ohbug/tree/master/packages/plugin-perfume) 用于性能信息监控
-- [plugin-rrweb](https://github.com/ohbug-org/ohbug/tree/master/packages/plugin-rrweb) 用于还原异常出现时的场景
+- [plugin-perfume](https://github.com/ohbug-org/ohbug/tree/master/packages/plugin-perfume) For performance information monitoring
+- [plugin-rrweb](https://github.com/ohbug-org/ohbug/tree/master/packages/plugin-rrweb) Used to restore the scene when an exception occurs
