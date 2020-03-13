@@ -1,36 +1,33 @@
-# `@ohbug/webpack-plugin`
+# `@ohbug/vue`
 
 [English](./README.md) | 简体中文
 
 ## 安装
 
 ```
-yarn add @ohbug/webpack-plugin --dev
+yarn add @ohbug/vue
 ```
 
 ## 使用
 
 ```javascript
-const OhbugWebpackPlugin = require('@ohbug/webpack-plugin')
+import OhbugVue from '@ohbug/vue'
 
-const config = {
-  // ...
-  plugins: [
-    new OhbugWebpackPlugin({
-      apiKey: 'YOUR_API_KEY',
-      appVersion: 'YOUR_APP_VERSION'
-    })
-  ]
-}
+Vue.use(OhbugVue, {
+  apiKey: 'YOUR_API_KEY',
+  appVersion: 'YOUR_APP_VERSION'
+})
 ```
 
-## Options
+## Config
 
 ```typescript
-interface Options {
+interface Config {
   apiKey: string
-  appVersion: string
+  appVersion?: string
   appType?: string
+  beforeReport?: (event: Event<any>) => Event<any>
+  reported?: (event: Event<any>) => void
 }
 ```
 
@@ -45,3 +42,11 @@ interface Options {
 ### appType
 
 如果您的 app 的代码库包含不同的入口，但向同一个服务上报，则可能需要添加 `appType` 表示问题来源的入口类型。
+
+### beforeReport
+
+用于上报前对收集到的信息做一定处理。
+
+### reported
+
+用于上报后的特定操作。

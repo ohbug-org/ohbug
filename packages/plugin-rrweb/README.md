@@ -16,5 +16,5 @@ import ohbugPluginRrweb from '@ohbug/plugin-rrweb'
 import { init } from '@ohbug/browser'
 
 const enhancer = applyPlugin(ohbugPluginRrweb)
-init({ apiKey: 'demo_apiKey' }, enhancer)
+init({ apiKey: 'YOUR_API_KEY' }, enhancer)
 ```

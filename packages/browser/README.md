@@ -13,10 +13,14 @@ yarn add @ohbug/browser
 ```javascript
 import { init } from '@ohbug/browser'
 
-init({ apiKey: 'demo_apiKey' })
+init({ apiKey: 'YOUR_API_KEY' })
 ```
 
-## Config
+## API
+
+### init
+
+Here is a description of the config of `init`.
 
 ```typescript
 interface Config {
@@ -28,25 +32,47 @@ interface Config {
 }
 ```
 
-### apiKey
+#### apiKey
 
 Your project API key.
 
-### appVersion
+#### appVersion
 
 The version number of your app. Conveniently locate the problem version.
 
-### appType
+#### appType
 
 The type of your app. If your app's codebase contains different entries, but reports to the same service, you may need to add `appType` to indicate the type of entry for the source of the problem.
 
-### beforeReport
+#### beforeReport
 
 Used to do some processing on the collected information before reporting.
 
-### reported
+#### reported
 
 Used to perform specific operations after reporting.
+
+### captureMessage
+
+Used to report custom information
+
+```javascript
+import { captureMessage } from '@ohbug/browser'
+
+captureMessage('error info')
+```
+
+### feedback
+
+Used to collect user feedback
+
+```javascript
+import { feedback } from '@ohbug/browser'
+
+btn.addEventListener('click', () => {
+  feedback()
+})
+```
 
 ## Plugin
 
@@ -64,7 +90,7 @@ import ohbugPluginPerfume from '@ohbug/plugin-perfume'
 import { init } from '@ohbug/browser'
 
 const enhancer = applyPlugin(ohbugPluginPerfume)
-init({ apiKey: 'demo_apiKey' }, enhancer)
+init({ apiKey: 'YOUR_API_KEY' }, enhancer)
 ```
 
 ### Custom plugin

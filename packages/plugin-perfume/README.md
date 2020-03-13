@@ -16,5 +16,5 @@ import ohbugPluginPerfume from '@ohbug/plugin-perfume'
 import { init } from '@ohbug/browser'
 
 const enhancer = applyPlugin(ohbugPluginPerfume)
-init({ apiKey: 'demo_apiKey' }, enhancer)
+init({ apiKey: 'YOUR_API_KEY' }, enhancer)
 ```

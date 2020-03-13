@@ -13,10 +13,14 @@ yarn add @ohbug/browser
 ```javascript
 import { init } from '@ohbug/browser'
 
-init({ apiKey: 'demo_apiKey' })
+init({ apiKey: 'YOUR_API_KEY' })
 ```
 
-## Config
+## API
+
+### init
+
+这是对 `init` 配置的描述。 
 
 ```typescript
 interface Config {
@@ -28,25 +32,47 @@ interface Config {
 }
 ```
 
-### apiKey
+#### apiKey
 
 这里作为客户端的唯一标识。
 
-### appVersion
+#### appVersion
 
 您应该提供 app 的版本号/标识符，以便于定位问题出现的时机。
 
-### appType
+#### appType
 
 如果您的 app 的代码库包含不同的入口，但向同一个服务上报，则可能需要添加 `appType` 表示问题来源的入口类型。
 
-### beforeReport
+#### beforeReport
 
 用于上报前对收集到的信息做一定处理。
 
-### reported
+#### reported
 
 用于上报后的特定操作。
+
+### captureMessage
+
+用于报告自定义信息。
+
+```javascript
+import { captureMessage } from '@ohbug/browser'
+
+captureMessage('error info')
+```
+
+### feedback
+
+用于收集用户反馈。
+
+```javascript
+import { feedback } from '@ohbug/browser'
+
+btn.addEventListener('click', () => {
+  feedback()
+})
+```
 
 ## 插件
 
@@ -64,7 +90,7 @@ import ohbugPluginPerfume from '@ohbug/plugin-perfume'
 import { init } from '@ohbug/browser'
 
 const enhancer = applyPlugin(ohbugPluginPerfume)
-init({ apiKey: 'demo_apiKey' }, enhancer)
+init({ apiKey: 'YOUR_API_KEY' }, enhancer)
 ```
 
 ### 自定义插件

@@ -1,11 +1,9 @@
-# `ohbug-core`
+# `@ohbug/core`
 
-> TODO: description
+English | [简体中文](./README-zh_CN.md)
 
-## Usage
+## Installation
 
 ```
-const core = require('core');
-
-// TODO: DEMONSTRATE API
+yarn add @ohbug/core
 ```
