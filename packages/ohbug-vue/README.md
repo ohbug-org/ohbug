@@ -50,3 +50,30 @@ Used to do some processing on the collected information before reporting.
 ### reported
 
 Used to perform specific operations after reporting.
+
+## Plugin
+
+### Example
+
+Use of plugin based on [perfume.js](https://github.com/Zizzamia/perfume.js) package.
+
+```
+yarn add @ohbug/plugin-perfume
+```
+
+```jsx
+import { applyPlugin } from '@ohbug/core'
+import ohbugPluginPerfume from '@ohbug/plugin-perfume'
+import OhbugVue from '@ohbug/vue'
+
+const enhancer = applyPlugin(ohbugPluginPerfume)
+
+Vue.use(
+  OhbugVue,
+  {
+    apiKey: '9612114ecfdd1cd322ca0188be729f1e9065e36bc0d0ec6acccaf87d21f57bc0',
+    appVersion: '1.0.0'
+  },
+  enhance
+)
+```

@@ -50,3 +50,30 @@ interface Config {
 ### reported
 
 用于上报后的特定操作。
+
+## 插件
+
+### 例子
+
+基于 [perfume.js](https://github.com/Zizzamia/perfume.js) 封装的插件使用。
+
+```
+yarn add @ohbug/plugin-perfume
+```
+
+```javascript
+import { applyPlugin } from '@ohbug/core'
+import ohbugPluginPerfume from '@ohbug/plugin-perfume'
+import OhbugVue from '@ohbug/vue'
+
+const enhancer = applyPlugin(ohbugPluginPerfume)
+
+Vue.use(
+  OhbugVue,
+  {
+    apiKey: '9612114ecfdd1cd322ca0188be729f1e9065e36bc0d0ec6acccaf87d21f57bc0',
+    appVersion: '1.0.0'
+  },
+  enhance
+)
+```
