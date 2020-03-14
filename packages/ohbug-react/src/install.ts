@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Config, BaseDetail } from '@ohbug/types'
+import { Config, Enhancer, BaseDetail } from '@ohbug/types'
 import { createEvent, collector } from '@ohbug/core'
 import { init } from '@ohbug/browser'
 
@@ -19,12 +19,13 @@ interface ErrorBoundaryState {
 }
 
 function install(
-  options: Options
+  options: Options,
+  enhancer?: (config: Config) => Enhancer
 ): new (props: ErrorBoundaryProp, state: ErrorBoundaryState) => React.Component<
   ErrorBoundaryProp,
   ErrorBoundaryState
 > {
-  init(options)
+  init(options, enhancer)
 
   class OhbugErrorBoundary extends React.Component<ErrorBoundaryProp, ErrorBoundaryState> {
     constructor(props: ErrorBoundaryProp) {
