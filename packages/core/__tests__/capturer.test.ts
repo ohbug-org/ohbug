@@ -1,6 +1,9 @@
 import init from '../src/init'
 import capturer from '../src/capturer'
 import applyPlugin from '../src/applyPlugin'
+import { getEnhancer } from '../src/enhancer'
+import { createOtherEvent } from '../src/createEvent'
+import collector from '../src/collector'
 
 const apiKey = 'test_id'
 const config = { apiKey }
@@ -37,8 +40,19 @@ describe('core capturer', () => {
   })
 
   it('should execute all enhancer capture functions', () => {
-    capturer()
-    expect(pluginCapturer1).toBeCalled()
-    expect(pluginCapturer2).toBeCalled()
+    const enhancer = getEnhancer()
+    if (enhancer) {
+      const { capturers: EnhanceCapturers } = enhancer
+      if (Array.isArray(EnhanceCapturers) && EnhanceCapturers.length) {
+        expect(pluginCapturer1).toBeCalled()
+        expect(pluginCapturer2).toBeCalled()
+        const ctx = {
+          createEvent: createOtherEvent,
+          collector
+        }
+        expect(pluginCapturer1.mock.calls[0][0]).toEqual(ctx)
+        expect(pluginCapturer2.mock.calls[0][0]).toEqual(ctx)
+      }
+    }
   })
 })
