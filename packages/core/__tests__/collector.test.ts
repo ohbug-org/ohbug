@@ -20,7 +20,7 @@ const plugin = () => ({
 })
 const enhancer = applyPlugin(plugin)
 
-describe('core capturer', () => {
+describe('core collector', () => {
   afterEach(() => {
     // destroy
     const global = getGlobal()
