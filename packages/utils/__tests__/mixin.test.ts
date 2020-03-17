@@ -1,4 +1,4 @@
-import { replace } from '../src/mixin'
+import { replace, parseUrl } from '../src/mixin'
 
 describe('utils mixin', () => {
   jest.useFakeTimers()
@@ -30,6 +30,27 @@ describe('utils mixin', () => {
       }))
 
       expect(source.foo.name).toBe('bar')
+    })
+  })
+
+  describe('parseUrl', () => {
+    const target = `http://localhost:1234/bar`
+    const expect_result = {
+      host: 'localhost:1234',
+      path: '/bar',
+      protocol: 'http',
+      relative: '/bar'
+    }
+
+    it('URL should be parsed correctly', () => {
+      expect(parseUrl(target)).toEqual(expect_result)
+    })
+
+    it('should do fault tolerance', () => {
+      // @ts-ignore
+      expect(parseUrl(undefined)).toEqual({})
+      // @ts-ignore
+      expect(parseUrl(1)).toEqual({})
     })
   })
 })

@@ -1,4 +1,3 @@
-// import { wait } from '@testing-library/dom'
 import userEvent from '@testing-library/user-event'
 import { getSelector } from '../src/dom'
 
@@ -11,7 +10,7 @@ describe('utils dom', () => {
     return div
   }
 
-  it('Should return selector correctly', () => {
+  it('should return selector correctly', () => {
     const dom = getDOM()
     const button = dom.querySelector('button') as HTMLButtonElement
     let selector

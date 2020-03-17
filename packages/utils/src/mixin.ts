@@ -15,7 +15,7 @@ export function parseUrl(
   protocol?: string
   relative?: string
 } {
-  if (!url) {
+  if (typeof url !== 'string') {
     return {}
   }
 
