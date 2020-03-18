@@ -1,9 +1,10 @@
 import { createEvent, collector } from '@ohbug/core'
+import { getGlobal } from '@ohbug/utils'
 
-const prefix = 'ohbug-feedback'
+export const prefix = 'ohbug-feedback'
 
 const styles = `
-  .${prefix}-wrapper {
+  .${prefix}-root {
     display: block;
     width: 100%;
     height: 100%;
@@ -14,7 +15,7 @@ const styles = `
     background: rgba(0, 0, 0, 0.5);
     overflow: auto;
   }
-  .${prefix}-wrapper * {
+  .${prefix}-root * {
     box-sizing: border-box;
     color: #666;
   }
@@ -88,7 +89,9 @@ interface OElement {
 function render(element: OElement, container: Element): HTMLElement {
   const { type, props, children } = element
 
-  const dom = document.createElement(type)
+  const window = getGlobal<Window>()
+
+  const dom = window.document.createElement(type)
 
   // map props
   for (const propName in props) {
@@ -113,7 +116,7 @@ function render(element: OElement, container: Element): HTMLElement {
   // handle children
   if (children) {
     if (typeof children === 'string' || typeof children === 'number') {
-      const text = document.createTextNode(children.toString())
+      const text = window.document.createTextNode(children.toString())
       dom.appendChild(text)
     } else if (Array.isArray(children)) {
       children.forEach(child => {
@@ -130,15 +133,16 @@ function render(element: OElement, container: Element): HTMLElement {
   return dom
 }
 
-function feedback() {
+function feedback(): HTMLElement {
   let dom: HTMLElement
   const handleClose = () => {
-    document.body.removeChild(dom)
+    window.document.body.removeChild(dom)
   }
   const element: OElement = {
     type: 'div',
     props: {
-      class: `${prefix}-wrapper`
+      class: `${prefix}-root`,
+      'data-testid': `${prefix}-root`
     },
     children: [
       {
@@ -172,9 +176,12 @@ function feedback() {
               onSubmit: (e: Event): void => {
                 e.preventDefault()
 
-                const name = (document.querySelector(`#${prefix}-name`) as HTMLInputElement).value
-                const email = (document.querySelector(`#${prefix}-email`) as HTMLInputElement).value
-                const comments = (document.querySelector(
+                const name = (window.document.querySelector(`#${prefix}-name`) as HTMLInputElement)
+                  .value
+                const email = (window.document.querySelector(
+                  `#${prefix}-email`
+                ) as HTMLInputElement).value
+                const comments = (window.document.querySelector(
                   `#${prefix}-comments`
                 ) as HTMLTextAreaElement).value
                 const data = {
@@ -304,7 +311,8 @@ function feedback() {
       }
     ]
   }
-  dom = render(element, document.body)
+  dom = render(element, window.document.body)
+  return dom
 }
 
 export default feedback
