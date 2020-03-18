@@ -14,9 +14,10 @@ describe('utils warning', () => {
     }).not.toThrow()
   })
 
-  it('should throw error', () => {
-    expect(() => {
-      warning(false, 'message')
-    }).toThrow(/message/)
+  it('should log message', () => {
+    const errorSpy = jest.spyOn(global.console, 'error')
+    const message = 'test message'
+    warning(false, message)
+    expect(errorSpy.mock.calls[0][2]).toBe(message)
   })
 })
