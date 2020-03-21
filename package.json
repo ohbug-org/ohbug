@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "node scripts/dev.js",
     "build": "node scripts/build.js",
-    "test": "lerna run test"
+    "test": "jest --config ./jest.config.js",
+    "codecov": "codecov"
   },
   "devDependencies": {
     "@rollup/plugin-json": "^4.0.2",
@@ -15,6 +16,7 @@
     "@types/jest": "^24.0.22",
     "@typescript-eslint/eslint-plugin": "^2.6.0",
     "@typescript-eslint/parser": "^2.6.0",
+    "codecov": "^3.6.5",
     "cz-conventional-changelog": "3.0.2",
     "dotenv": "^8.2.0",
     "eslint": "^6.6.0",
@@ -35,7 +37,7 @@
     "rrweb": "^0.7.27",
     "ts-jest": "^24.1.0",
     "typedoc": "^0.16.11",
-    "typescript": "^3.7.4"
+    "typescript": "^3.8.3"
   },
   "config": {
     "commitizen": {

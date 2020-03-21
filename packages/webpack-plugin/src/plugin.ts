@@ -6,6 +6,7 @@ export interface Config {
   apiKey: string
   appVersion: string
   appType?: string
+  url?: string
 }
 export interface Options extends Config {
   publicPath?: string
@@ -19,21 +20,23 @@ class OhbugWebpackPlugin implements Options {
   appVersion: string
   appType?: string
   publicPath?: string
+  url?: string
 
   constructor(options: Options) {
+    this.validate(options)
+
     this.apiKey = options.apiKey
     this.appVersion = options.appVersion
     this.appType = options.appType
     this.publicPath = options.publicPath
-
-    this.validate()
+    this.url = options.url
   }
 
-  validate(): void {
-    if (typeof this.apiKey !== 'string' || this.apiKey.length < 1) {
+  validate(options: Options): void {
+    if (typeof options.apiKey !== 'string' || options.apiKey.length < 1) {
       throw new Error(`${LOG_PREFIX} "apiKey" is required!`)
     }
-    if (typeof this.appVersion !== 'string' || this.appVersion.length < 1) {
+    if (typeof options.appVersion !== 'string' || options.appVersion.length < 1) {
       throw new Error(`${LOG_PREFIX} "appVersion" is required!`)
     }
   }
@@ -44,6 +47,8 @@ class OhbugWebpackPlugin implements Options {
       appVersion: this.appVersion
     }
     if (this.appType) config.appType = this.appType
+    if (this.url) config.url = this.url
+
     return config
   }
 
@@ -63,20 +68,15 @@ class OhbugWebpackPlugin implements Options {
   }
 
   apply(compiler: Compiler) {
-    const plugin = (compilation: compilation.Compilation, cb: () => void) => {
+    const plugin = async (compilation: compilation.Compilation) => {
       const assets = this.getAssets(compiler, compilation)
-
       if (assets?.length) {
-        assets.forEach(asset => {
-          uploadSourceMap(asset)
-        })
+        return await Promise.all(assets.map(asset => uploadSourceMap(asset)))
       }
-
-      cb()
     }
 
     if (compiler.hooks && compiler.hooks.afterEmit) {
-      compiler.hooks.afterEmit.tapAsync('OhbugWebpackPlugin', plugin)
+      compiler.hooks.afterEmit.tapPromise('OhbugWebpackPlugin', plugin)
     } else {
       compiler.plugin('after-emit', plugin)
     }

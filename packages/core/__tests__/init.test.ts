@@ -1,5 +1,6 @@
 import init from '../src/init'
 import applyPlugin from '../src/applyPlugin'
+import { getGlobal } from '@ohbug/utils'
 
 const apiKey = 'test_id'
 const config = { apiKey }
@@ -30,17 +31,19 @@ describe('core init', () => {
     })
   })
 
+  const global = getGlobal<Window>()
+
   it('the `__OHBUG__` object should be mounted on global', () => {
-    expect(window.__OHBUG__).not.toBeUndefined()
+    expect(global.__OHBUG__).not.toBeUndefined()
   })
 
   it('the `enhancer` object should be mounted on `global.__OHBUG__`', () => {
-    expect(window.__OHBUG__.enhancer).not.toBeUndefined()
+    expect(global.__OHBUG__.enhancer).not.toBeUndefined()
   })
 
   it('the `_report` object should be mounted on `global.__OHBUG__`', () => {
-    expect(window.__OHBUG__._report).not.toBeUndefined()
-    expect(window.__OHBUG__._report).toEqual(handleReport)
+    expect(global.__OHBUG__._report).not.toBeUndefined()
+    expect(global.__OHBUG__._report).toEqual(handleReport)
   })
 
   it('should trigger handleCapture', () => {
