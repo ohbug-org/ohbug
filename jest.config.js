@@ -9,5 +9,10 @@ module.exports = {
   collectCoverageFrom: ['**/*.ts', '!**/node_modules/**', '!**/index.ts', '!**/types.ts'],
   coverageDirectory: '<rootDir>/coverage/',
   collectCoverage: true,
-  verbose: true
+  verbose: true,
+  globals: {
+    'ts-jest': {
+      tsConfigFile: 'tsconfig.json'
+    }
+  }
 }

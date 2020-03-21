@@ -22,6 +22,5 @@
       "@ohbug/*": ["packages/*/src"]
     }
   },
-  "include": ["packages/global.d.ts", "packages/*/src"],
-  "exclude": ["**/__tests__"]
+  "include": ["packages/global.d.ts", "packages/*/src"]
 }
