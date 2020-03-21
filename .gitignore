@@ -10,7 +10,5 @@ build
 .env
 example
 todos.md
-yarn.lock
-yarn-error.log
 docs
 uploads

@@ -24,7 +24,8 @@
       "umd",
       "global",
       "cjs"
-    ]
+    ],
+    "order": 4
   },
   "publishConfig": {
     "access": "public"
