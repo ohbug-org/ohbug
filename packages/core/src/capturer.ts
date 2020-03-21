@@ -1,3 +1,4 @@
+import { PluginCapturerContext } from '@ohbug/types'
 import { getEnhancer } from './enhancer'
 import { createOtherEvent } from './createEvent'
 import collector from './collector'
@@ -14,7 +15,7 @@ function capturer<T = Window>(...capturers: (() => void)[]) {
   if (enhancer) {
     const { capturers: EnhanceCapturers } = enhancer
     if (Array.isArray(EnhanceCapturers) && EnhanceCapturers.length) {
-      const ctx = {
+      const ctx: PluginCapturerContext = {
         createEvent: createOtherEvent,
         collector
       }

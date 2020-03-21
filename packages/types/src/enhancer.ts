@@ -1,4 +1,5 @@
 import { Event } from './event'
+import { Config } from './config'
 
 export type Execution = 'sync' | 'async'
 type CreateEvent = <D>(
@@ -14,11 +15,20 @@ interface CapturerCtx {
 type Capturer = (ctx: CapturerCtx) => void
 
 type EnhancerCollector = (event: Event<any> | any, execution?: Execution) => any
-export interface PluginCapturerContext {
-  createEvent: CreateEvent
-  collector: EnhancerCollector
-}
 export interface Enhancer {
   capturers: Capturer[]
   collectors: EnhancerCollector[]
 }
+
+export interface PluginCapturerContext {
+  createEvent: CreateEvent
+  collector: EnhancerCollector
+}
+interface PluginReturn {
+  capturer: (ctx: PluginCapturerContext) => void
+  collector: (event: Event<any> | any) => Record<string, any>
+}
+interface PluginOptions {
+  config?: Config
+}
+export type Plugin = (options: PluginOptions) => PluginReturn

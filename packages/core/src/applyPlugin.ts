@@ -1,6 +1,6 @@
-import { Config, Enhancer } from '@ohbug/types'
+import { Plugin, Config, Enhancer } from '@ohbug/types'
 
-function applyPlugin(...plugins: any[]): (config: Config) => Enhancer {
+function applyPlugin(...plugins: Plugin[]): (config: Config) => Enhancer {
   return (config: Config) =>
     plugins.reduce<Enhancer>(
       (previous, plugin) => {
