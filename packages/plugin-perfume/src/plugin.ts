@@ -1,7 +1,7 @@
-import { PluginCapturerContext } from '@ohbug/types'
+import { PluginCapturer, Plugin } from '@ohbug/types'
 import Perfume from 'perfume.js'
 
-function capturer({ collector }: PluginCapturerContext) {
+const capturer: PluginCapturer = ({ collector }) => {
   new Perfume({
     resourceTiming: true,
     dataConsumption: true,
@@ -46,10 +46,8 @@ function capturer({ collector }: PluginCapturerContext) {
   })
 }
 
-function plugin() {
-  return {
-    capturer
-  }
-}
+const plugin: Plugin = () => ({
+  capturer
+})
 
 export default plugin

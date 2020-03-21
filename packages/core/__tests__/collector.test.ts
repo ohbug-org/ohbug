@@ -1,4 +1,5 @@
 import { getGlobal } from '@ohbug/utils'
+import { Plugin } from '@ohbug/types'
 import applyPlugin from '../src/applyPlugin'
 import init from '../src/init'
 import collector from '../src/collector'
@@ -11,7 +12,7 @@ const config = { apiKey }
 const platform = 'browser'
 const event = { type: 'test' }
 const extra = 'hello'
-const plugin = () => ({
+const plugin: Plugin = () => ({
   collector() {
     return {
       extra

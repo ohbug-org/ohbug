@@ -1,3 +1,4 @@
+import { Plugin } from '@ohbug/types'
 import init from '../src/init'
 import capturer from '../src/capturer'
 import applyPlugin from '../src/applyPlugin'
@@ -10,10 +11,10 @@ const config = { apiKey }
 const platform = 'browser'
 const pluginCapturer1 = jest.fn()
 const pluginCapturer2 = jest.fn()
-const plugin1 = () => ({
+const plugin1: Plugin = () => ({
   capturer: pluginCapturer1
 })
-const plugin2 = () => ({
+const plugin2: Plugin = () => ({
   capturer: pluginCapturer2
 })
 const enhancer = applyPlugin(plugin1, plugin2)

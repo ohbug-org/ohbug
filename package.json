@@ -4,9 +4,10 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "node scripts/dev.js",
-    "build": "node scripts/build.js",
     "bootstrap": "lerna bootstrap",
+    "dev": "node scripts/dev.js",
+    "prebuild": "lerna exec -- rm -rf ./dist",
+    "build": "node scripts/build.js",
     "test": "jest --config ./jest.config.js",
     "codecov": "codecov"
   },

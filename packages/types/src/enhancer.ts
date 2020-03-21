@@ -24,11 +24,13 @@ export interface PluginCapturerContext {
   createEvent: CreateEvent
   collector: EnhancerCollector
 }
+export type PluginCapturer = (ctx: PluginCapturerContext) => void
+export type PluginCollector = (event: Event<any> | any) => Record<string, any> | {} | void
 interface PluginReturn {
-  capturer: (ctx: PluginCapturerContext) => void
-  collector: (event: Event<any> | any) => Record<string, any>
+  capturer?: PluginCapturer
+  collector?: PluginCollector
 }
 interface PluginOptions {
   config?: Config
 }
-export type Plugin = (options: PluginOptions) => PluginReturn
+export type Plugin = (options?: PluginOptions) => PluginReturn
