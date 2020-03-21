@@ -24,10 +24,10 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm ci
-    - run: npm run bootstrap
-    - run: npm run build --if-present
-    - run: npm test
+    - run: yarn
+    - run: yarn bootstrap
+    - run: yarn build
+    - run: yarn test
       env:
         CI: true
     - uses: codecov/codecov-action@v1
