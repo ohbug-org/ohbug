@@ -55,7 +55,7 @@ function captureAjaxError() {
               }
             }
             const timestamp = new Date().getTime()
-            hub.addBreadcrumb({
+            hub.addAction({
               type: 'ajax',
               timestamp,
               data

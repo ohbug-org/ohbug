@@ -10,11 +10,11 @@ export interface Tags {
   url?: string
 }
 
-export interface Breadcrumb {
+export interface Action {
   type: string
   timestamp: number
   message?: string
-  data?: { [key: string]: any }
+  data?: Record<string, any>
 }
 
 export type Category = 'error' | 'message' | 'feedback' | 'other'
@@ -28,6 +28,6 @@ export interface Event<D> {
   type: string
   detail: D
   tags: Tags
-  breadcrumbs: Breadcrumb[]
+  actions: Action[]
   state?: any
 }

@@ -1,11 +1,11 @@
-import { Hub as IHub, Event, Breadcrumb, Execution } from '@ohbug/types'
+import { Hub as IHub, Event, Action, Execution } from '@ohbug/types'
 import { getOhbugObject } from './config'
 import report from './report'
 
 export class Hub implements IHub {
   private readonly events: Event<any>[] = []
 
-  private readonly breadcrumbs: Breadcrumb[] = []
+  private readonly actions: Action[] = []
 
   public addEvent<T>(event: Event<T>, execution: Execution): void {
     this.events.push(event)
@@ -13,13 +13,13 @@ export class Hub implements IHub {
     report(event, execution)
   }
 
-  public getBreadcrumbs(): Breadcrumb[] {
-    return this.breadcrumbs
+  public getActions(): Action[] {
+    return this.actions
   }
 
-  public addBreadcrumb(breadcrumb: Breadcrumb): void {
-    const breadcrumbs = this.getBreadcrumbs()
-    breadcrumbs.push(breadcrumb)
+  public addAction(action: Action): void {
+    const actions = this.getActions()
+    actions.push(action)
   }
 }
 

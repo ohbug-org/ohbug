@@ -27,7 +27,7 @@ describe('core createEvent', () => {
     expect(event.category).toBe('error')
     expect(event.type).toBe(type)
     expect(event.tags instanceof Object).toBe(true)
-    expect(Array.isArray(event.breadcrumbs)).toBe(true)
+    expect(Array.isArray(event.actions)).toBe(true)
     expect(event.detail).toEqual(detail)
   })
 
@@ -37,7 +37,7 @@ describe('core createEvent', () => {
     expect(event.category).toBe('other')
     expect(event.type).toBe(type)
     expect(event.tags instanceof Object).toBe(true)
-    expect(Array.isArray(event.breadcrumbs)).toBe(true)
+    expect(Array.isArray(event.actions)).toBe(true)
     expect(event.detail).toEqual(detail)
   })
 })

@@ -2,7 +2,7 @@ import init from '../src/init'
 import { getHub } from '../src/hub'
 import { getOhbugObject } from '../src/config'
 import report from '../src/report'
-import { Event, Breadcrumb } from '@ohbug/types'
+import { Event, Action } from '@ohbug/types'
 jest.mock('../src/report')
 
 const apiKey = 'test_id'
@@ -11,7 +11,7 @@ const platform = 'browser'
 const event = {
   type: 'test'
 } as Event<any>
-const breadcrumb = { type: 'a' } as Breadcrumb
+const action = { type: 'a' } as Action
 
 describe('core hub', () => {
   beforeAll(() => {
@@ -47,19 +47,19 @@ describe('core hub', () => {
     expect(mockReport).toBeCalled()
   })
 
-  it('hub.getBreadcrumbs() should return breadcrumbs', () => {
+  it('hub.getActions() should return actions', () => {
     const hub = getHub()
 
     // @ts-ignore
-    expect(hub.getBreadcrumbs()).toEqual(hub.breadcrumbs)
+    expect(hub.getActions()).toEqual(hub.actions)
   })
 
-  it('hub.addBreadcrumbs() should return breadcrumbs', () => {
+  it('hub.addActions() should return actions', () => {
     const hub = getHub()
 
-    hub.addBreadcrumb(breadcrumb)
+    hub.addAction(action)
 
     // @ts-ignore
-    expect(hub.getBreadcrumbs()).toEqual([breadcrumb])
+    expect(hub.getActions()).toEqual([action])
   })
 })

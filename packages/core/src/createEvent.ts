@@ -1,4 +1,4 @@
-import { Event, Tags, Breadcrumb, Category } from '@ohbug/types'
+import { Event, Tags, Action, Category } from '@ohbug/types'
 import { getConfig, getOhbugObject } from './config'
 import { getHub } from './hub'
 
@@ -24,9 +24,9 @@ function getTags<T>(): Tags {
   return tags
 }
 
-function getBreadcrumbs<T>(): Breadcrumb[] {
+function getActions<T>(): Action[] {
   const hub = getHub<T>()
-  return hub.getBreadcrumbs()
+  return hub.getActions()
 }
 
 function createEvent<D, T = Window>(type: string, detail: D, category?: Category): Event<D> {
@@ -35,7 +35,7 @@ function createEvent<D, T = Window>(type: string, detail: D, category?: Category
   const { apiKey, appVersion, appType } = getConfig<T>()
   const timestamp = new Date().getTime()
   const tags = getTags<T>()
-  const breadcrumbs = getBreadcrumbs<T>()
+  const actions = getActions<T>()
 
   return {
     apiKey,
@@ -45,7 +45,7 @@ function createEvent<D, T = Window>(type: string, detail: D, category?: Category
     category,
     type,
     tags,
-    breadcrumbs,
+    actions,
     detail
   }
 }

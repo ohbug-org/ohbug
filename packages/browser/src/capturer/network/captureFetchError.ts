@@ -38,7 +38,7 @@ function captureFetchError() {
               }
             }
             const timestamp = new Date().getTime()
-            hub.addBreadcrumb({
+            hub.addAction({
               type: 'fetch',
               timestamp,
               data

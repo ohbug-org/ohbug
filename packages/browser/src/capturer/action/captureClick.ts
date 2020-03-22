@@ -12,7 +12,7 @@ function captureClick() {
       const selector = getSelector(e)
 
       const timestamp = new Date().getTime()
-      hub.addBreadcrumb({
+      hub.addAction({
         type: 'click',
         timestamp,
         data: {
