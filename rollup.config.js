@@ -1,9 +1,9 @@
 import path from 'path'
-import ts from 'rollup-plugin-typescript2'
-import nodeResolve from 'rollup-plugin-node-resolve'
-import commonjs from 'rollup-plugin-commonjs'
-import { terser } from 'rollup-plugin-terser'
+import nodeResolve from '@rollup/plugin-node-resolve'
+import commonjs from '@rollup/plugin-commonjs'
 import json from '@rollup/plugin-json'
+import ts from 'rollup-plugin-typescript2'
+import { terser } from 'rollup-plugin-terser'
 
 const packagesDir = path.resolve(__dirname, 'packages')
 const packageDir = path.resolve(packagesDir, process.env.TARGET)

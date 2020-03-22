@@ -12,7 +12,9 @@
     "codecov": "codecov"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^11.0.2",
     "@rollup/plugin-json": "^4.0.2",
+    "@rollup/plugin-node-resolve": "^7.1.1",
     "@testing-library/dom": "^7.0.4",
     "@testing-library/user-event": "^10.0.0",
     "@types/jest": "^24.0.22",
@@ -31,9 +33,7 @@
     "perfume.js": "^4.7.1",
     "prettier": "^1.18.2",
     "react": "^16.13.0",
-    "rollup": "^1.26.0",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup": "^2.1.0",
     "rollup-plugin-terser": "^5.1.2",
     "rollup-plugin-typescript2": "^0.25.1",
     "rrweb": "^0.7.27",

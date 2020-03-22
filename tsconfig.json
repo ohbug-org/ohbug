@@ -17,7 +17,6 @@
     "esModuleInterop": true,
     "removeComments": true,
     "lib": ["esnext", "dom"],
-    "types": ["node", "jest"],
     "paths": {
       "@ohbug/*": ["packages/*/src"]
     }
