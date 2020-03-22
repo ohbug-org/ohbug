@@ -1,6 +1,6 @@
 {
   "name": "@ohbug/plugin-perfume",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "> TODO: description",
   "author": "chenyueban <jasonchan0527@gmail.com>",
   "homepage": "",
@@ -14,7 +14,7 @@
     "dist"
   ],
   "dependencies": {
-    "@ohbug/types": "^0.0.1"
+    "@ohbug/types": "^0.0.2"
   },
   "peerDependencies": {
     "perfume.js": "^4.8.1"
