@@ -1,28 +1,7 @@
-import { Event, Tags, Action, Category } from '@ohbug/types'
-import { getConfig, getOhbugObject } from './config'
+import { Event, Action, Category } from '@ohbug/types'
+import { getConfig } from './config'
 import { getHub } from './hub'
-
-function getTags<T>(): Tags {
-  const { platform, version } = getOhbugObject<T>()
-  const tags: Tags = {
-    platform,
-    version
-  }
-  if (navigator) {
-    const { language, userAgent } = navigator
-    tags.language = language
-    tags.userAgent = userAgent
-  }
-  if (document) {
-    const { title } = document
-    tags.title = title
-  }
-  if (location) {
-    const { href: url } = location
-    tags.url = url
-  }
-  return tags
-}
+import getTags from './getTags'
 
 function getActions<T>(): Action[] {
   const hub = getHub<T>()
