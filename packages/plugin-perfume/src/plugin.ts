@@ -5,7 +5,6 @@ const capturer: PluginCapturer = ({ collector }) => {
   new Perfume({
     resourceTiming: true,
     dataConsumption: true,
-    largestContentfulPaint: true,
     logging: process.env.NODE_ENV === 'development',
     maxMeasureTime: 10000,
     analyticsTracker: options => {
