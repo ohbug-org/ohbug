@@ -1,9 +1,16 @@
 {
   "name": "@ohbug/core",
   "version": "0.0.6",
-  "description": "> TODO: description",
+  "description": "Responsible for managing Ohbug's workflow",
   "author": "chenyueban <jasonchan0527@gmail.com>",
-  "homepage": "",
+  "homepage": "https://github.com/ohbug-org/ohbug",
+  "bugs": {
+    "url": "https://github.com/ohbug-org/ohbug/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ohbug-org/ohbug"
+  },
   "license": "Apache-2.0",
   "main": "index.js",
   "module": "dist/core.esm.js",

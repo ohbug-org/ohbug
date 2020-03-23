@@ -1,9 +1,16 @@
 {
   "name": "@ohbug/webpack-plugin",
   "version": "0.0.2",
-  "description": "> TODO: description",
+  "description": "Webpack plugin for upload your sourceMap files to Ohbug",
   "author": "chenyueban <jasonchan0527@gmail.com>",
-  "homepage": "",
+  "homepage": "https://github.com/ohbug-org/ohbug",
+  "bugs": {
+    "url": "https://github.com/ohbug-org/ohbug/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ohbug-org/ohbug"
+  },
   "license": "Apache-2.0",
   "main": "index.js",
   "module": "dist/webpack-plugin.esm.js",

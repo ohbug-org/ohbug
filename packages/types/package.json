@@ -1,9 +1,16 @@
 {
   "name": "@ohbug/types",
   "version": "0.0.2",
-  "description": "> TODO: description",
+  "description": "Types for all Ohbug SDKs",
   "author": "chenyueban <jasonchan0527@gmail.com>",
-  "homepage": "",
+  "homepage": "https://github.com/ohbug-org/ohbug",
+  "bugs": {
+    "url": "https://github.com/ohbug-org/ohbug/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ohbug-org/ohbug"
+  },
   "license": "Apache-2.0",
   "types": "src/index.ts",
   "publishConfig": {
