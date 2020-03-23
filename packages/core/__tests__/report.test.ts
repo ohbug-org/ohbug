@@ -35,7 +35,6 @@ describe('core report', () => {
     init({
       config,
       platform,
-      version: 'test',
       handleCapture: () => {},
       handleReport,
       handleAsync

@@ -24,7 +24,6 @@ describe('core capturer', () => {
     init({
       config,
       platform,
-      version: 'test',
       handleCapture: () => {},
       handleReport: () => {},
       handleAsync: () => {},

@@ -4,6 +4,7 @@ import commonjs from '@rollup/plugin-commonjs'
 import json from '@rollup/plugin-json'
 import ts from 'rollup-plugin-typescript2'
 import { terser } from 'rollup-plugin-terser'
+import replace from '@rollup/plugin-replace'
 
 const packagesDir = path.resolve(__dirname, 'packages')
 const packageDir = path.resolve(packagesDir, process.env.TARGET)
@@ -54,7 +55,13 @@ function createConfig(isProduction = false) {
     }
     return target
   })
-  const plugins = [tsPlugin, nodeResolve({ extensions }), commonjs(commonjsOptions), json()]
+  const plugins = [
+    replace({ __VERSION__: pkg.version }),
+    tsPlugin,
+    nodeResolve({ extensions }),
+    commonjs(commonjsOptions),
+    json()
+  ]
   if (isProduction) {
     plugins.push(terser())
   }

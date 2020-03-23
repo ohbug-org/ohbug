@@ -14,7 +14,6 @@ describe('core createEvent', () => {
     init({
       config,
       platform,
-      version: 'test',
       handleCapture: () => {},
       handleReport: () => {},
       handleAsync: () => {}

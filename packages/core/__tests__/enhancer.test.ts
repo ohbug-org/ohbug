@@ -11,7 +11,6 @@ describe('core enhancer', () => {
     init({
       config,
       platform,
-      version: 'test',
       handleCapture: () => {},
       handleReport: () => {},
       handleAsync: () => {}

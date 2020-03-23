@@ -16,7 +16,6 @@ import { defaultConfig } from './config'
 function init<T>({
   config,
   platform,
-  version,
   handleCapture,
   handleReport,
   handleAsync,
@@ -41,7 +40,7 @@ function init<T>({
 
     global.__OHBUG__ = {
       platform,
-      version,
+      version: '__VERSION__',
       config: _config
     }
 

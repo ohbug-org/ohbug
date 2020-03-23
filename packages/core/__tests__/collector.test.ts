@@ -32,7 +32,6 @@ describe('core collector', () => {
     init({
       config,
       platform,
-      version: 'test',
       handleCapture: () => {},
       handleReport: () => {},
       handleAsync: () => {},
@@ -56,7 +55,6 @@ describe('core collector', () => {
     init({
       config,
       platform,
-      version: 'test',
       handleCapture: () => {},
       handleReport: () => {},
       handleAsync: () => {}

@@ -18,7 +18,6 @@ describe('core hub', () => {
     init({
       config,
       platform,
-      version: 'test',
       handleCapture: () => {},
       handleReport: () => {},
       handleAsync: () => {}
