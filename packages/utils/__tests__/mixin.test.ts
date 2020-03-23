@@ -7,7 +7,7 @@ describe('utils mixin', () => {
     it('if name does not exist with source, nothing should be done', () => {
       const source = {
         foo: {
-          name: undefined
+          name: 'fooo'
         }
       }
       const name = 'foo1'
@@ -15,13 +15,13 @@ describe('utils mixin', () => {
         name: 'bar'
       }))
 
-      expect(source.foo.name).toBeUndefined()
+      expect(source.foo.name).toBe('fooo')
     })
 
     it('the source should be changed according to the requirements of the behavior', () => {
       const source = {
         foo: {
-          name: undefined
+          name: 'fooo'
         }
       }
       const name = 'foo'
@@ -30,6 +30,23 @@ describe('utils mixin', () => {
       }))
 
       expect(source.foo.name).toBe('bar')
+    })
+
+    it('should be return the original', () => {
+      const source = {
+        foo: {
+          name: 'fooo'
+        }
+      }
+      const name = 'foo'
+      const original = replace(source, name, () => ({
+        name: 'bar'
+      }))
+
+      expect(source.foo.name).toBe('bar')
+      expect(original).toEqual({
+        name: 'fooo'
+      })
     })
   })
 

@@ -3,31 +3,36 @@ import { getHub } from '@ohbug/core'
 
 const global = getGlobal<Window>()
 
+function listener(e: MouseEvent) {
+  if (e.target) {
+    const hub = getHub<Window>()
+    const { tagName, id, className, name, src, outerHTML, nodeType } = e.target as any
+    const selector = getSelector(e)
+
+    const timestamp = new Date().getTime()
+    hub.addAction({
+      type: 'click',
+      timestamp,
+      data: {
+        tagName,
+        id,
+        className,
+        name,
+        src,
+        outerHTML,
+        nodeType,
+        selector
+      }
+    })
+  }
+}
+
 function captureClick() {
-  const hub = getHub<Window>()
+  global.document.addEventListener('click', listener)
+}
 
-  global.document.addEventListener('click', e => {
-    if (e.target) {
-      const { tagName, id, className, name, src, outerHTML, nodeType } = e.target as any
-      const selector = getSelector(e)
-
-      const timestamp = new Date().getTime()
-      hub.addAction({
-        type: 'click',
-        timestamp,
-        data: {
-          tagName,
-          id,
-          className,
-          name,
-          src,
-          outerHTML,
-          nodeType,
-          selector
-        }
-      })
-    }
-  })
+export function removeCaptureClick() {
+  global.document.removeEventListener('click', listener)
 }
 
 export default captureClick

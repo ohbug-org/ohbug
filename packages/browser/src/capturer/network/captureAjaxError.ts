@@ -4,16 +4,23 @@ import { networkDispatcher } from '../../dispatcher'
 
 const global = getGlobal<Window>()
 const { AJAX_ERROR } = types
+const access = 'XMLHttpRequest' in global
 
+let xhrOriginal = access
+  ? {
+      open: XMLHttpRequest.prototype.open,
+      send: XMLHttpRequest.prototype.send
+    }
+  : {}
 /**
  * capture AJAX_ERROR
  */
 function captureAjaxError() {
   warning(
-    'XMLHttpRequest' in global,
+    access,
     'Ohbug: Binding `AJAX` monitoring failed, the current environment did not find the object `XMLHttpRequest`'
   )
-  if (!('XMLHttpRequest' in global)) return
+  if (!access) return
 
   const hub = getHub<Window>()
 
@@ -24,7 +31,7 @@ function captureAjaxError() {
 
   const xhrProto = XMLHttpRequest.prototype
 
-  replace(
+  xhrOriginal.open = replace(
     xhrProto,
     'open',
     origin =>
@@ -35,7 +42,7 @@ function captureAjaxError() {
       }
   )
 
-  replace(
+  xhrOriginal.send = replace(
     xhrProto,
     'send',
     origin =>
@@ -69,6 +76,14 @@ function captureAjaxError() {
         return origin.apply(this, args)
       }
   )
+}
+
+export function removeCaptureAjaxError() {
+  if (access && xhrOriginal.open && xhrOriginal.send) {
+    const xhrProto = XMLHttpRequest.prototype
+    xhrProto.open = xhrOriginal.open
+    xhrProto.send = xhrOriginal.send
+  }
 }
 
 export default captureAjaxError

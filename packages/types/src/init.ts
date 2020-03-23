@@ -7,5 +7,6 @@ export interface Init {
   handleCapture: () => void
   handleReport: (event: Event<any>) => void
   handleAsync: () => void
+  handleDestroy?: () => void
   enhancer?: (config: Config) => Enhancer
 }

@@ -1,7 +1,9 @@
 import { getGlobal, warning } from '@ohbug/utils'
 
-import captureUncaughtError from './script/captureUncaughtError'
-import captureUnhandledrejectionError from './script/captureUnhandledrejectionError'
+import captureUncaughtError, { removeCaptureUncaughtError } from './script/captureUncaughtError'
+import captureUnhandledrejectionError, {
+  removeCaptureUnhandledrejectionError
+} from './script/captureUnhandledrejectionError'
 
 const global = getGlobal<Window>()
 
@@ -17,6 +19,11 @@ function scriptCapturer() {
     captureUncaughtError()
     captureUnhandledrejectionError()
   }
+}
+
+export function removeScriptCapturer() {
+  removeCaptureUncaughtError()
+  removeCaptureUnhandledrejectionError()
 }
 
 export default scriptCapturer

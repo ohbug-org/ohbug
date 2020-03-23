@@ -5,6 +5,8 @@ export function replace(source: any, name: string, behavior: (...args: any[]) =>
   const original = source[name]
   const wrapped = behavior(original)
   source[name] = wrapped
+
+  return original
 }
 
 export function parseUrl(

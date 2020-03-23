@@ -9,6 +9,8 @@ import { defaultConfig } from './config'
  * @param platform Each issue will record its original platform
  * @param handleCapture Used to bind monitoring functions
  * @param handleReport Used to pass the report function
+ * @param handleAsync control for asynchronous tasks
+ * @param handleDestroy Used to offload listening events
  * @param enhancer Used to pass the return value of the applyPlugin function
  */
 function init<T>({
@@ -18,6 +20,7 @@ function init<T>({
   handleCapture,
   handleReport,
   handleAsync,
+  handleDestroy,
   enhancer
 }: Init) {
   const global = getGlobal<T>()
@@ -54,6 +57,7 @@ function init<T>({
     global.__OHBUG__._report = handleReport
     handleAsync()
     handleCapture()
+    handleDestroy && handleDestroy()
   }
 }
 

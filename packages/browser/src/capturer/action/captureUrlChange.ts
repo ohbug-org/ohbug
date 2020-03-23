@@ -45,24 +45,39 @@ function historyReplacement(original: () => void) {
   }
 }
 
-function captureUrlChange() {
-  // history
-  replace(global.history, 'pushState', historyReplacement)
-  replace(global.history, 'replaceState', historyReplacement)
-  replace(global, 'onpopstate', () => {
+let historyOriginal = {
+  pushState: global.history.pushState,
+  replaceState: global.history.replaceState,
+  onpopstate: global.onpopstate
+}
+function historyListener() {
+  historyOriginal.pushState = replace(global.history, 'pushState', historyReplacement)
+  historyOriginal.replaceState = replace(global.history, 'replaceState', historyReplacement)
+  historyOriginal.onpopstate = replace(global, 'onpopstate', () => {
     const current = global.location.href
     handleUrlChange(lastHref, current)
   })
+}
 
+function hashListener(e: HashChangeEvent) {
+  const { oldURL, newURL } = e
+  handleUrlChange(oldURL, newURL)
+}
+
+function captureUrlChange() {
+  // history
+  historyListener()
   // hash
-  global.addEventListener(
-    'hashchange',
-    e => {
-      const { oldURL, newURL } = e
-      handleUrlChange(oldURL, newURL)
-    },
-    true
-  )
+  global.addEventListener('hashchange', hashListener, true)
+}
+
+export function removeCaptureUrlChange() {
+  // history
+  global.history.pushState = historyOriginal.pushState
+  global.history.replaceState = historyOriginal.replaceState
+  global.onpopstate = historyOriginal.onpopstate
+  // hash
+  global.removeEventListener('hashchange', hashListener, true)
 }
 
 export default captureUrlChange

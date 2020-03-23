@@ -4,20 +4,22 @@ import { networkDispatcher } from '../../dispatcher'
 
 const global = getGlobal<Window>()
 const { FETCH_ERROR } = types
+const access = 'fetch' in global
 
+let fetchOriginal = access ? global.fetch : null
 /**
  * capture FETCH_ERROR
  */
 function captureFetchError() {
   warning(
-    'fetch' in global,
+    access,
     'Ohbug: Binding `fetch` monitoring failed, the current environment did not find the object `fetch`'
   )
-  if (!('fetch' in global)) return
+  if (!access) return
 
   const hub = getHub<Window>()
 
-  replace(
+  fetchOriginal = replace(
     global,
     'fetch',
     origin =>
@@ -54,6 +56,12 @@ function captureFetchError() {
           })
       }
   )
+}
+
+export function removeCaptureFetchError() {
+  if (access && fetchOriginal) {
+    global.fetch = fetchOriginal
+  }
 }
 
 export default captureFetchError

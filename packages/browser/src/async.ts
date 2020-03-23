@@ -2,11 +2,11 @@ import { getGlobal, Queue } from '@ohbug/utils'
 import { getOhbugObject, createEvent } from '@ohbug/core'
 
 /**
- * async event 流程
- * 1. 注册异步事件
- * 2. 向队列内 push event
- * 3. 异步事件触发时上报队列中所有 event
- * 4. 清空队列
+ * async event flow
+ * 1. Registering asynchronous events
+ * 2. Push event into the queue
+ * 3. Report all events in the queue when an asynchronous event is triggered
+ * 4. Clear queue
  */
 function async() {
   const global = getGlobal<Window>()
