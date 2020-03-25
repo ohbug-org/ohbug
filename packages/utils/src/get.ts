@@ -10,3 +10,11 @@ export function getGlobal<T>(): T & OhbugGlobal {
     ? self
     : fallbackGlobalObject) as T & OhbugGlobal
 }
+
+export function isNode(): boolean {
+  return typeof global !== 'undefined'
+}
+
+export function isBrowser(): boolean {
+  return typeof window !== 'undefined'
+}

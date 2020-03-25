@@ -6,6 +6,8 @@ import ts from 'rollup-plugin-typescript2'
 import { terser } from 'rollup-plugin-terser'
 import replace from '@rollup/plugin-replace'
 
+require('dotenv').config()
+
 const packagesDir = path.resolve(__dirname, 'packages')
 const packageDir = path.resolve(packagesDir, process.env.TARGET)
 const name = path.basename(packageDir)
@@ -43,6 +45,8 @@ const defaultFormats = ['esm', 'umd']
 const inlineFormats = process.env.FORMATS && process.env.FORMATS.split(',')
 const packageFormats = inlineFormats || packageOptions.formats || defaultFormats
 const external = ['perfume.js', 'rrweb', 'react']
+const url_base = process.env.URL_BASE
+const url_report = process.env.URL_REPORT
 
 function createConfig(isProduction = false) {
   const output = packageFormats.map(format => {
@@ -56,7 +60,11 @@ function createConfig(isProduction = false) {
     return target
   })
   const plugins = [
-    replace({ __VERSION__: pkg.version }),
+    replace({
+      __VERSION__: pkg.version,
+      __URL_REPORT__: `${url_base}${url_report}`,
+      __URL_BASE__: url_base
+    }),
     tsPlugin,
     nodeResolve({ extensions }),
     commonjs(commonjsOptions),

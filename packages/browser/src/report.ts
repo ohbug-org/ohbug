@@ -1,9 +1,8 @@
 import { Event } from '@ohbug/types'
 
-const base_url = `http://api.ohbug.io/v1/report`
+const url = `__URL_REPORT__`
 
 function report<T>(event: Event<T>) {
-  const url = `${base_url}`
   const json = JSON.stringify(event)
 
   if (navigator.sendBeacon) {

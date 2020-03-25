@@ -1,4 +1,4 @@
-import { getGlobal, warning } from '@ohbug/utils'
+import { getGlobal, warning, getUUID } from '@ohbug/utils'
 import { Init } from '@ohbug/types'
 import { defaultConfig } from './config'
 
@@ -39,6 +39,7 @@ function init<T>({
     }
 
     global.__OHBUG__ = {
+      uuid: getUUID(),
       platform,
       version: '__VERSION__',
       config: _config

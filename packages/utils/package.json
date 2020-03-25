@@ -34,7 +34,12 @@
     "access": "public"
   },
   "dependencies": {
-    "@ohbug/types": "^0.0.2"
+    "@ohbug/types": "^0.0.2",
+    "node-machine-id": "^1.1.12",
+    "uuid": "^7.0.2"
+  },
+  "devDependencies": {
+    "@types/uuid": "^7.0.2"
   },
   "scripts": {
     "test": "jest --config ../../jest.config.js"

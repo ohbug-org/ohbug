@@ -1,14 +1,4 @@
-export type Platform = 'browser' | 'node'
-
-export interface Tags {
-  platform: Platform
-  version: string
-  // browser
-  language?: string
-  userAgent?: string
-  title?: string
-  url?: string
-}
+import { Tags } from './tags'
 
 export interface Action {
   type: string

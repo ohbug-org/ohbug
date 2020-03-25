@@ -2,8 +2,9 @@ import { Tags } from '@ohbug/types'
 import { getOhbugObject } from './config'
 
 function getTags<T>(): Tags {
-  const { platform, version } = getOhbugObject<T>()
+  const { uuid, platform, version } = getOhbugObject<T>()
   const tags: Tags = {
+    uuid,
     platform,
     version
   }

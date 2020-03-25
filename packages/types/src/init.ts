@@ -1,4 +1,7 @@
-import { Config, Platform, Event, Enhancer } from '@ohbug/types'
+import { Config } from './config'
+import { Platform } from './tags'
+import { Event } from './event'
+import { Enhancer } from './enhancer'
 
 export interface Init {
   config: Config
