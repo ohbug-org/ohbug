@@ -8,3 +8,5 @@ export const WEBSOCKET_ERROR = 'websocketError' // websocket 错误
 export const UNKNOWN_ERROR = 'unknownError' // 未知错误
 // message
 export const MESSAGE = 'message' // 主动上报的信息
+// view
+export const VIEW = 'view' // 用于计算 PV/UV

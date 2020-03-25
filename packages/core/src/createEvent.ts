@@ -14,19 +14,29 @@ function createEvent<D, T = Window>(type: string, detail: D, category?: Category
   const { apiKey, appVersion, appType } = getConfig<T>()
   const timestamp = new Date().getTime()
   const tags = getTags<T>()
-  const actions = getActions<T>()
 
-  return {
+  const result: Event<D> = {
     apiKey,
-    appVersion,
-    appType,
     timestamp,
     category,
     type,
     tags,
-    actions,
     detail
   }
+
+  if (appVersion) {
+    result.appVersion = appVersion
+  }
+  if (appType) {
+    result.appType = appType
+  }
+  // view removes actions to reduce request size
+  if (type !== 'view' && category !== 'view') {
+    const actions = getActions<T>()
+    result.actions = actions
+  }
+
+  return result
 }
 
 export function createOtherEvent<D, T = Window>(type: string, detail: D) {

@@ -1,5 +1,5 @@
 import { replace, getGlobal, parseUrl } from '@ohbug/utils'
-import { getHub } from '@ohbug/core'
+import { getHub, createEvent, collector, types } from '@ohbug/core'
 
 const global = getGlobal<Window>()
 
@@ -34,6 +34,9 @@ function handleUrlChange(from?: string, to?: string) {
       to
     }
   })
+
+  const event = createEvent<null>(types.VIEW, null, 'view')
+  collector(event)
 }
 
 function historyReplacement(original: () => void) {

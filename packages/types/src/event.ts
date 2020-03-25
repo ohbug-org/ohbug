@@ -7,7 +7,7 @@ export interface Action {
   data?: Record<string, any>
 }
 
-export type Category = 'error' | 'message' | 'feedback' | 'other'
+export type Category = 'error' | 'message' | 'feedback' | 'view' | 'other'
 
 export interface Event<D> {
   apiKey: string
@@ -18,6 +18,6 @@ export interface Event<D> {
   type: string
   detail: D
   tags: Tags
-  actions: Action[]
+  actions?: Action[]
   state?: any
 }
