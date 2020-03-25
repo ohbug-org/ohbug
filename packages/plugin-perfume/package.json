@@ -1,6 +1,6 @@
 {
   "name": "@ohbug/plugin-perfume",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Ohbug plugin to collect performance information",
   "author": "chenyueban <jasonchan0527@gmail.com>",
   "homepage": "https://github.com/ohbug-org/ohbug",
@@ -21,7 +21,7 @@
     "dist"
   ],
   "dependencies": {
-    "@ohbug/types": "^0.0.2"
+    "@ohbug/types": "^0.0.3"
   },
   "peerDependencies": {
     "perfume.js": "^4.8.1"

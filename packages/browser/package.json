@@ -1,6 +1,6 @@
 {
   "name": "@ohbug/browser",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Ohbug SDK for browsers",
   "author": "chenyueban <jasonchan0527@gmail.com>",
   "homepage": "https://github.com/ohbug-org/ohbug",
@@ -34,9 +34,9 @@
     "access": "public"
   },
   "dependencies": {
-    "@ohbug/core": "^0.0.6",
-    "@ohbug/types": "^0.0.2",
-    "@ohbug/utils": "^0.0.6"
+    "@ohbug/core": "^0.0.7",
+    "@ohbug/types": "^0.0.3",
+    "@ohbug/utils": "^0.0.7"
   },
   "scripts": {
     "test": "jest --config ../../jest.config.js"
