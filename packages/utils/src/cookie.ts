@@ -1,6 +1,6 @@
 // https://developer.mozilla.org/zh-CN/docs/Web/API/Document/cookie
 export const docCookies = {
-  getItem(sKey: string) {
+  getItem(sKey: string): string | null {
     return (
       decodeURIComponent(
         document.cookie.replace(
@@ -21,7 +21,8 @@ export const docCookies = {
     sPath?: string,
     sDomain?: string,
     bSecure?: boolean
-  ) {
+  ): string | false {
+    // eslint-disable-next-line
     if (!sKey || /^(?:expires|max\-age|path|domain|secure)$/i.test(sKey)) {
       return false
     }
@@ -40,7 +41,7 @@ export const docCookies = {
           break
       }
     }
-    document.cookie =
+    const value =
       encodeURIComponent(sKey) +
       '=' +
       encodeURIComponent(sValue) +
@@ -48,10 +49,12 @@ export const docCookies = {
       (sDomain ? '; domain=' + sDomain : '') +
       (sPath ? '; path=' + sPath : '') +
       (bSecure ? '; secure' : '')
-    return true
+    document.cookie = value
+
+    return value
   },
   removeItem(sKey: string, sPath?: string, sDomain?: string) {
-    if (!sKey || !this.hasItem(sKey)) {
+    if (!sKey || !this.getItem(sKey)) {
       return false
     }
     document.cookie =

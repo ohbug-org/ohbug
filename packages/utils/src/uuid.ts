@@ -3,7 +3,7 @@ import { docCookies } from './cookie'
 
 const key = 'OhbugUUID'
 
-export function getUUID(): string | undefined {
+export function getUUID(): string {
   if (isBrowser()) {
     const UUID = docCookies.getItem(key)
     if (!UUID) {
@@ -21,4 +21,5 @@ export function getUUID(): string | undefined {
     const UUID = machineIdSync(true)
     return UUID
   }
+  return ''
 }
