@@ -1,7 +1,7 @@
 import { OhbugGlobal } from '@ohbug/types'
 
 const fallbackGlobalObject = {}
-export function getGlobal<T>(): T & OhbugGlobal {
+export function getGlobal<T = Window>(): T & OhbugGlobal {
   return (typeof window !== 'undefined'
     ? window
     : typeof global !== 'undefined'

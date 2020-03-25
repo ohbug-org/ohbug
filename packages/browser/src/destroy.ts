@@ -1,7 +1,10 @@
 import { getGlobal } from '@ohbug/utils'
-import { removeScriptCapturer } from './capturer/scriptCapturer'
-import { removeNetworkCapturer } from './capturer/networkCapturer'
-import { removeActionCapturer } from './capturer/actionCapturer'
+import {
+  removeScriptCapturer,
+  removeNetworkCapturer,
+  removeActionCapturer,
+  removeConsoleCapturer
+} from './capturer'
 
 function destroy() {
   const global = getGlobal<Window>()
@@ -11,6 +14,7 @@ function destroy() {
       removeScriptCapturer()
       removeNetworkCapturer()
       removeActionCapturer()
+      removeConsoleCapturer()
     },
     true
   )
