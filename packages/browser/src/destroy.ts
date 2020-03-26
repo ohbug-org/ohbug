@@ -6,15 +6,22 @@ import {
   removeConsoleCapturer
 } from './capturer'
 
+const global = getGlobal<Window>()
+
+export function handleDestroy() {
+  removeScriptCapturer()
+  removeNetworkCapturer()
+  removeActionCapturer()
+  removeConsoleCapturer()
+
+  global.__OHBUG__ = null as any
+}
+
 function destroy() {
-  const global = getGlobal<Window>()
   global.addEventListener(
     'unload',
     () => {
-      removeScriptCapturer()
-      removeNetworkCapturer()
-      removeActionCapturer()
-      removeConsoleCapturer()
+      handleDestroy()
     },
     true
   )

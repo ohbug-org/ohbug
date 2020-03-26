@@ -1,0 +1,46 @@
+{
+  "name": "@ohbug/redux-middleware",
+  "version": "0.0.1",
+  "description": "Redux middleware for propagating Redux state/actions to use with Ohbug",
+  "author": "chenyueban <jasonchan0527@gmail.com>",
+  "homepage": "https://github.com/ohbug-org/ohbug",
+  "bugs": {
+    "url": "https://github.com/ohbug-org/ohbug/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ohbug-org/ohbug"
+  },
+  "license": "Apache-2.0",
+  "main": "index.js",
+  "module": "dist/redux-middleware.esm.js",
+  "unpkg": "dist/redux-middleware.global.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "index.js",
+    "dist"
+  ],
+  "devDependencies": {
+    "redux": "^4.0.5"
+  },
+  "peerDependencies": {
+    "@ohbug/core": "^0.0.7",
+    "redux": ">= 4.0.0"
+  },
+  "buildOptions": {
+    "name": "OhbugReduxMiddleware",
+    "formats": [
+      "esm",
+      "umd",
+      "global",
+      "cjs"
+    ],
+    "order": 4
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "jest --config ../../jest.config.js"
+  }
+}
