@@ -34,9 +34,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@ohbug/core": "^0.0.7",
-    "@ohbug/types": "^0.0.3",
-    "@ohbug/utils": "^0.0.7"
+    "@ohbug/core": "^0.0.7"
   },
   "scripts": {
     "test": "jest --config ../../jest.config.js"

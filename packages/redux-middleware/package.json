@@ -24,8 +24,7 @@
     "redux": "^4.0.5"
   },
   "peerDependencies": {
-    "@ohbug/core": "^0.0.7",
-    "redux": ">= 4.0.0"
+    "@ohbug/core": "^0.0.7"
   },
   "buildOptions": {
     "name": "OhbugReduxMiddleware",
