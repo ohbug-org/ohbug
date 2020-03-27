@@ -9,7 +9,7 @@ Package [rrweb](https://github.com/rrweb-io/rrweb), to "screen recording".
 ## Installation
 
 ```
-yarn add @ohbug/plugin-rrweb
+yarn add rrweb @ohbug/plugin-rrweb
 ```
 
 ## Usage

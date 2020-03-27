@@ -9,7 +9,7 @@ Package [perfume.js](https://github.com/Zizzamia/perfume.js), to collect perform
 ## Installation
 
 ```
-yarn add @ohbug/plugin-perfume
+yarn add perfume.js @ohbug/plugin-perfume
 ```
 
 ## Usage
