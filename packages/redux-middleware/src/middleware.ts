@@ -1,5 +1,5 @@
 import { getHub } from '@ohbug/core'
-import { getGlobal, warning } from '@ohbug/utils'
+import { getGlobal, error } from '@ohbug/utils'
 import { Middleware, Action, MiddlewareAPI } from 'redux'
 
 const identity = (action: Action, _: MiddlewareAPI) => action
@@ -12,8 +12,7 @@ const createOhbugMiddleware = (
 
   if (data) {
     const global = getGlobal<Window>()
-    warning(Boolean(global.__OHBUG__), '`Ohbug.init` is not running yet!')
-    if (!global.__OHBUG__) return
+    error(Boolean(global.__OHBUG__), '`Ohbug.init` is not running yet!')
 
     const hub = getHub<Window>()
 

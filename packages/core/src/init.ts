@@ -1,4 +1,4 @@
-import { getGlobal, warning, getUUID } from '@ohbug/utils'
+import { getGlobal, error, getUUID } from '@ohbug/utils'
 import { Init } from '@ohbug/types'
 import { defaultConfig } from './config'
 
@@ -23,15 +23,13 @@ function init<T>({
   enhancer
 }: Init) {
   const global = getGlobal<T>()
-  warning(
+  error(
     Boolean(global),
     `Ohbug: It is detected that the current environment does not support Ohbug.`
   )
-  if (!global) return
 
   if (global.__OHBUG__ === undefined) {
-    warning(Boolean(config.apiKey), `Ohbug: Please pass in apiKey!`)
-    if (!config.apiKey) return
+    error(Boolean(config.apiKey), `Ohbug: Please pass in apiKey!`)
 
     const _config = {
       ...defaultConfig,
@@ -47,11 +45,11 @@ function init<T>({
 
     // Insert plugin
     if (enhancer) {
-      warning(
+      error(
         typeof enhancer === 'function',
         '`enhancer` is not a function, please check `Ohbug.init`!'
       )
-      if (typeof enhancer !== 'function') return
+
       global.__OHBUG__.enhancer = enhancer(_config)
     }
     global.__OHBUG__._report = handleReport

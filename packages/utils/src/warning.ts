@@ -1,8 +1,19 @@
 import { logger } from './logger'
-const { NODE_ENV } = process.env
+
+export function error(condition: boolean, format: string, ...args: any[]) {
+  if (format === undefined) {
+    throw new Error('`warning(condition, format, ...args)` requires a warning message argument')
+  }
+
+  if (!condition) {
+    let argIndex = 0
+    const message = format.replace(/%s/g, () => args[argIndex++])
+    throw new Error(message)
+  }
+}
 
 export function warning(condition: boolean, format: string, ...args: any[]) {
-  if (NODE_ENV !== 'production') {
+  if (process.env.NODE_ENV !== 'production') {
     if (format === undefined) {
       throw new Error('`warning(condition, format, ...args)` requires a warning message argument')
     }
@@ -11,9 +22,6 @@ export function warning(condition: boolean, format: string, ...args: any[]) {
       let argIndex = 0
       const message = format.replace(/%s/g, () => args[argIndex++])
       logger.error(message)
-      try {
-        throw new Error(message)
-      } catch (x) {} // eslint-disable-line
       return
     }
   }

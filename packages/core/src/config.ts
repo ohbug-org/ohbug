@@ -1,5 +1,5 @@
 import { Config, OhbugObject } from '@ohbug/types'
-import { getGlobal, warning } from '@ohbug/utils'
+import { getGlobal, error } from '@ohbug/utils'
 
 export const defaultConfig: Config = {
   apiKey: ''
@@ -7,14 +7,12 @@ export const defaultConfig: Config = {
 
 export function getOhbugObject<T>(): OhbugObject {
   const global = getGlobal<T>()
-  warning(Boolean(global.__OHBUG__), 'Failed to get `OhbugObject`, please confirm if `init`')
+  error(Boolean(global.__OHBUG__), 'Failed to get `OhbugObject`, please confirm if `init`')
 
-  return global.__OHBUG__ as OhbugObject
+  return global.__OHBUG__
 }
 
 export function getConfig<T>(): Config {
-  const config = (getOhbugObject<T>() as OhbugObject).config
-  warning(Boolean(config), 'Failed to get `__Ohbug__.config`, please confirm if `init`')
-
+  const { config } = getOhbugObject<T>()
   return config as Config
 }
