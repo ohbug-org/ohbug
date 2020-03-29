@@ -1,5 +1,5 @@
 import { getGlobal } from '@ohbug/utils'
-import { scriptDispatcher } from '../../dispatcher'
+import { scriptDispatcher } from '../../dispatch'
 
 const global = getGlobal<Window>()
 

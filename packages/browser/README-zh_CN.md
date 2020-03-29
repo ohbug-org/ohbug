@@ -102,27 +102,27 @@ init({ apiKey: 'YOUR_API_KEY' }, enhancer)
 示例
 
 ```javascript
-// capturer 用于自定义信息的捕获
+// capture 用于自定义信息的捕获
 // 使用 createEvent 封装捕获到的信息
-// 使用 collector 传递信息给 Ohbug 用于上报
-const capturer = ({ createEvent, collector }) => {
+// 使用 collect 传递信息给 Ohbug 用于上报
+const capture = ({ createEvent, collect }) => {
   a.addEventListener('error', (e) => {
     // do something
     const event = createEvent('TYPE', e)
-    collector(event)
+    collect(event)
   })
 }
 
-// collector 用于对已有信息进行二次处理
+// collect 用于对已有信息进行二次处理
 // 返回任意格式 object，最终这些信息将出现在 `event.state` 中
-const collector = event => {
+const collect = event => {
   return {
     user: 'user_1'
   }
 }
 
 const myPlugin = config => {
-  return { capturer, collector }
+  return { capture, collect }
 }
 ```
 

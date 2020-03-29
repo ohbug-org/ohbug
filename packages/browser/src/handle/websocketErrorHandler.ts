@@ -15,10 +15,10 @@ export interface WebsocketErrorDetail extends BaseDetail {
 
 function websocketErrorHandler(
   detail: WebsocketErrorDetail,
-  collector: (event: Event<WebsocketErrorDetail>) => void
+  collect: (event: Event<WebsocketErrorDetail>) => void
 ) {
   const event = createEvent<WebsocketErrorDetail>(WEBSOCKET_ERROR, detail)
-  collector(event)
+  collect(event)
 }
 
 export default websocketErrorHandler

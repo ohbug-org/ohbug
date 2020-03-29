@@ -1,6 +1,6 @@
 import { getGlobal, warning, replace } from '@ohbug/utils'
 import { types, getHub } from '@ohbug/core'
-import { networkDispatcher } from '../../dispatcher'
+import { networkDispatcher } from '../../dispatch'
 
 const global = getGlobal<Window>()
 const { FETCH_ERROR } = types

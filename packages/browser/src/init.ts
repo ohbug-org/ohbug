@@ -1,15 +1,11 @@
-import { init, capturer } from '@ohbug/core'
-import { Config, Enhancer } from '@ohbug/types'
-import { scriptCapturer, networkCapturer, actionCapturer, consoleCapturer } from './capturer'
+import { init } from '@ohbug/core'
+import { Config, Plugin } from '@ohbug/types'
+import handleCapture from './capture'
 import handleReport from './report'
 import handleAsync from './async'
 import handleDestroy from './destroy'
 
-function handleCapture() {
-  capturer<Window>(scriptCapturer, networkCapturer, actionCapturer, consoleCapturer)
-}
-
-function initBrowser(config: Config, enhancer?: (config: Config) => Enhancer) {
+function initBrowser(config: Config, plugins?: Plugin[]) {
   const platform = 'browser'
   init<Window>({
     config,
@@ -18,7 +14,7 @@ function initBrowser(config: Config, enhancer?: (config: Config) => Enhancer) {
     handleReport,
     handleAsync,
     handleDestroy,
-    enhancer
+    plugins
   })
 }
 

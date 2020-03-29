@@ -18,10 +18,10 @@ export interface AjaxErrorDetail extends BaseDetail {
 
 function ajaxErrorHandler(
   detail: AjaxErrorDetail,
-  collector: (event: Event<AjaxErrorDetail>) => void
+  collect: (event: Event<AjaxErrorDetail>) => void
 ) {
   const event = createEvent<AjaxErrorDetail>(AJAX_ERROR, detail)
-  collector(event)
+  collect(event)
 }
 
 export default ajaxErrorHandler

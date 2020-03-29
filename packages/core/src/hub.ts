@@ -2,7 +2,7 @@ import { Hub as IHub, Event, Action, Execution } from '@ohbug/types'
 import { getOhbugObject } from './config'
 import report from './report'
 
-export class Hub implements IHub {
+class Hub implements IHub {
   private readonly events: Event<any>[] = []
 
   private readonly actions: Action[] = []

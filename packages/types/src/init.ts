@@ -1,7 +1,7 @@
 import { Config } from './config'
 import { Platform } from './tags'
 import { Event } from './event'
-import { Enhancer } from './enhancer'
+import { Plugin } from './enhancer'
 
 export interface Init {
   config: Config
@@ -10,5 +10,5 @@ export interface Init {
   handleReport: (event: Event<any>) => void
   handleAsync: () => void
   handleDestroy?: () => void
-  enhancer?: (config: Config) => Enhancer
+  plugins?: Plugin[]
 }

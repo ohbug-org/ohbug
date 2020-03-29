@@ -17,10 +17,10 @@ export interface FetchErrorDetail extends BaseDetail {
 
 function fetchErrorHandler(
   detail: FetchErrorDetail,
-  collector: (event: Event<FetchErrorDetail>) => void
+  collect: (event: Event<FetchErrorDetail>) => void
 ) {
   const event = createEvent<FetchErrorDetail>(FETCH_ERROR, detail)
-  collector(event)
+  collect(event)
 }
 
 export default fetchErrorHandler

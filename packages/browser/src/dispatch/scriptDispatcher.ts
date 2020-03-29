@@ -1,11 +1,11 @@
-import { collector } from '@ohbug/core'
+import { collect } from '@ohbug/core'
 
 import {
   uncaughtErrorHandler,
   resourceErrorHandler,
   unhandledrejectionErrorHandler,
   unknownErrorHandler
-} from '../handler'
+} from '../handle'
 
 function scriptDispatcher(e: ErrorEvent | PromiseRejectionEvent) {
   try {
@@ -15,17 +15,17 @@ function scriptDispatcher(e: ErrorEvent | PromiseRejectionEvent) {
       const { message, error } = _e
       const immutableTarget = e.target || e.srcElement
       if (message && error) {
-        uncaughtErrorHandler(_e, collector)
+        uncaughtErrorHandler(_e, collect)
       } else if (immutableTarget) {
-        resourceErrorHandler(_e, collector)
+        resourceErrorHandler(_e, collect)
       }
     } else if (type === 'unhandledrejection') {
-      unhandledrejectionErrorHandler(e as PromiseRejectionEvent, collector)
+      unhandledrejectionErrorHandler(e as PromiseRejectionEvent, collect)
     } else {
-      unknownErrorHandler(e, collector)
+      unknownErrorHandler(e, collect)
     }
   } catch (error) {
-    unknownErrorHandler(error, collector)
+    unknownErrorHandler(error, collect)
   }
 }
 

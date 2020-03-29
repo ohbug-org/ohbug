@@ -102,27 +102,27 @@ init({ apiKey: 'YOUR_API_KEY' }, enhancer)
 Example
 
 ```javascript
-// capturer Capture of custom information
+// capture Capture of custom information
 // Use createEvent to encapsulate captured information
-// Use collector to pass information to Ohbug for reporting
-const capturer = ({ createEvent, collector }) => {
+// Use collect to pass information to Ohbug for reporting
+const capture = ({ createEvent, collect }) => {
   a.addEventListener('error', (e) => {
     // do something
     const event = createEvent('TYPE', e)
-    collector(event)
+    collect(event)
   })
 }
 
-// collector is used for secondary processing of existing information
+// collect is used for secondary processing of existing information
 // Returns an object in any format, and eventually this information will appear in event.state
-const collector = event => {
+const collect = event => {
   return {
     user: 'user_1'
   }
 }
 
 const myPlugin = config => {
-  return { capturer, collector }
+  return { capture, collect }
 }
 ```
 

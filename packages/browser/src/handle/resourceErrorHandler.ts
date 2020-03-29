@@ -18,7 +18,7 @@ export interface ResourceErrorDetail extends BaseDetail {
 
 function resourceErrorHandler(
   error: ErrorEvent,
-  collector: (event: Event<ResourceErrorDetail>) => void
+  collect: (event: Event<ResourceErrorDetail>) => void
 ) {
   const target = (error.target || error.srcElement) as any
   const { outerHTML } = target
@@ -36,7 +36,7 @@ function resourceErrorHandler(
     nodeType: target && target.nodeType,
     selector
   })
-  collector(event)
+  collect(event)
 }
 
 export default resourceErrorHandler

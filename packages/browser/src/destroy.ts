@@ -1,18 +1,18 @@
 import { getGlobal } from '@ohbug/utils'
 import {
-  removeScriptCapturer,
-  removeNetworkCapturer,
-  removeActionCapturer,
-  removeConsoleCapturer
-} from './capturer'
+  removeCaptureScript,
+  removeCaptureNetwork,
+  removeCaptureAction,
+  removeCaptureConsole
+} from './capture'
 
 const global = getGlobal<Window>()
 
 export function handleDestroy() {
-  removeScriptCapturer()
-  removeNetworkCapturer()
-  removeActionCapturer()
-  removeConsoleCapturer()
+  removeCaptureScript()
+  removeCaptureNetwork()
+  removeCaptureAction()
+  removeCaptureConsole()
 
   global.__OHBUG__ = null as any
 }

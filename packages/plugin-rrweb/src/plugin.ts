@@ -1,13 +1,13 @@
 import { record } from 'rrweb'
 import { eventWithTime } from 'rrweb/typings/types'
-import { Plugin, PluginCapturer, PluginCollector } from '@ohbug/types'
+import { Plugin, PluginCapture, PluginCollect } from '@ohbug/types'
 
 const plugin: Plugin = () => {
   const rrwebEvents: eventWithTime[] = []
   let _stop: (() => void) | undefined
   let hasStopped = false
 
-  const capturer: PluginCapturer = () => {
+  const capture: PluginCapture = () => {
     _stop = record({
       emit(event) {
         rrwebEvents.push(event)
@@ -15,7 +15,7 @@ const plugin: Plugin = () => {
     })
   }
 
-  const collector: PluginCollector = () => {
+  const collect: PluginCollect = () => {
     if (!hasStopped) {
       _stop && _stop()
       hasStopped = true
@@ -28,8 +28,8 @@ const plugin: Plugin = () => {
   }
 
   return {
-    capturer,
-    collector
+    capture,
+    collect
   }
 }
 

@@ -11,7 +11,7 @@
 ohbug 的核心模块，负责管理 ohbug 的工作流程。
 ```
 // work flow
-init => capturer => collector => hub => report
+init => capture => collect => hub => report
 ```
 
 ## 安装
@@ -56,32 +56,32 @@ const enhancer = applyPlugin(ohbugPluginPerfume)
 init({ apiKey: 'YOUR_API_KEY' }, enhancer)
 ```
 
-### capturer
+### capture
 
 用于执行所有的 capture。
 
 ```javascript
-import { capturer } from '@ohbug/core'
+import { capture } from '@ohbug/core'
 
-function scriptCapturer() {
+function scriptCapture() {
   // ...
 }
-function networkCapturer() {
+function networkCapture() {
   // ...
 }
-function actionCapturer() {
+function actionCapture() {
   // ...
 }
-capturer(scriptCapturer, networkCapturer, actionCapturer)
+capture(scriptCapture, networkCapture, actionCapture)
 ```
 
-### collector
+### collect
 
 用于收集 event 并触发 `hub.addEvent`。
 
 ```typescript
 type Execution = 'sync' | 'async'
-function collector<T = Window>(event: any, execution?: Execution): void
+function collect<T = Window>(event: any, execution?: Execution): void
 ```
 
 execution 参数默认为 `sync` 用于控制 report 的时机。

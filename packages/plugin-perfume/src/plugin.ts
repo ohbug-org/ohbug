@@ -1,7 +1,7 @@
-import { PluginCapturer, Plugin } from '@ohbug/types'
+import { PluginCapture, Plugin } from '@ohbug/types'
 import Perfume from 'perfume.js'
 
-const capturer: PluginCapturer = ({ collector }) => {
+const capture: PluginCapture = ({ collect }) => {
   new Perfume({
     resourceTiming: true,
     dataConsumption: true,
@@ -12,31 +12,31 @@ const capturer: PluginCapturer = ({ collector }) => {
       switch (metricName) {
         case 'navigationTiming':
           if (data && data.timeToFirstByte) {
-            collector({ type: metricName, data: data }, 'async')
+            collect({ type: metricName, data: data }, 'async')
           }
           break
         case 'networkInformation':
           if (data && data.effectiveType) {
-            collector({ type: metricName, data: data }, 'async')
+            collect({ type: metricName, data: data }, 'async')
           }
           break
         case 'resourceTiming':
-          collector({ type: metricName, data: data }, 'async')
+          collect({ type: metricName, data: data }, 'async')
           break
         case 'dataConsumption':
-          collector({ type: metricName, data: data }, 'async')
+          collect({ type: metricName, data: data }, 'async')
           break
         case 'firstPaint':
-          collector({ type: metricName, data: duration }, 'async')
+          collect({ type: metricName, data: duration }, 'async')
           break
         case 'firstContentfulPaint':
-          collector({ type: metricName, data: duration }, 'async')
+          collect({ type: metricName, data: duration }, 'async')
           break
         case 'firstInputDelay':
-          collector({ type: metricName, data: duration }, 'async')
+          collect({ type: metricName, data: duration }, 'async')
           break
         case 'largestContentfulPaint':
-          collector({ type: metricName, data: duration }, 'async')
+          collect({ type: metricName, data: duration }, 'async')
           break
         default:
           break
@@ -46,7 +46,7 @@ const capturer: PluginCapturer = ({ collector }) => {
 }
 
 const plugin: Plugin = () => ({
-  capturer
+  capture
 })
 
 export default plugin

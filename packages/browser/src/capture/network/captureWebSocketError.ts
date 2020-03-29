@@ -1,6 +1,6 @@
 import { getGlobal, warning } from '@ohbug/utils'
 import { types } from '@ohbug/core'
-import { networkDispatcher } from '../../dispatcher'
+import { networkDispatcher } from '../../dispatch'
 
 const global = getGlobal<Window>()
 const { WEBSOCKET_ERROR } = types

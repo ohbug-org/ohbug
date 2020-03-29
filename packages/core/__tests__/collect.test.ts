@@ -1,8 +1,7 @@
 import { getGlobal } from '@ohbug/utils'
 import { Plugin } from '@ohbug/types'
-import applyPlugin from '../src/applyPlugin'
 import init from '../src/init'
-import collector from '../src/collector'
+import collect from '../src/collect'
 import { getEnhancer } from '../src/enhancer'
 import { getHub } from '../src/hub'
 jest.mock('../src/hub')
@@ -13,15 +12,15 @@ const platform = 'browser'
 const event = { type: 'test' }
 const extra = 'hello'
 const plugin: Plugin = () => ({
-  collector() {
+  collect() {
     return {
       extra
     }
   }
 })
-const enhancer = applyPlugin(plugin)
+const plugins = [plugin]
 
-describe('core collector', () => {
+describe('core collect', () => {
   afterEach(() => {
     // destroy
     const global = getGlobal()
@@ -35,7 +34,7 @@ describe('core collector', () => {
       handleCapture: () => {},
       handleReport: () => {},
       handleAsync: () => {},
-      enhancer
+      plugins
     })
 
     const mockAddEvent = jest.fn()
@@ -43,10 +42,10 @@ describe('core collector', () => {
       addEvent: mockAddEvent
     }))
 
-    collector(event)
+    collect(event)
 
     const _enhancer = getEnhancer()
-    if (_enhancer && Array.isArray(_enhancer.collectors) && _enhancer.collectors.length) {
+    if (_enhancer && Array.isArray(_enhancer.collects) && _enhancer.collects.length) {
       expect(mockAddEvent.mock.calls[0][0]).toEqual({ ...event, state: { extra } })
     }
   })
@@ -65,10 +64,10 @@ describe('core collector', () => {
       addEvent: mockAddEvent
     }))
 
-    collector(event)
+    collect(event)
 
     const _enhancer = getEnhancer()
-    if (!(_enhancer && Array.isArray(_enhancer.collectors) && _enhancer.collectors.length)) {
+    if (!(_enhancer && Array.isArray(_enhancer.collects) && _enhancer.collects.length)) {
       expect(mockAddEvent.mock.calls[0][0]).toEqual(event)
     }
   })

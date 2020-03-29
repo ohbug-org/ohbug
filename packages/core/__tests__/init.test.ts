@@ -1,7 +1,6 @@
 import { getGlobal } from '@ohbug/utils'
 import { Plugin } from '@ohbug/types'
 import init from '../src/init'
-import applyPlugin from '../src/applyPlugin'
 
 const apiKey = 'test_id'
 const config = { apiKey }
@@ -10,14 +9,14 @@ const handleReport = jest.fn()
 const handleCapture = jest.fn()
 const handleAsync = jest.fn()
 const plugin: Plugin = () => {
-  function capturer() {}
-  function collector() {}
+  function capture() {}
+  function collect() {}
   return {
-    capturer,
-    collector
+    capture,
+    collect
   }
 }
-const enhancer = applyPlugin(plugin)
+const plugins = [plugin]
 
 describe('core init', () => {
   beforeAll(() => {
@@ -27,7 +26,7 @@ describe('core init', () => {
       handleCapture,
       handleReport,
       handleAsync,
-      enhancer
+      plugins
     })
   })
 

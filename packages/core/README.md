@@ -11,7 +11,7 @@ English | [简体中文](./README-zh_CN.md)
 ohbug's core module is responsible for managing ohbug's workflow.
 ```
 // workflow
-init => capturer => collector => hub => report
+init => capture => collect => hub => report
 ```
 
 ## Installation
@@ -56,32 +56,32 @@ const enhancer = applyPlugin(ohbugPluginPerfume)
 init({ apiKey: 'YOUR_API_KEY' }, enhancer)
 ```
 
-### capturer
+### capture
 
 Used to perform all captures.
 
 ```javascript
-import { capturer } from '@ohbug/core'
+import { capture } from '@ohbug/core'
 
-function scriptCapturer() {
+function scriptCapture() {
   // ...
 }
-function networkCapturer() {
+function networkCapture() {
   // ...
 }
-function actionCapturer() {
+function actionCapture() {
   // ...
 }
-capturer(scriptCapturer, networkCapturer, actionCapturer)
+capture(scriptCapture, networkCapture, actionCapture)
 ```
 
-### collector
+### collect
 
 Used to collect events and trigger `hub.addEvent`.
 
 ```typescript
 type Execution = 'sync' | 'async'
-function collector<T = Window>(event: any, execution?: Execution): void
+function collect<T = Window>(event: any, execution?: Execution): void
 ```
 
 The execution parameter defaults to `sync` to control the timing of the report.

@@ -11,4 +11,4 @@ export {
   AjaxErrorDetail,
   FetchErrorDetail,
   WebsocketErrorDetail
-} from './handler'
+} from './handle'

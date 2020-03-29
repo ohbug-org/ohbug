@@ -1,10 +1,10 @@
-import { types, collector } from '@ohbug/core'
+import { types, collect } from '@ohbug/core'
 import {
   ajaxErrorHandler,
   fetchErrorHandler,
   websocketErrorHandler,
   unknownErrorHandler
-} from '../handler'
+} from '../handle'
 
 const { AJAX_ERROR, FETCH_ERROR, WEBSOCKET_ERROR } = types
 
@@ -12,19 +12,19 @@ function networkDispatcher(type: string, detail: any) {
   try {
     switch (type) {
       case AJAX_ERROR:
-        ajaxErrorHandler(detail, collector)
+        ajaxErrorHandler(detail, collect)
         break
       case FETCH_ERROR:
-        fetchErrorHandler(detail, collector)
+        fetchErrorHandler(detail, collect)
         break
       case WEBSOCKET_ERROR:
-        websocketErrorHandler(detail, collector)
+        websocketErrorHandler(detail, collect)
         break
       default:
         break
     }
   } catch (error) {
-    unknownErrorHandler(error, collector)
+    unknownErrorHandler(error, collect)
   }
 }
 

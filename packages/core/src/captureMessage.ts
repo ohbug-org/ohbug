@@ -1,6 +1,6 @@
 import { BaseDetail } from '@ohbug/types'
 import createEvent from './createEvent'
-import collector from './collector'
+import collect from './collect'
 import { MESSAGE } from './types'
 
 interface CaptureMessageDetail extends BaseDetail {
@@ -15,7 +15,7 @@ function captureMessage<T = Window>(message: string) {
     },
     'message'
   )
-  collector<T>(event)
+  collect<T>(event)
 }
 
 export default captureMessage

@@ -1,5 +1,5 @@
-import { createEvent, collector } from '@ohbug/core'
-import { Config, Enhancer, BaseDetail } from '@ohbug/types'
+import { createEvent, collect } from '@ohbug/core'
+import { Config, Plugin, BaseDetail } from '@ohbug/types'
 import { init } from '@ohbug/browser'
 
 interface Options extends Config {}
@@ -28,10 +28,10 @@ const getComponent = (vm: any) => {
   }
 }
 
-function install(Vue: any, options: Options, enhancer?: (config: Config) => Enhancer) {
+function install(Vue: any, options: Options, plugins?: Plugin[]) {
   if (!Vue) throw new Error('Cannot find Vue')
 
-  init(options, enhancer)
+  init(options, plugins)
 
   const handler = (error: Error, vm: any, info: string) => {
     const { component, file } = getComponent(vm)
@@ -46,7 +46,7 @@ function install(Vue: any, options: Options, enhancer?: (config: Config) => Enha
       props: vm ? vm.$options.propsData : undefined
     }
     const event = createEvent<VueErrorDetail>('vue', detail)
-    collector(event)
+    collect(event)
 
     console.error(error)
   }

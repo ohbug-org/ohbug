@@ -2,7 +2,7 @@ import { Queue } from '@ohbug/utils'
 import { Event } from '@ohbug/types'
 import init from '../src/init'
 import { getOhbugObject } from '../src/config'
-import collector from '../src/collector'
+import collect from '../src/collect'
 
 const apiKey = 'test_id'
 const mockBeforeReport = jest.fn(e => e)
@@ -40,7 +40,7 @@ describe('core report', () => {
       handleAsync
     })
 
-    collector(event)
+    collect(event)
   })
 
   it('calls config.beforeReport()', () => {
@@ -56,7 +56,7 @@ describe('core report', () => {
   })
 
   it('calls report with async', done => {
-    collector(event, 'async')
+    collect(event, 'async')
     const ohbugObject = getOhbugObject()
     expect(ohbugObject._asyncQueue?.get()[0]).toEqual(event)
 

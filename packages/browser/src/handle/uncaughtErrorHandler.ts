@@ -13,7 +13,7 @@ export interface UncaughtErrorDetail extends BaseDetail {
 
 function uncaughtErrorHandler(
   error: ErrorEvent,
-  collector: (event: Event<UncaughtErrorDetail>) => void
+  collect: (event: Event<UncaughtErrorDetail>) => void
 ) {
   const {
     message,
@@ -31,7 +31,7 @@ function uncaughtErrorHandler(
     colno,
     stack
   })
-  collector(event)
+  collect(event)
 }
 
 export default uncaughtErrorHandler
