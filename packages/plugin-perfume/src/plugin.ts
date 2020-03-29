@@ -1,7 +1,7 @@
-import { PluginCapture, Plugin } from '@ohbug/types'
+import { Capture, Plugin } from '@ohbug/types'
 import Perfume from 'perfume.js'
 
-const capture: PluginCapture = ({ collect }) => {
+const capture: Capture = ({ collect }) => {
   new Perfume({
     resourceTiming: true,
     dataConsumption: true,

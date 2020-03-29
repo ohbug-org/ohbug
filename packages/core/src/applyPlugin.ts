@@ -4,23 +4,23 @@ function applyPlugin(...plugins: Plugin[]): (config: Config) => Enhancer {
   return (config: Config) =>
     plugins.reduce<Enhancer>(
       (previous, plugin) => {
-        const { capture, collect } = plugin({ config })
+        const { capture, state } = plugin({ config })
         const captures = [...previous.captures]
-        const collects = [...previous.collects]
+        const states = [...previous.states]
         if (capture) {
           captures.push(capture)
         }
-        if (collect) {
-          collects.push(collect)
+        if (state) {
+          states.push(state)
         }
         return {
           captures,
-          collects
+          states
         }
       },
       {
         captures: [],
-        collects: []
+        states: []
       }
     )
 }

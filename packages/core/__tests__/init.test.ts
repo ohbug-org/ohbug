@@ -10,10 +10,10 @@ const handleCapture = jest.fn()
 const handleAsync = jest.fn()
 const plugin: Plugin = () => {
   function capture() {}
-  function collect() {}
+  function state() {}
   return {
     capture,
-    collect
+    state
   }
 }
 const plugins = [plugin]

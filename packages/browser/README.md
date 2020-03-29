@@ -113,16 +113,16 @@ const capture = ({ createEvent, collect }) => {
   })
 }
 
-// collect is used for secondary processing of existing information
+// state is used for secondary processing of existing information
 // Returns an object in any format, and eventually this information will appear in event.state
-const collect = event => {
+const state = event => {
   return {
     user: 'user_1'
   }
 }
 
 const myPlugin = config => {
-  return { capture, collect }
+  return { capture, state }
 }
 ```
 

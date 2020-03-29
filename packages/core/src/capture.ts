@@ -1,4 +1,4 @@
-import { PluginCaptureContext } from '@ohbug/types'
+import { CaptureCtx } from '@ohbug/types'
 import { getEnhancer } from './enhancer'
 import { createOtherEvent } from './createEvent'
 import collect from './collect'
@@ -13,13 +13,13 @@ function capture<T = Window>(captureHandler: Function) {
   // Insert plugin
   const enhancer = getEnhancer<T>()
   if (enhancer) {
-    const { captures: EnhanceCaptures } = enhancer
-    if (Array.isArray(EnhanceCaptures) && EnhanceCaptures.length) {
-      const ctx: PluginCaptureContext = {
+    const { captures } = enhancer
+    if (Array.isArray(captures) && captures.length) {
+      const ctx: CaptureCtx = {
         createEvent: createOtherEvent,
         collect
       }
-      EnhanceCaptures.filter(c => Boolean(c)).forEach(c => c(ctx))
+      captures.filter(c => Boolean(c)).forEach(c => c(ctx))
     }
   }
 }

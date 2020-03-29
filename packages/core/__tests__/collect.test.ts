@@ -12,7 +12,7 @@ const platform = 'browser'
 const event = { type: 'test' }
 const extra = 'hello'
 const plugin: Plugin = () => ({
-  collect() {
+  state() {
     return {
       extra
     }
@@ -45,7 +45,7 @@ describe('core collect', () => {
     collect(event)
 
     const _enhancer = getEnhancer()
-    if (_enhancer && Array.isArray(_enhancer.collects) && _enhancer.collects.length) {
+    if (_enhancer && Array.isArray(_enhancer.states) && _enhancer.states.length) {
       expect(mockAddEvent.mock.calls[0][0]).toEqual({ ...event, state: { extra } })
     }
   })
@@ -67,7 +67,7 @@ describe('core collect', () => {
     collect(event)
 
     const _enhancer = getEnhancer()
-    if (!(_enhancer && Array.isArray(_enhancer.collects) && _enhancer.collects.length)) {
+    if (!(_enhancer && Array.isArray(_enhancer.states) && _enhancer.states.length)) {
       expect(mockAddEvent.mock.calls[0][0]).toEqual(event)
     }
   })

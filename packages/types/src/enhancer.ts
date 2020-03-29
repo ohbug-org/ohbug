@@ -7,30 +7,25 @@ type CreateEvent = <D>(
   detail: D,
   category?: 'error' | 'message' | 'feedback' | 'other' | undefined
 ) => Event<D>
-type Collect = (event: Event<any> | any, execution?: Execution) => void
-interface CaptureCtx {
+export type Collect = (event: Event<any> | any, execution?: Execution) => void
+export interface CaptureCtx {
   createEvent: CreateEvent
   collect: Collect
 }
-type Capture = (ctx: CaptureCtx) => void
 
-type EnhancerCollect = (event: Event<any> | any, execution?: Execution) => any
+export type Capture = (ctx: CaptureCtx) => void
+export type State = (event: Event<any> | any) => Record<string, any> | {} | void
+
 export interface Enhancer {
   captures: Capture[]
-  collects: EnhancerCollect[]
+  states: State[]
 }
 
-export interface PluginCaptureContext {
-  createEvent: CreateEvent
-  collect: EnhancerCollect
-}
-export type PluginCapture = (ctx: PluginCaptureContext) => void
-export type PluginCollect = (event: Event<any> | any) => Record<string, any> | {} | void
-interface PluginReturn {
-  capture?: PluginCapture
-  collect?: PluginCollect
-}
 interface PluginOptions {
   config?: Config
+}
+export interface PluginReturn {
+  capture?: Capture
+  state?: State
 }
 export type Plugin = (options?: PluginOptions) => PluginReturn

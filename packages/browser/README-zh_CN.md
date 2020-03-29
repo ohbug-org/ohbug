@@ -113,16 +113,16 @@ const capture = ({ createEvent, collect }) => {
   })
 }
 
-// collect 用于对已有信息进行二次处理
+// state 用于对已有信息进行二次处理
 // 返回任意格式 object，最终这些信息将出现在 `event.state` 中
-const collect = event => {
+const state = event => {
   return {
     user: 'user_1'
   }
 }
 
 const myPlugin = config => {
-  return { capture, collect }
+  return { capture, state }
 }
 ```
 

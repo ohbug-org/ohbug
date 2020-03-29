@@ -12,10 +12,16 @@ function collect<T = Window>(event: Event<any> | any, execution: Execution = 'sy
   const hub = getHub<T>()
   // Insert plugin
   const enhancer = getEnhancer<T>()
-  if (enhancer && Array.isArray(enhancer.collects) && enhancer.collects.length) {
-    const state = enhancer.collects
+  if (enhancer && Array.isArray(enhancer.states) && enhancer.states.length) {
+    const state = enhancer.states
       .filter(c => Boolean(c))
-      .reduce((pre, cur) => ({ ...pre, ...cur(event) }), {})
+      .reduce((pre, cur) => {
+        console.log('cur', cur(event))
+
+        return { ...pre, ...cur(event) }
+      }, {})
+    console.log({ state })
+
     hub.addEvent(
       Object.keys(state).length
         ? {
