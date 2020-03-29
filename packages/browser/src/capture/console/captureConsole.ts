@@ -27,13 +27,16 @@ function captureConsole() {
       level,
       origin =>
         function(...args: any[]) {
-          const timestamp = new Date().getTime()
-          hub.addAction({
-            type: 'console',
-            timestamp,
-            message: level,
-            data: args
-          })
+          const isOhbugConsole = args.some(arg => typeof arg === 'string' && arg.includes('Ohbug'))
+          if (!isOhbugConsole) {
+            const timestamp = new Date().getTime()
+            hub.addAction({
+              type: 'console',
+              timestamp,
+              message: level,
+              data: args
+            })
+          }
 
           return origin.apply(this, args)
         }
