@@ -1284,10 +1284,10 @@
   dependencies:
     "@types/node" ">= 8"
 
-"@ohbug/cli@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.npmjs.org/@ohbug/cli/-/cli-0.0.3.tgz#2f87da31b1243a4b7e7c17d8afe4c48fa1400b97"
-  integrity sha512-OPNx0VgWEX1UGI0x0FFG9lNlOVlh6L5+EYQH4pC6Xn5OAFJzK11TAtzRMsk/xO2qpYwwKDPGuzA5PCYxS7owBQ==
+"@ohbug/cli@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.npmjs.org/@ohbug/cli/-/cli-0.0.4.tgz#8a345d6a367d145c47310520a187d989c3a66297"
+  integrity sha512-bvWiXGCiEhKyRFM1K65rSc7c/MW/fT/Tr6auVxR9DqWHhW34JFV2TXVmBvk2VXfD7RVl8mdMxn9OFlBJAYp2Hg==
   dependencies:
     chalk "^3.0.0"
     commander "^4.1.1"

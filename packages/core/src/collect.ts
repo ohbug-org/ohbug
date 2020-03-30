@@ -15,12 +15,7 @@ function collect<T = Window>(event: Event<any> | any, execution: Execution = 'sy
   if (enhancer && Array.isArray(enhancer.states) && enhancer.states.length) {
     const state = enhancer.states
       .filter(c => Boolean(c))
-      .reduce((pre, cur) => {
-        console.log('cur', cur(event))
-
-        return { ...pre, ...cur(event) }
-      }, {})
-    console.log({ state })
+      .reduce((pre, cur) => ({ ...pre, ...cur(event) }), {})
 
     hub.addEvent(
       Object.keys(state).length
