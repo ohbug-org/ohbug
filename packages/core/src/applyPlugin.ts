@@ -1,28 +1,10 @@
-import { Plugin, Config, Enhancer } from '@ohbug/types'
+import { OhbugPlugin, Config } from '@ohbug/types'
 
-function applyPlugin(...plugins: Plugin[]): (config: Config) => Enhancer {
-  return (config: Config) =>
-    plugins.reduce<Enhancer>(
-      (previous, plugin) => {
-        const { capture, state } = plugin({ config })
-        const captures = [...previous.captures]
-        const states = [...previous.states]
-        if (capture) {
-          captures.push(capture)
-        }
-        if (state) {
-          states.push(state)
-        }
-        return {
-          captures,
-          states
-        }
-      },
-      {
-        captures: [],
-        states: []
-      }
-    )
-}
+const applyPlugin = (plugins: OhbugPlugin[]) => (config: Config) =>
+  plugins.map(
+    Plugin =>
+      // @ts-ignore
+      new Plugin(config)
+  )
 
 export default applyPlugin

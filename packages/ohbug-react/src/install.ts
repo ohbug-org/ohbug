@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Config, BaseDetail, Plugin } from '@ohbug/types'
+import { Config, BaseDetail, OhbugPlugin } from '@ohbug/types'
 import { createEvent, collect } from '@ohbug/core'
 import { init } from '@ohbug/browser'
 
@@ -20,7 +20,7 @@ interface ErrorBoundaryState {
 
 function install(
   options: Options,
-  plugins?: Plugin[]
+  plugins?: OhbugPlugin[]
 ): new (props: ErrorBoundaryProp, state: ErrorBoundaryState) => React.Component<
   ErrorBoundaryProp,
   ErrorBoundaryState

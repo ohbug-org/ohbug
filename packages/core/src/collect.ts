@@ -10,25 +10,35 @@ import { getEnhancer } from './enhancer'
  */
 function collect<T = Window>(event: Event<any> | any, execution: Execution = 'sync') {
   const hub = getHub<T>()
+  let enhancedEvent = event
+
   // Insert plugin
   const enhancer = getEnhancer<T>()
-  if (enhancer && Array.isArray(enhancer.states) && enhancer.states.length) {
-    const state = enhancer.states
-      .filter(c => Boolean(c))
-      .reduce((pre, cur) => ({ ...pre, ...cur(event) }), {})
+  if (Array.isArray(enhancer) && enhancer.length) {
+    const filteredEnhancer = enhancer.filter(c => Boolean(c))
 
-    hub.addEvent(
-      Object.keys(state).length
-        ? {
-            ...event,
-            state
-          }
-        : event,
-      execution
+    // compose enhancer.event
+    enhancedEvent = filteredEnhancer.reduce(
+      (pre: (e: Event<any>) => Event<any>, cur) => {
+        if (cur.event) {
+          return _event => pre(cur.event!(_event))
+        }
+        return _event => pre(_event)
+      },
+      (e: Event<any>) => e
+    )(event)
+
+    const state = filteredEnhancer.reduce(
+      (pre, cur) => ({ ...pre, ...cur?.state?.(enhancedEvent) }),
+      {}
     )
-  } else {
-    hub.addEvent(event, execution)
+
+    if (Object.keys(state).length) {
+      enhancedEvent.state = state
+    }
   }
+
+  hub.addEvent(enhancedEvent, execution)
 }
 
 export default collect

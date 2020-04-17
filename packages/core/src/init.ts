@@ -49,7 +49,7 @@ function init<T>({
     if (plugins) {
       error(Array.isArray(plugins), '`plugins` is not a array, please check it!')
 
-      global.__OHBUG__.enhancer = applyPlugin(...plugins)(_config)
+      global.__OHBUG__.enhancer = applyPlugin(plugins)(_config)
     }
 
     global.__OHBUG__._report = handleReport

@@ -13,19 +13,14 @@ export interface CaptureCtx {
   collect: Collect
 }
 
-export type Capture = (ctx: CaptureCtx) => void
-export type State = (event: Event<any> | any) => Record<string, any> | {} | void
-
-export interface Enhancer {
-  captures: Capture[]
-  states: State[]
+export interface OhbugPluginInstance {
+  capture?(ctx: CaptureCtx): void
+  state?(event: Event<any>): Record<string, any>
+  event?(event: Event<any>): Event<any>
 }
 
-interface PluginOptions {
+export interface OhbugPlugin extends OhbugPluginInstance {
+  new?(config?: Config): void
   config?: Config
 }
-export interface PluginReturn {
-  capture?: Capture
-  state?: State
-}
-export type Plugin = (options?: PluginOptions) => PluginReturn
+export type Enhancer = OhbugPluginInstance[]

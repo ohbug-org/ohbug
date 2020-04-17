@@ -6,21 +6,18 @@ import collect from './collect'
 /**
  * Used to execute all capture functions
  *
- * @param captures All the capture functions that need to be executed
+ * @param captureHandler
  */
 function capture<T = Window>(captureHandler: Function) {
   captureHandler()
   // Insert plugin
   const enhancer = getEnhancer<T>()
-  if (enhancer) {
-    const { captures } = enhancer
-    if (Array.isArray(captures) && captures.length) {
-      const ctx: CaptureCtx = {
-        createEvent: createOtherEvent,
-        collect
-      }
-      captures.filter(c => Boolean(c)).forEach(c => c(ctx))
+  if (Array.isArray(enhancer) && enhancer.length) {
+    const ctx: CaptureCtx = {
+      createEvent: createOtherEvent,
+      collect
     }
+    enhancer.filter(c => Boolean(c)).forEach(({ capture }) => capture?.(ctx))
   }
 }
 

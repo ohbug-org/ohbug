@@ -1,24 +1,28 @@
 import { record } from 'rrweb'
 import { eventWithTime } from 'rrweb/typings/types'
-import { Plugin, Capture, State } from '@ohbug/types'
+import { OhbugPlugin } from '@ohbug/types'
 
-const plugin: Plugin = () => {
-  const rrwebEvents: eventWithTime[] = []
-  let _stop: (() => void) | undefined
-  let hasStopped = false
+class Plugin implements OhbugPlugin {
+  private readonly rrwebEvents: eventWithTime[] = []
 
-  const capture: Capture = () => {
-    _stop = record({
+  private stop: (() => void) | undefined
+
+  private stopped: boolean = false
+
+  public capture() {
+    const { rrwebEvents } = this
+    this.stop = record({
       emit(event) {
         rrwebEvents.push(event)
       }
     })
   }
 
-  const state: State = () => {
-    if (!hasStopped) {
-      _stop && _stop()
-      hasStopped = true
+  public state() {
+    const { rrwebEvents, stop, stopped } = this
+    if (!stopped) {
+      stop && stop()
+      this.stopped = true
 
       return {
         rrwebEvents
@@ -26,11 +30,6 @@ const plugin: Plugin = () => {
     }
     return {}
   }
-
-  return {
-    capture,
-    state
-  }
 }
 
-export default plugin
+export default Plugin
