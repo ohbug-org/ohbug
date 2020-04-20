@@ -1,6 +1,6 @@
 {
   "name": "@ohbug/plugin-rrweb",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Ohbug plugin to 'screen recording'",
   "author": "chenyueban <jasonchan0527@gmail.com>",
   "homepage": "https://github.com/ohbug-org/ohbug",

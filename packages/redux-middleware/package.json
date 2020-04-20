@@ -1,6 +1,6 @@
 {
   "name": "@ohbug/redux-middleware",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Redux middleware for propagating Redux state/actions to use with Ohbug",
   "author": "chenyueban <jasonchan0527@gmail.com>",
   "homepage": "https://github.com/ohbug-org/ohbug",
