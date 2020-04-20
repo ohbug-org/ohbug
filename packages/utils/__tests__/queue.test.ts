@@ -1,8 +1,8 @@
 import { Queue } from '../src/queue'
-import { Event } from '@ohbug/types'
+import type { OhbugEvent } from '@ohbug/types'
 
 describe('utils queue', () => {
-  const event = { type: 'test' } as Event<any>
+  const event = { type: 'test' } as OhbugEvent<any>
   const queue = new Queue()
   queue.enqueue(event)
 
@@ -26,14 +26,14 @@ describe('utils queue', () => {
   })
 
   it('call queue.tail()', () => {
-    const event2 = { type: 'test2' } as Event<any>
+    const event2 = { type: 'test2' } as OhbugEvent<any>
     queue.enqueue(event2)
     expect(queue.tail()).toEqual(event2)
   })
 
   it('call queue.size()', () => {
     expect(queue.size()).toEqual(1)
-    queue.enqueue({ type: 'test2' } as Event<any>)
+    queue.enqueue({ type: 'test2' } as OhbugEvent<any>)
     expect(queue.size()).toEqual(2)
   })
 

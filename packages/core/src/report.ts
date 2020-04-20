@@ -1,6 +1,6 @@
 import { logger } from '@ohbug/utils'
-import { OhbugEvent, OhbugExecution } from '@ohbug/types'
 import { getConfig, getOhbugObject } from './config'
+import type { OhbugEvent, OhbugExecution } from '@ohbug/types'
 
 function timingSelector(
   report: (event: OhbugEvent<any>, execution: OhbugExecution) => void,

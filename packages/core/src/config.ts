@@ -1,8 +1,8 @@
-import { OhbugConfig, OhbugObject } from '@ohbug/types'
 import { getGlobal, error } from '@ohbug/utils'
+import type { OhbugConfig, OhbugObject } from '@ohbug/types'
 
 export const defaultConfig: OhbugConfig = {
-  apiKey: ''
+  apiKey: '',
 }
 
 export function getOhbugObject<T>(): OhbugObject {

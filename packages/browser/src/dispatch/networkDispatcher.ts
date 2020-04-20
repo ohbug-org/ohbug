@@ -3,7 +3,7 @@ import {
   ajaxErrorHandler,
   fetchErrorHandler,
   websocketErrorHandler,
-  unknownErrorHandler
+  unknownErrorHandler,
 } from '../handle'
 
 const { AJAX_ERROR, FETCH_ERROR, WEBSOCKET_ERROR } = types

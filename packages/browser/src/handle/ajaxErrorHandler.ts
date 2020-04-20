@@ -1,5 +1,5 @@
 import { types, createEvent } from '@ohbug/core'
-import { OhbugEvent, OhbugBaseDetail } from '@ohbug/types'
+import type { OhbugEvent, OhbugBaseDetail } from '@ohbug/types'
 
 const { AJAX_ERROR } = types
 

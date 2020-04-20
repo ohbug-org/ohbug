@@ -1,9 +1,9 @@
-import { OhbugPlatform } from './tags'
-import { OhbugEvent } from './event'
-import { OhbugConfig } from './config'
-import { OhbugEnhancer, OhbugExecution } from './enhancer'
-import { OhbugHub } from './hub'
-import { OhbugQueue } from './queue'
+import type { OhbugPlatform } from './tags'
+import type { OhbugEvent } from './event'
+import type { OhbugConfig } from './config'
+import type { OhbugEnhancer, OhbugExecution } from './enhancer'
+import type { OhbugHub } from './hub'
+import type { OhbugQueue } from './queue'
 
 export interface OhbugObject {
   uuid: string

@@ -1,4 +1,4 @@
-import { OhbugEvent, OhbugQueue } from '@ohbug/types'
+import type { OhbugEvent, OhbugQueue } from '@ohbug/types'
 
 export class Queue implements OhbugQueue {
   private events: OhbugEvent<any>[] = []

@@ -1,5 +1,5 @@
 import { types, createEvent } from '@ohbug/core'
-import { OhbugEvent, OhbugBaseDetail } from '@ohbug/types'
+import type { OhbugEvent, OhbugBaseDetail } from '@ohbug/types'
 
 const { UNHANDLEDREJECTION_ERROR } = types
 
@@ -13,7 +13,7 @@ function unhandledrejectionErrorHandler(
 ) {
   const event = createEvent<UnhandledrejectionErrorDetail>(UNHANDLEDREJECTION_ERROR, {
     message: error.reason.message || error.reason,
-    stack: error.reason.stack
+    stack: error.reason.stack,
   })
   collect(event)
 }

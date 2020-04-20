@@ -1,4 +1,4 @@
-import { OhbugEvent } from './event'
+import type { OhbugEvent } from './event'
 
 export interface OhbugConfig {
   apiKey: string

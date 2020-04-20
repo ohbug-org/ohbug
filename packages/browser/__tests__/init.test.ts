@@ -1,5 +1,5 @@
-import initBrowser from '../src/init'
 import { init } from '@ohbug/core'
+import initBrowser from '../src/init'
 jest.mock('@ohbug/core')
 
 const mockInit = jest.fn()

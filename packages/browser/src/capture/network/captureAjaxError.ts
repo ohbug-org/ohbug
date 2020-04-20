@@ -9,7 +9,7 @@ const access = 'XMLHttpRequest' in global
 let xhrOriginal = access
   ? {
       open: XMLHttpRequest.prototype.open,
-      send: XMLHttpRequest.prototype.send
+      send: XMLHttpRequest.prototype.send,
     }
   : {}
 /**
@@ -26,7 +26,7 @@ function captureAjaxError() {
 
   const desc = {
     method: '',
-    url: ''
+    url: '',
   }
 
   const xhrProto = XMLHttpRequest.prototype
@@ -34,8 +34,8 @@ function captureAjaxError() {
   xhrOriginal.open = replace(
     xhrProto,
     'open',
-    origin =>
-      function(...args: any[]) {
+    (origin) =>
+      function (...args: any[]) {
         desc.method = args[0]
         desc.url = args[1]
         return origin.apply(this, args)
@@ -45,27 +45,27 @@ function captureAjaxError() {
   xhrOriginal.send = replace(
     xhrProto,
     'send',
-    origin =>
-      function(...args: any[]) {
-        this.addEventListener('readystatechange', function() {
+    (origin) =>
+      function (...args: any[]) {
+        this.addEventListener('readystatechange', function () {
           if (this.readyState === 4) {
             const data = {
               req: {
                 url: desc.url,
                 method: desc.method,
-                data: args[0] || {}
+                data: args[0] || {},
               },
               res: {
                 status: this.status,
                 statusText: this.statusText,
-                response: this.response
-              }
+                response: this.response,
+              },
             }
             const timestamp = new Date().getTime()
             hub.addAction({
               type: 'ajax',
               timestamp,
-              data
+              data,
             })
 
             if (!this.status || this.status >= 400) {

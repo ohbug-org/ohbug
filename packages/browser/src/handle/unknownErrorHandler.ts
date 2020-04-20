@@ -1,5 +1,5 @@
 import { types, createEvent } from '@ohbug/core'
-import { OhbugEvent, OhbugBaseDetail } from '@ohbug/types'
+import type { OhbugEvent, OhbugBaseDetail } from '@ohbug/types'
 
 const { UNKNOWN_ERROR } = types
 
@@ -9,7 +9,7 @@ function unknownErrorHandler(error: any, collect: (event: OhbugEvent<UnknownErro
   const detail = error.message
     ? error
     : {
-        message: error
+        message: error,
       }
   const event = createEvent<UnknownErrorDetail>(UNKNOWN_ERROR, detail)
   collect(event)

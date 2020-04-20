@@ -10,7 +10,7 @@ import {
   closeTestServer,
   clearUploads,
   url,
-  uploads
+  uploads,
 } from './helpers'
 
 const apiKey = 'YOUR_API_KEY'
@@ -39,17 +39,17 @@ describe('webpack-plugin', () => {
     expect(() => {
       // @ts-ignore
       new OhbugWebpackPlugin({
-        apiKey
+        apiKey,
       })
     }).toThrowError(/"appVersion" is required!/)
   })
 
-  it('should works', done => {
+  it('should works', (done) => {
     const compiler = createCompiler()
     new OhbugWebpackPlugin({
       apiKey,
       appVersion,
-      url
+      url,
     }).apply(compiler)
 
     return compile(compiler).then(() => {

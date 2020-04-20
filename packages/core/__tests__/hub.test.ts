@@ -2,14 +2,14 @@ import init from '../src/init'
 import { getHub } from '../src/hub'
 import { getOhbugObject } from '../src/config'
 import report from '../src/report'
-import { OhbugEvent, OhbugAction } from '@ohbug/types'
+import type { OhbugEvent, OhbugAction } from '@ohbug/types'
 jest.mock('../src/report')
 
 const apiKey = 'test_id'
 const config = { apiKey }
 const platform = 'browser'
 const event = {
-  type: 'test'
+  type: 'test',
 } as OhbugEvent<any>
 const action = { type: 'a' } as OhbugAction
 
@@ -20,7 +20,7 @@ describe('core hub', () => {
       platform,
       handleCapture: () => {},
       handleReport: () => {},
-      handleAsync: () => {}
+      handleAsync: () => {},
     })
   })
 

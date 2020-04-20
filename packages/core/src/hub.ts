@@ -1,6 +1,6 @@
-import { OhbugHub, OhbugEvent, OhbugAction, OhbugExecution } from '@ohbug/types'
 import { getOhbugObject } from './config'
 import report from './report'
+import type { OhbugHub, OhbugEvent, OhbugAction, OhbugExecution } from '@ohbug/types'
 
 class Hub implements OhbugHub {
   private readonly events: OhbugEvent<any>[] = []

@@ -21,8 +21,8 @@ function listener(e: MouseEvent) {
         src,
         outerHTML,
         nodeType,
-        selector
-      }
+        selector,
+      },
     })
   }
 }

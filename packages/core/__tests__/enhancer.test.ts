@@ -13,7 +13,7 @@ describe('core enhancer', () => {
       platform,
       handleCapture: () => {},
       handleReport: () => {},
-      handleAsync: () => {}
+      handleAsync: () => {},
     })
   })
 

@@ -1,4 +1,4 @@
-import { OhbugGlobal } from '@ohbug/types'
+import type { OhbugGlobal } from '@ohbug/types'
 
 const fallbackGlobalObject = {}
 export function getGlobal<T = Window>(): T & OhbugGlobal {

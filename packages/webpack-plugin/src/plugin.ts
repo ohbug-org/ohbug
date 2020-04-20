@@ -1,6 +1,6 @@
-import { Compiler, compilation } from 'webpack'
 import { uploadSourceMap } from '@ohbug/cli'
 import { LOG_PREFIX } from './constants'
+import type { Compiler, compilation } from 'webpack'
 
 export interface Config {
   apiKey: string
@@ -44,7 +44,7 @@ class OhbugWebpackPlugin implements Options {
   getConfig(): Config {
     const config: Config = {
       apiKey: this.apiKey,
-      appVersion: this.appVersion
+      appVersion: this.appVersion,
     }
     if (this.appType) config.appType = this.appType
     if (this.url) config.url = this.url
@@ -57,7 +57,7 @@ class OhbugWebpackPlugin implements Options {
     const outputPath = compilation.getPath(compiler.outputPath, {})
 
     return chunks?.reduce((result, chunk) => {
-      const filename = chunk.files.find(file => /\.js\.map$/.test(file))
+      const filename = chunk.files.find((file) => /\.js\.map$/.test(file))
       if (!filename) {
         return result
       }
@@ -71,7 +71,7 @@ class OhbugWebpackPlugin implements Options {
     const plugin = async (compilation: compilation.Compilation) => {
       const assets = this.getAssets(compiler, compilation)
       if (assets?.length) {
-        return await Promise.all(assets.map(asset => uploadSourceMap(asset)))
+        return await Promise.all(assets.map((asset) => uploadSourceMap(asset)))
       }
     }
 

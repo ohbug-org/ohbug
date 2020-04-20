@@ -1,6 +1,6 @@
 import { createEvent, collect } from '@ohbug/core'
-import { OhbugConfig, OhbugPlugin, OhbugBaseDetail } from '@ohbug/types'
 import { init } from '@ohbug/browser'
+import type { OhbugConfig, OhbugPlugin, OhbugBaseDetail } from '@ohbug/types'
 
 export interface VueErrorDetail extends OhbugBaseDetail {
   name: string
@@ -14,7 +14,7 @@ export interface VueErrorDetail extends OhbugBaseDetail {
 const getComponent = (vm: any) => {
   if (vm.$root === vm)
     return {
-      component: 'Root'
+      component: 'Root',
     }
 
   const options = vm.$options
@@ -23,7 +23,7 @@ const getComponent = (vm: any) => {
 
   return {
     component,
-    file
+    file,
   }
 }
 
@@ -42,7 +42,7 @@ function install(Vue: any, config: OhbugConfig, plugins?: OhbugPlugin[]) {
       errorInfo: info,
       component,
       file,
-      props: vm ? vm.$options.propsData : undefined
+      props: vm ? vm.$options.propsData : undefined,
     }
     const event = createEvent<VueErrorDetail>('vue', detail)
     collect(event)

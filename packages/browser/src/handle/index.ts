@@ -1,14 +1,19 @@
 // script
-import uncaughtErrorHandler, { UncaughtErrorDetail } from './uncaughtErrorHandler'
-import resourceErrorHandler, { ResourceErrorDetail } from './resourceErrorHandler'
-import unhandledrejectionErrorHandler, {
-  UnhandledrejectionErrorDetail
-} from './unhandledrejectionErrorHandler'
-import unknownErrorHandler, { UnknownErrorDetail } from './unknownErrorHandler'
+import uncaughtErrorHandler from './uncaughtErrorHandler'
+import resourceErrorHandler from './resourceErrorHandler'
+import unhandledrejectionErrorHandler from './unhandledrejectionErrorHandler'
+import unknownErrorHandler from './unknownErrorHandler'
+import type { UncaughtErrorDetail } from './uncaughtErrorHandler'
+import type { ResourceErrorDetail } from './resourceErrorHandler'
+import type { UnhandledrejectionErrorDetail } from './unhandledrejectionErrorHandler'
+import type { UnknownErrorDetail } from './unknownErrorHandler'
 // network
-import ajaxErrorHandler, { AjaxErrorDetail } from './ajaxErrorHandler'
-import fetchErrorHandler, { FetchErrorDetail } from './fetchErrorHandler'
-import websocketErrorHandler, { WebsocketErrorDetail } from './websocketErrorHandler'
+import ajaxErrorHandler from './ajaxErrorHandler'
+import fetchErrorHandler from './fetchErrorHandler'
+import websocketErrorHandler from './websocketErrorHandler'
+import type { AjaxErrorDetail } from './ajaxErrorHandler'
+import type { FetchErrorDetail } from './fetchErrorHandler'
+import type { WebsocketErrorDetail } from './websocketErrorHandler'
 
 export {
   uncaughtErrorHandler,
@@ -17,15 +22,15 @@ export {
   unknownErrorHandler,
   ajaxErrorHandler,
   fetchErrorHandler,
-  websocketErrorHandler
+  websocketErrorHandler,
 }
 
-export {
+export type {
   UncaughtErrorDetail,
   ResourceErrorDetail,
   UnhandledrejectionErrorDetail,
   UnknownErrorDetail,
   AjaxErrorDetail,
   FetchErrorDetail,
-  WebsocketErrorDetail
+  WebsocketErrorDetail,
 }

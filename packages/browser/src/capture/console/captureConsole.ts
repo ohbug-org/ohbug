@@ -8,33 +8,35 @@ const levels: Level[] = ['log', 'info', 'warn', 'error']
 const consoleOriginal = Object.keys(levels).reduce<Record<Level, any>>(
   (acc, cur: Level) => ({
     ...acc,
-    [cur]: global.console[cur]
+    [cur]: global.console[cur],
   }),
   {
     log: null,
     info: null,
     warn: null,
-    error: null
+    error: null,
   }
 )
 
 function captureConsole() {
   const hub = getHub<Window>()
 
-  levels.forEach(level => {
+  levels.forEach((level) => {
     consoleOriginal[level] = replace(
       global.console,
       level,
-      origin =>
-        function(...args: any[]) {
-          const isOhbugConsole = args.some(arg => typeof arg === 'string' && arg.includes('Ohbug'))
+      (origin) =>
+        function (...args: any[]) {
+          const isOhbugConsole = args.some(
+            (arg) => typeof arg === 'string' && arg.includes('Ohbug')
+          )
           if (!isOhbugConsole) {
             const timestamp = new Date().getTime()
             hub.addAction({
               type: 'console',
               timestamp,
               message: level,
-              data: args
+              data: args,
             })
           }
 
@@ -46,7 +48,7 @@ function captureConsole() {
 
 export function removeCaptureConsole() {
   if (global.console) {
-    levels.forEach(level => {
+    levels.forEach((level) => {
       global.console[level] = consoleOriginal[level]
     })
   }

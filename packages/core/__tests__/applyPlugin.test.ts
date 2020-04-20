@@ -1,4 +1,4 @@
-import { OhbugPlugin, OhbugEvent, OhbugCaptureCtx } from '@ohbug/types'
+import type { OhbugPlugin, OhbugEvent, OhbugCaptureCtx } from '@ohbug/types'
 import applyPlugin from '../src/applyPlugin'
 
 const apiKey = 'test_id'
@@ -26,6 +26,6 @@ const enhancer = applyPlugin(plugins)
 describe('core applyPlugin', () => {
   it('should reduce the plugins', () => {
     // @ts-ignore
-    expect(enhancer(config)).toEqual(plugins.map(Plugin => new Plugin(config)))
+    expect(enhancer(config)).toEqual(plugins.map((Plugin) => new Plugin(config)))
   })
 })

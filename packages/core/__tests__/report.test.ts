@@ -1,11 +1,11 @@
 import { Queue } from '@ohbug/utils'
-import { OhbugEvent } from '@ohbug/types'
 import init from '../src/init'
 import { getOhbugObject } from '../src/config'
 import collect from '../src/collect'
+import type { OhbugEvent } from '@ohbug/types'
 
 const apiKey = 'test_id'
-const mockBeforeReport = jest.fn(e => e)
+const mockBeforeReport = jest.fn((e) => e)
 const mockReported = jest.fn()
 const config = {
   apiKey,
@@ -14,7 +14,7 @@ const config = {
   },
   reported(event: OhbugEvent<any>) {
     mockReported(event)
-  }
+  },
 }
 const platform = 'browser'
 const handleReport = jest.fn()
@@ -37,7 +37,7 @@ describe('core report', () => {
       platform,
       handleCapture: () => {},
       handleReport,
-      handleAsync
+      handleAsync,
     })
 
     collect(event)
@@ -55,7 +55,7 @@ describe('core report', () => {
     expect(handleReport).toBeCalled()
   })
 
-  it('calls report with async', done => {
+  it('calls report with async', (done) => {
     collect(event, 'async')
     const ohbugObject = getOhbugObject()
     expect(ohbugObject._asyncQueue?.get()[0]).toEqual(event)

@@ -1,4 +1,5 @@
-import { createStore, applyMiddleware, Action } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import type { Action } from 'redux'
 import { init as initBrowser } from '@ohbug/browser'
 import { getHub } from '@ohbug/core'
 import createOhbugMiddleware from '../src'
@@ -41,7 +42,7 @@ describe('redux-middleware', () => {
     function before(action: Action) {
       return {
         ...action,
-        type: `[ohbug] ${action.type}`
+        type: `[ohbug] ${action.type}`,
       }
     }
     const store = createStore(counter, applyMiddleware(createOhbugMiddleware(before)))

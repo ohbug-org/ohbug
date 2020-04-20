@@ -31,8 +31,8 @@ function handleUrlChange(from?: string, to?: string) {
     timestamp,
     data: {
       from,
-      to
-    }
+      to,
+    },
   })
 
   const event = createEvent<null>(types.VIEW, null, 'view')
@@ -40,7 +40,7 @@ function handleUrlChange(from?: string, to?: string) {
 }
 
 function historyReplacement(original: () => void) {
-  return function(data: any, title: string, url?: string) {
+  return function (data: any, title: string, url?: string) {
     if (url) {
       handleUrlChange(lastHref, String(url))
     }
@@ -51,7 +51,7 @@ function historyReplacement(original: () => void) {
 let historyOriginal = {
   pushState: global.history.pushState,
   replaceState: global.history.replaceState,
-  onpopstate: global.onpopstate
+  onpopstate: global.onpopstate,
 }
 function historyListener() {
   historyOriginal.pushState = replace(global.history, 'pushState', historyReplacement)

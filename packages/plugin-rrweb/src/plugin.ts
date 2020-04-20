@@ -1,6 +1,6 @@
 import { record } from 'rrweb'
 import { eventWithTime } from 'rrweb/typings/types'
-import { OhbugPlugin } from '@ohbug/types'
+import type { OhbugPlugin } from '@ohbug/types'
 
 class Plugin implements OhbugPlugin {
   private readonly rrwebEvents: eventWithTime[] = []
@@ -14,7 +14,7 @@ class Plugin implements OhbugPlugin {
     this.stop = record({
       emit(event) {
         rrwebEvents.push(event)
-      }
+      },
     })
   }
 
@@ -25,7 +25,7 @@ class Plugin implements OhbugPlugin {
       this.stopped = true
 
       return {
-        rrwebEvents
+        rrwebEvents,
       }
     }
     return {}

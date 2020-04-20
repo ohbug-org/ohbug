@@ -23,10 +23,10 @@ function captureWebSocketError() {
     set() {
       const arg = arguments[0]
       // @ts-ignore
-      backup.set.call(this, function(e) {
+      backup.set.call(this, function (e) {
         const {
           target: { url, readyState, protocol, extensions, binaryType, bufferedAmount },
-          timeStamp
+          timeStamp,
         } = e
         networkDispatcher(WEBSOCKET_ERROR, {
           url,
@@ -35,11 +35,11 @@ function captureWebSocketError() {
           protocol,
           extensions,
           binaryType,
-          bufferedAmount
+          bufferedAmount,
         })
         arg.apply(this, arguments)
       })
-    }
+    },
   })
 }
 

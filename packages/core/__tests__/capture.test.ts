@@ -1,7 +1,7 @@
-import { OhbugCaptureCtx, OhbugConfig, OhbugPlugin } from '@ohbug/types'
 import init from '../src/init'
 import { createOtherEvent } from '../src/createEvent'
 import collect from '../src/collect'
+import type { OhbugCaptureCtx, OhbugConfig, OhbugPlugin } from '@ohbug/types'
 
 const apiKey = 'test_id'
 const config = { apiKey }
@@ -33,7 +33,7 @@ describe('core capture', () => {
       handleReport: () => {},
       handleAsync: () => {},
       // @ts-ignore
-      plugins
+      plugins,
     })
   })
 
@@ -42,7 +42,7 @@ describe('core capture', () => {
     expect(pluginCapture2).toBeCalled()
     const ctx = {
       createEvent: createOtherEvent,
-      collect
+      collect,
     }
     expect(pluginCapture1.mock.calls[0][0]).toEqual(ctx)
     expect(pluginCapture2.mock.calls[0][0]).toEqual(ctx)

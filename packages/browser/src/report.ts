@@ -1,4 +1,4 @@
-import { OhbugEvent } from '@ohbug/types'
+import type { OhbugEvent } from '@ohbug/types'
 
 const url = `__URL_REPORT__`
 

@@ -1,5 +1,5 @@
 import { types, createEvent } from '@ohbug/core'
-import { OhbugEvent, OhbugBaseDetail } from '@ohbug/types'
+import type { OhbugEvent, OhbugBaseDetail } from '@ohbug/types'
 
 const { UNCAUGHT_ERROR } = types
 
@@ -20,7 +20,7 @@ function uncaughtErrorHandler(
     filename,
     lineno,
     colno,
-    error: { stack, name }
+    error: { stack, name },
   } = error
 
   const event = createEvent<UncaughtErrorDetail>(UNCAUGHT_ERROR, {
@@ -29,7 +29,7 @@ function uncaughtErrorHandler(
     filename,
     lineno,
     colno,
-    stack
+    stack,
   })
   collect(event)
 }

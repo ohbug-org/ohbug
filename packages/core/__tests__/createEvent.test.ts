@@ -6,7 +6,7 @@ const config = { apiKey }
 const platform = 'browser'
 const type = 'test'
 const detail = {
-  a: 1
+  a: 1,
 }
 
 describe('core createEvent', () => {
@@ -16,7 +16,7 @@ describe('core createEvent', () => {
       platform,
       handleCapture: () => {},
       handleReport: () => {},
-      handleAsync: () => {}
+      handleAsync: () => {},
     })
   })
 

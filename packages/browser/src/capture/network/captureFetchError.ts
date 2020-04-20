@@ -22,8 +22,8 @@ function captureFetchError() {
   fetchOriginal = replace(
     global,
     'fetch',
-    origin =>
-      function(...args: any[]) {
+    (origin) =>
+      function (...args: any[]) {
         return origin
           .apply(this, args)
           .then((res: Response) => {
@@ -32,18 +32,18 @@ function captureFetchError() {
               req: {
                 url,
                 method: conf && conf.method,
-                data: (conf && conf.body) || {}
+                data: (conf && conf.body) || {},
               },
               res: {
                 status: res.status,
-                statusText: res.statusText
-              }
+                statusText: res.statusText,
+              },
             }
             const timestamp = new Date().getTime()
             hub.addAction({
               type: 'fetch',
               timestamp,
-              data
+              data,
             })
 
             if (!res.status || res.status >= 400) {

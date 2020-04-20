@@ -1,7 +1,7 @@
-import { OhbugConfig } from './config'
-import { OhbugPlatform } from './tags'
-import { OhbugEvent } from './event'
-import { OhbugPlugin } from './enhancer'
+import type { OhbugConfig } from './config'
+import type { OhbugPlatform } from './tags'
+import type { OhbugEvent } from './event'
+import type { OhbugPlugin } from './enhancer'
 
 export interface OhbugInit {
   config: OhbugConfig

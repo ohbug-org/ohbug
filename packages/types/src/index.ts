@@ -1,7 +1,3 @@
-export interface OhbugBaseDetail {
-  message?: string
-}
-
 export * from './config'
 export * from './enhancer'
 export * from './event'

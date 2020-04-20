@@ -13,7 +13,7 @@ describe('core config', () => {
       platform,
       handleCapture: () => {},
       handleReport: () => {},
-      handleAsync: () => {}
+      handleAsync: () => {},
     })
   })
 

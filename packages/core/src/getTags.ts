@@ -1,12 +1,12 @@
-import { OhbugTags } from '@ohbug/types'
 import { getOhbugObject } from './config'
+import type { OhbugTags } from '@ohbug/types'
 
 function getTags<T>(): OhbugTags {
   const { uuid, platform, version } = getOhbugObject<T>()
   const tags: OhbugTags = {
     uuid,
     platform,
-    version
+    version,
   }
   if (navigator) {
     const { language, userAgent } = navigator

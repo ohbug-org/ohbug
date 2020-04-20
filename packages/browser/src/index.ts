@@ -3,12 +3,12 @@ import init from './init'
 
 export { init, captureMessage }
 
-export {
+export type {
   UncaughtErrorDetail,
   ResourceErrorDetail,
   UnhandledrejectionErrorDetail,
   UnknownErrorDetail,
   AjaxErrorDetail,
   FetchErrorDetail,
-  WebsocketErrorDetail
+  WebsocketErrorDetail,
 } from './handle'

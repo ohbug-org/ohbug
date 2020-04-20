@@ -1,8 +1,8 @@
 import { getGlobal } from '@ohbug/utils'
-import { OhbugConfig, OhbugEvent, OhbugPlugin } from '@ohbug/types'
 import init from '../src/init'
 import collect from '../src/collect'
 import { getHub } from '../src/hub'
+import type { OhbugConfig, OhbugEvent, OhbugPlugin } from '@ohbug/types'
 jest.mock('../src/hub')
 
 const apiKey = 'test_id'
@@ -13,7 +13,7 @@ const extra = 'hello'
 class plugin1 implements OhbugPlugin {
   state() {
     return {
-      extra
+      extra,
     }
   }
 }
@@ -28,7 +28,7 @@ class plugin2 implements OhbugPlugin {
     const { config } = this
     pluginState(event, config)
     return {
-      extra
+      extra,
     }
   }
   event(event: OhbugEvent<any>) {
@@ -36,7 +36,7 @@ class plugin2 implements OhbugPlugin {
     pluginEvent(event, config)
     return {
       ...event,
-      plugin2: true
+      plugin2: true,
     }
   }
 }
@@ -44,7 +44,7 @@ class plugin3 implements OhbugPlugin {
   event(event: OhbugEvent<any>) {
     return {
       ...event,
-      plugin3: true
+      plugin3: true,
     }
   }
 }
@@ -63,12 +63,12 @@ describe('core collect', () => {
       platform,
       handleCapture: () => {},
       handleReport: () => {},
-      handleAsync: () => {}
+      handleAsync: () => {},
     })
 
     const mockAddEvent = jest.fn()
     ;(getHub as jest.Mock).mockImplementation(() => ({
-      addEvent: mockAddEvent
+      addEvent: mockAddEvent,
     }))
 
     collect(event)
@@ -84,12 +84,12 @@ describe('core collect', () => {
       handleReport: () => {},
       handleAsync: () => {},
       // @ts-ignore
-      plugins
+      plugins,
     })
 
     const mockAddEvent = jest.fn()
     ;(getHub as jest.Mock).mockImplementation(() => ({
-      addEvent: mockAddEvent
+      addEvent: mockAddEvent,
     }))
 
     collect(event)
@@ -99,8 +99,8 @@ describe('core collect', () => {
       plugin2: true,
       plugin3: true,
       state: {
-        extra
-      }
+        extra,
+      },
     })
   })
 
@@ -112,12 +112,12 @@ describe('core collect', () => {
       handleReport: () => {},
       handleAsync: () => {},
       // @ts-ignore
-      plugins
+      plugins,
     })
 
     const mockAddEvent = jest.fn()
     ;(getHub as jest.Mock).mockImplementation(() => ({
-      addEvent: mockAddEvent
+      addEvent: mockAddEvent,
     }))
 
     collect(event)

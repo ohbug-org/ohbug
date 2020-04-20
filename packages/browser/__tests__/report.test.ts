@@ -1,4 +1,4 @@
-import { OhbugEvent } from '@ohbug/types'
+import type { OhbugEvent } from '@ohbug/types'
 import initBrowser from '../src/init'
 import report from '../src/report'
 

@@ -1,6 +1,6 @@
 import { types, createEvent } from '@ohbug/core'
-import { OhbugEvent, OhbugBaseDetail } from '@ohbug/types'
 import { getSelector } from '@ohbug/utils'
+import type { OhbugEvent, OhbugBaseDetail } from '@ohbug/types'
 
 const { RESOURCE_ERROR } = types
 
@@ -34,7 +34,7 @@ function resourceErrorHandler(
     name: target && target.name,
     // https://developer.mozilla.org/zh-CN/docs/Web/API/Node/nodeType
     nodeType: target && target.nodeType,
-    selector
+    selector,
   })
   collect(event)
 }

@@ -1,4 +1,4 @@
-import { OhbugEvent } from './event'
+import type { OhbugEvent } from './event'
 
 export interface OhbugQueue {
   enqueue: (OhbugEvent: OhbugEvent<any>) => void

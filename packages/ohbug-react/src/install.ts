@@ -1,7 +1,7 @@
 import * as React from 'react'
-import { OhbugConfig, OhbugBaseDetail, OhbugPlugin } from '@ohbug/types'
 import { createEvent, collect } from '@ohbug/core'
 import { init } from '@ohbug/browser'
+import type { OhbugConfig, OhbugBaseDetail, OhbugPlugin } from '@ohbug/types'
 
 export interface ReactErrorDetail extends OhbugBaseDetail {
   name: string
@@ -31,7 +31,7 @@ function install(
       super(props)
       this.state = {
         error: null,
-        info: null
+        info: null,
       }
     }
 
@@ -44,7 +44,7 @@ function install(
         name: error.name,
         message: error.message,
         stack: error.stack,
-        errorInfo: info
+        errorInfo: info,
       }
 
       const event = createEvent<ReactErrorDetail>('react', detail)

@@ -1,8 +1,8 @@
 import { getGlobal, error, getUUID } from '@ohbug/utils'
-import { OhbugInit } from '@ohbug/types'
 import { defaultConfig } from './config'
 import applyPlugin from './applyPlugin'
 import captureHandler from './capture'
+import type { OhbugInit } from '@ohbug/types'
 
 /**
  * An init function common to multiple JavaScript platforms for saving config information and capture report plugin, etc.
@@ -22,7 +22,7 @@ function init<T>({
   handleReport,
   handleAsync,
   handleDestroy,
-  plugins
+  plugins,
 }: OhbugInit) {
   const global = getGlobal<T>()
   error(
@@ -35,14 +35,14 @@ function init<T>({
 
     const _config = {
       ...defaultConfig,
-      ...config
+      ...config,
     }
 
     global.__OHBUG__ = {
       uuid: getUUID(),
       platform,
       version: '__VERSION__',
-      config: _config
+      config: _config,
     }
 
     // Insert plugin

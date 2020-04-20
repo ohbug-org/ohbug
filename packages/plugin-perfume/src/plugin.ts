@@ -1,5 +1,5 @@
-import { OhbugPlugin, OhbugCaptureCtx } from '@ohbug/types'
 import Perfume from 'perfume.js'
+import type { OhbugPlugin, OhbugCaptureCtx } from '@ohbug/types'
 
 class Plugin implements OhbugPlugin {
   capture({ collect }: OhbugCaptureCtx) {
@@ -8,7 +8,7 @@ class Plugin implements OhbugPlugin {
       dataConsumption: true,
       logging: process.env.NODE_ENV === 'development',
       maxMeasureTime: 10000,
-      analyticsTracker: options => {
+      analyticsTracker: (options) => {
         const { metricName, data, duration } = options
         switch (metricName) {
           case 'navigationTiming':
@@ -42,7 +42,7 @@ class Plugin implements OhbugPlugin {
           default:
             break
         }
-      }
+      },
     })
   }
 }

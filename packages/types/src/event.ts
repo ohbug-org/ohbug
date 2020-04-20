@@ -1,4 +1,4 @@
-import { Tags } from './tags'
+import type { OhbugTags } from './tags'
 
 export interface OhbugAction {
   type: string
@@ -17,7 +17,11 @@ export interface OhbugEvent<D> {
   category?: OhbugCategory
   type: string
   detail: D
-  tags: Tags
+  tags: OhbugTags
   actions?: OhbugAction[]
   state?: any
+}
+
+export interface OhbugBaseDetail {
+  message?: string
 }

@@ -1,7 +1,7 @@
-import { OhbugEvent, OhbugAction, OhbugCategory } from '@ohbug/types'
 import { getConfig } from './config'
 import { getHub } from './hub'
 import getTags from './getTags'
+import type { OhbugEvent, OhbugAction, OhbugCategory } from '@ohbug/types'
 
 function getActions<T>(): OhbugAction[] {
   const hub = getHub<T>()
@@ -25,7 +25,7 @@ function createEvent<D, T = Window>(
     category,
     type,
     tags,
-    detail
+    detail,
   }
 
   if (appVersion) {

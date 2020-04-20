@@ -7,7 +7,7 @@ import captureFetchError, { removeCaptureFetchError } from './network/captureFet
 import captureWebSocketError from './network/captureWebSocketError'
 import captureUncaughtError, { removeCaptureUncaughtError } from './script/captureUncaughtError'
 import captureUnhandledrejectionError, {
-  removeCaptureUnhandledrejectionError
+  removeCaptureUnhandledrejectionError,
 } from './script/captureUnhandledrejectionError'
 
 export function captureAction() {

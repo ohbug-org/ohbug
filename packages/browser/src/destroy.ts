@@ -3,7 +3,7 @@ import {
   removeCaptureScript,
   removeCaptureNetwork,
   removeCaptureAction,
-  removeCaptureConsole
+  removeCaptureConsole,
 } from './capture'
 
 const global = getGlobal<Window>()

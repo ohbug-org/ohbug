@@ -4,7 +4,7 @@ import {
   uncaughtErrorHandler,
   resourceErrorHandler,
   unhandledrejectionErrorHandler,
-  unknownErrorHandler
+  unknownErrorHandler,
 } from '../handle'
 
 function scriptDispatcher(e: ErrorEvent | PromiseRejectionEvent) {

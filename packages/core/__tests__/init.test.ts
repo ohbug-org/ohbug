@@ -1,6 +1,6 @@
 import { getGlobal } from '@ohbug/utils'
-import { OhbugPlugin } from '@ohbug/types'
 import init from '../src/init'
+import type { OhbugPlugin } from '@ohbug/types'
 
 const apiKey = 'test_id'
 const config = { apiKey }
@@ -24,7 +24,8 @@ describe('core init', () => {
       handleCapture,
       handleReport,
       handleAsync,
-      plugins
+      // @ts-ignore
+      plugins,
     })
   })
 
