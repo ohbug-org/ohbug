@@ -27,12 +27,12 @@ init({ apiKey: 'YOUR_API_KEY' })
 这是对 `init` 配置的描述。 
 
 ```typescript
-interface Config {
+interface OhbugConfig {
   apiKey: string
   appVersion?: string
   appType?: string
-  beforeReport?: (event: Event<any>) => Event<any>
-  reported?: (event: Event<any>) => void
+  beforeReport?: (event: OhbugEvent<any>) => OhbugEvent<any>
+  reported?: (event: OhbugEvent<any>) => void
 }
 ```
 
@@ -102,27 +102,33 @@ init({ apiKey: 'YOUR_API_KEY' }, enhancer)
 示例
 
 ```javascript
-// capture 用于自定义信息的捕获
-// 使用 createEvent 封装捕获到的信息
-// 使用 collect 传递信息给 Ohbug 用于上报
-const capture = ({ createEvent, collect }) => {
-  a.addEventListener('error', (e) => {
-    // do something
-    const event = createEvent('TYPE', e)
-    collect(event)
-  })
-}
-
-// state 用于对已有信息进行二次处理
-// 返回任意格式 object，最终这些信息将出现在 `event.state` 中
-const state = event => {
-  return {
-    user: 'user_1'
+class myPlugin {
+  // capture 用于自定义信息的捕获
+  // 使用 createEvent 封装捕获到的信息
+  // 使用 collect 传递信息给 Ohbug 用于上报
+  capture({ createEvent, collect }) {
+    a.addEventListener('error', (e) => {
+      // do something
+      const event = createEvent('TYPE', e)
+      collect(event)
+    })
   }
-}
 
-const myPlugin = config => {
-  return { capture, state }
+  // state 用于承载额外自定义信息
+  // 返回任意格式 object，最终这些信息将出现在 `event.state` 中
+  state(event) {
+    return {
+      user: 'user_1'
+    }
+  }
+
+  // event 用于对已有信息进行二次处理
+  event(event) {
+    return {
+      ...event,
+      foo: 'bar'
+    }
+  }
 }
 ```
 

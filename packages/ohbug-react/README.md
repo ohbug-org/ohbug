@@ -36,12 +36,12 @@ function App() {
 ## Config
 
 ```typescript
-interface Config {
+interface OhbugConfig {
   apiKey: string
   appVersion?: string
   appType?: string
-  beforeReport?: (event: Event<any>) => Event<any>
-  reported?: (event: Event<any>) => void
+  beforeReport?: (event: OhbugEvent<any>) => OhbugEvent<any>
+  reported?: (event: OhbugEvent<any>) => void
 }
 ```
 

@@ -31,15 +31,15 @@ yarn add @ohbug/core
 对于大部分情况而言，您无须使用它，直接使用 ohbug 提供的对应平台的接入包。
 
 ```typescript
-interface Init {
-  config: Config  
-  platform: Platform
+interface OhbugInit {
+  config: OhbugConfig  
+  platform: OhbugPlatform
   version: string
   handleCapture: () => void
-  handleReport: (event: Event<any>) => void
+  handleReport: (event: OhbugEvent<any>) => void
   handleAsync: () => void
   handleDestroy?: () => void
-  enhancer?: (config: Config) => Enhancer
+  enhancer?: (config: OhbugConfig) => OhbugEnhancer
 }
 ```
 
@@ -80,8 +80,8 @@ capture(scriptCapture, networkCapture, actionCapture)
 用于收集 event 并触发 `hub.addEvent`。
 
 ```typescript
-type Execution = 'sync' | 'async'
-function collect<T = Window>(event: any, execution?: Execution): void
+type OhbugExecution = 'sync' | 'async'
+function collect<T = Window>(event: OhbugEvent<any> | any, execution?: OhbugExecution): void
 ```
 
 execution 参数默认为 `sync` 用于控制 report 的时机。
@@ -95,8 +95,8 @@ execution 参数默认为 `sync` 用于控制 report 的时机。
 用于触发 `handleReport` 以及上报相关的生命周期。
 
 ```typescript
-type Execution = 'sync' | 'async'
-function report<T = Window>(event: Event<any>, execution: Execution): void
+type OhbugExecution = 'sync' | 'async'
+function report<T = Window>(event: OhbugEvent<any>, execution: OhbugExecution): void
 ```
 
 ### createEvent
@@ -104,7 +104,7 @@ function report<T = Window>(event: Event<any>, execution: Execution): void
 将任意信息封装为 ohbug 使用的 event。
 
 ```typescript
-function createEvent<D, T = Window>(type: string, detail: D, category?: "error" | "message" | "feedback" | "other"): Event<D>
+function createEvent<D, T = Window>(type: string, detail: D, category?: "error" | "message" | "feedback" | "other"): OhbugEvent<D>
 ```
 
 ### captureMessage

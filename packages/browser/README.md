@@ -27,12 +27,12 @@ init({ apiKey: 'YOUR_API_KEY' })
 Here is a description of the config of `init`.
 
 ```typescript
-interface Config {
+interface OhbugConfig {
   apiKey: string
   appVersion?: string
   appType?: string
-  beforeReport?: (event: Event<any>) => Event<any>
-  reported?: (event: Event<any>) => void
+  beforeReport?: (event: OhbugEvent<any>) => OhbugEvent<any>
+  reported?: (event: OhbugEvent<any>) => void
 }
 ```
 
@@ -102,9 +102,7 @@ init({ apiKey: 'YOUR_API_KEY' }, enhancer)
 Example
 
 ```javascript
-// capture Capture of custom information
-// Use createEvent to encapsulate captured information
-// Use collect to pass information to Ohbug for reporting
+
 const capture = ({ createEvent, collect }) => {
   a.addEventListener('error', (e) => {
     // do something
@@ -113,16 +111,32 @@ const capture = ({ createEvent, collect }) => {
   })
 }
 
-// state is used for secondary processing of existing information
-// Returns an object in any format, and eventually this information will appear in event.state
-const state = event => {
-  return {
-    user: 'user_1'
+class myPlugin {
+  // capture Capture of custom information
+  // Use createEvent to encapsulate captured information
+  // Use collect to pass information to Ohbug for reporting  capture({ createEvent, collect }) {
+    a.addEventListener('error', (e) => {
+      // do something
+      const event = createEvent('TYPE', e)
+      collect(event)
+    })
   }
-}
 
-const myPlugin = config => {
-  return { capture, state }
+  // state is used to carry additional custom information
+  // Returns an object in any format, and eventually this information will appear in event.state
+  state(event) {
+    return {
+      user: 'user_1'
+    }
+  }
+
+  // event is used for secondary processing of existing information
+  event(event) {
+    return {
+      ...event,
+      foo: 'bar'
+    }
+  }
 }
 ```
 

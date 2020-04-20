@@ -3,7 +3,6 @@ import { OhbugConfig, OhbugBaseDetail, OhbugPlugin } from '@ohbug/types'
 import { createEvent, collect } from '@ohbug/core'
 import { init } from '@ohbug/browser'
 
-interface Options extends OhbugConfig {}
 export interface ReactErrorDetail extends OhbugBaseDetail {
   name: string
   stack?: string
@@ -19,13 +18,13 @@ interface ErrorBoundaryState {
 }
 
 function install(
-  options: Options,
+  config: OhbugConfig,
   plugins?: OhbugPlugin[]
 ): new (props: ErrorBoundaryProp, state: ErrorBoundaryState) => React.Component<
   ErrorBoundaryProp,
   ErrorBoundaryState
 > {
-  init(options, plugins)
+  init(config, plugins)
 
   class OhbugErrorBoundary extends React.Component<ErrorBoundaryProp, ErrorBoundaryState> {
     constructor(props: ErrorBoundaryProp) {

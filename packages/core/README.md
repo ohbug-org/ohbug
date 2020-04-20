@@ -31,15 +31,15 @@ It should be noted that the init here is only used to initialize the environment
 In most cases, you don't need to use it, just use the access package of the corresponding platform provided by ohbug.
 
 ```typescript
-interface Init {
-  config: Config  
-  platform: Platform
+interface OhbugInit {
+  config: OhbugConfig  
+  platform: OhbugPlatform
   version: string
   handleCapture: () => void
-  handleReport: (event: Event<any>) => void
+  handleReport: (event: OhbugEvent<any>) => void
   handleAsync: () => void
   handleDestroy?: () => void
-  enhancer?: (config: Config) => Enhancer
+  enhancer?: (config: OhbugConfig) => OhbugEnhancer
 }
 ```
 
@@ -80,8 +80,8 @@ capture(scriptCapture, networkCapture, actionCapture)
 Used to collect events and trigger `hub.addEvent`.
 
 ```typescript
-type Execution = 'sync' | 'async'
-function collect<T = Window>(event: any, execution?: Execution): void
+type OhbugExecution = 'sync' | 'async'
+function collect<T = Window>(event: OhbugEvent<any> | any, execution?: OhbugExecution): void
 ```
 
 The execution parameter defaults to `sync` to control the timing of the report.
@@ -95,8 +95,8 @@ When execution is `async`, `handleAsync` will be triggered and enter the asynchr
 Used to trigger `handleReport` and trigger life cycle.
 
 ```typescript
-type Execution = 'sync' | 'async'
-function report<T = Window>(event: Event<any>, execution: Execution): void
+type OhbugExecution = 'sync' | 'async'
+function report<T = Window>(event: OhbugEvent<any>, execution: OhbugExecution): void
 ```
 
 ### createEvent
@@ -104,7 +104,7 @@ function report<T = Window>(event: Event<any>, execution: Execution): void
 Encapsulates arbitrary information as an event used by ohbug.
 
 ```typescript
-function createEvent<D, T = Window>(type: string, detail: D, category?: "error" | "message" | "feedback" | "other"): Event<D>
+function createEvent<D, T = Window>(type: string, detail: D, category?: "error" | "message" | "feedback" | "other"): OhbugEvent<D>
 ```
 
 ### captureMessage
