@@ -1,8 +1,8 @@
-export type Platform = 'browser' | 'node'
+export type OhbugPlatform = 'browser' | 'node'
 
-export interface Tags {
+export interface OhbugTags {
   uuid: string
-  platform: Platform
+  platform: OhbugPlatform
   version: string
   // browser
   language?: string

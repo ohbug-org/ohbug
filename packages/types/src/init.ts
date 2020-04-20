@@ -1,14 +1,14 @@
-import { Config } from './config'
-import { Platform } from './tags'
-import { Event } from './event'
-import { OhbugPluginClass } from './enhancer'
+import { OhbugConfig } from './config'
+import { OhbugPlatform } from './tags'
+import { OhbugEvent } from './event'
+import { OhbugPlugin } from './enhancer'
 
-export interface Init {
-  config: Config
-  platform: Platform
+export interface OhbugInit {
+  config: OhbugConfig
+  platform: OhbugPlatform
   handleCapture: () => void
-  handleReport: (event: Event<any>) => void
+  handleReport: (event: OhbugEvent<any>) => void
   handleAsync: () => void
   handleDestroy?: () => void
-  plugins?: OhbugPluginClass[]
+  plugins?: OhbugPlugin[]
 }

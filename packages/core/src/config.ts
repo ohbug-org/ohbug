@@ -1,7 +1,7 @@
-import { Config, OhbugObject } from '@ohbug/types'
+import { OhbugConfig, OhbugObject } from '@ohbug/types'
 import { getGlobal, error } from '@ohbug/utils'
 
-export const defaultConfig: Config = {
+export const defaultConfig: OhbugConfig = {
   apiKey: ''
 }
 
@@ -12,7 +12,7 @@ export function getOhbugObject<T>(): OhbugObject {
   return global.__OHBUG__
 }
 
-export function getConfig<T>(): Config {
+export function getConfig<T>(): OhbugConfig {
   const { config } = getOhbugObject<T>()
-  return config as Config
+  return config as OhbugConfig
 }

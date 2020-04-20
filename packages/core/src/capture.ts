@@ -1,4 +1,4 @@
-import { CaptureCtx } from '@ohbug/types'
+import { OhbugCaptureCtx } from '@ohbug/types'
 import { getEnhancer } from './enhancer'
 import { createOtherEvent } from './createEvent'
 import collect from './collect'
@@ -13,7 +13,7 @@ function capture<T = Window>(captureHandler: Function) {
   // Insert plugin
   const enhancer = getEnhancer<T>()
   if (Array.isArray(enhancer) && enhancer.length) {
-    const ctx: CaptureCtx = {
+    const ctx: OhbugCaptureCtx = {
       createEvent: createOtherEvent,
       collect
     }

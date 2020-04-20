@@ -1,4 +1,4 @@
-import { Event, Execution } from '@ohbug/types'
+import { OhbugEvent, OhbugExecution } from '@ohbug/types'
 import { getHub } from './hub'
 import { getEnhancer } from './enhancer'
 
@@ -8,7 +8,7 @@ import { getEnhancer } from './enhancer'
  * @param event
  * @param execution
  */
-function collect<T = Window>(event: Event<any> | any, execution: Execution = 'sync') {
+function collect<T = Window>(event: OhbugEvent<any> | any, execution: OhbugExecution = 'sync') {
   const hub = getHub<T>()
   let enhancedEvent = event
 
@@ -17,13 +17,13 @@ function collect<T = Window>(event: Event<any> | any, execution: Execution = 'sy
   if (Array.isArray(enhancer) && enhancer.length) {
     // compose enhancer.event
     enhancedEvent = enhancer.reduce(
-      (pre: (e: Event<any>) => Event<any>, cur) => {
+      (pre: (e: OhbugEvent<any>) => OhbugEvent<any>, cur) => {
         if (cur.event) {
           return _event => pre(cur.event!(_event))
         }
         return _event => pre(_event)
       },
-      (e: Event<any>) => e
+      (e: OhbugEvent<any>) => e
     )(event)
 
     const state = enhancer.reduce((pre, cur) => ({ ...pre, ...cur?.state?.(enhancedEvent) }), {})

@@ -1,9 +1,9 @@
-import { Event } from './event'
+import { OhbugEvent } from './event'
 
-export interface Config {
+export interface OhbugConfig {
   apiKey: string
   appVersion?: string
   appType?: string
-  beforeReport?: (event: Event<any>) => Event<any>
-  reported?: (event: Event<any>) => void
+  beforeReport?: (event: OhbugEvent<any>) => OhbugEvent<any>
+  reported?: (event: OhbugEvent<any>) => void
 }

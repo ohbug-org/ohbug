@@ -1,10 +1,10 @@
-import { Event, Action } from './event'
-import { Execution } from './enhancer'
+import { OhbugEvent, OhbugAction } from './event'
+import { OhbugExecution } from './enhancer'
 
-export interface Hub {
-  addEvent<T>(event: Event<T>, execution: Execution): void
+export interface OhbugHub {
+  addEvent<T>(event: OhbugEvent<T>, execution: OhbugExecution): void
 
-  getActions(): Action[]
+  getActions(): OhbugAction[]
 
-  addAction(action: Action): void
+  addAction(action: OhbugAction): void
 }

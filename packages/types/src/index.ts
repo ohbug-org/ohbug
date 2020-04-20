@@ -1,4 +1,4 @@
-export interface BaseDetail {
+export interface OhbugBaseDetail {
   message?: string
 }
 

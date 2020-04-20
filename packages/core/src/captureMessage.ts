@@ -1,9 +1,9 @@
-import { BaseDetail } from '@ohbug/types'
+import { OhbugBaseDetail } from '@ohbug/types'
 import createEvent from './createEvent'
 import collect from './collect'
 import { MESSAGE } from './types'
 
-interface CaptureMessageDetail extends BaseDetail {
+interface CaptureMessageDetail extends OhbugBaseDetail {
   message: string
 }
 

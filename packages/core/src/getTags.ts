@@ -1,9 +1,9 @@
-import { Tags } from '@ohbug/types'
+import { OhbugTags } from '@ohbug/types'
 import { getOhbugObject } from './config'
 
-function getTags<T>(): Tags {
+function getTags<T>(): OhbugTags {
   const { uuid, platform, version } = getOhbugObject<T>()
-  const tags: Tags = {
+  const tags: OhbugTags = {
     uuid,
     platform,
     version

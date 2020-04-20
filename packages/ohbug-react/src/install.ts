@@ -1,10 +1,10 @@
 import * as React from 'react'
-import { Config, BaseDetail, OhbugPlugin } from '@ohbug/types'
+import { OhbugConfig, OhbugBaseDetail, OhbugPlugin } from '@ohbug/types'
 import { createEvent, collect } from '@ohbug/core'
 import { init } from '@ohbug/browser'
 
-interface Options extends Config {}
-export interface ReactErrorDetail extends BaseDetail {
+interface Options extends OhbugConfig {}
+export interface ReactErrorDetail extends OhbugBaseDetail {
   name: string
   stack?: string
   errorInfo: any

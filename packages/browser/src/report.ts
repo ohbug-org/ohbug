@@ -1,8 +1,8 @@
-import { Event } from '@ohbug/types'
+import { OhbugEvent } from '@ohbug/types'
 
 const url = `__URL_REPORT__`
 
-function report<T>(event: Event<T>) {
+function report<T>(event: OhbugEvent<T>) {
   const json = JSON.stringify(event)
 
   if (navigator.sendBeacon) {

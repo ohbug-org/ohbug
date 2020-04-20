@@ -1,9 +1,9 @@
 import { types, createEvent } from '@ohbug/core'
-import { Event, BaseDetail } from '@ohbug/types'
+import { OhbugEvent, OhbugBaseDetail } from '@ohbug/types'
 
 const { UNCAUGHT_ERROR } = types
 
-export interface UncaughtErrorDetail extends BaseDetail {
+export interface UncaughtErrorDetail extends OhbugBaseDetail {
   name: string
   filename: string
   lineno: number
@@ -13,7 +13,7 @@ export interface UncaughtErrorDetail extends BaseDetail {
 
 function uncaughtErrorHandler(
   error: ErrorEvent,
-  collect: (event: Event<UncaughtErrorDetail>) => void
+  collect: (event: OhbugEvent<UncaughtErrorDetail>) => void
 ) {
   const {
     message,

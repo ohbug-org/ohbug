@@ -1,5 +1,5 @@
 import { getGlobal, error, getUUID } from '@ohbug/utils'
-import { Init } from '@ohbug/types'
+import { OhbugInit } from '@ohbug/types'
 import { defaultConfig } from './config'
 import applyPlugin from './applyPlugin'
 import captureHandler from './capture'
@@ -23,7 +23,7 @@ function init<T>({
   handleAsync,
   handleDestroy,
   plugins
-}: Init) {
+}: OhbugInit) {
   const global = getGlobal<T>()
   error(
     Boolean(global),

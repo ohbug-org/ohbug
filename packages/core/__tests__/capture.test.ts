@@ -1,4 +1,4 @@
-import { CaptureCtx, Config, OhbugPlugin } from '@ohbug/types'
+import { OhbugCaptureCtx, OhbugConfig, OhbugPlugin } from '@ohbug/types'
 import init from '../src/init'
 import { createOtherEvent } from '../src/createEvent'
 import collect from '../src/collect'
@@ -9,16 +9,16 @@ const platform = 'browser'
 const pluginCapture1 = jest.fn()
 const pluginCapture2 = jest.fn()
 class plugin1 implements OhbugPlugin {
-  capture(ctx: CaptureCtx) {
+  capture(ctx: OhbugCaptureCtx) {
     return pluginCapture1(ctx)
   }
 }
 class plugin2 implements OhbugPlugin {
-  config: Config
-  constructor(config: Config) {
+  config: OhbugConfig
+  constructor(config: OhbugConfig) {
     this.config = config
   }
-  capture(ctx: CaptureCtx) {
+  capture(ctx: OhbugCaptureCtx) {
     return pluginCapture2(ctx, this.config)
   }
 }
@@ -32,6 +32,7 @@ describe('core capture', () => {
       handleCapture: () => {},
       handleReport: () => {},
       handleAsync: () => {},
+      // @ts-ignore
       plugins
     })
   })

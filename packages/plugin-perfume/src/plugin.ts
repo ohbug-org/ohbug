@@ -1,8 +1,8 @@
-import { OhbugPlugin, CaptureCtx } from '@ohbug/types'
+import { OhbugPlugin, OhbugCaptureCtx } from '@ohbug/types'
 import Perfume from 'perfume.js'
 
 class Plugin implements OhbugPlugin {
-  capture({ collect }: CaptureCtx) {
+  capture({ collect }: OhbugCaptureCtx) {
     new Perfume({
       resourceTiming: true,
       dataConsumption: true,

@@ -1,4 +1,4 @@
-import { OhbugPlugin, Event, CaptureCtx } from '@ohbug/types'
+import { OhbugPlugin, OhbugEvent, OhbugCaptureCtx } from '@ohbug/types'
 import applyPlugin from '../src/applyPlugin'
 
 const apiKey = 'test_id'
@@ -7,15 +7,15 @@ const pluginCapture1 = jest.fn()
 const pluginCapture2 = jest.fn()
 const pluginState = jest.fn()
 class plugin1 implements OhbugPlugin {
-  capture(ctx: CaptureCtx) {
+  capture(ctx: OhbugCaptureCtx) {
     return pluginCapture1(ctx)
   }
-  state(event: Event<any>) {
+  state(event: OhbugEvent<any>) {
     return pluginState(event)
   }
 }
 class plugin2 implements OhbugPlugin {
-  capture(ctx: CaptureCtx) {
+  capture(ctx: OhbugCaptureCtx) {
     return pluginCapture2(ctx)
   }
 }

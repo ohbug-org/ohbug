@@ -1,11 +1,11 @@
 import { init } from '@ohbug/core'
-import { Config, OhbugPlugin } from '@ohbug/types'
+import { OhbugConfig, OhbugPlugin } from '@ohbug/types'
 import handleCapture from './capture'
 import handleReport from './report'
 import handleAsync from './async'
 import handleDestroy from './destroy'
 
-function initBrowser(config: Config, plugins?: OhbugPlugin[]) {
+function initBrowser(config: OhbugConfig, plugins?: OhbugPlugin[]) {
   const platform = 'browser'
   init<Window>({
     config,

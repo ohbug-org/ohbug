@@ -1,23 +1,23 @@
 import { Tags } from './tags'
 
-export interface Action {
+export interface OhbugAction {
   type: string
   timestamp: number
   message?: string
   data?: Record<string, any>
 }
 
-export type Category = 'error' | 'message' | 'feedback' | 'view' | 'other'
+export type OhbugCategory = 'error' | 'message' | 'feedback' | 'view' | 'other'
 
-export interface Event<D> {
+export interface OhbugEvent<D> {
   apiKey: string
   appVersion?: string
   appType?: string
   timestamp: number | string
-  category?: Category
+  category?: OhbugCategory
   type: string
   detail: D
   tags: Tags
-  actions?: Action[]
+  actions?: OhbugAction[]
   state?: any
 }

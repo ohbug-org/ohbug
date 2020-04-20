@@ -2,7 +2,7 @@ import init from '../src/init'
 import { getHub } from '../src/hub'
 import { getOhbugObject } from '../src/config'
 import report from '../src/report'
-import { Event, Action } from '@ohbug/types'
+import { OhbugEvent, OhbugAction } from '@ohbug/types'
 jest.mock('../src/report')
 
 const apiKey = 'test_id'
@@ -10,8 +10,8 @@ const config = { apiKey }
 const platform = 'browser'
 const event = {
   type: 'test'
-} as Event<any>
-const action = { type: 'a' } as Action
+} as OhbugEvent<any>
+const action = { type: 'a' } as OhbugAction
 
 describe('core hub', () => {
   beforeAll(() => {

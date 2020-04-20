@@ -1,9 +1,9 @@
 import { types, createEvent } from '@ohbug/core'
-import { Event, BaseDetail } from '@ohbug/types'
+import { OhbugEvent, OhbugBaseDetail } from '@ohbug/types'
 
 const { AJAX_ERROR } = types
 
-export interface AjaxErrorDetail extends BaseDetail {
+export interface AjaxErrorDetail extends OhbugBaseDetail {
   req: {
     data: string | {}
     method: string
@@ -18,7 +18,7 @@ export interface AjaxErrorDetail extends BaseDetail {
 
 function ajaxErrorHandler(
   detail: AjaxErrorDetail,
-  collect: (event: Event<AjaxErrorDetail>) => void
+  collect: (event: OhbugEvent<AjaxErrorDetail>) => void
 ) {
   const event = createEvent<AjaxErrorDetail>(AJAX_ERROR, detail)
   collect(event)

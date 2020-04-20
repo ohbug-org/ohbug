@@ -1,9 +1,9 @@
-import { Event, Queue as IQueue } from '@ohbug/types'
+import { OhbugEvent, OhbugQueue } from '@ohbug/types'
 
-export class Queue implements IQueue {
-  private events: Event<any>[] = []
+export class Queue implements OhbugQueue {
+  private events: OhbugEvent<any>[] = []
 
-  public enqueue(event: Event<any>) {
+  public enqueue(event: OhbugEvent<any>) {
     this.events.push(event)
   }
 
@@ -31,7 +31,9 @@ export class Queue implements IQueue {
     this.events = []
   }
 
-  public forEach(callback: (value: Event<any>, index?: number, array?: Event<any>[]) => void) {
+  public forEach(
+    callback: (value: OhbugEvent<any>, index?: number, array?: OhbugEvent<any>[]) => void
+  ) {
     this.events.forEach((event, index, array) => {
       callback(event, index, array)
     })

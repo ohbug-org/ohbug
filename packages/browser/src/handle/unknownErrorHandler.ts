@@ -1,11 +1,11 @@
 import { types, createEvent } from '@ohbug/core'
-import { Event, BaseDetail } from '@ohbug/types'
+import { OhbugEvent, OhbugBaseDetail } from '@ohbug/types'
 
 const { UNKNOWN_ERROR } = types
 
-export interface UnknownErrorDetail extends BaseDetail {}
+export interface UnknownErrorDetail extends OhbugBaseDetail {}
 
-function unknownErrorHandler(error: any, collect: (event: Event<UnknownErrorDetail>) => void) {
+function unknownErrorHandler(error: any, collect: (event: OhbugEvent<UnknownErrorDetail>) => void) {
   const detail = error.message
     ? error
     : {

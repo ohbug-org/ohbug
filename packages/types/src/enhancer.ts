@@ -1,25 +1,21 @@
-import { Event } from './event'
-import { Config } from './config'
+import { OhbugEvent } from './event'
 
-export type Execution = 'sync' | 'async'
-type CreateEvent = <D>(
+export type OhbugExecution = 'sync' | 'async'
+type OhbugCreateEvent = <D>(
   type: string,
   detail: D,
   category?: 'error' | 'message' | 'feedback' | 'other' | undefined
-) => Event<D>
-export type Collect = (event: Event<any> | any, execution?: Execution) => void
-export interface CaptureCtx {
-  createEvent: CreateEvent
-  collect: Collect
+) => OhbugEvent<D>
+export type OhbugCollect = (event: OhbugEvent<any> | any, execution?: OhbugExecution) => void
+export interface OhbugCaptureCtx {
+  createEvent: OhbugCreateEvent
+  collect: OhbugCollect
 }
 
 export interface OhbugPlugin {
-  capture?(ctx: CaptureCtx): void
-  state?(event: Event<any>): Record<string, any>
-  event?(event: Event<any>): Event<any>
-}
-export class OhbugPlugin {
-  config?: Config
+  capture?(ctx: OhbugCaptureCtx): void
+  state?(event: OhbugEvent<any>): Record<string, any>
+  event?(event: OhbugEvent<any>): OhbugEvent<any>
 }
 
-export type Enhancer = OhbugPlugin[]
+export type OhbugEnhancer = OhbugPlugin[]

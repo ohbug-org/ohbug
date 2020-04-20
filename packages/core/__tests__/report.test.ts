@@ -1,5 +1,5 @@
 import { Queue } from '@ohbug/utils'
-import { Event } from '@ohbug/types'
+import { OhbugEvent } from '@ohbug/types'
 import init from '../src/init'
 import { getOhbugObject } from '../src/config'
 import collect from '../src/collect'
@@ -9,10 +9,10 @@ const mockBeforeReport = jest.fn(e => e)
 const mockReported = jest.fn()
 const config = {
   apiKey,
-  beforeReport(event: Event<any>) {
+  beforeReport(event: OhbugEvent<any>) {
     return mockBeforeReport(event)
   },
-  reported(event: Event<any>) {
+  reported(event: OhbugEvent<any>) {
     mockReported(event)
   }
 }
@@ -28,7 +28,7 @@ const handleAsync = () => {
     mockAsyncFn()
   }, timeout)
 }
-const event = { type: 'test' } as Event<any>
+const event = { type: 'test' } as OhbugEvent<any>
 
 describe('core report', () => {
   beforeAll(() => {

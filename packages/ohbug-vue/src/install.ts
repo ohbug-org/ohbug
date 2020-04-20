@@ -1,9 +1,9 @@
 import { createEvent, collect } from '@ohbug/core'
-import { Config, OhbugPlugin, BaseDetail } from '@ohbug/types'
+import { OhbugConfig, OhbugPlugin, OhbugBaseDetail } from '@ohbug/types'
 import { init } from '@ohbug/browser'
 
-interface Options extends Config {}
-export interface VueErrorDetail extends BaseDetail {
+interface Options extends OhbugConfig {}
+export interface VueErrorDetail extends OhbugBaseDetail {
   name: string
   stack?: string
   errorInfo: string

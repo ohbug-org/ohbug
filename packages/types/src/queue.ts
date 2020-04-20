@@ -1,13 +1,13 @@
-import { Event } from './event'
+import { OhbugEvent } from './event'
 
-export interface Queue {
-  enqueue: (event: Event<any>) => void
+export interface OhbugQueue {
+  enqueue: (OhbugEvent: OhbugEvent<any>) => void
 
-  dequeue: () => Event<any> | undefined
+  dequeue: () => OhbugEvent<any> | undefined
 
-  head: () => Event<any>
+  head: () => OhbugEvent<any>
 
-  tail: () => Event<any>
+  tail: () => OhbugEvent<any>
 
   size: () => number
 
@@ -15,7 +15,9 @@ export interface Queue {
 
   clear: () => void
 
-  forEach: (callback: (value: Event<any>, index?: number, array?: Event<any>[]) => void) => void
+  forEach: (
+    callback: (value: OhbugEvent<any>, index?: number, array?: OhbugEvent<any>[]) => void
+  ) => void
 
-  get: () => Event<any>[]
+  get: () => OhbugEvent<any>[]
 }

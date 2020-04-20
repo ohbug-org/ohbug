@@ -1,5 +1,5 @@
 import { getGlobal } from '@ohbug/utils'
-import { Config, Event, OhbugPlugin } from '@ohbug/types'
+import { OhbugConfig, OhbugEvent, OhbugPlugin } from '@ohbug/types'
 import init from '../src/init'
 import collect from '../src/collect'
 import { getHub } from '../src/hub'
@@ -20,18 +20,18 @@ class plugin1 implements OhbugPlugin {
 const pluginState = jest.fn()
 const pluginEvent = jest.fn()
 class plugin2 implements OhbugPlugin {
-  config: Config
-  constructor(config: Config) {
+  config: OhbugConfig
+  constructor(config: OhbugConfig) {
     this.config = config
   }
-  state(event: Event<any>) {
+  state(event: OhbugEvent<any>) {
     const { config } = this
     pluginState(event, config)
     return {
       extra
     }
   }
-  event(event: Event<any>) {
+  event(event: OhbugEvent<any>) {
     const { config } = this
     pluginEvent(event, config)
     return {
@@ -41,7 +41,7 @@ class plugin2 implements OhbugPlugin {
   }
 }
 class plugin3 implements OhbugPlugin {
-  event(event: Event<any>) {
+  event(event: OhbugEvent<any>) {
     return {
       ...event,
       plugin3: true
@@ -83,6 +83,7 @@ describe('core collect', () => {
       handleCapture: () => {},
       handleReport: () => {},
       handleAsync: () => {},
+      // @ts-ignore
       plugins
     })
 
@@ -110,6 +111,7 @@ describe('core collect', () => {
       handleCapture: () => {},
       handleReport: () => {},
       handleAsync: () => {},
+      // @ts-ignore
       plugins
     })
 

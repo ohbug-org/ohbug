@@ -1,11 +1,11 @@
 import { logger } from '@ohbug/utils'
-import { Event, Execution } from '@ohbug/types'
+import { OhbugEvent, OhbugExecution } from '@ohbug/types'
 import { getConfig, getOhbugObject } from './config'
 
 function timingSelector(
-  report: (event: Event<any>, execution: Execution) => void,
-  event: Event<any>,
-  execution: Execution
+  report: (event: OhbugEvent<any>, execution: OhbugExecution) => void,
+  event: OhbugEvent<any>,
+  execution: OhbugExecution
 ): void {
   const ohbugObject = getOhbugObject<Window>()
 
@@ -24,7 +24,7 @@ function timingSelector(
  * @param event
  * @param execution
  */
-function report<T = Window>(event: Event<any>, execution: Execution) {
+function report<T = Window>(event: OhbugEvent<any>, execution: OhbugExecution) {
   const config = getConfig<T>()
   try {
     if (config) {
