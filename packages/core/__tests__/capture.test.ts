@@ -1,6 +1,5 @@
-import { Plugin } from '@ohbug/types'
+import { CaptureCtx, Config, OhbugPlugin } from '@ohbug/types'
 import init from '../src/init'
-import { getEnhancer } from '../src/enhancer'
 import { createOtherEvent } from '../src/createEvent'
 import collect from '../src/collect'
 
@@ -9,12 +8,20 @@ const config = { apiKey }
 const platform = 'browser'
 const pluginCapture1 = jest.fn()
 const pluginCapture2 = jest.fn()
-const plugin1: Plugin = () => ({
-  capture: pluginCapture1
-})
-const plugin2: Plugin = () => ({
-  capture: pluginCapture2
-})
+class plugin1 implements OhbugPlugin {
+  capture(ctx: CaptureCtx) {
+    return pluginCapture1(ctx)
+  }
+}
+class plugin2 implements OhbugPlugin {
+  config: Config
+  constructor(config: Config) {
+    this.config = config
+  }
+  capture(ctx: CaptureCtx) {
+    return pluginCapture2(ctx, this.config)
+  }
+}
 const plugins = [plugin1, plugin2]
 
 describe('core capture', () => {
@@ -30,19 +37,17 @@ describe('core capture', () => {
   })
 
   it('should execute all enhancer capture functions', () => {
-    const enhancer = getEnhancer()
-    if (enhancer) {
-      const { captures: EnhanceCaptures } = enhancer
-      if (Array.isArray(EnhanceCaptures) && EnhanceCaptures.length) {
-        expect(pluginCapture1).toBeCalled()
-        expect(pluginCapture2).toBeCalled()
-        const ctx = {
-          createEvent: createOtherEvent,
-          collect
-        }
-        expect(pluginCapture1.mock.calls[0][0]).toEqual(ctx)
-        expect(pluginCapture2.mock.calls[0][0]).toEqual(ctx)
-      }
+    expect(pluginCapture1).toBeCalled()
+    expect(pluginCapture2).toBeCalled()
+    const ctx = {
+      createEvent: createOtherEvent,
+      collect
     }
+    expect(pluginCapture1.mock.calls[0][0]).toEqual(ctx)
+    expect(pluginCapture2.mock.calls[0][0]).toEqual(ctx)
+  })
+
+  it('should can use config', () => {
+    expect(pluginCapture2.mock.calls[0][1]).toEqual(config)
   })
 })

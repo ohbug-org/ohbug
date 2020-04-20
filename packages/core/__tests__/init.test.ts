@@ -1,5 +1,5 @@
 import { getGlobal } from '@ohbug/utils'
-import { Plugin } from '@ohbug/types'
+import { OhbugPlugin } from '@ohbug/types'
 import init from '../src/init'
 
 const apiKey = 'test_id'
@@ -8,12 +8,10 @@ const platform = 'browser'
 const handleReport = jest.fn()
 const handleCapture = jest.fn()
 const handleAsync = jest.fn()
-const plugin: Plugin = () => {
-  function capture() {}
-  function state() {}
-  return {
-    capture,
-    state
+class plugin implements OhbugPlugin {
+  capture() {}
+  state() {
+    return {}
   }
 }
 const plugins = [plugin]

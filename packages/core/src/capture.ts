@@ -17,7 +17,7 @@ function capture<T = Window>(captureHandler: Function) {
       createEvent: createOtherEvent,
       collect
     }
-    enhancer.filter(c => Boolean(c)).forEach(({ capture }) => capture?.(ctx))
+    enhancer.forEach(plugin => plugin.capture?.(ctx))
   }
 }
 

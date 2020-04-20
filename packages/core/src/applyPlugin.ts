@@ -1,10 +1,7 @@
 import { OhbugPlugin, Config } from '@ohbug/types'
 
 const applyPlugin = (plugins: OhbugPlugin[]) => (config: Config) =>
-  plugins.map(
-    Plugin =>
-      // @ts-ignore
-      new Plugin(config)
-  )
+  // @ts-ignore
+  plugins.map(Plugin => new Plugin(config))
 
 export default applyPlugin

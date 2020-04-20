@@ -13,12 +13,10 @@ function collect<T = Window>(event: Event<any> | any, execution: Execution = 'sy
   let enhancedEvent = event
 
   // Insert plugin
-  const enhancer = getEnhancer<T>()
+  let enhancer = getEnhancer<T>()
   if (Array.isArray(enhancer) && enhancer.length) {
-    const filteredEnhancer = enhancer.filter(c => Boolean(c))
-
     // compose enhancer.event
-    enhancedEvent = filteredEnhancer.reduce(
+    enhancedEvent = enhancer.reduce(
       (pre: (e: Event<any>) => Event<any>, cur) => {
         if (cur.event) {
           return _event => pre(cur.event!(_event))
@@ -28,10 +26,7 @@ function collect<T = Window>(event: Event<any> | any, execution: Execution = 'sy
       (e: Event<any>) => e
     )(event)
 
-    const state = filteredEnhancer.reduce(
-      (pre, cur) => ({ ...pre, ...cur?.state?.(enhancedEvent) }),
-      {}
-    )
+    const state = enhancer.reduce((pre, cur) => ({ ...pre, ...cur?.state?.(enhancedEvent) }), {})
 
     if (Object.keys(state).length) {
       enhancedEvent.state = state

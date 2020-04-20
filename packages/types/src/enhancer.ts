@@ -13,14 +13,13 @@ export interface CaptureCtx {
   collect: Collect
 }
 
-export interface OhbugPluginInstance {
+export interface OhbugPlugin {
   capture?(ctx: CaptureCtx): void
   state?(event: Event<any>): Record<string, any>
   event?(event: Event<any>): Event<any>
 }
-
-export interface OhbugPlugin extends OhbugPluginInstance {
-  new?(config?: Config): void
+export class OhbugPlugin {
   config?: Config
 }
-export type Enhancer = OhbugPluginInstance[]
+
+export type Enhancer = OhbugPlugin[]
