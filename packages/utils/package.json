@@ -35,7 +35,6 @@
   },
   "dependencies": {
     "@ohbug/types": "^0.0.5",
-    "node-machine-id": "^1.1.12",
     "uuid": "^7.0.2"
   },
   "devDependencies": {
