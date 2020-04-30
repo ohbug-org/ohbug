@@ -1,6 +1,6 @@
 {
   "name": "@ohbug/vue",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Ohbug SDK for Vue",
   "author": "chenyueban <jasonchan0527@gmail.com>",
   "homepage": "https://github.com/ohbug-org/ohbug",
@@ -21,7 +21,7 @@
     "dist"
   ],
   "dependencies": {
-    "@ohbug/browser": "^0.0.9"
+    "@ohbug/browser": "^0.0.10"
   },
   "buildOptions": {
     "name": "OhbugVue",
