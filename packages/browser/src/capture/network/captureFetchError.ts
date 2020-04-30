@@ -1,6 +1,7 @@
 import { getGlobal, warning, replace } from '@ohbug/utils'
 import { types, getHub } from '@ohbug/core'
 import { networkDispatcher } from '../../dispatch'
+import { FetchErrorDetail } from '../../handle'
 
 const global = getGlobal<Window>()
 const { FETCH_ERROR } = types
@@ -28,7 +29,7 @@ function captureFetchError() {
           .apply(this, args)
           .then((res: Response) => {
             const [url, conf] = args
-            const data = {
+            const detail: FetchErrorDetail = {
               req: {
                 url,
                 method: conf && conf.method,
@@ -43,11 +44,11 @@ function captureFetchError() {
             hub.addAction({
               type: 'fetch',
               timestamp,
-              data,
+              data: detail,
             })
 
             if (!res.status || res.status >= 400) {
-              networkDispatcher(FETCH_ERROR, data)
+              networkDispatcher(FETCH_ERROR, detail)
             }
             return res
           })

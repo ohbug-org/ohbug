@@ -11,33 +11,33 @@ require('dotenv').config()
 const packagesDir = path.resolve(__dirname, 'packages')
 const packageDir = path.resolve(packagesDir, process.env.TARGET)
 const name = path.basename(packageDir)
-const resolve = p => path.resolve(packageDir, p)
+const resolve = (p) => path.resolve(packageDir, p)
 const pkg = require(resolve(`package.json`))
 const packageOptions = pkg.buildOptions || {}
 
 const tsPlugin = ts({
   check: process.env.NODE_ENV === 'production',
-  tsconfig: resolve('tsconfig.json')
+  tsconfig: resolve('tsconfig.json'),
 })
 const extensions = ['.js', '.ts']
 const commonjsOptions = {
   ignoreGlobal: true,
-  include: /node_modules/
+  include: /node_modules/,
 }
 
 const configs = {
   esm: {
-    format: `es`
+    format: `es`,
   },
   umd: {
-    format: `umd`
+    format: `umd`,
   },
   global: {
-    format: `iife`
+    format: `iife`,
   },
   cjs: {
-    format: `cjs`
-  }
+    format: `cjs`,
+  },
 }
 
 const input = resolve('src/index.ts')
@@ -49,10 +49,10 @@ const url_base = process.env.URL_BASE
 const url_report = process.env.URL_REPORT
 
 function createConfig(isProduction = false) {
-  const output = packageFormats.map(format => {
+  const output = packageFormats.map((format) => {
     const target = {
       file: resolve(`dist/${name}.${format}${isProduction ? '.prod' : ''}.js`),
-      format: configs[format].format
+      format: configs[format].format,
     }
     if (format === 'umd' || format === 'global') {
       target.name = packageOptions.name
@@ -63,12 +63,12 @@ function createConfig(isProduction = false) {
     replace({
       __VERSION__: pkg.version,
       __URL_REPORT__: `${url_base}${url_report}`,
-      __URL_BASE__: url_base
+      __URL_BASE__: url_base,
     }),
     tsPlugin,
     nodeResolve({ extensions }),
     commonjs(commonjsOptions),
-    json()
+    json(),
   ]
   if (isProduction) {
     plugins.push(terser())
@@ -77,7 +77,7 @@ function createConfig(isProduction = false) {
     input,
     output,
     plugins,
-    external
+    external,
   }
 }
 

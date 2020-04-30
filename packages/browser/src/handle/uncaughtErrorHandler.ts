@@ -23,14 +23,15 @@ function uncaughtErrorHandler(
     error: { stack, name },
   } = error
 
-  const event = createEvent<UncaughtErrorDetail>(UNCAUGHT_ERROR, {
+  const detail: UncaughtErrorDetail = {
     name,
     message,
     filename,
     lineno,
     colno,
     stack,
-  })
+  }
+  const event = createEvent<UncaughtErrorDetail>(UNCAUGHT_ERROR, detail)
   collect(event)
 }
 

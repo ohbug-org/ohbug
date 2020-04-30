@@ -11,10 +11,11 @@ function unhandledrejectionErrorHandler(
   error: PromiseRejectionEvent,
   collect: (event: OhbugEvent<UnhandledrejectionErrorDetail>) => void
 ) {
-  const event = createEvent<UnhandledrejectionErrorDetail>(UNHANDLEDREJECTION_ERROR, {
+  const detail: UnhandledrejectionErrorDetail = {
     message: error.reason.message || error.reason,
     stack: error.reason.stack,
-  })
+  }
+  const event = createEvent<UnhandledrejectionErrorDetail>(UNHANDLEDREJECTION_ERROR, detail)
   collect(event)
 }
 

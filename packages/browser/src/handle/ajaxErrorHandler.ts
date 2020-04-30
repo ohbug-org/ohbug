@@ -5,9 +5,9 @@ const { AJAX_ERROR } = types
 
 export interface AjaxErrorDetail extends OhbugBaseDetail {
   req: {
-    data: string | {}
-    method: string
     url: string
+    method: string
+    data: string | {}
   }
   res: {
     response: string

@@ -1,6 +1,7 @@
 import { getGlobal, warning } from '@ohbug/utils'
 import { types } from '@ohbug/core'
 import { networkDispatcher } from '../../dispatch'
+import { WebsocketErrorDetail } from '../../handle'
 
 const global = getGlobal<Window>()
 const { WEBSOCKET_ERROR } = types
@@ -28,7 +29,7 @@ function captureWebSocketError() {
           target: { url, readyState, protocol, extensions, binaryType, bufferedAmount },
           timeStamp,
         } = e
-        networkDispatcher(WEBSOCKET_ERROR, {
+        const detail: WebsocketErrorDetail = {
           url,
           timeStamp,
           readyState,
@@ -36,7 +37,8 @@ function captureWebSocketError() {
           extensions,
           binaryType,
           bufferedAmount,
-        })
+        }
+        networkDispatcher(WEBSOCKET_ERROR, detail)
         arg.apply(this, arguments)
       })
     },

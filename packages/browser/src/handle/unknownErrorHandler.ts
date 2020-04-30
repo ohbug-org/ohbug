@@ -6,7 +6,7 @@ const { UNKNOWN_ERROR } = types
 export interface UnknownErrorDetail extends OhbugBaseDetail {}
 
 function unknownErrorHandler(error: any, collect: (event: OhbugEvent<UnknownErrorDetail>) => void) {
-  const detail = error.message
+  const detail: UnknownErrorDetail = error.message
     ? error
     : {
         message: error,

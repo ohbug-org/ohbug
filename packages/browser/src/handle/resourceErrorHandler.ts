@@ -25,7 +25,7 @@ function resourceErrorHandler(
 
   const selector = getSelector(error)
 
-  const event = createEvent<ResourceErrorDetail>(RESOURCE_ERROR, {
+  const detail: ResourceErrorDetail = {
     outerHTML,
     src: target && target.src,
     tagName: target && target.tagName,
@@ -35,7 +35,8 @@ function resourceErrorHandler(
     // https://developer.mozilla.org/zh-CN/docs/Web/API/Node/nodeType
     nodeType: target && target.nodeType,
     selector,
-  })
+  }
+  const event = createEvent<ResourceErrorDetail>(RESOURCE_ERROR, detail)
   collect(event)
 }
 

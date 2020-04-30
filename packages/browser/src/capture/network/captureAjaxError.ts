@@ -1,6 +1,7 @@
 import { getGlobal, warning, replace } from '@ohbug/utils'
 import { types, getHub } from '@ohbug/core'
 import { networkDispatcher } from '../../dispatch'
+import { AjaxErrorDetail } from '../../handle'
 
 const global = getGlobal<Window>()
 const { AJAX_ERROR } = types
@@ -49,27 +50,30 @@ function captureAjaxError() {
       function (...args: any[]) {
         this.addEventListener('readystatechange', function () {
           if (this.readyState === 4) {
-            const data = {
-              req: {
-                url: desc.url,
-                method: desc.method,
-                data: args[0] || {},
-              },
-              res: {
-                status: this.status,
-                statusText: this.statusText,
-                response: this.response,
-              },
-            }
-            const timestamp = new Date().getTime()
-            hub.addAction({
-              type: 'ajax',
-              timestamp,
-              data,
-            })
+            if (desc.url !== '__URL_REPORT__') {
+              const detail: AjaxErrorDetail = {
+                req: {
+                  url: desc.url,
+                  method: desc.method,
+                  data: args[0] || {},
+                },
+                res: {
+                  status: this.status,
+                  statusText: this.statusText,
+                  response: this.response,
+                },
+              }
 
-            if (!this.status || this.status >= 400) {
-              networkDispatcher(AJAX_ERROR, data)
+              const timestamp = new Date().getTime()
+              hub.addAction({
+                type: 'ajax',
+                timestamp,
+                data: detail,
+              })
+
+              if (!this.status || this.status >= 400) {
+                networkDispatcher(AJAX_ERROR, detail)
+              }
             }
           }
         })

@@ -1,1 +1,1 @@
-export { default } from './install'
+export { default, ReactErrorDetail } from './install'

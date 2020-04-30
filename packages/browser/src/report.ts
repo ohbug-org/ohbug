@@ -1,16 +1,24 @@
 import type { OhbugEvent } from '@ohbug/types'
 
-const url = `__URL_REPORT__`
-
 function report<T>(event: OhbugEvent<T>) {
-  const json = JSON.stringify(event)
-
-  if (navigator.sendBeacon) {
-    navigator.sendBeacon(url, json)
-  } else {
-    const img = new Image()
-    img.src = `${url}?event=${json}`
-  }
+  const url = `__URL_REPORT__`
+  return new Promise((resolve, reject) => {
+    const json = JSON.stringify(event)
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon(url, json)
+    } else {
+      const xhr = new XMLHttpRequest()
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status >= 200 && xhr.status < 300) return resolve(xhr.response)
+          reject(xhr)
+        }
+      }
+      xhr.open('POST', url)
+      xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8')
+      xhr.send(json)
+    }
+  })
 }
 
 export default report

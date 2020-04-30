@@ -16,8 +16,8 @@ export interface OhbugEvent<D> {
   timestamp: number | string
   category?: OhbugCategory
   type: string
-  detail: D
   tags: OhbugTags
+  detail: D
   actions?: OhbugAction[]
   state?: any
 }
