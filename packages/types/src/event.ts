@@ -7,7 +7,7 @@ export interface OhbugAction {
   data?: Record<string, any>
 }
 
-export type OhbugCategory = 'error' | 'message' | 'feedback' | 'view' | 'other'
+export type OhbugCategory = 'error' | 'message' | 'feedback' | 'view'
 
 export interface OhbugEvent<D> {
   apiKey: string

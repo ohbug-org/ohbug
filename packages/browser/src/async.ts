@@ -1,5 +1,5 @@
 import { getGlobal, Queue } from '@ohbug/utils'
-import { getOhbugObject, createEvent } from '@ohbug/core'
+import { getOhbugObject } from '@ohbug/core'
 
 /**
  * async event flow
@@ -17,8 +17,10 @@ function async() {
   if (global.addEventListener) {
     global.addEventListener('unload', () => {
       // report
-      const event = createEvent('PERFUME', queue.get(), 'other')
-      ohbugObject._report && ohbugObject._report(event, 'async')
+      const events = queue.get()
+      events.forEach((event) => {
+        ohbugObject._report?.(event, 'async')
+      })
       queue.clear()
     })
   }

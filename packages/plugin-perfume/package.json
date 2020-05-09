@@ -24,7 +24,7 @@
     "@ohbug/types": "^0.0.5"
   },
   "peerDependencies": {
-    "perfume.js": "^4.8.1"
+    "perfume.js": "^5.0.0"
   },
   "buildOptions": {
     "name": "OhbugPluginPerfume",

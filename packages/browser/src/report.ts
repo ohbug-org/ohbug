@@ -5,7 +5,8 @@ function report<T>(event: OhbugEvent<T>) {
   return new Promise((resolve, reject) => {
     const json = JSON.stringify(event)
     if (navigator.sendBeacon) {
-      navigator.sendBeacon(url, json)
+      const result = navigator.sendBeacon(url, json)
+      resolve(result)
     } else {
       const xhr = new XMLHttpRequest()
       xhr.onreadystatechange = () => {
