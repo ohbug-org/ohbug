@@ -25,7 +25,7 @@ function handleUrlChange(from?: string, to?: string) {
   }
   if (from === to) return
 
-  const timestamp = new Date().getTime()
+  const timestamp = new Date().toISOString()
   hub.addAction({
     type: 'navigation',
     timestamp,

@@ -40,7 +40,7 @@ function captureFetchError() {
                 statusText: res.statusText,
               },
             }
-            const timestamp = new Date().getTime()
+            const timestamp = new Date().toISOString()
             hub.addAction({
               type: 'fetch',
               timestamp,

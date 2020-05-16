@@ -16,7 +16,7 @@ const createOhbugMiddleware = (before: CreateOhbugMiddlewareOption = identity): 
 
     const hub = getHub<Window>()
 
-    const timestamp = new Date().getTime()
+    const timestamp = new Date().toISOString()
     hub.addAction({
       type: 'redux-action',
       timestamp,

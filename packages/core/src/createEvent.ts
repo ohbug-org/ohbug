@@ -16,7 +16,7 @@ function createEvent<D, T = Window>(
   category = category || 'error'
 
   const { apiKey, appVersion, appType } = getConfig<T>()
-  const timestamp = new Date().getTime()
+  const timestamp = new Date().toISOString()
   const tags = getTags<T>()
 
   const result: OhbugEvent<D> = {

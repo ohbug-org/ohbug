@@ -31,7 +31,7 @@ function captureConsole() {
             (arg) => typeof arg === 'string' && arg.includes('Ohbug')
           )
           if (!isOhbugConsole) {
-            const timestamp = new Date().getTime()
+            const timestamp = new Date().toISOString()
             hub.addAction({
               type: 'console',
               timestamp,

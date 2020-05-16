@@ -9,7 +9,7 @@ function listener(e: MouseEvent) {
     const { tagName, id, className, name, src, outerHTML, nodeType } = e.target as any
     const selector = getSelector(e)
 
-    const timestamp = new Date().getTime()
+    const timestamp = new Date().toISOString()
     hub.addAction({
       type: 'click',
       timestamp,
