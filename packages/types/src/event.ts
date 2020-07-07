@@ -19,9 +19,15 @@ export interface OhbugEvent<D> {
   device: OhbugDevice
   detail: D
   actions?: OhbugAction[]
-  state?: any
+  metadata?: any
 }
 
 export interface OhbugBaseDetail {
   message?: string
+}
+
+export interface OhbugCreateEvent<D> {
+  category?: OhbugCategory
+  type: string
+  detail: D
 }

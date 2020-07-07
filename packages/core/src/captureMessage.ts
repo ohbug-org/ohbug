@@ -1,4 +1,4 @@
-import createEvent from './createEvent'
+import { createEvent } from './event'
 import collect from './collect'
 import { MESSAGE } from './types'
 import type { OhbugBaseDetail } from '@ohbug/types'

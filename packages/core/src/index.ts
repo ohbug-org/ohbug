@@ -1,6 +1,6 @@
 export { default as init } from './init'
 export { default as collect } from './collect'
-export { default as createEvent } from './createEvent'
+
 export { default as captureMessage } from './captureMessage'
 
 export * from './config'
@@ -11,4 +11,6 @@ import * as types from './types'
 
 export { types }
 
-export { default as Client } from './client'
+export * from './client'
+export * from './extension'
+export * from './event'

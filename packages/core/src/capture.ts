@@ -1,5 +1,5 @@
 import { getEnhancer } from './enhancer'
-import { createOtherEvent } from './createEvent'
+import { createOtherEvent } from './event'
 import collect from './collect'
 import type { OhbugCaptureCtx } from '@ohbug/types'
 
