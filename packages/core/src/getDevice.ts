@@ -1,27 +1,27 @@
 import { getOhbugObject } from './config'
-import type { OhbugTags } from '@ohbug/types'
+import type { OhbugDevice } from '@ohbug/types'
 
-function getTags<T>(): OhbugTags {
+function getDevice<T>(): OhbugDevice {
   const { uuid, platform, version } = getOhbugObject<T>()
-  const tags: OhbugTags = {
+  const device: OhbugDevice = {
     uuid,
     platform,
     version,
   }
   if (navigator) {
     const { language, userAgent } = navigator
-    tags.language = language
-    tags.userAgent = userAgent
+    device.language = language
+    device.userAgent = userAgent
   }
   if (document) {
     const { title } = document
-    tags.title = title
+    device.title = title
   }
   if (location) {
     const { href: url } = location
-    tags.url = url
+    device.url = url
   }
-  return tags
+  return device
 }
 
-export default getTags
+export default getDevice

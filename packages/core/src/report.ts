@@ -31,8 +31,8 @@ function report<T = Window>(event: OhbugEvent<any>, execution: OhbugExecution) {
       let result = event
       const ohbugObject = getOhbugObject<T>()
       if (ohbugObject._report) {
-        if (config.beforeReport) {
-          result = config.beforeReport(event)
+        if (config.created) {
+          result = config.created(event)
         }
         timingSelector(ohbugObject._report, result, execution)
         if (config.reported) {

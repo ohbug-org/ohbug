@@ -1,28 +1,21 @@
-export const config = {
-  log: {
-    type: `%c log`,
-    styles: `color: #4CAF50; font-weight: bold`,
-  },
-  error: {
-    type: `%c error`,
-    styles: `color: #F20404; font-weight: bold`,
-  },
-  info: {
-    type: `%c info`,
-    styles: `color: #03A9F4; font-weight: bold`,
-  },
-}
+import { OhbugLoggerConfig } from '@ohbug/types'
 
-export class logger {
-  public static log(...args: any[]) {
-    console.log(config.log.type, config.log.styles, ...args)
-  }
+const prefix = 'Ohbug'
 
-  public static error(...args: any[]) {
-    console.error(config.error.type, config.error.styles, ...args)
-  }
+export const logger: OhbugLoggerConfig = {
+  log(...args: any[]) {
+    console.log(prefix, ...args)
+  },
 
-  public static info(...args: any[]) {
-    console.info(config.info.type, config.info.styles, ...args)
-  }
+  info(...args: any[]) {
+    console.info(prefix, ...args)
+  },
+
+  warn(...args: any[]) {
+    console.warn(prefix, ...args)
+  },
+
+  error(...args: any[]) {
+    console.error(prefix, ...args)
+  },
 }

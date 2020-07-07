@@ -1,6 +1,6 @@
 export type OhbugPlatform = 'browser' | 'node'
 
-export interface OhbugTags {
+export interface OhbugDevice {
   uuid: string
   platform: OhbugPlatform
   version: string

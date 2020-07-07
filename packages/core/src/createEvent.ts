@@ -1,6 +1,6 @@
 import { getConfig } from './config'
 import { getHub } from './hub'
-import getTags from './getTags'
+import getDevice from './getDevice'
 import type { OhbugEvent, OhbugAction, OhbugCategory } from '@ohbug/types'
 
 function getActions<T>(): OhbugAction[] {
@@ -17,14 +17,14 @@ function createEvent<D, T = Window>(
 
   const { apiKey, appVersion, appType } = getConfig<T>()
   const timestamp = new Date().toISOString()
-  const tags = getTags<T>()
+  const device = getDevice<T>()
 
   const result: OhbugEvent<D> = {
     apiKey,
     timestamp,
     category,
     type,
-    tags,
+    device,
     detail,
   }
 

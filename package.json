@@ -6,7 +6,6 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "dev": "node scripts/dev.js",
-    "prebuild": "lerna exec -- rimraf ./dist",
     "build": "node scripts/build.js",
     "prettier": "lerna run prettier",
     "lint": "lerna run lint",
@@ -37,7 +36,6 @@
     "perfume.js": "^5.1.0",
     "prettier": "^2.0.4",
     "react": "^16.13.0",
-    "rimraf": "^3.0.2",
     "rollup": "^2.19.0",
     "rollup-plugin-terser": "^6.1.0",
     "rollup-plugin-typescript2": "^0.27.1",

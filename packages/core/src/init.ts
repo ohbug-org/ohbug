@@ -1,8 +1,9 @@
 import { getGlobal, error, getUUID } from '@ohbug/utils'
+import type { OhbugInit } from '@ohbug/types'
+
 import { defaultConfig } from './config'
 import applyPlugin from './applyPlugin'
 import captureHandler from './capture'
-import type { OhbugInit } from '@ohbug/types'
 
 /**
  * An init function common to multiple JavaScript platforms for saving config information and capture report plugin, etc.
