@@ -18,22 +18,25 @@ async function buildAll(targets) {
 }
 
 async function build(target) {
-  if (target !== 'types') {
-    const pkgDir = path.resolve(`packages/${target}`)
+  try {
+    if (target !== 'types') {
+      const pkgDir = path.resolve(`packages/${target}`)
 
-    await fs.remove(`${pkgDir}/dist`)
+      await fs.remove(`${pkgDir}/dist`)
 
-    const env = 'production'
-    await execa(
-      'rollup',
-      [
-        '-c',
-        '--environment',
-        [`NODE_ENV:${env}`, `TARGET:${target}`, formats ? `FORMATS:${formats}` : ``].join(',')
-      ],
-      {
-        stdio: 'inherit'
-      }
-    )
-  }
+      const env = 'production'
+      await execa(
+        'rollup',
+        [
+          '-c',
+          '--environment',
+          [`NODE_ENV:${env}`, `TARGET:${target}`, formats ? `FORMATS:${formats}` : ``].join(','),
+        ],
+        {
+          stdio: 'inherit',
+        }
+      )
+    }
+    // eslint-disable-next-line no-empty
+  } catch (e) {}
 }

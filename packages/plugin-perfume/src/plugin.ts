@@ -5,8 +5,6 @@ class Plugin implements OhbugPlugin {
   capture({ collect }: OhbugCaptureCtx) {
     new Perfume({
       resourceTiming: true,
-      dataConsumption: true,
-      logging: process.env.NODE_ENV === 'development',
       maxMeasureTime: 10000,
       analyticsTracker: (options) => {
         const { metricName, data } = options

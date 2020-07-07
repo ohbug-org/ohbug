@@ -1,14 +1,12 @@
-import { getGlobal, replace } from '@ohbug/utils'
+import { replace } from '@ohbug/utils'
 import { getHub } from '@ohbug/core'
-
-const global = getGlobal<Window>()
 
 type Level = 'log' | 'info' | 'warn' | 'error'
 const levels: Level[] = ['log', 'info', 'warn', 'error']
 const consoleOriginal = Object.keys(levels).reduce<Record<Level, any>>(
   (acc, cur: Level) => ({
     ...acc,
-    [cur]: global.console[cur],
+    [cur]: console[cur],
   }),
   {
     log: null,
@@ -23,7 +21,7 @@ function captureConsole() {
 
   levels.forEach((level) => {
     consoleOriginal[level] = replace(
-      global.console,
+      console,
       level,
       (origin) =>
         function (...args: any[]) {
@@ -47,9 +45,9 @@ function captureConsole() {
 }
 
 export function removeCaptureConsole() {
-  if (global.console) {
+  if (console) {
     levels.forEach((level) => {
-      global.console[level] = consoleOriginal[level]
+      console[level] = consoleOriginal[level]
     })
   }
 }

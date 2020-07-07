@@ -24,7 +24,7 @@
     "@ohbug/browser": "^0.0.11"
   },
   "devDependencies": {
-    "@types/react": "^16.9.23"
+    "@types/react": "^16.9.41"
   },
   "peerDependencies": {
     "react": ">= 16.8.0"
