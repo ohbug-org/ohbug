@@ -1,4 +1,5 @@
 import type { OhbugEvent } from './event'
+import type { OhbugClient } from './client'
 
 export interface OhbugLoggerConfig {
   log: (...args: any[]) => void
@@ -13,8 +14,8 @@ export interface OhbugConfig {
   appVersion?: string
   appType?: string
   // hooks
-  created?: (event: OhbugEvent<any>) => OhbugEvent<any>
-  reported?: (event: OhbugEvent<any>) => void
+  created?: (event: OhbugEvent<any>, client: OhbugClient) => OhbugEvent<any>
+  notified?: (event: OhbugEvent<any>, client: OhbugClient) => void
   // utils
   logger?: OhbugLoggerConfig
 }

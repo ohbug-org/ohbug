@@ -1,8 +1,8 @@
-import type { OhbugDevice } from '@ohbug/types'
-import { getOhbugObject } from './config'
+import type { OhbugClient, OhbugDevice } from '@ohbug/types'
 
-export function createDevice<T>(): OhbugDevice {
-  const { uuid, platform, version } = getOhbugObject<T>()
+export function createDevice(client: OhbugClient): OhbugDevice {
+  const { uuid, platform, version } = client._device
+
   const device: OhbugDevice = {
     uuid,
     platform,

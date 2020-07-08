@@ -11,12 +11,18 @@ export function verifyConfig(config: OhbugConfig, schema: OhbugSchema) {
       const configValue = config[key]
       const { defaultValue, message, validate } = schema[key]
 
-      const valid = validate(configValue)
-      if (valid) {
-        accumulator.config[key] = configValue
+      if (configValue !== undefined) {
+        const valid = validate(configValue)
+        if (valid) {
+          accumulator.config[key] = configValue
+        } else {
+          accumulator.config[key] = defaultValue
+          accumulator.errors[key] = message
+        }
       } else {
+        // if there is no corresponding configuration, use the default value
+        // 如果没有传入相应配置 使用默认值
         accumulator.config[key] = defaultValue
-        accumulator.errors[key] = message
       }
 
       return accumulator

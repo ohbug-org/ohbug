@@ -24,7 +24,7 @@ export const schema: OhbugSchema = {
     message: 'should be a function',
     validate: isFunction,
   },
-  reported: {
+  notified: {
     defaultValue: () => {},
     message: 'should be a function',
     validate: isFunction,

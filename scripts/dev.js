@@ -2,7 +2,7 @@ const execa = require('execa')
 const args = require('minimist')(process.argv.slice(2))
 
 const formats = args.formats || args.f
-const target = args._.length ? args._ : 'browser'
+const target = args._.length ? args._ : 'core'
 
 const env = 'development'
 
@@ -12,10 +12,10 @@ if (target[0] !== 'types') {
     [
       '-cw',
       '--environment',
-      [`NODE_ENV:${env}`, `TARGET:${target}`, `FORMATS:${formats || 'esm'}`].join(',')
+      [`NODE_ENV:${env}`, `TARGET:${target}`, `FORMATS:${formats || 'esm'}`].join(','),
     ],
     {
-      stdio: 'inherit'
+      stdio: 'inherit',
     }
   )
 }

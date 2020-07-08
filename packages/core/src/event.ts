@@ -1,14 +1,8 @@
-import type { OhbugEvent, OhbugAction, OhbugCreateEvent, OhbugClient } from '@ohbug/types'
+import type { OhbugEvent, OhbugCreateEvent, OhbugClient } from '@ohbug/types'
 
-import { getHub } from './hub'
 import { createDevice } from './device'
 
-function getActions<T>(): OhbugAction[] {
-  const hub = getHub<T>()
-  return hub.getActions()
-}
-
-export function createEvent<D, T = Window>(
+export function createEvent<D>(
   { category, type, detail }: OhbugCreateEvent<D>,
   client: OhbugClient
 ): OhbugEvent<D> {
@@ -16,7 +10,7 @@ export function createEvent<D, T = Window>(
 
   const { apiKey, appVersion, appType } = client._config
   const timestamp = new Date().toISOString()
-  const device = createDevice<T>()
+  const device = createDevice(client)
 
   const event: OhbugEvent<D> = {
     apiKey,
@@ -35,14 +29,13 @@ export function createEvent<D, T = Window>(
 
   // view removes actions to reduce request size
   if (type !== 'view' && category !== 'view') {
-    const actions = getActions<T>()
-    event.actions = actions
+    event.actions = client._actions
   }
 
   return event
 }
 
-export function createOtherEvent<D, T = Window>(type: string, detail: D) {
+export function createOtherEvent<D>(type: string, detail: D) {
   const category = 'other'
-  return createEvent<D, T>({ type, detail, category }, null as any)
+  return createEvent<D>({ type, detail, category }, null as any)
 }
