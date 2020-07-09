@@ -9,8 +9,9 @@ class Hub implements OhbugHub {
 
   public addEvent<T>(event: OhbugEvent<T>, execution: OhbugExecution): void {
     this.events.push(event)
-
-    notify(event)
+    // @ts-ignore
+    console.log(execution)
+    notify(event, null as any)
   }
 
   public getActions(): OhbugAction[] {

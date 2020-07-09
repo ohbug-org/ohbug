@@ -22,6 +22,7 @@ import { notify } from './notify'
 import { Action } from './action'
 import { verifyConfig } from './lib/verifyConfig'
 import { getConfigErrorMessage, getErrorMessage } from './lib/getErrorMessage'
+import { addMetaData, getMetaData, deleteMetaData } from './lib/metaData'
 
 export const Client: OhbugClientConstructor = class Client implements OhbugClient {
   readonly _config: OhbugConfig
@@ -33,6 +34,7 @@ export const Client: OhbugClientConstructor = class Client implements OhbugClien
   readonly _extensions: OhbugExtension[]
   readonly _hooks: OhbugHooks
   _user: OhbugUser
+  readonly _metaData: Map<string, any>
 
   constructor({
     config: baseConfig,
@@ -55,6 +57,12 @@ export const Client: OhbugClientConstructor = class Client implements OhbugClien
       notified: config.notified,
     }
     this._user = config.user
+    this._metaData = new Map<string, any>()
+    if (isObject(config.metaData)) {
+      Object.keys(config.metaData).forEach((key) => {
+        this.addMetaData(key, config.metaData[key])
+      })
+    }
 
     if (Object.keys(errors).length) {
       this._logger.warn(getConfigErrorMessage(errors, baseConfig))
@@ -154,5 +162,36 @@ export const Client: OhbugClientConstructor = class Client implements OhbugClien
     this._logger.warn(
       getErrorMessage('setUser should be an object and have up to 6 attributes', user)
     )
+  }
+
+  /**
+   * Add metaData
+   * 新增 metaData
+   *
+   * @param section
+   * @param data
+   */
+  addMetaData(section: string, data: any) {
+    return addMetaData(this._metaData, section, data)
+  }
+
+  /**
+   * Get metaData
+   * 获取 metaData
+   *
+   * @param section
+   */
+  getMetaData(section: string) {
+    return getMetaData(this._metaData, section)
+  }
+
+  /**
+   * Delete metaData
+   * 删除 metaData
+   *
+   * @param section
+   */
+  deleteMetaData(section: string) {
+    return deleteMetaData(this._metaData, section)
   }
 }

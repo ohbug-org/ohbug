@@ -13,7 +13,7 @@ function collect<T = Window>(event: OhbugEvent<any> | any, execution: OhbugExecu
   let enhancedEvent = event
 
   // Insert plugin
-  let enhancer = getEnhancer<T>()
+  const enhancer = getEnhancer<T>()
   if (Array.isArray(enhancer) && enhancer.length) {
     // compose enhancer.event
     enhancedEvent = enhancer.reduce(

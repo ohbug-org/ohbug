@@ -47,6 +47,11 @@ export const schema: OhbugSchema = {
     message: 'should be an object and have up to 6 attributes',
     validate: (value) => value === undefined || (isObject(value) && Object.keys(value).length <= 6),
   },
+  metaData: {
+    defaultValue: undefined,
+    message: 'should be an object',
+    validate: (value) => value === undefined || isObject(value),
+  },
 }
 
 export const defaultConfig: OhbugConfig = {

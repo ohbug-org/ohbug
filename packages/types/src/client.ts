@@ -31,6 +31,7 @@ export interface OhbugClient {
   readonly _extensions: OhbugExtension[]
   readonly _hooks: OhbugHooks
   _user: OhbugUser
+  readonly _metaData: Map<string, any>
 
   use: (extension: OhbugExtension) => OhbugClient
   createEvent: <D>(value: OhbugCreateEvent<D>) => OhbugEvent<D>
@@ -38,4 +39,15 @@ export interface OhbugClient {
     eventLike: any,
     beforeNotify?: (event: OhbugEvent<D>) => OhbugEvent<D> | false
   ) => Promise<any>
+  addAction: (
+    message: string,
+    metaData: Record<string, any>,
+    type: string,
+    timestamp?: string
+  ) => void
+  getUser: () => OhbugUser | undefined
+  setUser: (user: OhbugUser) => OhbugUser | undefined
+  addMetaData: (section: string, data: any) => any
+  getMetaData: (section: string) => any
+  deleteMetaData: (section: string) => any
 }

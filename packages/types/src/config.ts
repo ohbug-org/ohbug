@@ -1,6 +1,7 @@
 import type { OhbugEvent } from './event'
 import type { OhbugClient } from './client'
 import type { OhbugUser } from './user'
+import type { OhbugMetaData } from './metaData'
 
 export interface OhbugLoggerConfig {
   log: (...args: any[]) => void
@@ -19,6 +20,7 @@ export interface OhbugConfig {
   notified?: (event: OhbugEvent<any>, client: OhbugClient) => void
   // data
   user?: OhbugUser
+  metaData?: OhbugMetaData
   // utils
   logger?: OhbugLoggerConfig
 }

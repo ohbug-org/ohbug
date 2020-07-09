@@ -7,10 +7,8 @@ import type {
   OhbugCategory,
   OhbugDevice,
 } from '@ohbug/types'
-import { isObject } from '@ohbug/utils'
 
 import { createDevice } from './device'
-import { getErrorMessage } from './lib/getErrorMessage'
 
 export class Event<D> implements OhbugEvent<D> {
   readonly apiKey: string
@@ -23,11 +21,9 @@ export class Event<D> implements OhbugEvent<D> {
   readonly detail: D
   user?: OhbugUser
   readonly actions?: OhbugAction[]
-  readonly metadata?: any
+  readonly metaData?: any
 
-  protected readonly _client: OhbugClient
-
-  constructor(values: OhbugEvent<D>, client: OhbugClient) {
+  constructor(values: OhbugEvent<D>) {
     const {
       apiKey,
       appVersion,
@@ -39,7 +35,7 @@ export class Event<D> implements OhbugEvent<D> {
       detail,
       user,
       actions,
-      metadata,
+      metaData,
     } = values
     this.apiKey = apiKey
     this.appVersion = appVersion
@@ -51,35 +47,11 @@ export class Event<D> implements OhbugEvent<D> {
     this.detail = detail
     this.user = user
     this.actions = actions
-    this.metadata = metadata
-
-    this._client = client
+    this.metaData = metaData
   }
 
   get _isOhbugEvent() {
     return true
-  }
-
-  /**
-   * Get current user information
-   * 获取当前的用户信息
-   */
-  getUser(): OhbugUser | undefined {
-    return this.user
-  }
-
-  /**
-   * Set current user information
-   * 设置当前的用户信息
-   */
-  setUser(user: OhbugUser): OhbugUser | undefined {
-    if (isObject(user) && Object.keys(user).length <= 6) {
-      this.user = user
-      return this.getUser()
-    }
-    this._client._logger.warn(
-      getErrorMessage('setUser should be an object and have up to 6 attributes', user)
-    )
   }
 }
 
@@ -93,21 +65,19 @@ export function createEvent<D>(
   const timestamp = new Date().toISOString()
   const device = createDevice(client)
 
-  return new Event(
-    {
-      apiKey,
-      appVersion,
-      appType,
-      timestamp,
-      category,
-      type,
-      device,
-      user: client._user,
-      detail,
-      actions: client._actions,
-    },
-    client
-  )
+  return new Event({
+    apiKey,
+    appVersion,
+    appType,
+    timestamp,
+    category,
+    type,
+    device,
+    user: client._user,
+    detail,
+    actions: client._actions,
+    metaData: client._metaData,
+  })
 }
 
 export function createOtherEvent<D>(type: string, detail: D) {

@@ -15,7 +15,7 @@ export interface OhbugEvent<D> {
   detail: D
   user?: OhbugUser
   actions?: OhbugAction[]
-  metadata?: any
+  metaData?: any
 }
 
 export interface OhbugBaseDetail {
