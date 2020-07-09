@@ -1,12 +1,6 @@
 import type { OhbugDevice } from './device'
 import { OhbugUser } from './user'
-
-export interface OhbugAction {
-  type: string
-  timestamp: string
-  message?: string
-  data?: Record<string, any>
-}
+import { OhbugAction } from './action'
 
 export type OhbugCategory = 'error' | 'message' | 'feedback' | 'view' | 'other'
 

@@ -6,7 +6,7 @@ export const schema: OhbugSchema = {
   apiKey: {
     defaultValue: undefined,
     message: 'is required',
-    validate: isString,
+    validate: (value) => Boolean(value) && isString(value),
   },
   appVersion: {
     defaultValue: undefined,

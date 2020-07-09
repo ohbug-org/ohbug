@@ -13,12 +13,13 @@ import type {
   OhbugHooks,
   OhbugUser,
 } from '@ohbug/types'
-import { logger, isFunction } from '@ohbug/utils'
+import { logger, isFunction, isString, isObject } from '@ohbug/utils'
 
 import { schema as baseSchema } from './config'
 import { loadExtension } from './extension'
 import { createEvent, isEvent } from './event'
 import { notify } from './notify'
+import { Action } from './action'
 import { verifyConfig } from './lib/verifyConfig'
 import { getConfigErrorMessage } from './lib/getConfigErrorMessage'
 
@@ -108,5 +109,23 @@ export const Client: OhbugClientConstructor = class Client implements OhbugClien
     if (beforeNotify) event = beforeNotify(event)
 
     return notify<D>(event, this)
+  }
+
+  /**
+   * Add an action
+   * 新增一个动作
+   *
+   * @param message
+   * @param metaData
+   * @param type
+   * @param timestamp
+   */
+  addAction(message: string, metaData: Record<string, any>, type: string, timestamp?: string) {
+    message = isString(message) ? message : ''
+    metaData = isObject(metaData) ? metaData : {}
+    type = isString(type) ? type : ''
+
+    const action = new Action(message, metaData, type, timestamp)
+    this._actions.push(action)
   }
 }

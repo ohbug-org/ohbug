@@ -16,8 +16,7 @@ export class Event<D> implements OhbugEvent<D> {
   readonly actions?: OhbugAction[]
   readonly metadata?: any
 
-  readonly _isOhbugEvent: boolean
-  readonly _client: OhbugClient
+  protected readonly _client: OhbugClient
 
   constructor(values: OhbugEvent<D>, client: OhbugClient) {
     const {
@@ -45,8 +44,11 @@ export class Event<D> implements OhbugEvent<D> {
     this.actions = actions
     this.metadata = metadata
 
-    this._isOhbugEvent = true
     this._client = client
+  }
+
+  get _isOhbugEvent() {
+    return true
   }
 }
 
