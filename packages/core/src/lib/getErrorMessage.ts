@@ -10,6 +10,10 @@ export function getConfigErrorMessage(
         (key: keyof OhbugConfig) => `- ${key} ${errors[key]}, got ${JSON.stringify(config[key])}`
       )
       .join('\n')}
-            `
+      `
   )
+}
+
+export function getErrorMessage(message: string, data: any) {
+  return new Error(`Invalid data\n- ${message}, got ${JSON.stringify(data)}`)
 }

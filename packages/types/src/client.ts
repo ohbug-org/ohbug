@@ -1,9 +1,10 @@
 import type { OhbugExtension } from './extension'
 import type { OhbugConfig, OhbugLoggerConfig, OhbugSchema } from './config'
-import type { OhbugAction, OhbugCreateEvent, OhbugEvent } from './event'
+import type { OhbugCreateEvent, OhbugEvent } from './event'
 import type { OhbugDevice } from './device'
 import type { OhbugNotifier } from './notify'
-import { OhbugUser } from './user'
+import type { OhbugAction } from './action'
+import type { OhbugUser } from './user'
 
 export interface OhbugClientConstructorValues {
   config: OhbugConfig
@@ -29,7 +30,7 @@ export interface OhbugClient {
   readonly _actions: OhbugAction[]
   readonly _extensions: OhbugExtension[]
   readonly _hooks: OhbugHooks
-  readonly _user: OhbugUser
+  _user: OhbugUser
 
   use: (extension: OhbugExtension) => OhbugClient
   createEvent: <D>(value: OhbugCreateEvent<D>) => OhbugEvent<D>

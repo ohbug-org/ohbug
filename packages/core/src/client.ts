@@ -21,7 +21,7 @@ import { createEvent, isEvent } from './event'
 import { notify } from './notify'
 import { Action } from './action'
 import { verifyConfig } from './lib/verifyConfig'
-import { getConfigErrorMessage } from './lib/getConfigErrorMessage'
+import { getConfigErrorMessage, getErrorMessage } from './lib/getErrorMessage'
 
 export const Client: OhbugClientConstructor = class Client implements OhbugClient {
   readonly _config: OhbugConfig
@@ -32,7 +32,7 @@ export const Client: OhbugClientConstructor = class Client implements OhbugClien
   readonly _actions: OhbugAction[]
   readonly _extensions: OhbugExtension[]
   readonly _hooks: OhbugHooks
-  readonly _user: OhbugUser
+  _user: OhbugUser
 
   constructor({
     config: baseConfig,
@@ -120,12 +120,39 @@ export const Client: OhbugClientConstructor = class Client implements OhbugClien
    * @param type
    * @param timestamp
    */
-  addAction(message: string, metaData: Record<string, any>, type: string, timestamp?: string) {
+  addAction(
+    message: string,
+    metaData: Record<string, any>,
+    type: string,
+    timestamp?: string
+  ): void {
     message = isString(message) ? message : ''
     metaData = isObject(metaData) ? metaData : {}
     type = isString(type) ? type : ''
 
     const action = new Action(message, metaData, type, timestamp)
     this._actions.push(action)
+  }
+
+  /**
+   * Get current user information
+   * 获取当前的用户信息
+   */
+  getUser(): OhbugUser | undefined {
+    return this._user
+  }
+
+  /**
+   * Set current user information
+   * 设置当前的用户信息
+   */
+  setUser(user: OhbugUser): OhbugUser | undefined {
+    if (isObject(user) && Object.keys(user).length <= 6) {
+      this._user = user
+      return this.getUser()
+    }
+    this._logger.warn(
+      getErrorMessage('setUser should be an object and have up to 6 attributes', user)
+    )
   }
 }

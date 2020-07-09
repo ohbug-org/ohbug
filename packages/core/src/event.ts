@@ -1,7 +1,16 @@
-import type { OhbugEvent, OhbugCreateEvent, OhbugClient, OhbugUser } from '@ohbug/types'
+import type {
+  OhbugEvent,
+  OhbugCreateEvent,
+  OhbugClient,
+  OhbugUser,
+  OhbugAction,
+  OhbugCategory,
+  OhbugDevice,
+} from '@ohbug/types'
+import { isObject } from '@ohbug/utils'
 
 import { createDevice } from './device'
-import { OhbugAction, OhbugCategory, OhbugDevice } from '@ohbug/types'
+import { getErrorMessage } from './lib/getErrorMessage'
 
 export class Event<D> implements OhbugEvent<D> {
   readonly apiKey: string
@@ -12,7 +21,7 @@ export class Event<D> implements OhbugEvent<D> {
   readonly type: string
   readonly device: OhbugDevice
   readonly detail: D
-  readonly user?: OhbugUser
+  user?: OhbugUser
   readonly actions?: OhbugAction[]
   readonly metadata?: any
 
@@ -50,6 +59,28 @@ export class Event<D> implements OhbugEvent<D> {
   get _isOhbugEvent() {
     return true
   }
+
+  /**
+   * Get current user information
+   * 获取当前的用户信息
+   */
+  getUser(): OhbugUser | undefined {
+    return this.user
+  }
+
+  /**
+   * Set current user information
+   * 设置当前的用户信息
+   */
+  setUser(user: OhbugUser): OhbugUser | undefined {
+    if (isObject(user) && Object.keys(user).length <= 6) {
+      this.user = user
+      return this.getUser()
+    }
+    this._client._logger.warn(
+      getErrorMessage('setUser should be an object and have up to 6 attributes', user)
+    )
+  }
 }
 
 export function createEvent<D>(
@@ -58,7 +89,7 @@ export function createEvent<D>(
 ): OhbugEvent<D> {
   category = category || 'error'
 
-  const { apiKey, appVersion, appType, user } = client._config
+  const { apiKey, appVersion, appType } = client._config
   const timestamp = new Date().toISOString()
   const device = createDevice(client)
 
@@ -71,7 +102,7 @@ export function createEvent<D>(
       category,
       type,
       device,
-      user,
+      user: client._user,
       detail,
       actions: client._actions,
     },
