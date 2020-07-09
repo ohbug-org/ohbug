@@ -9,6 +9,7 @@ import type {
 } from '@ohbug/types'
 
 import { createDevice } from './device'
+import { isObject } from '@ohbug/utils'
 
 export class Event<D> implements OhbugEvent<D> {
   readonly apiKey: string
@@ -55,15 +56,24 @@ export class Event<D> implements OhbugEvent<D> {
   }
 }
 
-export function createEvent<D>(
-  { category, type, detail }: OhbugCreateEvent<D>,
-  client: OhbugClient
-): OhbugEvent<D> {
-  category = category || 'error'
-
+export function createEvent<D>(values: OhbugCreateEvent<D>, client: OhbugClient): OhbugEvent<D> {
   const { apiKey, appVersion, appType } = client._config
   const timestamp = new Date().toISOString()
   const device = createDevice(client)
+  let category: OhbugCategory, type: string, detail: D
+  if (
+    isObject(values) &&
+    Object.prototype.hasOwnProperty.call(values, 'type') &&
+    Object.prototype.hasOwnProperty.call(values, 'detail')
+  ) {
+    category = values.category || 'error'
+    type = values.type
+    detail = values.detail
+  } else {
+    category = 'error'
+    type = 'unknownError'
+    detail = (values as unknown) as D
+  }
 
   return new Event({
     apiKey,
@@ -81,5 +91,5 @@ export function createEvent<D>(
 }
 
 export function isEvent(eventLike: any): eventLike is OhbugEvent<any> {
-  return Boolean(eventLike._isOhbugEvent)
+  return Boolean(eventLike?._isOhbugEvent)
 }

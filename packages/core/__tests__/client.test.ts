@@ -107,6 +107,29 @@ describe('@ohbug/core/client', () => {
         return event
       })
     })
+
+    it('should be trigger all notified hooks', async () => {
+      const hooks = {
+        clientNotified: jest.fn(),
+        extensionNotified: jest.fn(),
+      }
+      const client = new Client(getValues({ apiKey, notified: hooks.clientNotified }))
+      const extension = createExtension({
+        name: 'test_extension',
+        notified: hooks.extensionNotified,
+      })
+      client.use(extension)
+
+      const event = client.createEvent({
+        category: 'error',
+        type: 'exception',
+        detail: 'should be trigger all notified hooks',
+      })
+      await client.notify(event)
+
+      expect(hooks.clientNotified).toBeCalledTimes(1)
+      expect(hooks.extensionNotified).toBeCalledTimes(1)
+    })
   })
 
   describe('addAction()', () => {
@@ -120,7 +143,7 @@ describe('@ohbug/core/client', () => {
         timestamp: now,
       }
       expect(client._actions.length).toBe(0)
-      client.addAction(action.message, action.data, action.type)
+      client.addAction(action.message, action.data, action.type, action.timestamp)
       expect(client._actions.length).toBe(1)
       expect(client._actions[0]).toEqual(
         new Action(action.message, action.data, action.type, action.timestamp)
