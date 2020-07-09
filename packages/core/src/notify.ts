@@ -16,6 +16,7 @@ export async function notify<D>(event: OhbugEvent<D> | false, client: OhbugClien
     if (isFunction(client._hooks.notified)) {
       client._hooks.notified(result, client)
     }
+    return result
   } catch (e) {
     client._logger.error(e)
   }

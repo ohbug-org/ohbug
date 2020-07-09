@@ -76,8 +76,7 @@ export const Client: OhbugClientConstructor = class Client implements OhbugClien
    * @param extension
    */
   use(extension: OhbugExtension): Client {
-    loadExtension(extension, this)
-    return this
+    return loadExtension(extension, this)
   }
 
   /**
@@ -124,21 +123,16 @@ export const Client: OhbugClientConstructor = class Client implements OhbugClien
    * 新增一个动作
    *
    * @param message
-   * @param metaData
+   * @param data
    * @param type
    * @param timestamp
    */
-  addAction(
-    message: string,
-    metaData: Record<string, any>,
-    type: string,
-    timestamp?: string
-  ): void {
+  addAction(message: string, data: Record<string, any>, type: string, timestamp?: string): void {
     message = isString(message) ? message : ''
-    metaData = isObject(metaData) ? metaData : {}
+    data = isObject(data) ? data : {}
     type = isString(type) ? type : ''
 
-    const action = new Action(message, metaData, type, timestamp)
+    const action = new Action(message, data, type, timestamp)
     this._actions.push(action)
   }
 

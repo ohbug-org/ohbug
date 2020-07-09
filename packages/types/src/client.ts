@@ -39,12 +39,7 @@ export interface OhbugClient {
     eventLike: any,
     beforeNotify?: (event: OhbugEvent<D>) => OhbugEvent<D> | false
   ) => Promise<any>
-  addAction: (
-    message: string,
-    metaData: Record<string, any>,
-    type: string,
-    timestamp?: string
-  ) => void
+  addAction: (message: string, data: Record<string, any>, type: string, timestamp?: string) => void
   getUser: () => OhbugUser | undefined
   setUser: (user: OhbugUser) => OhbugUser | undefined
   addMetaData: (section: string, data: any) => any
