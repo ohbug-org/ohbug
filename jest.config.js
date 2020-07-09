@@ -1,6 +1,6 @@
 module.exports = {
   transform: {
-    '^.+\\.ts?$': 'ts-jest'
+    '^.+\\.ts?$': 'ts-jest',
   },
   testMatch: ['**/__tests__/?(*.)+(spec|test).[jt]s?(x)'],
   testEnvironment: 'jsdom',
@@ -9,5 +9,5 @@ module.exports = {
   collectCoverageFrom: ['**/*.ts', '!**/node_modules/**', '!**/index.ts', '!**/types.ts'],
   coverageDirectory: '<rootDir>/coverage/',
   collectCoverage: true,
-  verbose: true
+  verbose: true,
 }

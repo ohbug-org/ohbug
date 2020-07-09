@@ -86,7 +86,7 @@ export const Client: OhbugClientConstructor = class Client implements OhbugClien
    *
    * @param value
    */
-  createEvent<D>(value: OhbugCreateEvent<D>): OhbugEvent<D> {
+  createEvent<D = any>(value: OhbugCreateEvent<D>): OhbugEvent<D> {
     const event = createEvent(value, this)
 
     if (isFunction(this._hooks.created)) {

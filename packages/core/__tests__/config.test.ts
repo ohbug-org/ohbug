@@ -1,31 +1,16 @@
-import { getGlobal } from '@ohbug/utils'
-import init from '../src/init'
-import { getOhbugObject, getConfig } from '../src/config'
+import { schema } from '../src/config'
 
-const apiKey = 'test_id'
-const config = { apiKey }
-const platform = 'browser'
-
-describe('core config', () => {
-  beforeAll(() => {
-    init({
-      config,
-      platform,
-      handleCapture: () => {},
-      handleReport: () => {},
-      handleAsync: () => {},
+describe('@ohbug/core/config', () => {
+  describe('schema', () => {
+    it('has the required properties { validate, defaultValue, message }', () => {
+      Object.keys(schema).forEach((key: keyof typeof schema) => {
+        const value = schema[key]
+        expect(value).toHaveProperty('defaultValue')
+        expect(value).toHaveProperty('message')
+        expect(value).toHaveProperty('validate')
+        expect(typeof value.message).toBe('string')
+        expect(typeof value.validate).toBe('function')
+      })
     })
-  })
-
-  const global = getGlobal()
-
-  it('calls getOhbugObject()', () => {
-    const ohbugObject = getOhbugObject()
-    expect(ohbugObject).toEqual(global.__OHBUG__)
-  })
-
-  it('calls getConfig()', () => {
-    const config = getConfig()
-    expect(config).toEqual(global.__OHBUG__.config)
   })
 })

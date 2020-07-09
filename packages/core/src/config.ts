@@ -1,5 +1,5 @@
-import { isString, isFunction, isObject, getGlobal, error } from '@ohbug/utils'
-import type { OhbugConfig, OhbugSchema, OhbugObject, OhbugEvent } from '@ohbug/types'
+import { isString, isFunction, isObject } from '@ohbug/utils'
+import type { OhbugSchema, OhbugEvent } from '@ohbug/types'
 
 export const schema: OhbugSchema = {
   // base
@@ -52,20 +52,4 @@ export const schema: OhbugSchema = {
     message: 'should be an object',
     validate: (value) => value === undefined || isObject(value),
   },
-}
-
-export const defaultConfig: OhbugConfig = {
-  apiKey: '',
-}
-
-export function getOhbugObject<T>(): OhbugObject {
-  const global = getGlobal<T>()
-  error(Boolean(global.__OHBUG__), 'Failed to get `OhbugObject`, please confirm if `init`')
-
-  return global.__OHBUG__
-}
-
-export function getConfig<T>(): OhbugConfig {
-  const { config } = getOhbugObject<T>()
-  return config as OhbugConfig
 }

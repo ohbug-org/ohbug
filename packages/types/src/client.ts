@@ -8,7 +8,7 @@ import type { OhbugUser } from './user'
 
 export interface OhbugClientConstructorValues {
   config: OhbugConfig
-  schema: OhbugSchema
+  schema?: OhbugSchema
   device: OhbugDevice
   notifier: OhbugNotifier
 }
@@ -34,8 +34,8 @@ export interface OhbugClient {
   readonly _metaData: Map<string, any>
 
   use: (extension: OhbugExtension) => OhbugClient
-  createEvent: <D>(value: OhbugCreateEvent<D>) => OhbugEvent<D>
-  notify: <D>(
+  createEvent: <D = any>(value: OhbugCreateEvent<D>) => OhbugEvent<D>
+  notify: <D = any>(
     eventLike: any,
     beforeNotify?: (event: OhbugEvent<D>) => OhbugEvent<D> | false
   ) => Promise<any>

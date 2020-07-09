@@ -12,6 +12,7 @@ export function createExtension(extension: OhbugExtension) {
  * @param client
  */
 export function loadExtension(extension: OhbugExtension, client: OhbugClient) {
+  extension.init?.(client)
   client._extensions.push(extension)
   client._hooks.created = compose(
     // @ts-ignore
@@ -25,6 +26,4 @@ export function loadExtension(extension: OhbugExtension, client: OhbugClient) {
         .filter(({ notified }) => isFunction(notified))
         .map(({ notified }) => notified),
     ].forEach((func) => func?.(_event, _client))
-
-  extension.init?.(client)
 }

@@ -4,7 +4,6 @@ export * from './validators'
 
 export * from './get'
 export * from './mixin'
-export * from './queue'
 export * from './dom'
 export * from './cookie'
 export * from './uuid'

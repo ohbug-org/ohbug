@@ -80,11 +80,6 @@ export function createEvent<D>(
   })
 }
 
-export function createOtherEvent<D>(type: string, detail: D) {
-  const category = 'other'
-  return createEvent<D>({ type, detail, category }, null as any)
-}
-
 export function isEvent(eventLike: any): eventLike is OhbugEvent<any> {
   return Boolean(eventLike._isOhbugEvent)
 }

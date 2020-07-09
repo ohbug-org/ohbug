@@ -1,4 +1,4 @@
-export type OhbugPlatform = 'browser' | 'node'
+export type OhbugPlatform = 'browser' | 'node' | string
 
 export interface OhbugDevice {
   platform: OhbugPlatform

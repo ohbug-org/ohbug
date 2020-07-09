@@ -1,14 +1,12 @@
-import type { OhbugGlobal } from '@ohbug/types'
-
 const fallbackGlobalObject = {}
-export function getGlobal<T = Window>(): T & OhbugGlobal {
+export function getGlobal<T = Window>(): T {
   return (typeof window !== 'undefined'
     ? window
     : typeof global !== 'undefined'
     ? global
     : typeof self !== 'undefined'
     ? self
-    : fallbackGlobalObject) as T & OhbugGlobal
+    : fallbackGlobalObject) as T
 }
 
 export function isNode(): boolean {
