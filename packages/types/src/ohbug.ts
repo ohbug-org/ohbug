@@ -1,4 +1,4 @@
-import type { OhbugPlatform } from './tags'
+import type { OhbugPlatform } from './device'
 import type { OhbugEvent } from './event'
 import type { OhbugConfig } from './config'
 import type { OhbugEnhancer, OhbugExecution } from './enhancer'

@@ -1,4 +1,5 @@
 import type { OhbugDevice } from './device'
+import { OhbugUser } from './user'
 
 export interface OhbugAction {
   type: string
@@ -18,6 +19,7 @@ export interface OhbugEvent<D> {
   type: string
   device: OhbugDevice
   detail: D
+  user?: OhbugUser
   actions?: OhbugAction[]
   metadata?: any
 }

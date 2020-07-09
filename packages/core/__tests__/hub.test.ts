@@ -1,7 +1,7 @@
 import init from '../src/init'
 import { getHub } from '../src/hub'
 import { getOhbugObject } from '../src/config'
-import report from '../src/report'
+import notify from '../src/report'
 import type { OhbugEvent, OhbugAction } from '@ohbug/types'
 jest.mock('../src/report')
 
@@ -34,7 +34,7 @@ describe('core hub', () => {
 
   it('hub.addEvent() should trigger the report', () => {
     const mockReport = jest.fn()
-    ;(report as jest.Mock).mockImplementation(() => {
+    ;(notify as jest.Mock).mockImplementation(() => {
       mockReport()
     })
     const hub = getHub()

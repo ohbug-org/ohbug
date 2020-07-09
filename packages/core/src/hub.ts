@@ -1,5 +1,5 @@
 import { getOhbugObject } from './config'
-import report from './report'
+import { notify } from './notify'
 import type { OhbugHub, OhbugEvent, OhbugAction, OhbugExecution } from '@ohbug/types'
 
 class Hub implements OhbugHub {
@@ -10,7 +10,7 @@ class Hub implements OhbugHub {
   public addEvent<T>(event: OhbugEvent<T>, execution: OhbugExecution): void {
     this.events.push(event)
 
-    report(event, execution)
+    notify(event)
   }
 
   public getActions(): OhbugAction[] {

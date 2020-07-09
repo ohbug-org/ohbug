@@ -1,10 +1,9 @@
 import type { OhbugClient, OhbugDevice } from '@ohbug/types'
 
 export function createDevice(client: OhbugClient): OhbugDevice {
-  const { uuid, platform, version } = client._device
+  const { platform, version } = client._device
 
   const device: OhbugDevice = {
-    uuid,
     platform,
     version,
   }

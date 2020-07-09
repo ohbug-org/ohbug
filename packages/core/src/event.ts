@@ -1,6 +1,54 @@
-import type { OhbugEvent, OhbugCreateEvent, OhbugClient } from '@ohbug/types'
+import type { OhbugEvent, OhbugCreateEvent, OhbugClient, OhbugUser } from '@ohbug/types'
 
 import { createDevice } from './device'
+import { OhbugAction, OhbugCategory, OhbugDevice } from '@ohbug/types'
+
+export class Event<D> implements OhbugEvent<D> {
+  readonly apiKey: string
+  readonly appVersion?: string
+  readonly appType?: string
+  readonly timestamp: string
+  readonly category?: OhbugCategory
+  readonly type: string
+  readonly device: OhbugDevice
+  readonly detail: D
+  readonly user?: OhbugUser
+  readonly actions?: OhbugAction[]
+  readonly metadata?: any
+
+  readonly _isOhbugEvent: boolean
+  readonly _client: OhbugClient
+
+  constructor(values: OhbugEvent<D>, client: OhbugClient) {
+    const {
+      apiKey,
+      appVersion,
+      appType,
+      timestamp,
+      category,
+      type,
+      device,
+      detail,
+      user,
+      actions,
+      metadata,
+    } = values
+    this.apiKey = apiKey
+    this.appVersion = appVersion
+    this.appType = appType
+    this.timestamp = timestamp
+    this.category = category
+    this.type = type
+    this.device = device
+    this.detail = detail
+    this.user = user
+    this.actions = actions
+    this.metadata = metadata
+
+    this._isOhbugEvent = true
+    this._client = client
+  }
+}
 
 export function createEvent<D>(
   { category, type, detail }: OhbugCreateEvent<D>,
@@ -8,34 +56,32 @@ export function createEvent<D>(
 ): OhbugEvent<D> {
   category = category || 'error'
 
-  const { apiKey, appVersion, appType } = client._config
+  const { apiKey, appVersion, appType, user } = client._config
   const timestamp = new Date().toISOString()
   const device = createDevice(client)
 
-  const event: OhbugEvent<D> = {
-    apiKey,
-    timestamp,
-    category,
-    type,
-    device,
-    detail,
-  }
-  if (appVersion) {
-    event.appVersion = appVersion
-  }
-  if (appType) {
-    event.appType = appType
-  }
-
-  // view removes actions to reduce request size
-  if (type !== 'view' && category !== 'view') {
-    event.actions = client._actions
-  }
-
-  return event
+  return new Event(
+    {
+      apiKey,
+      appVersion,
+      appType,
+      timestamp,
+      category,
+      type,
+      device,
+      user,
+      detail,
+      actions: client._actions,
+    },
+    client
+  )
 }
 
 export function createOtherEvent<D>(type: string, detail: D) {
   const category = 'other'
   return createEvent<D>({ type, detail, category }, null as any)
+}
+
+export function isEvent(eventLike: any): eventLike is OhbugEvent<any> {
+  return Boolean(eventLike._isOhbugEvent)
 }
