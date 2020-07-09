@@ -1,23 +1,11 @@
-import type { OhbugConfig, OhbugEvent, OhbugMetaData, OhbugUser } from '@ohbug/types'
+import type { OhbugMetaData, OhbugUser } from '@ohbug/types'
 import { isObject, isPromise } from '@ohbug/utils'
 
+import { apiKey, getValues } from './utils'
 import { Client } from '../src/client'
 import { createExtension } from '../src/extension'
 import { isEvent } from '../src/event'
 import { Action } from '../src/action'
-
-const apiKey = 'API_KEY_TEST'
-const getValues = (config?: OhbugConfig) => {
-  config = config || { apiKey }
-  return {
-    config,
-    device: {
-      platform: 'jest',
-      version: '0.0.0',
-    },
-    notifier: (event: OhbugEvent<any>) => event,
-  }
-}
 
 describe('@ohbug/core/client', () => {
   describe('constructor', () => {
