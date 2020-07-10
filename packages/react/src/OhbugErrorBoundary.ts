@@ -1,7 +1,5 @@
-import * as React from 'react'
-import { createEvent, collect } from '@ohbug/core'
-import { init } from '@ohbug/browser'
-import type { OhbugConfig, OhbugBaseDetail, OhbugPlugin } from '@ohbug/types'
+import type { OhbugBaseDetail, OhbugClient } from '@ohbug/types'
+import React from 'react'
 
 export interface ReactErrorDetail extends OhbugBaseDetail {
   name: string
@@ -17,26 +15,14 @@ interface ErrorBoundaryState {
   info: any
 }
 
-function install(
-  config: OhbugConfig,
-  plugins?: OhbugPlugin[]
-): new (props: ErrorBoundaryProp, state: ErrorBoundaryState) => React.Component<
-  ErrorBoundaryProp,
-  ErrorBoundaryState
-> {
-  init(config, plugins)
-
-  class OhbugErrorBoundary extends React.Component<ErrorBoundaryProp, ErrorBoundaryState> {
+export function createOhbugErrorBoundary(client: OhbugClient, react: typeof React) {
+  return class OhbugErrorBoundary extends react.Component<ErrorBoundaryProp, ErrorBoundaryState> {
     constructor(props: ErrorBoundaryProp) {
       super(props)
       this.state = {
         error: null,
         info: null,
       }
-    }
-
-    static getDerivedStateFromError(error: Error) {
-      return { error }
     }
 
     componentDidCatch(error: Error, info: any) {
@@ -47,8 +33,17 @@ function install(
         errorInfo: info,
       }
 
-      const event = createEvent<ReactErrorDetail>('react', detail)
-      collect(event)
+      const event = client.createEvent<ReactErrorDetail>({
+        category: 'error',
+        type: 'react',
+        detail,
+      })
+      client.notify(event)
+
+      this.setState({
+        error: null,
+        info: null,
+      })
     }
 
     render() {
@@ -61,8 +56,4 @@ function install(
       return this.props.children
     }
   }
-
-  return OhbugErrorBoundary
 }
-
-export default install

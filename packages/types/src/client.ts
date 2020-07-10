@@ -33,7 +33,7 @@ export interface OhbugClient {
   _user: OhbugUser
   readonly _metaData: Map<string, any>
 
-  use: (extension: OhbugExtension) => OhbugClient
+  use: (extension: OhbugExtension, ...args: any[]) => OhbugClient | any
   createEvent: <D = any>(value: OhbugCreateEvent<D>) => OhbugEvent<D>
   notify: <D = any>(
     eventLike: any,

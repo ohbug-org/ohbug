@@ -25,8 +25,8 @@ Will support Mini Program, NodeJS, React Native and other JavaScript platforms.
 ### Platform
 
 - [@ohbug/browser](./packages/browser): SDK for Browsers.
-- [@ohbug/react](./packages/ohbug-react): SDK for React.
-- [@ohbug/vue](./packages/ohbug-vue): SDK for Vue.
+- [@ohbug/react](packages/react): SDK for React.
+- [@ohbug/vue](packages/vue): SDK for Vue.
 
 ### Plugins
 

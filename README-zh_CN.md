@@ -25,8 +25,8 @@ Ohbug 是一套集 行为监控、异常监控、自定义行为监控 于一体
 ### Platform
 
 - [@ohbug/browser](./packages/browser): SDK for Browsers.
-- [@ohbug/react](./packages/ohbug-react): SDK for React.
-- [@ohbug/vue](./packages/ohbug-vue): SDK for Vue.
+- [@ohbug/react](packages/react): SDK for React.
+- [@ohbug/vue](packages/vue): SDK for Vue.
 
 ### Plugins
 

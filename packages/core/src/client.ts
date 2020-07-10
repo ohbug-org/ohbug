@@ -74,9 +74,10 @@ export const Client: OhbugClientConstructor = class Client implements OhbugClien
    * 加载扩展
    *
    * @param extension
+   * @param args
    */
-  use(extension: OhbugExtension): Client {
-    return loadExtension(extension, this)
+  use(extension: OhbugExtension, ...args: any[]): Client | any {
+    return loadExtension(extension, this, ...args)
   }
 
   /**

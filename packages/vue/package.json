@@ -1,7 +1,7 @@
 {
-  "name": "@ohbug/react",
+  "name": "@ohbug/vue",
   "version": "0.0.7",
-  "description": "Ohbug SDK for React",
+  "description": "Ohbug SDK for Vue",
   "author": "chenyueban <jasonchan0527@gmail.com>",
   "homepage": "https://github.com/ohbug-org/ohbug",
   "bugs": {
@@ -13,24 +13,21 @@
   },
   "license": "Apache-2.0",
   "main": "index.js",
-  "module": "dist/ohbug-react.esm.js",
-  "unpkg": "dist/ohbug-react.global.js",
+  "module": "dist/ohbug-vue.esm.js",
+  "unpkg": "dist/ohbug-vue.global.js",
   "types": "dist/index.d.ts",
   "files": [
     "index.js",
     "dist"
   ],
   "dependencies": {
-    "@ohbug/browser": "^0.0.11"
+    "@ohbug/core": "^0.0.11"
   },
   "devDependencies": {
-    "@types/react": "^16.9.41"
-  },
-  "peerDependencies": {
-    "react": ">= 16.8.0"
+    "vue": "^2.6.11"
   },
   "buildOptions": {
-    "name": "OhbugReact",
+    "name": "OhbugVue",
     "formats": [
       "esm",
       "umd",

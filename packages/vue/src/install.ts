@@ -1,6 +1,5 @@
-import { createEvent, collect } from '@ohbug/core'
-import { init } from '@ohbug/browser'
-import type { OhbugConfig, OhbugPlugin, OhbugBaseDetail } from '@ohbug/types'
+import type { OhbugBaseDetail, OhbugClient } from '@ohbug/types'
+import type { VueConstructor } from 'vue'
 
 export interface VueErrorDetail extends OhbugBaseDetail {
   name: string
@@ -27,10 +26,8 @@ const getComponent = (vm: any) => {
   }
 }
 
-function install(Vue: any, config: OhbugConfig, plugins?: OhbugPlugin[]) {
-  if (!Vue) throw new Error('Cannot find Vue')
-
-  init(config, plugins)
+export function install(client: OhbugClient, Vue: VueConstructor) {
+  const prev = Vue.config.errorHandler
 
   const handler = (error: Error, vm: any, info: string) => {
     const { component, file } = getComponent(vm)
@@ -44,13 +41,12 @@ function install(Vue: any, config: OhbugConfig, plugins?: OhbugPlugin[]) {
       file,
       props: vm ? vm.$options.propsData : undefined,
     }
-    const event = createEvent<VueErrorDetail>('vue', detail)
-    collect(event)
+    const event = client.createEvent<VueErrorDetail>({ category: 'error', type: 'vue', detail })
+    client.notify(event)
 
-    console.error(error)
+    if (typeof console !== 'undefined' && typeof console.error === 'function') console.error(error)
+    if (typeof prev === 'function') prev.call(this, error, vm, info)
   }
 
   Vue.config.errorHandler = handler
 }
-
-export default install

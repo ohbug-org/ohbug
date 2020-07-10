@@ -19,7 +19,12 @@ function createClient(config: OhbugConfig) {
   const client = new Client({ config, device: { platform, version }, notifier })
   global.__OHBUG__ = { client }
   client.use(extension)
-  client._logger?.log('browser Loaded!')
+  console.log(
+    `%c @ohbug/browser %c Detected Ohbug v${version} %c`,
+    'background:#333; padding: 2px 1px; color: #FFF',
+    'background:#FF6F61; padding: 2px 1px; color: #FFF',
+    'background:transparent'
+  )
   return client
 }
 

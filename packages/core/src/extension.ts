@@ -10,9 +10,14 @@ export function createExtension(extension: OhbugExtension) {
  *
  * @param extension
  * @param client
+ * @param args
  */
-export function loadExtension(extension: OhbugExtension, client: OhbugClient): OhbugClient {
-  extension.init?.(client)
+export function loadExtension(
+  extension: OhbugExtension,
+  client: OhbugClient,
+  ...args: any[]
+): OhbugClient | any {
+  const result = extension.init?.(client, ...args)
   client._extensions.push(extension)
   client._hooks.created = compose(
     // @ts-ignore
@@ -27,5 +32,5 @@ export function loadExtension(extension: OhbugExtension, client: OhbugClient): O
         .map(({ notified }) => notified),
     ].forEach((func) => func?.(_event, _client))
 
-  return client
+  return result || client
 }
