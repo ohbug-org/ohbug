@@ -7,12 +7,12 @@ describe('utils mixin', () => {
     it('if name does not exist with source, nothing should be done', () => {
       const source = {
         foo: {
-          name: 'fooo'
-        }
+          name: 'fooo',
+        },
       }
       const name = 'foo1'
       replace(source, name, () => ({
-        name: 'bar'
+        name: 'bar',
       }))
 
       expect(source.foo.name).toBe('fooo')
@@ -21,12 +21,12 @@ describe('utils mixin', () => {
     it('the source should be changed according to the requirements of the behavior', () => {
       const source = {
         foo: {
-          name: 'fooo'
-        }
+          name: 'fooo',
+        },
       }
       const name = 'foo'
       replace(source, name, () => ({
-        name: 'bar'
+        name: 'bar',
       }))
 
       expect(source.foo.name).toBe('bar')
@@ -35,17 +35,17 @@ describe('utils mixin', () => {
     it('should be return the original', () => {
       const source = {
         foo: {
-          name: 'fooo'
-        }
+          name: 'fooo',
+        },
       }
       const name = 'foo'
       const original = replace(source, name, () => ({
-        name: 'bar'
+        name: 'bar',
       }))
 
       expect(source.foo.name).toBe('bar')
       expect(original).toEqual({
-        name: 'fooo'
+        name: 'fooo',
       })
     })
   })
@@ -56,7 +56,7 @@ describe('utils mixin', () => {
       host: 'localhost:1234',
       path: '/bar',
       protocol: 'http',
-      relative: '/bar'
+      relative: '/bar',
     }
 
     it('URL should be parsed correctly', () => {
