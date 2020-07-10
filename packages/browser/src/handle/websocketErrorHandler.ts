@@ -1,5 +1,7 @@
-import { types, createEvent } from '@ohbug/core'
-import type { OhbugEvent, OhbugBaseDetail } from '@ohbug/types'
+import { getOhbugObject } from '@ohbug/utils'
+import type { OhbugBaseDetail } from '@ohbug/types'
+
+import * as types from '../types'
 
 const { WEBSOCKET_ERROR } = types
 
@@ -13,12 +15,12 @@ export interface WebsocketErrorDetail extends OhbugBaseDetail {
   bufferedAmount: number
 }
 
-function websocketErrorHandler(
-  detail: WebsocketErrorDetail,
-  collect: (event: OhbugEvent<WebsocketErrorDetail>) => void
-) {
-  const event = createEvent<WebsocketErrorDetail>(WEBSOCKET_ERROR, detail)
-  collect(event)
+export function websocketErrorHandler(detail: WebsocketErrorDetail) {
+  const { client } = getOhbugObject<Window>()
+  const event = client.createEvent<WebsocketErrorDetail>({
+    category: 'error',
+    type: WEBSOCKET_ERROR,
+    detail,
+  })
+  client.notify(event)
 }
-
-export default websocketErrorHandler

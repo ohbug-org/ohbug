@@ -1,12 +1,10 @@
-import { replace, getGlobal, parseUrl } from '@ohbug/utils'
-import { getHub, createEvent, collect, types } from '@ohbug/core'
+import { replace, getGlobal, getOhbugObject, parseUrl } from '@ohbug/utils'
 
 const global = getGlobal<Window>()
-
 let lastHref: string | undefined
 
 function handleUrlChange(from?: string, to?: string) {
-  const hub = getHub<Window>()
+  const { client } = getOhbugObject<Window>()
   const _href = parseUrl(global.location.href)
   let _from = parseUrl(from as string)
   const _to = parseUrl(to as string)
@@ -25,18 +23,14 @@ function handleUrlChange(from?: string, to?: string) {
   }
   if (from === to) return
 
-  const timestamp = new Date().toISOString()
-  hub.addAction({
-    type: 'navigation',
-    timestamp,
-    data: {
+  client.addAction(
+    `navigation to ${to}`,
+    {
       from,
       to,
     },
-  })
-
-  const event = createEvent<null>(types.VIEW, null, 'view')
-  collect(event)
+    'navigation'
+  )
 }
 
 function historyReplacement(original: () => void) {
@@ -48,7 +42,7 @@ function historyReplacement(original: () => void) {
   }
 }
 
-let historyOriginal = {
+const historyOriginal = {
   pushState: global.history.pushState,
   replaceState: global.history.replaceState,
   onpopstate: global.onpopstate,
@@ -67,7 +61,7 @@ function hashListener(e: HashChangeEvent) {
   handleUrlChange(oldURL, newURL)
 }
 
-function captureUrlChange() {
+export function captureUrlChange() {
   // history
   historyListener()
   // hash
@@ -82,5 +76,3 @@ export function removeCaptureUrlChange() {
   // hash
   global.removeEventListener('hashchange', hashListener, true)
 }
-
-export default captureUrlChange

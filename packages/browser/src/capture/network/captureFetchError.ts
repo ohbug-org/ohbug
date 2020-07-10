@@ -1,5 +1,6 @@
-import { getGlobal, warning, replace } from '@ohbug/utils'
-import { types, getHub } from '@ohbug/core'
+import { getGlobal, getOhbugObject, warning, replace } from '@ohbug/utils'
+
+import * as types from '../../types'
 import { networkDispatcher } from '../../dispatch'
 import { FetchErrorDetail } from '../../handle'
 
@@ -11,14 +12,14 @@ let fetchOriginal = access ? global.fetch : null
 /**
  * capture FETCH_ERROR
  */
-function captureFetchError() {
+export function captureFetchError() {
   warning(
     access,
-    'Ohbug: Binding `fetch` monitoring failed, the current environment did not find the object `fetch`'
+    'Binding `fetch` monitoring failed, the current environment did not find the object `fetch`'
   )
   if (!access) return
 
-  const hub = getHub<Window>()
+  const { client } = getOhbugObject<Window>()
 
   fetchOriginal = replace(
     global,
@@ -40,12 +41,7 @@ function captureFetchError() {
                 statusText: res.statusText,
               },
             }
-            const timestamp = new Date().toISOString()
-            hub.addAction({
-              type: 'fetch',
-              timestamp,
-              data: detail,
-            })
+            client.addAction('fetch', detail, 'fetch')
 
             if (!res.status || res.status >= 400) {
               networkDispatcher(FETCH_ERROR, detail)
@@ -64,5 +60,3 @@ export function removeCaptureFetchError() {
     global.fetch = fetchOriginal
   }
 }
-
-export default captureFetchError

@@ -1,4 +1,5 @@
 import { getGlobal } from '@ohbug/utils'
+
 import { scriptDispatcher } from '../../dispatch'
 
 const global = getGlobal<Window>()
@@ -10,12 +11,10 @@ function listener(e: PromiseRejectionEvent) {
 /**
  * capture UNHANDLEDREJECTION_ERROR
  */
-function captureUnhandledrejectionError() {
+export function captureUnhandledrejectionError() {
   global.addEventListener('unhandledrejection', listener, true)
 }
 
 export function removeCaptureUnhandledrejectionError() {
   global.removeEventListener('unhandledrejection', listener, true)
 }
-
-export default captureUnhandledrejectionError

@@ -1,5 +1,7 @@
-import { types, createEvent } from '@ohbug/core'
-import type { OhbugEvent, OhbugBaseDetail } from '@ohbug/types'
+import { getOhbugObject } from '@ohbug/utils'
+import type { OhbugBaseDetail } from '@ohbug/types'
+
+import * as types from '../types'
 
 const { UNCAUGHT_ERROR } = types
 
@@ -11,10 +13,7 @@ export interface UncaughtErrorDetail extends OhbugBaseDetail {
   stack: string
 }
 
-function uncaughtErrorHandler(
-  error: ErrorEvent,
-  collect: (event: OhbugEvent<UncaughtErrorDetail>) => void
-) {
+export function uncaughtErrorHandler(error: ErrorEvent) {
   const {
     message,
     filename,
@@ -31,8 +30,11 @@ function uncaughtErrorHandler(
     colno,
     stack,
   }
-  const event = createEvent<UncaughtErrorDetail>(UNCAUGHT_ERROR, detail)
-  collect(event)
+  const { client } = getOhbugObject<Window>()
+  const event = client.createEvent<UncaughtErrorDetail>({
+    category: 'error',
+    type: UNCAUGHT_ERROR,
+    detail,
+  })
+  client.notify(event)
 }
-
-export default uncaughtErrorHandler

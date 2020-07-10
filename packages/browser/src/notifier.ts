@@ -1,7 +1,7 @@
 import type { OhbugEvent } from '@ohbug/types'
 
-function report<T>(event: OhbugEvent<T>) {
-  const url = `__URL_REPORT__`
+const url = `__URL__`
+export function notifier<D>(event: OhbugEvent<D>) {
   return new Promise((resolve, reject) => {
     const json = JSON.stringify(event)
     if (navigator.sendBeacon) {
@@ -21,5 +21,3 @@ function report<T>(event: OhbugEvent<T>) {
     }
   })
 }
-
-export default report

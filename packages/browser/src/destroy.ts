@@ -9,22 +9,14 @@ import {
 const global = getGlobal<Window>()
 
 export function handleDestroy() {
-  removeCaptureScript()
-  removeCaptureNetwork()
-  removeCaptureAction()
-  removeCaptureConsole()
-
-  global.__OHBUG__ = null as any
-}
-
-function destroy() {
   global.addEventListener(
     'unload',
     () => {
-      handleDestroy()
+      removeCaptureScript()
+      removeCaptureNetwork()
+      removeCaptureAction()
+      removeCaptureConsole()
     },
     true
   )
 }
-
-export default destroy

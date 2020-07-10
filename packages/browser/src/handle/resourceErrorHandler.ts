@@ -1,6 +1,7 @@
-import { types, createEvent } from '@ohbug/core'
-import { getSelector } from '@ohbug/utils'
-import type { OhbugEvent, OhbugBaseDetail } from '@ohbug/types'
+import { getOhbugObject, getSelector } from '@ohbug/utils'
+import type { OhbugBaseDetail } from '@ohbug/types'
+
+import * as types from '../types'
 
 const { RESOURCE_ERROR } = types
 
@@ -16,10 +17,7 @@ export interface ResourceErrorDetail extends OhbugBaseDetail {
   selector: string
 }
 
-function resourceErrorHandler(
-  error: ErrorEvent,
-  collect: (event: OhbugEvent<ResourceErrorDetail>) => void
-) {
+export function resourceErrorHandler(error: ErrorEvent) {
   const target = (error.target || error.srcElement) as any
   const { outerHTML } = target
 
@@ -36,8 +34,11 @@ function resourceErrorHandler(
     nodeType: target && target.nodeType,
     selector,
   }
-  const event = createEvent<ResourceErrorDetail>(RESOURCE_ERROR, detail)
-  collect(event)
+  const { client } = getOhbugObject<Window>()
+  const event = client.createEvent<ResourceErrorDetail>({
+    category: 'error',
+    type: RESOURCE_ERROR,
+    detail,
+  })
+  client.notify(event)
 }
-
-export default resourceErrorHandler

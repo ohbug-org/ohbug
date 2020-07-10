@@ -1,29 +1,30 @@
-import { getGlobal, warning, replace } from '@ohbug/utils'
-import { types, getHub } from '@ohbug/core'
+import { getGlobal, getOhbugObject, warning, replace } from '@ohbug/utils'
+
+import * as types from '../../types'
 import { networkDispatcher } from '../../dispatch'
 import { AjaxErrorDetail } from '../../handle'
 
 const global = getGlobal<Window>()
 const { AJAX_ERROR } = types
 const access = 'XMLHttpRequest' in global
-
-let xhrOriginal = access
+const xhrOriginal = access
   ? {
       open: XMLHttpRequest.prototype.open,
       send: XMLHttpRequest.prototype.send,
     }
   : {}
+
 /**
  * capture AJAX_ERROR
  */
-function captureAjaxError() {
+export function captureAjaxError() {
   warning(
     access,
-    'Ohbug: Binding `AJAX` monitoring failed, the current environment did not find the object `XMLHttpRequest`'
+    'Binding `AJAX` monitoring failed, the current environment did not find the object `XMLHttpRequest`'
   )
   if (!access) return
 
-  const hub = getHub<Window>()
+  const { client } = getOhbugObject<Window>()
 
   const desc = {
     method: '',
@@ -50,7 +51,7 @@ function captureAjaxError() {
       function (...args: any[]) {
         this.addEventListener('readystatechange', function () {
           if (this.readyState === 4) {
-            if (desc.url !== '__URL_REPORT__') {
+            if (desc.url !== '__URL__') {
               const detail: AjaxErrorDetail = {
                 req: {
                   url: desc.url,
@@ -64,12 +65,7 @@ function captureAjaxError() {
                 },
               }
 
-              const timestamp = new Date().toISOString()
-              hub.addAction({
-                type: 'ajax',
-                timestamp,
-                data: detail,
-              })
+              client.addAction('ajax', detail, 'ajax')
 
               if (!this.status || this.status >= 400) {
                 networkDispatcher(AJAX_ERROR, detail)
@@ -89,5 +85,3 @@ export function removeCaptureAjaxError() {
     xhrProto.send = xhrOriginal.send
   }
 }
-
-export default captureAjaxError

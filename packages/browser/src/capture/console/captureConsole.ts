@@ -1,5 +1,4 @@
-import { replace } from '@ohbug/utils'
-import { getHub } from '@ohbug/core'
+import { replace, getOhbugObject } from '@ohbug/utils'
 
 type Level = 'log' | 'info' | 'warn' | 'error'
 const levels: Level[] = ['log', 'info', 'warn', 'error']
@@ -16,9 +15,8 @@ const consoleOriginal = Object.keys(levels).reduce<Record<Level, any>>(
   }
 )
 
-function captureConsole() {
-  const hub = getHub<Window>()
-
+export function captureConsole() {
+  const { client } = getOhbugObject<Window>()
   levels.forEach((level) => {
     consoleOriginal[level] = replace(
       console,
@@ -29,13 +27,7 @@ function captureConsole() {
             (arg) => typeof arg === 'string' && arg.includes('Ohbug')
           )
           if (!isOhbugConsole) {
-            const timestamp = new Date().toISOString()
-            hub.addAction({
-              type: 'console',
-              timestamp,
-              message: level,
-              data: args,
-            })
+            client.addAction(`console.${level}`, args, 'console')
           }
 
           return origin.apply(this, args)
@@ -51,5 +43,3 @@ export function removeCaptureConsole() {
     })
   }
 }
-
-export default captureConsole

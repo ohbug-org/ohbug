@@ -1,5 +1,7 @@
-import { types, createEvent } from '@ohbug/core'
-import type { OhbugEvent, OhbugBaseDetail } from '@ohbug/types'
+import { getOhbugObject } from '@ohbug/utils'
+import type { OhbugBaseDetail } from '@ohbug/types'
+
+import * as types from '../types'
 
 const { UNHANDLEDREJECTION_ERROR } = types
 
@@ -7,16 +9,16 @@ export interface UnhandledrejectionErrorDetail extends OhbugBaseDetail {
   stack: string
 }
 
-function unhandledrejectionErrorHandler(
-  error: PromiseRejectionEvent,
-  collect: (event: OhbugEvent<UnhandledrejectionErrorDetail>) => void
-) {
+export function unhandledrejectionErrorHandler(error: PromiseRejectionEvent) {
   const detail: UnhandledrejectionErrorDetail = {
     message: error.reason.message || error.reason,
     stack: error.reason.stack,
   }
-  const event = createEvent<UnhandledrejectionErrorDetail>(UNHANDLEDREJECTION_ERROR, detail)
-  collect(event)
+  const { client } = getOhbugObject<Window>()
+  const event = client.createEvent<UnhandledrejectionErrorDetail>({
+    category: 'error',
+    type: UNHANDLEDREJECTION_ERROR,
+    detail,
+  })
+  client.notify(event)
 }
-
-export default unhandledrejectionErrorHandler
