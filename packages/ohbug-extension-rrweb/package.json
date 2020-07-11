@@ -1,7 +1,7 @@
 {
-  "name": "@ohbug/plugin-rrweb",
+  "name": "@ohbug/extension-rrweb",
   "version": "0.0.4",
-  "description": "Ohbug plugin to 'screen recording'",
+  "description": "Ohbug extension to 'screen recording'",
   "author": "chenyueban <jasonchan0527@gmail.com>",
   "homepage": "https://github.com/ohbug-org/ohbug",
   "bugs": {
@@ -13,18 +13,21 @@
   },
   "license": "Apache-2.0",
   "main": "index.js",
-  "module": "dist/plugin-rrweb.esm.js",
-  "unpkg": "dist/plugin-rrweb.global.js",
+  "module": "dist/ohbug-extension-rrweb.esm.js",
+  "unpkg": "dist/ohbug-extension-rrweb.global.js",
   "types": "dist/index.d.ts",
   "files": [
     "index.js",
     "dist"
   ],
+  "dependencies": {
+    "@ohbug/core": "^0.0.11"
+  },
   "peerDependencies": {
-    "rrweb": "^0.7.27"
+    "rrweb": "^0.8.2"
   },
   "buildOptions": {
-    "name": "OhbugPluginRrweb",
+    "name": "OhbugExtensionRrweb",
     "formats": [
       "esm",
       "umd",

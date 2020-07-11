@@ -31,7 +31,7 @@ Will support Mini Program, NodeJS, React Native and other JavaScript platforms.
 ### Plugins
 
 - [@ohbug/plugin-perfume](packages/ohbug-extension-perfume): Package [perfume.js](https://github.com/Zizzamia/perfume.js), to collect performance information.
-- [@ohbug/plugin-rrweb](./packages/plugin-rrweb): Package [rrweb](https://github.com/rrweb-io/rrweb), to "screen recording".
+- [@ohbug/plugin-rrweb](packages/ohbug-extension-rrweb): Package [rrweb](https://github.com/rrweb-io/rrweb), to "screen recording".
 
 ### Others
 

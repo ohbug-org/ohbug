@@ -1,5 +1,5 @@
 import { OhbugClient, OhbugEvent, OhbugExtension } from '@ohbug/types'
-import { compose, isFunction } from '@ohbug/utils'
+import { isFunction } from '@ohbug/utils'
 
 export function createExtension(extension: OhbugExtension) {
   return extension
@@ -19,15 +19,23 @@ export function loadExtension(
 ): OhbugClient | any {
   const result = extension.init?.(client, ...args)
   client._extensions.push(extension)
-  client._hooks.created = compose(
+  // @ts-ignore
+  client._hooks.created = (_event: OhbugEvent<any>, _client: OhbugClient) => {
+    const funcs = [
+      _client._config.created,
+      ..._client._extensions
+        .filter(({ created }) => isFunction(created))
+        .map(({ created }) => created),
+    ]
+    if (funcs.length === 0) return ((...args) => args)(_event, _client)
+    if (funcs.length === 1) return funcs[0]?.(_event, _client)
     // @ts-ignore
-    client._config.created,
-    ...client._extensions.filter(({ created }) => isFunction(created)).map(({ created }) => created)
-  )
+    return funcs.reduce((a, b) => (event) => b(a(event, _client), _client))?.(_event, _client)
+  }
   client._hooks.notified = (_event: OhbugEvent<any>, _client: OhbugClient) =>
     [
-      client._config.notified,
-      ...client._extensions
+      _client._config.notified,
+      ..._client._extensions
         .filter(({ notified }) => isFunction(notified))
         .map(({ notified }) => notified),
     ].forEach((func) => func?.(_event, _client))
