@@ -13,8 +13,8 @@
   },
   "license": "Apache-2.0",
   "main": "index.js",
-  "module": "dist/webpack-plugin.esm.js",
-  "unpkg": "dist/webpack-plugin.global.js",
+  "module": "dist/ohbug-webpack-plugin.esm.js",
+  "unpkg": "dist/ohbug-webpack-plugin.global.js",
   "types": "dist/index.d.ts",
   "files": [
     "index.js",

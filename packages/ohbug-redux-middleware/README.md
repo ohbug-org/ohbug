@@ -9,18 +9,18 @@ English | [简体中文](./README-zh_CN.md)
 ## Installation
 
 ```
-yarn add @ohbug/core @ohbug/redux-middleware
+yarn add @ohbug/browser @ohbug/redux-middleware
 ```
 
 ## Usage
 
 ```js
-import { init } from '@ohbug/browser'
+import Ohbug from '@ohbug/browser'
 import { createStore, applyMiddleware } from "redux"
 import createOhbugMiddleware from '@ohbug/redux-middleware'
 import reducer from "./reducer"
 
-init({ apiKey: 'YOUR_API_KEY' })
+Ohbug.init({ apiKey: 'YOUR_API_KEY' })
 
 const store = createStore(
   reducer,
@@ -31,12 +31,14 @@ const store = createStore(
 ## API
 
 ```typescript
+import type { Action, MiddlewareAPI } from 'redux'
 type CreateOhbugMiddlewareOption = (action: Action, store: MiddlewareAPI) => Action | false
 ```
 
 ### example
 
 ```typescript
+import type { Action, MiddlewareAPI } from 'redux'
 function before(action: Action, store: MiddlewareAPI) {
   if (action.type === 'foo') {
     // You can filter on certain sensitive information, which will not be collected

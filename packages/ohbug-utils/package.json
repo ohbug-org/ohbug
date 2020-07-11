@@ -1,7 +1,7 @@
 {
-  "name": "@ohbug/core",
+  "name": "@ohbug/utils",
   "version": "0.0.11",
-  "description": "Responsible for managing Ohbug's workflow",
+  "description": "Utilities for all Ohbug SDKs",
   "author": "chenyueban <jasonchan0527@gmail.com>",
   "homepage": "https://github.com/ohbug-org/ohbug",
   "bugs": {
@@ -13,29 +13,32 @@
   },
   "license": "Apache-2.0",
   "main": "index.js",
-  "module": "dist/core.esm.js",
-  "unpkg": "dist/core.global.js",
+  "module": "dist/ohbug-utils.esm.js",
+  "unpkg": "dist/ohbug-utils.global.js",
   "types": "dist/index.d.ts",
   "files": [
     "index.js",
     "dist"
   ],
   "buildOptions": {
-    "name": "OhbugCore",
+    "name": "OhbugUtils",
     "formats": [
       "esm",
       "umd",
       "global",
       "cjs"
     ],
-    "order": 2
+    "order": 1
   },
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
     "@ohbug/types": "^0.0.6",
-    "@ohbug/utils": "^0.0.11"
+    "uuid": "^8.2.0"
+  },
+  "devDependencies": {
+    "@types/uuid": "^8.0.0"
   },
   "scripts": {
     "test": "jest --config ../../jest.config.js"

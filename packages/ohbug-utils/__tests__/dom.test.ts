@@ -14,7 +14,7 @@ describe('utils dom', () => {
     const dom = getDOM()
     const button = dom.querySelector('button') as HTMLButtonElement
     let selector
-    button.addEventListener('click', e => {
+    button.addEventListener('click', (e) => {
       selector = getSelector(e)
     })
     userEvent.click(button)

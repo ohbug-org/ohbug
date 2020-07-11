@@ -1,7 +1,7 @@
 {
-  "name": "@ohbug/utils",
-  "version": "0.0.11",
-  "description": "Utilities for all Ohbug SDKs",
+  "name": "@ohbug/redux-middleware",
+  "version": "0.0.3",
+  "description": "Redux middleware for propagating Redux state/actions to use with Ohbug",
   "author": "chenyueban <jasonchan0527@gmail.com>",
   "homepage": "https://github.com/ohbug-org/ohbug",
   "bugs": {
@@ -13,32 +13,31 @@
   },
   "license": "Apache-2.0",
   "main": "index.js",
-  "module": "dist/utils.esm.js",
-  "unpkg": "dist/utils.global.js",
+  "module": "dist/ohbug-redux-middleware.esm.js",
+  "unpkg": "dist/ohbug-redux-middleware.global.js",
   "types": "dist/index.d.ts",
   "files": [
     "index.js",
     "dist"
   ],
+  "dependencies": {
+    "@ohbug/utils": "^0.0.11"
+  },
+  "devDependencies": {
+    "redux": "^4.0.5"
+  },
   "buildOptions": {
-    "name": "OhbugUtils",
+    "name": "OhbugReduxMiddleware",
     "formats": [
       "esm",
       "umd",
       "global",
       "cjs"
     ],
-    "order": 1
+    "order": 4
   },
   "publishConfig": {
     "access": "public"
-  },
-  "dependencies": {
-    "@ohbug/types": "^0.0.6",
-    "uuid": "^8.2.0"
-  },
-  "devDependencies": {
-    "@types/uuid": "^8.0.0"
   },
   "scripts": {
     "test": "jest --config ../../jest.config.js"

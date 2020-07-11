@@ -30,9 +30,9 @@ export function createCompiler(options: webpack.Configuration = {}) {
           output: {
             path: `${__dirname}/dist`,
             filename: '[name].[chunkhash].js',
-            chunkFilename: '[id].[name].[chunkhash].js'
+            chunkFilename: '[id].[name].[chunkhash].js',
           },
-          ...options
+          ...options,
         }
   )
   return compiler
@@ -57,14 +57,14 @@ export const createTestServer = (): Promise<void> =>
         if (err) return reject(err)
         server = _server
         resolve()
-      }
+      },
     ]
 
     const _server = app.listen.apply(app, args)
   })
 
 export const closeTestServer = () =>
-  new Promise(resolve => {
+  new Promise((resolve) => {
     server &&
       server.close(() => {
         resolve()

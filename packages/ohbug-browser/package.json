@@ -1,7 +1,7 @@
 {
-  "name": "@ohbug/redux-middleware",
-  "version": "0.0.3",
-  "description": "Redux middleware for propagating Redux state/actions to use with Ohbug",
+  "name": "@ohbug/browser",
+  "version": "0.0.11",
+  "description": "Ohbug SDK for browsers",
   "author": "chenyueban <jasonchan0527@gmail.com>",
   "homepage": "https://github.com/ohbug-org/ohbug",
   "bugs": {
@@ -13,33 +13,32 @@
   },
   "license": "Apache-2.0",
   "main": "index.js",
-  "module": "dist/redux-middleware.esm.js",
-  "unpkg": "dist/redux-middleware.global.js",
+  "module": "dist/ohbug-browser.esm.js",
+  "unpkg": "dist/ohbug-browser.global.js",
   "types": "dist/index.d.ts",
   "files": [
     "index.js",
     "dist"
   ],
-  "devDependencies": {
-    "redux": "^4.0.5"
-  },
-  "peerDependencies": {
-    "@ohbug/core": "^0.0.7"
-  },
   "buildOptions": {
-    "name": "OhbugReduxMiddleware",
+    "name": "OhbugBrowser",
     "formats": [
       "esm",
       "umd",
       "global",
       "cjs"
     ],
-    "order": 4
+    "order": 3
   },
   "publishConfig": {
     "access": "public"
   },
+  "dependencies": {
+    "@ohbug/core": "^0.0.11"
+  },
   "scripts": {
-    "test": "jest --config ../../jest.config.js"
+    "test": "jest --config ../../jest.config.js",
+    "prettier": "prettier --parser=typescript --write",
+    "lint": "eslint --fix"
   }
 }

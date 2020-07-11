@@ -63,5 +63,5 @@ export const docCookies = {
       (sDomain ? '; domain=' + sDomain : '') +
       (sPath ? '; path=' + sPath : '')
     return true
-  }
+  },
 }

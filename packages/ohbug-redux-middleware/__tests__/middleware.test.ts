@@ -1,11 +1,10 @@
 import { createStore, applyMiddleware } from 'redux'
 import type { Action } from 'redux'
-import { init as initBrowser } from '@ohbug/browser'
-import { getHub } from '@ohbug/core'
-import createOhbugMiddleware from '../src'
+import Ohbug from '@ohbug/browser'
 
-const apiKey = 'test_id'
-const config = { apiKey }
+import { createOhbugMiddleware } from '../src/middleware'
+
+const apiKey = 'API_KEY_TEST'
 
 const defaultState = 0
 function counter(state = defaultState, action: Action) {
@@ -20,19 +19,15 @@ function counter(state = defaultState, action: Action) {
 }
 
 describe('redux-middleware', () => {
-  beforeAll(() => {
-    initBrowser(config)
-  })
-
   it('should works', () => {
+    const client = Ohbug.init({ apiKey })
     const store = createStore(counter, applyMiddleware(createOhbugMiddleware()))
 
     store.dispatch({ type: 'INCREMENT' })
     store.dispatch({ type: 'INCREMENT' })
     store.dispatch({ type: 'DECREMENT' })
 
-    const hub = getHub<Window>()
-    const actions = hub.getActions()
+    const actions = client._actions
 
     expect(store.getState()).toBe(1)
     expect(actions.length).toBe(3)
@@ -45,12 +40,12 @@ describe('redux-middleware', () => {
         type: `[ohbug] ${action.type}`,
       }
     }
+    const client = Ohbug.init({ apiKey })
     const store = createStore(counter, applyMiddleware(createOhbugMiddleware(before)))
 
     store.dispatch({ type: 'INCREMENT' })
 
-    const hub = getHub<Window>()
-    const actions = hub.getActions()
+    const actions = client._actions
 
     expect(store.getState()).toBe(1)
     expect(actions[actions.length - 1]?.data?.type).toBe('[ohbug] INCREMENT')
@@ -60,14 +55,14 @@ describe('redux-middleware', () => {
     function before(): false {
       return false
     }
+    const client = Ohbug.init({ apiKey })
     const store = createStore(counter, applyMiddleware(createOhbugMiddleware(before)))
 
-    const hub = getHub<Window>()
-    const _beforeLength = hub.getActions().length
+    const _beforeLength = client._actions.length
 
     store.dispatch({ type: 'INCREMENT' })
 
-    const _afterLength = hub.getActions().length
+    const _afterLength = client._actions.length
 
     expect(store.getState()).toBe(1)
     expect(_beforeLength).toBe(_afterLength)

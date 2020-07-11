@@ -34,6 +34,6 @@ export function parseUrl(
     host: match[4],
     path: match[5],
     protocol: match[2],
-    relative: match[5] + query + fragment
+    relative: match[5] + query + fragment,
   }
 }
