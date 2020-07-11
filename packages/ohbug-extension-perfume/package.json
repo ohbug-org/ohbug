@@ -1,7 +1,7 @@
 {
-  "name": "@ohbug/plugin-perfume",
+  "name": "@ohbug/extension-perfume",
   "version": "0.0.6",
-  "description": "Ohbug plugin to collect performance information",
+  "description": "Ohbug extension to collect performance information",
   "author": "chenyueban <jasonchan0527@gmail.com>",
   "homepage": "https://github.com/ohbug-org/ohbug",
   "bugs": {
@@ -13,21 +13,21 @@
   },
   "license": "Apache-2.0",
   "main": "index.js",
-  "module": "dist/plugin-perfume.esm.js",
-  "unpkg": "dist/plugin-perfume.global.js",
+  "module": "dist/ohbug-extension-perfume.esm.js",
+  "unpkg": "dist/ohbug-extension-perfume.global.js",
   "types": "dist/index.d.ts",
   "files": [
     "index.js",
     "dist"
   ],
   "dependencies": {
-    "@ohbug/types": "^0.0.6"
+    "@ohbug/core": "^0.0.11"
   },
   "peerDependencies": {
-    "perfume.js": "^5.0.0"
+    "perfume.js": "^5.1.0"
   },
   "buildOptions": {
-    "name": "OhbugPluginPerfume",
+    "name": "OhbugExtensionPerfume",
     "formats": [
       "esm",
       "umd",

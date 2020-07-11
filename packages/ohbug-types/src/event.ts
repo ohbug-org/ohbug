@@ -2,7 +2,7 @@ import type { OhbugDevice } from './device'
 import { OhbugUser } from './user'
 import { OhbugAction } from './action'
 
-export type OhbugCategory = 'error' | 'message' | 'feedback' | 'view' | 'other'
+export type OhbugCategory = 'error' | 'message' | 'feedback' | 'view' | 'performance' | 'other'
 
 export interface OhbugEvent<D> {
   apiKey: string
