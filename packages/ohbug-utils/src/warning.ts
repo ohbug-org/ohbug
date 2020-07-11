@@ -26,7 +26,6 @@ export function warning(condition: boolean, format: string, ...args: any[]) {
       let argIndex = 0
       const message = format.replace(/%s/g, () => args[argIndex++])
       logger.warn(message)
-      return
     }
   }
 }

@@ -1,13 +1,14 @@
 import { logger } from '../src/logger'
 
 describe('utils logger', () => {
+  const prefix = 'Ohbug'
   const content = 'hello'
   it('calls logger.log with `content`', () => {
     const logSpy = jest.spyOn(console, 'log')
 
     logger.log(content)
 
-    expect(logSpy).toHaveBeenCalledWith(content)
+    expect(logSpy).toHaveBeenCalledWith(prefix, content)
   })
 
   it('calls logger.error with `content`', () => {
@@ -15,7 +16,7 @@ describe('utils logger', () => {
 
     logger.error(content)
 
-    expect(errorSpy).toHaveBeenCalledWith(content)
+    expect(errorSpy).toHaveBeenCalledWith(prefix, content)
   })
 
   it('calls logger.info with `content`', () => {
@@ -23,6 +24,6 @@ describe('utils logger', () => {
 
     logger.info(content)
 
-    expect(infoSpy).toHaveBeenCalledWith(content)
+    expect(infoSpy).toHaveBeenCalledWith(prefix, content)
   })
 })

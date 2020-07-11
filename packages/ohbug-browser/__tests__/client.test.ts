@@ -1,6 +1,6 @@
-import { Client } from '@ohbug/core'
 import { BrowserClient } from '../src/client'
 jest.mock('@ohbug/core')
+import { Client } from '@ohbug/core'
 
 const mockClient = jest.fn()
 ;(Client as jest.Mock).mockImplementation((...args) => {
@@ -14,5 +14,6 @@ describe('@ohbug/browser/client', () => {
     BrowserClient.init({ apiKey })
 
     expect(mockClient).toBeCalledTimes(1)
+    expect(mockClient.mock.calls[0][0].config).toEqual({ apiKey })
   })
 })

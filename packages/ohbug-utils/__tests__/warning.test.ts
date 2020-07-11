@@ -1,4 +1,5 @@
 import { warning } from '../src/warning'
+import { logger } from '../src/logger'
 
 describe('utils warning', () => {
   it('should throw error that not passed format message', () => {
@@ -15,9 +16,9 @@ describe('utils warning', () => {
   })
 
   it('should log message', () => {
-    const errorSpy = jest.spyOn(global.console, 'error')
+    const errorSpy = jest.spyOn(logger, 'warn')
     const message = 'test message'
     warning(false, message)
-    expect(errorSpy.mock.calls[0][2]).toBe(message)
+    expect(errorSpy.mock.calls[0][0]).toBe(message)
   })
 })
