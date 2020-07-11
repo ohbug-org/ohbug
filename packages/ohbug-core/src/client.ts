@@ -86,7 +86,7 @@ export const Client: OhbugClientConstructor = class Client implements OhbugClien
    *
    * @param value
    */
-  createEvent<D = any>(value: OhbugCreateEvent<D>): OhbugEvent<D> {
+  createEvent<D = any>(value: OhbugCreateEvent<D>): OhbugEvent<D> | false {
     const event = createEvent(value, this)
 
     if (isFunction(this._hooks.created)) {
@@ -105,10 +105,10 @@ export const Client: OhbugClientConstructor = class Client implements OhbugClien
    */
   notify<D = any>(
     eventLike: any,
-    beforeNotify?: (event: OhbugEvent<D>) => OhbugEvent<D> | false
+    beforeNotify?: (event: OhbugEvent<D> | false) => OhbugEvent<D> | false
   ): Promise<any | null> {
     let event: OhbugEvent<D> | false
-    if (!isEvent(eventLike)) {
+    if (Boolean(eventLike) && !isEvent(eventLike)) {
       event = this.createEvent(eventLike)
     } else {
       event = eventLike

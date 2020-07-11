@@ -17,7 +17,7 @@ export interface OhbugClientConstructor {
 }
 
 export interface OhbugHooks {
-  created: (...args: any[]) => OhbugEvent<any>
+  created: (...args: any[]) => OhbugEvent<any> | false
   notified: (...args: any[]) => void
 }
 
@@ -34,11 +34,11 @@ export interface OhbugClient {
   readonly _metaData: Map<string, any>
 
   use: (extension: OhbugExtension, ...args: any[]) => OhbugClient | any
-  createEvent: <D = any>(value: OhbugCreateEvent<D>) => OhbugEvent<D>
+  createEvent: <D = any>(value: OhbugCreateEvent<D>) => OhbugEvent<D> | false
   notify: <D = any>(
     eventLike: any,
-    beforeNotify?: (event: OhbugEvent<D>) => OhbugEvent<D> | false
-  ) => Promise<any>
+    beforeNotify?: (event: OhbugEvent<D> | false) => OhbugEvent<D> | false
+  ) => Promise<any | null>
   addAction: (message: string, data: Record<string, any>, type: string, timestamp?: string) => void
   getUser: () => OhbugUser | undefined
   setUser: (user: OhbugUser) => OhbugUser | undefined

@@ -16,7 +16,7 @@ export interface OhbugConfig {
   appVersion?: string
   appType?: string
   // hooks
-  created?: (event: OhbugEvent<any>, client: OhbugClient) => OhbugEvent<any>
+  created?: (event: OhbugEvent<any>, client: OhbugClient) => OhbugEvent<any> | false
   notified?: (event: OhbugEvent<any>, client: OhbugClient) => void
   // data
   user?: OhbugUser
