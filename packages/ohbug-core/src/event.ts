@@ -54,6 +54,35 @@ export class Event<D> implements OhbugEvent<D> {
   get _isOhbugEvent() {
     return true
   }
+
+  toJSON() {
+    const {
+      apiKey,
+      appVersion,
+      appType,
+      timestamp,
+      category,
+      type,
+      device,
+      detail,
+      user,
+      actions,
+      metaData,
+    } = this
+    return {
+      apiKey,
+      appVersion,
+      appType,
+      timestamp,
+      category,
+      type,
+      device,
+      detail,
+      user,
+      actions,
+      metaData: Object.fromEntries(metaData),
+    }
+  }
 }
 
 export function createEvent<D>(values: OhbugCreateEvent<D>, client: OhbugClient): OhbugEvent<D> {
