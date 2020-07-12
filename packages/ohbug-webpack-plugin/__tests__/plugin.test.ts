@@ -16,7 +16,7 @@ import {
 const apiKey = 'YOUR_API_KEY'
 const appVersion = 'YOUR_APP_VERSION'
 
-describe('webpack-plugin', () => {
+describe('@ohbug/webpack-plugin', () => {
   beforeAll(() => {
     clearUploads()
     createTestServer()

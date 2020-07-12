@@ -1,7 +1,7 @@
 import userEvent from '@testing-library/user-event'
 import { getSelector } from '../src/dom'
 
-describe('utils dom', () => {
+describe('@ohbug/utils/dom', () => {
   function getDOM() {
     const div = document.createElement('div')
     div.innerHTML = `

@@ -1,6 +1,6 @@
 import { docCookies } from '../src/cookie'
 
-describe('utils cookie', () => {
+describe('@ohbug/utils/cookie', () => {
   const key = 'cookie_key'
   const value = 'cookie_value'
   const target = `${key}=${value}`

@@ -18,7 +18,7 @@ function counter(state = defaultState, action: Action) {
   }
 }
 
-describe('redux-middleware', () => {
+describe('@ohbug/redux-middleware', () => {
   it('should works', () => {
     const client = Ohbug.init({ apiKey })
     const store = createStore(counter, applyMiddleware(createOhbugMiddleware()))

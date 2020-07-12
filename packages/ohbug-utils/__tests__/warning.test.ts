@@ -1,7 +1,7 @@
 import { warning } from '../src/warning'
 import { logger } from '../src/logger'
 
-describe('utils warning', () => {
+describe('@ohbug/utils/warning', () => {
   it('should throw error that not passed format message', () => {
     expect(() => {
       // @ts-ignore

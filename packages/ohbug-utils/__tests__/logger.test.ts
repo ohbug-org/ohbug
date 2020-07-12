@@ -1,6 +1,6 @@
 import { logger } from '../src/logger'
 
-describe('utils logger', () => {
+describe('@ohbug/utils/logger', () => {
   const prefix = 'Ohbug'
   const content = 'hello'
   it('calls logger.log with `content`', () => {

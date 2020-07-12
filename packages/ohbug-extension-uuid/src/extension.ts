@@ -5,7 +5,6 @@ export const extension = createExtension({
   name: 'OhbugExtensionUUID',
   created: (event) => {
     const uuid = getUUID()
-    console.log(event)
     event.setUser({
       uuid,
     })

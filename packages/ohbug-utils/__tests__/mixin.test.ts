@@ -1,6 +1,6 @@
 import { replace, parseUrl } from '../src/mixin'
 
-describe('utils mixin', () => {
+describe('@ohbug/utils/mixin', () => {
   jest.useFakeTimers()
 
   describe('replace', () => {
