@@ -57,4 +57,9 @@ export const schema: OhbugSchema = {
     message: 'should be an object',
     validate: (value) => value === undefined || isObject(value),
   },
+  releaseStage: {
+    defaultValue: 'production',
+    message: 'should be a string',
+    validate: (value) => value === undefined || isString(value),
+  },
 }

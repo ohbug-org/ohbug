@@ -6,6 +6,7 @@ import type {
   OhbugAction,
   OhbugCategory,
   OhbugDevice,
+  OhbugReleaseStage,
 } from '@ohbug/types'
 
 import { createDevice } from './device'
@@ -23,6 +24,7 @@ export class Event<D> implements OhbugEvent<D> {
   user?: OhbugUser
   readonly actions?: OhbugAction[]
   readonly metaData?: any
+  readonly releaseStage?: OhbugReleaseStage
 
   constructor(values: OhbugEvent<D>) {
     const {
@@ -37,6 +39,7 @@ export class Event<D> implements OhbugEvent<D> {
       user,
       actions,
       metaData,
+      releaseStage,
     } = values
     this.apiKey = apiKey
     this.appVersion = appVersion
@@ -49,6 +52,7 @@ export class Event<D> implements OhbugEvent<D> {
     this.user = user
     this.actions = actions
     this.metaData = metaData
+    this.releaseStage = releaseStage
   }
 
   get _isOhbugEvent() {
@@ -68,6 +72,7 @@ export class Event<D> implements OhbugEvent<D> {
       user,
       actions,
       metaData,
+      releaseStage,
     } = this
     return {
       apiKey,
@@ -81,12 +86,13 @@ export class Event<D> implements OhbugEvent<D> {
       user,
       actions,
       metaData: Object.fromEntries(metaData),
+      releaseStage,
     }
   }
 }
 
 export function createEvent<D>(values: OhbugCreateEvent<D>, client: OhbugClient): OhbugEvent<D> {
-  const { apiKey, appVersion, appType } = client._config
+  const { apiKey, appVersion, appType, releaseStage } = client._config
   const timestamp = new Date().toISOString()
   const device = createDevice(client)
   let category: OhbugCategory, type: string, detail: D
@@ -116,6 +122,7 @@ export function createEvent<D>(values: OhbugCreateEvent<D>, client: OhbugClient)
     detail,
     actions: client._actions,
     metaData: client._metaData,
+    releaseStage,
   })
 }
 

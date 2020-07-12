@@ -1,4 +1,4 @@
-import type { OhbugEvent } from './event'
+import type { OhbugEvent, OhbugReleaseStage } from './event'
 import type { OhbugClient } from './client'
 import type { OhbugUser } from './user'
 import type { OhbugMetaData } from './metaData'
@@ -22,6 +22,7 @@ export interface OhbugConfig {
   // data
   user?: OhbugUser
   metaData?: OhbugMetaData
+  releaseStage?: OhbugReleaseStage
   // utils
   logger?: OhbugLoggerConfig
 }

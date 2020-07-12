@@ -3,6 +3,7 @@ import { OhbugUser } from './user'
 import { OhbugAction } from './action'
 
 export type OhbugCategory = 'error' | 'message' | 'feedback' | 'view' | 'performance' | 'other'
+export type OhbugReleaseStage = 'development' | 'production' | string
 
 export interface OhbugEvent<D> {
   apiKey: string
@@ -16,6 +17,7 @@ export interface OhbugEvent<D> {
   user?: OhbugUser
   actions?: OhbugAction[]
   metaData?: any
+  releaseStage?: OhbugReleaseStage
 }
 
 export interface OhbugBaseDetail {
