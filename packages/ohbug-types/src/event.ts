@@ -19,6 +19,14 @@ export interface OhbugEvent<D> {
   metaData?: any
   releaseStage?: OhbugReleaseStage
 }
+export interface OhbugEventWithMethods<D> extends OhbugEvent<D> {
+  addAction: (message: string, data: Record<string, any>, type: string, timestamp?: string) => void
+  getUser: () => OhbugUser | undefined
+  setUser: (user: OhbugUser) => OhbugUser | undefined
+  addMetaData: (section: string, data: any) => any
+  getMetaData: (section: string) => any
+  deleteMetaData: (section: string) => any
+}
 
 export interface OhbugBaseDetail {
   message?: string

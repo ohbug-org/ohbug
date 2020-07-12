@@ -1,4 +1,4 @@
-import type { OhbugClient, OhbugEvent } from '@ohbug/types'
+import type { OhbugClient, OhbugEventWithMethods } from '@ohbug/types'
 import { isFunction } from '@ohbug/utils'
 
 /**
@@ -7,7 +7,10 @@ import { isFunction } from '@ohbug/utils'
  * @param event
  * @param client
  */
-export async function notify<D>(event: OhbugEvent<D> | false, client: OhbugClient): Promise<any> {
+export async function notify<D>(
+  event: OhbugEventWithMethods<D> | false,
+  client: OhbugClient
+): Promise<any> {
   try {
     let result = null
     if (event) {

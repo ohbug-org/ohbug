@@ -1,6 +1,5 @@
 import { v4 as uuidv4 } from 'uuid'
-import { isBrowser, isNode } from './get'
-import { docCookies } from './cookie'
+import { isBrowser, isNode, docCookies } from '@ohbug/utils'
 
 const key = 'OhbugUUID'
 

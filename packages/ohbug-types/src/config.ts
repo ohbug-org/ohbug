@@ -15,6 +15,7 @@ export interface OhbugConfig {
   apiKey: string
   appVersion?: string
   appType?: string
+  releaseStage?: OhbugReleaseStage
   endpoint?: string
   maxActions?: number
   // hooks
@@ -23,7 +24,6 @@ export interface OhbugConfig {
   // data
   user?: OhbugUser
   metaData?: OhbugMetaData
-  releaseStage?: OhbugReleaseStage
   // utils
   logger?: OhbugLoggerConfig
 }

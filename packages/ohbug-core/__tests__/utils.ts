@@ -1,4 +1,4 @@
-import { OhbugConfig, OhbugEvent } from '@ohbug/types'
+import { OhbugConfig, OhbugEventWithMethods } from '@ohbug/types'
 
 export const apiKey = 'API_KEY_TEST'
 export const device = {
@@ -10,6 +10,6 @@ export const getValues = (config?: OhbugConfig) => {
   return {
     config,
     device,
-    notifier: (event: OhbugEvent<any>) => event,
+    notifier: (event: OhbugEventWithMethods<any>) => event,
   }
 }

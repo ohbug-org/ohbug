@@ -17,10 +17,10 @@ export const extension = createExtension({
       checkoutEveryNms: 3 * 60 * 1000,
     })
   },
-  created: (event, client) => {
+  created: (event) => {
     const len = eventsMatrix.length
     const events = (eventsMatrix[len - 2] || []).concat(eventsMatrix[len - 1])
-    client.addMetaData('rrweb', events)
+    event.addMetaData('rrweb', events)
     return event
   },
 })

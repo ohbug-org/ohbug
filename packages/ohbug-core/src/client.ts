@@ -4,7 +4,7 @@ import type {
   OhbugLoggerConfig,
   OhbugExtension,
   OhbugCreateEvent,
-  OhbugEvent,
+  OhbugEventWithMethods,
   OhbugClientConstructor,
   OhbugClientConstructorValues,
   OhbugDevice,
@@ -30,9 +30,10 @@ export const Client: OhbugClientConstructor = class Client implements OhbugClien
   readonly _device: OhbugDevice
   readonly _notifier: OhbugNotifier
 
-  readonly _actions: OhbugAction[]
   readonly _extensions: OhbugExtension[]
   readonly _hooks: OhbugHooks
+
+  readonly _actions: OhbugAction[]
   _user: OhbugUser
   readonly _metaData: Map<string, any>
 
@@ -50,12 +51,12 @@ export const Client: OhbugClientConstructor = class Client implements OhbugClien
     this._device = device
     this._notifier = notifier
 
-    this._actions = []
     this._extensions = []
     this._hooks = {
       created: config.created,
       notified: config.notified,
     }
+    this._actions = []
     this._user = config.user
     this._metaData = new Map<string, any>()
     if (isObject(config.metaData)) {
@@ -86,7 +87,7 @@ export const Client: OhbugClientConstructor = class Client implements OhbugClien
    *
    * @param value
    */
-  createEvent<D = any>(value: OhbugCreateEvent<D>): OhbugEvent<D> | false {
+  createEvent<D = any>(value: OhbugCreateEvent<D>): OhbugEventWithMethods<D> | false {
     const event = createEvent(value, this)
 
     if (isFunction(this._hooks.created)) {
@@ -105,9 +106,9 @@ export const Client: OhbugClientConstructor = class Client implements OhbugClien
    */
   notify<D = any>(
     eventLike: any,
-    beforeNotify?: (event: OhbugEvent<D> | false) => OhbugEvent<D> | false
+    beforeNotify?: (event: OhbugEventWithMethods<D> | false) => OhbugEventWithMethods<D> | false
   ): Promise<any | null> {
-    let event: OhbugEvent<D> | false
+    let event: OhbugEventWithMethods<D> | false
     if (Boolean(eventLike) && !isEvent(eventLike)) {
       event = this.createEvent(eventLike)
     } else {
@@ -158,7 +159,7 @@ export const Client: OhbugClientConstructor = class Client implements OhbugClien
    */
   setUser(user: OhbugUser): OhbugUser | undefined {
     if (isObject(user) && Object.keys(user).length <= 6) {
-      this._user = user
+      this._user = Object.assign({}, this._user, user)
       return this.getUser()
     }
     this._logger.warn(

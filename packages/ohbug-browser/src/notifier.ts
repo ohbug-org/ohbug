@@ -1,7 +1,7 @@
-import type { OhbugEvent } from '@ohbug/types'
+import type { OhbugEventWithMethods } from '@ohbug/types'
 import { getOhbugObject } from '@ohbug/utils'
 
-export function notifier<D>(event: OhbugEvent<D>) {
+export function notifier<D>(event: OhbugEventWithMethods<D>) {
   const { client } = getOhbugObject<Window>()
   const url = client._config.endpoint!
 

@@ -1,6 +1,6 @@
 import type { OhbugExtension } from './extension'
 import type { OhbugConfig, OhbugLoggerConfig, OhbugSchema } from './config'
-import type { OhbugCreateEvent, OhbugEvent } from './event'
+import type { OhbugCreateEvent, OhbugEventWithMethods } from './event'
 import type { OhbugDevice } from './device'
 import type { OhbugNotifier } from './notify'
 import type { OhbugAction } from './action'
@@ -17,7 +17,7 @@ export interface OhbugClientConstructor {
 }
 
 export interface OhbugHooks {
-  created: (...args: any[]) => OhbugEvent<any> | false
+  created: (...args: any[]) => OhbugEventWithMethods<any> | false
   notified: (...args: any[]) => void
 }
 
@@ -27,17 +27,18 @@ export interface OhbugClient {
   readonly _device: OhbugDevice
   readonly _notifier: OhbugNotifier
 
-  readonly _actions: OhbugAction[]
   readonly _extensions: OhbugExtension[]
   readonly _hooks: OhbugHooks
+
+  readonly _actions: OhbugAction[]
   _user: OhbugUser
   readonly _metaData: Map<string, any>
 
   use: (extension: OhbugExtension, ...args: any[]) => OhbugClient | any
-  createEvent: <D = any>(value: OhbugCreateEvent<D>) => OhbugEvent<D> | false
+  createEvent: <D = any>(value: OhbugCreateEvent<D>) => OhbugEventWithMethods<D> | false
   notify: <D = any>(
     eventLike: any,
-    beforeNotify?: (event: OhbugEvent<D> | false) => OhbugEvent<D> | false
+    beforeNotify?: (event: OhbugEventWithMethods<D> | false) => OhbugEventWithMethods<D> | false
   ) => Promise<any | null>
   addAction: (message: string, data: Record<string, any>, type: string, timestamp?: string) => void
   getUser: () => OhbugUser | undefined

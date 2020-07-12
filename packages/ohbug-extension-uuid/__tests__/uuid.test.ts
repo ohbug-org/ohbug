@@ -1,6 +1,6 @@
 import { getUUID } from '../src/uuid'
 
-describe('utils uuid', () => {
+describe('@ohbug/extension-uuid', () => {
   it('should get unique uuid', () => {
     const uuid = getUUID()
     const uuid2 = getUUID()

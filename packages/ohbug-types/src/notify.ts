@@ -1,3 +1,3 @@
-import { OhbugEvent } from './event'
+import { OhbugEventWithMethods } from './event'
 
-export type OhbugNotifier = (event: OhbugEvent<any>) => Promise<any> | any
+export type OhbugNotifier = (event: OhbugEventWithMethods<any>) => Promise<any> | any

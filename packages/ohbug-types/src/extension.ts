@@ -1,9 +1,12 @@
 import type { OhbugClient } from './client'
-import { OhbugEvent } from './event'
+import type { OhbugEventWithMethods } from './event'
 
 export interface OhbugExtension<T = any> {
   name: string
   init?: (client: OhbugClient, ...args: any[]) => T
-  created?: (event: OhbugEvent<any>, client: OhbugClient) => OhbugEvent<any> | false
-  notified?: (event: OhbugEvent<any>, client: OhbugClient) => void
+  created?: (
+    event: OhbugEventWithMethods<any>,
+    client: OhbugClient
+  ) => OhbugEventWithMethods<any> | false
+  notified?: (event: OhbugEventWithMethods<any>, client: OhbugClient) => void
 }
