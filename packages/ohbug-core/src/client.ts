@@ -120,8 +120,10 @@ export const Client: OhbugClientConstructor = class Client implements OhbugClien
   }
 
   /**
-   * Add an action
-   * 新增一个动作
+   * Add an action.
+   * Once the threshold is reached, the oldest breadcrumbs will be deleted.
+   * 新增一个动作。
+   * 一旦达到阈值，最老的 Action 将被删除。
    *
    * @param message
    * @param data
@@ -129,12 +131,17 @@ export const Client: OhbugClientConstructor = class Client implements OhbugClien
    * @param timestamp
    */
   addAction(message: string, data: Record<string, any>, type: string, timestamp?: string): void {
+    const actions = this._actions
+
     message = isString(message) ? message : ''
     data = isObject(data) ? data : {}
     type = isString(type) ? type : ''
 
     const action = new Action(message, data, type, timestamp)
-    this._actions.push(action)
+    if (actions.length >= this._config.maxActions!) {
+      actions.shift()
+    }
+    actions.push(action)
   }
 
   /**

@@ -15,6 +15,7 @@ export interface OhbugConfig {
   apiKey: string
   appVersion?: string
   appType?: string
+  maxActions?: number
   // hooks
   created?: (event: OhbugEvent<any>, client: OhbugClient) => OhbugEvent<any> | false
   notified?: (event: OhbugEvent<any>, client: OhbugClient) => void

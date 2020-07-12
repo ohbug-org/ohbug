@@ -1,4 +1,4 @@
-import { isString, isFunction, isObject } from '@ohbug/utils'
+import { isString, isNumber, isFunction, isObject } from '@ohbug/utils'
 import type { OhbugSchema, OhbugEvent } from '@ohbug/types'
 
 export const schema: OhbugSchema = {
@@ -17,6 +17,11 @@ export const schema: OhbugSchema = {
     defaultValue: undefined,
     message: 'should be a string',
     validate: (value) => value === undefined || isString(value),
+  },
+  maxActions: {
+    defaultValue: 30,
+    message: 'should be a number between 0 and 100',
+    validate: (value) => value === undefined || (isNumber(value) && 1 <= value && value <= 100),
   },
   // hooks
   created: {
