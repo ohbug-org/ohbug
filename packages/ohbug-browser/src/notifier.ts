@@ -1,7 +1,10 @@
 import type { OhbugEvent } from '@ohbug/types'
+import { getOhbugObject } from '@ohbug/utils'
 
-const url = `__URL__`
 export function notifier<D>(event: OhbugEvent<D>) {
+  const { client } = getOhbugObject<Window>()
+  const url = client._config.endpoint!
+
   return new Promise((resolve, reject) => {
     const json = JSON.stringify(event)
     if (navigator.sendBeacon) {

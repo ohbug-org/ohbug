@@ -18,6 +18,16 @@ export const schema: OhbugSchema = {
     message: 'should be a string',
     validate: (value) => value === undefined || isString(value),
   },
+  releaseStage: {
+    defaultValue: 'production',
+    message: 'should be a string',
+    validate: (value) => value === undefined || isString(value),
+  },
+  endpoint: {
+    defaultValue: '__URL__',
+    message: 'should be a string',
+    validate: (value) => value === undefined || isString(value),
+  },
   maxActions: {
     defaultValue: 30,
     message: 'should be a number between 0 and 100',
@@ -56,10 +66,5 @@ export const schema: OhbugSchema = {
     defaultValue: undefined,
     message: 'should be an object',
     validate: (value) => value === undefined || isObject(value),
-  },
-  releaseStage: {
-    defaultValue: 'production',
-    message: 'should be a string',
-    validate: (value) => value === undefined || isString(value),
   },
 }

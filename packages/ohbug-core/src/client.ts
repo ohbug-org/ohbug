@@ -12,7 +12,6 @@ import type {
   OhbugNotifier,
   OhbugHooks,
   OhbugUser,
-  OhbugReleaseStage,
 } from '@ohbug/types'
 import { logger, isFunction, isString, isObject } from '@ohbug/utils'
 
@@ -36,7 +35,6 @@ export const Client: OhbugClientConstructor = class Client implements OhbugClien
   readonly _hooks: OhbugHooks
   _user: OhbugUser
   readonly _metaData: Map<string, any>
-  readonly _releaseStage: OhbugReleaseStage
 
   constructor({
     config: baseConfig,
@@ -60,7 +58,6 @@ export const Client: OhbugClientConstructor = class Client implements OhbugClien
     }
     this._user = config.user
     this._metaData = new Map<string, any>()
-    this._releaseStage = config.releaseStage
     if (isObject(config.metaData)) {
       Object.keys(config.metaData).forEach((key) => {
         this.addMetaData(key, config.metaData[key])
