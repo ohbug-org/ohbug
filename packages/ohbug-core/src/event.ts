@@ -37,28 +37,30 @@ export class Event<D> implements OhbugEventWithMethods<D> {
       apiKey,
       appVersion,
       appType,
+      releaseStage,
       timestamp,
       category,
       type,
-      device,
+
       detail,
+      device,
       user,
       actions,
       metaData,
-      releaseStage,
     } = values
     this.apiKey = apiKey
     this.appVersion = appVersion
     this.appType = appType
+    this.releaseStage = releaseStage
     this.timestamp = timestamp
     this.category = category
     this.type = type
-    this.device = device
+
     this.detail = detail
+    this.device = device
     this.user = user
     this.actions = actions
     this.metaData = metaData
-    this.releaseStage = releaseStage
 
     this._client = client
   }

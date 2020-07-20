@@ -28,10 +28,11 @@ Ohbug 是一套集 行为监控、异常监控、自定义行为监控 于一体
 - [@ohbug/react](packages/react): SDK for React.
 - [@ohbug/vue](packages/vue): SDK for Vue.
 
-### Plugins
+### Extensions
 
-- [@ohbug/plugin-perfume](packages/ohbug-extension-perfume): 封装 [perfume.js](https://github.com/Zizzamia/perfume.js)，用于收集性能信息。
-- [@ohbug/plugin-rrweb](packages/ohbug-extension-rrweb): 封装 [rrweb](https://github.com/rrweb-io/rrweb)，用于“录屏”。
+- [@ohbug/extension-perfume](packages/ohbug-extension-perfume): 封装 [perfume.js](https://github.com/Zizzamia/perfume.js)，用于收集性能信息。
+- [@ohbug/extension-rrweb](packages/ohbug-extension-rrweb): 封装 [rrweb](https://github.com/rrweb-io/rrweb)，用于“录屏”。
+- [@ohbug/extension-uuid](packages/ohbug-extension-uuid): 扩展 `Event.user` 增加 `UUID` 标识。
 
 ### Others
 

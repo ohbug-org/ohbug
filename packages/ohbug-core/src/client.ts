@@ -13,7 +13,7 @@ import type {
   OhbugHooks,
   OhbugUser,
 } from '@ohbug/types'
-import { logger, isFunction, isString, isObject } from '@ohbug/utils'
+import { isFunction, isString, isObject } from '@ohbug/utils'
 
 import { schema as baseSchema } from './config'
 import { loadExtension } from './extension'
@@ -47,7 +47,7 @@ export const Client: OhbugClientConstructor = class Client implements OhbugClien
 
     // initialization
     this._config = config
-    this._logger = config.logger || logger
+    this._logger = config.logger
     this._device = device
     this._notifier = notifier
 

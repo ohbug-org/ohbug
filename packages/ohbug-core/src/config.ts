@@ -1,5 +1,5 @@
-import { isString, isNumber, isFunction, isObject } from '@ohbug/utils'
-import type { OhbugSchema, OhbugEvent } from '@ohbug/types'
+import { isString, isNumber, isFunction, isObject, logger } from '@ohbug/utils'
+import type { OhbugSchema, OhbugEventWithMethods } from '@ohbug/types'
 
 export const schema: OhbugSchema = {
   // base
@@ -35,7 +35,7 @@ export const schema: OhbugSchema = {
   },
   // hooks
   created: {
-    defaultValue: (event: OhbugEvent<any>) => event,
+    defaultValue: (event: OhbugEventWithMethods<any>) => event,
     message: 'should be a function',
     validate: (value) => value === undefined || isFunction(value),
   },
@@ -46,7 +46,7 @@ export const schema: OhbugSchema = {
   },
   // utils
   logger: {
-    defaultValue: undefined,
+    defaultValue: logger,
     message: 'should be null or an object with methods { log, info, warn, error }',
     validate: (value) =>
       value === undefined ||

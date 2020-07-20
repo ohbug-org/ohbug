@@ -9,15 +9,16 @@ export interface OhbugEvent<D> {
   apiKey: string
   appVersion?: string
   appType?: string
+  releaseStage?: OhbugReleaseStage
   timestamp: string
   category?: OhbugCategory
   type: string
-  device: OhbugDevice
+
   detail: D
+  device: OhbugDevice
   user?: OhbugUser
   actions?: OhbugAction[]
   metaData?: any
-  releaseStage?: OhbugReleaseStage
 }
 export interface OhbugEventWithMethods<D> extends OhbugEvent<D> {
   addAction: (message: string, data: Record<string, any>, type: string, timestamp?: string) => void

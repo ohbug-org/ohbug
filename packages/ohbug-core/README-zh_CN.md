@@ -4,13 +4,13 @@
 [![npm bundle size](https://img.shields.io/bundlephobia/min/@ohbug/core?style=flat-square)](https://bundlephobia.com/result?p=@ohbug/core)
 [![Code style](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-English | [简体中文](./README-zh_CN.md)
+[English](./README.md) | 简体中文
 
-## Introduction
+## 简介
 
-ohbug's core module is responsible for managing ohbug's workflow.
+ohbug's core 负责管理 ohbug 的整个工作流程。
 
-## Installation
+## 安装
 
 ```
 yarn add @ohbug/core
