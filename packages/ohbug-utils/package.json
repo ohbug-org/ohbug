@@ -1,6 +1,6 @@
 {
   "name": "@ohbug/utils",
-  "version": "0.0.11",
+  "version": "1.0.0-alpha.0",
   "description": "Utilities for all Ohbug SDKs",
   "author": "chenyueban <jasonchan0527@gmail.com>",
   "homepage": "https://github.com/ohbug-org/ohbug",
@@ -34,7 +34,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@ohbug/types": "^0.0.6"
+    "@ohbug/types": "^1.0.0-alpha.0"
   },
   "scripts": {
     "test": "jest --config ../../jest.config.js"
