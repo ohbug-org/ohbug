@@ -12,4 +12,3 @@ export type {
 
 import * as types from './types'
 export { types }
-git
