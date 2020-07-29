@@ -9,3 +9,5 @@ export type {
   FetchErrorDetail,
   WebsocketErrorDetail,
 } from './handle'
+
+export * as types from './types'
