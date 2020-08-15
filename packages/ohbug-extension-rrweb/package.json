@@ -1,6 +1,6 @@
 {
   "name": "@ohbug/extension-rrweb",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.1-alpha.0",
   "description": "Ohbug extension to 'screen recording'",
   "author": "chenyueban <jasonchan0527@gmail.com>",
   "homepage": "https://github.com/ohbug-org/ohbug",
@@ -21,7 +21,7 @@
     "dist"
   ],
   "dependencies": {
-    "@ohbug/core": "^1.0.0-alpha.0"
+    "@ohbug/core": "^1.0.1-alpha.0"
   },
   "peerDependencies": {
     "rrweb": "^0.8.2"

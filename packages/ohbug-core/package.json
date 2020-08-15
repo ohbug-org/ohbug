@@ -1,6 +1,6 @@
 {
   "name": "@ohbug/core",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.1-alpha.0",
   "description": "Responsible for managing Ohbug's workflow",
   "author": "chenyueban <jasonchan0527@gmail.com>",
   "homepage": "https://github.com/ohbug-org/ohbug",
@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "@ohbug/types": "^1.0.0-alpha.0",
-    "@ohbug/utils": "^1.0.0-alpha.0"
+    "@ohbug/utils": "^1.0.1-alpha.0"
   },
   "scripts": {
     "test": "jest --config ../../jest.config.js"
