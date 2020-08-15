@@ -1,6 +1,6 @@
 {
   "name": "@ohbug/redux-middleware",
-  "version": "1.0.1-alpha.0",
+  "version": "1.0.2-alpha.0",
   "description": "Redux middleware for propagating Redux state/actions to use with Ohbug",
   "author": "chenyueban <jasonchan0527@gmail.com>",
   "homepage": "https://github.com/ohbug-org/ohbug",
@@ -22,7 +22,7 @@
     "dist"
   ],
   "dependencies": {
-    "@ohbug/utils": "^1.0.1-alpha.0"
+    "@ohbug/utils": "^1.0.2-alpha.0"
   },
   "devDependencies": {
     "redux": "^4.0.5"
