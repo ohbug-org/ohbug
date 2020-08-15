@@ -15,7 +15,7 @@ export function error(condition: boolean, format: string, ...args: any[]) {
 }
 
 export function warning(condition: boolean, format: string, ...args: any[]) {
-  if (process.env.NODE_ENV !== 'production') {
+  if (process?.env?.NODE_ENV !== 'production') {
     if (format === undefined) {
       throw new Error(
         '`Ohbug warning(condition, format, ...args)` requires a warning message argument'
