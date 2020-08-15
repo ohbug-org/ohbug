@@ -14,7 +14,8 @@
   "license": "Apache-2.0",
   "main": "index.js",
   "module": "dist/ohbug-redux-middleware.esm.js",
-  "unpkg": "dist/ohbug-redux-middleware.global.js",
+  "unpkg": "dist/ohbug-redux-middleware.global.prod.js",
+  "jsdelivr": "dist/ohbug-redux-middleware.global.prod.js",
   "types": "dist/index.d.ts",
   "files": [
     "index.js",

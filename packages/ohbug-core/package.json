@@ -14,7 +14,8 @@
   "license": "Apache-2.0",
   "main": "index.js",
   "module": "dist/ohbug-core.esm.js",
-  "unpkg": "dist/ohbug-core.global.js",
+  "unpkg": "dist/ohbug-core.global.prod.js",
+  "jsdelivr": "dist/ohbug-core.global.prod.js",
   "types": "dist/index.d.ts",
   "files": [
     "index.js",

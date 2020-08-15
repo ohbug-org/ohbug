@@ -14,7 +14,8 @@
   "license": "Apache-2.0",
   "main": "index.js",
   "module": "dist/ohbug-vue.esm.js",
-  "unpkg": "dist/ohbug-vue.global.js",
+  "unpkg": "dist/ohbug-vue.global.prod.js",
+  "jsdelivr": "dist/ohbug-vue.global.prod.js",
   "types": "dist/index.d.ts",
   "files": [
     "index.js",

@@ -14,7 +14,8 @@
   "license": "Apache-2.0",
   "main": "index.js",
   "module": "dist/ohbug-extension-rrweb.esm.js",
-  "unpkg": "dist/ohbug-extension-rrweb.global.js",
+  "unpkg": "dist/ohbug-extension-rrweb.global.prod.js",
+  "jsdelivr": "dist/ohbug-extension-rrweb.global.prod.js",
   "types": "dist/index.d.ts",
   "files": [
     "index.js",
