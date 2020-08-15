@@ -15,17 +15,20 @@ export function error(condition: boolean, format: string, ...args: any[]) {
 }
 
 export function warning(condition: boolean, format: string, ...args: any[]) {
-  if (process && process?.env?.NODE_ENV !== 'production') {
-    if (format === undefined) {
-      throw new Error(
-        '`Ohbug warning(condition, format, ...args)` requires a warning message argument'
-      )
-    }
+  try {
+    if (process.env.NODE_ENV !== 'production') {
+      if (format === undefined) {
+        throw new Error(
+          '`Ohbug warning(condition, format, ...args)` requires a warning message argument'
+        )
+      }
 
-    if (!condition) {
-      let argIndex = 0
-      const message = format.replace(/%s/g, () => args[argIndex++])
-      logger.warn(message)
+      if (!condition) {
+        let argIndex = 0
+        const message = format.replace(/%s/g, () => args[argIndex++])
+        logger.warn(message)
+      }
     }
-  }
+    // eslint-disable-next-line no-empty
+  } catch (error) {}
 }
