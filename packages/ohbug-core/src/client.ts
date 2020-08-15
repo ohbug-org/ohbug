@@ -135,7 +135,7 @@ export const Client: OhbugClientConstructor = class Client implements OhbugClien
     const actions = this._actions
 
     message = isString(message) ? message : ''
-    data = isObject(data) ? data : {}
+    data = data || {}
     type = isString(type) ? type : ''
 
     const action = new Action(message, data, type, timestamp)

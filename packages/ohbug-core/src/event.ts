@@ -84,7 +84,7 @@ export class Event<D> implements OhbugEventWithMethods<D> {
     const actions = this.actions!
 
     message = isString(message) ? message : ''
-    data = isObject(data) ? data : {}
+    data = data || {}
     type = isString(type) ? type : ''
 
     const action = new Action(message, data, type, timestamp)
