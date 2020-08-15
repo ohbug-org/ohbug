@@ -35,6 +35,7 @@ interface Options {
   apiKey: string
   appVersion: string
   appType?: string
+  url?: string
 }
 ```
 
@@ -49,3 +50,7 @@ The version number of your app. Conveniently locate the problem version.
 ### appType
 
 The type of your app. If your app's codebase contains different entries, but reports to the same service, you may need to add `appType` to indicate the type of entry for the source of the problem.
+
+### url
+
+The url of the upload server

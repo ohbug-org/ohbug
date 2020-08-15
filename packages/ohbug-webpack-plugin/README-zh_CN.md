@@ -35,6 +35,7 @@ interface Options {
   apiKey: string
   appVersion: string
   appType?: string
+  url?: string
 }
 ```
 
@@ -49,3 +50,7 @@ interface Options {
 ### appType
 
 如果您的 app 的代码库包含不同的入口，但向同一个服务上报，则可能需要添加 `appType` 表示问题来源的入口类型。
+
+### url
+
+上传服务器的 URL

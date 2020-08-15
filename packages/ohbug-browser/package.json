@@ -21,7 +21,7 @@
     "dist"
   ],
   "buildOptions": {
-    "name": "OhbugBrowser",
+    "name": "Ohbug",
     "formats": [
       "esm",
       "umd",
