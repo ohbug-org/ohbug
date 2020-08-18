@@ -41,8 +41,8 @@ export function createOhbugErrorBoundary(client: OhbugClient, react: typeof Reac
       client.notify(event)
 
       this.setState({
-        error: null,
-        info: null,
+        error,
+        info,
       })
     }
 
