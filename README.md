@@ -24,9 +24,9 @@ Will support Mini Program, NodeJS, React Native and other JavaScript platforms.
 
 ### Platform
 
-- [@ohbug/browser](./packages/browser): SDK for Browsers.
-- [@ohbug/react](packages/react): SDK for React.
-- [@ohbug/vue](packages/vue): SDK for Vue.
+- [@ohbug/browser](./packages/ohbug-browser): SDK for Browsers.
+- [@ohbug/react](packages/ohbug-react): SDK for React.
+- [@ohbug/vue](packages/ohbug-vue): SDK for Vue.
 
 ### Extensions
 
@@ -36,10 +36,10 @@ Will support Mini Program, NodeJS, React Native and other JavaScript platforms.
 
 ### Others
 
-- [@ohbug/core](./packages/core): Core function modules.
-- [@ohbug/utils](./packages/utils): Contains some helper/tool programs.
-- [@ohbug/types](./packages/types): Contains types used in all packages.
-- [@ohbug/webpack-plugin](./packages/webpack-plugin): webpack plugin for uploading sourceMap files.
+- [@ohbug/core](./packages/ohbug-core): Core function modules.
+- [@ohbug/utils](./packages/ohbug-utils): Contains some helper/tool programs.
+- [@ohbug/types](./packages/ohbug-types): Contains types used in all packages.
+- [@ohbug/webpack-plugin](./packages/ohbug-webpack-plugin): webpack plugin for uploading sourceMap files.
 - [@ohbug/cli](https://github.com/ohbug-org/ohbug-cli): Upload your sourceMap file to Ohbug or other services in one click.
 
 ## License
