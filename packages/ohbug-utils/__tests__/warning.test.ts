@@ -2,13 +2,6 @@ import { warning } from '../src/warning'
 import { logger } from '../src/logger'
 
 describe('@ohbug/utils/warning', () => {
-  it('should throw error that not passed format message', () => {
-    expect(() => {
-      // @ts-ignore
-      warning(true)
-    }).toThrow(/requires a warning message argument/)
-  })
-
   it('should not throw error', () => {
     expect(() => {
       warning(true, 'message')
