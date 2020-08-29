@@ -36,7 +36,7 @@
     "test": "jest --config ../../jest.config.js"
   },
   "dependencies": {
-    "@ohbug/cli": "^1.0.0",
+    "@ohbug/cli": "^1.0.1",
     "@ohbug/types": "^1.0.0-alpha.0"
   },
   "devDependencies": {
