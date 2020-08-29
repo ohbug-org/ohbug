@@ -1,6 +1,6 @@
 {
   "name": "@ohbug/utils",
-  "version": "1.0.2-alpha.0",
+  "version": "1.0.2",
   "description": "Utilities for all Ohbug SDKs",
   "author": "chenyueban <jasonchan0527@gmail.com>",
   "homepage": "https://github.com/ohbug-org/ohbug",
