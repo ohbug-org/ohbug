@@ -39,6 +39,7 @@ Ohbug 是一套集 行为监控、异常监控、自定义行为监控 于一体
 - [@ohbug/core](./packages/ohbug-core): 核心功能模块。
 - [@ohbug/utils](./packages/ohbug-utils): 包含一些帮助/工具程序。
 - [@ohbug/types](./packages/ohbug-types): 包含所有包中使用的类型。
+- [@ohbug/redux-middleware](./packages/ohbug-redux-middleware): Redux 中间件，用于将 Redux state/actions 记录在 Ohbug Actions 内.
 - [@ohbug/webpack-plugin](./packages/ohbug-webpack-plugin): webpack 插件，用于上传 sourceMap 文件。
 - [@ohbug/cli](https://github.com/ohbug-org/ohbug-cli): 一键上传您的 sourceMap 文件到 Ohbug 或其他服务。
 

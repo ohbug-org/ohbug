@@ -39,6 +39,7 @@ Will support Mini Program, NodeJS, React Native and other JavaScript platforms.
 - [@ohbug/core](./packages/ohbug-core): Core function modules.
 - [@ohbug/utils](./packages/ohbug-utils): Contains some helper/tool programs.
 - [@ohbug/types](./packages/ohbug-types): Contains types used in all packages.
+- [@ohbug/redux-middleware](./packages/ohbug-redux-middleware): Redux middleware for propagating Redux state/actions to use with Ohbug.
 - [@ohbug/webpack-plugin](./packages/ohbug-webpack-plugin): webpack plugin for uploading sourceMap files.
 - [@ohbug/cli](https://github.com/ohbug-org/ohbug-cli): Upload your sourceMap file to Ohbug or other services in one click.
 
