@@ -12,13 +12,12 @@
     "url": "https://github.com/ohbug-org/ohbug"
   },
   "license": "Apache-2.0",
-  "main": "index.js",
-  "module": "dist/ohbug-extension-uuid.esm.js",
+  "main": "dist/ohbug-extension-uuid.cjs.prod.js",
+  "module": "dist/ohbug-extension-uuid.esm.prod.js",
   "unpkg": "dist/ohbug-extension-uuid.global.prod.js",
   "jsdelivr": "dist/ohbug-extension-uuid.global.prod.js",
   "types": "dist/index.d.ts",
   "files": [
-    "index.js",
     "dist"
   ],
   "dependencies": {

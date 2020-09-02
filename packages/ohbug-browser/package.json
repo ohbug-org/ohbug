@@ -12,13 +12,12 @@
     "url": "https://github.com/ohbug-org/ohbug"
   },
   "license": "Apache-2.0",
-  "main": "index.js",
-  "module": "dist/ohbug-browser.esm.js",
+  "main": "dist/ohbug-browser.cjs.prod.js",
+  "module": "dist/ohbug-browser.esm.prod.js",
   "unpkg": "dist/ohbug-browser.global.prod.js",
   "jsdelivr": "dist/ohbug-browser.global.prod.js",
   "types": "dist/index.d.ts",
   "files": [
-    "index.js",
     "dist"
   ],
   "buildOptions": {
