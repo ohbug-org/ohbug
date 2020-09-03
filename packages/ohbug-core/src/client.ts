@@ -7,7 +7,7 @@ import type {
   OhbugEventWithMethods,
   OhbugClientConstructor,
   OhbugClientConstructorValues,
-  OhbugDevice,
+  OhbugGetDevice,
   OhbugAction,
   OhbugNotifier,
   OhbugHooks,
@@ -27,7 +27,7 @@ import { addMetaData, getMetaData, deleteMetaData } from './lib/metaData'
 export const Client: OhbugClientConstructor = class Client implements OhbugClient {
   readonly _config: OhbugConfig
   readonly _logger: OhbugLoggerConfig
-  readonly _device: OhbugDevice
+  readonly _device: OhbugGetDevice
   readonly _notifier: OhbugNotifier
 
   readonly _extensions: OhbugExtension[]

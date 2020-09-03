@@ -1,8 +1,9 @@
-import type { OhbugClient, OhbugDevice } from '@ohbug/types'
+import type { OhbugGetDevice, OhbugDevice } from '@ohbug/types'
+import { version } from './version'
 
-export function createDevice(client: OhbugClient): OhbugDevice {
-  const { platform, version } = client._device
+const platform = 'browser'
 
+export const getDevice: OhbugGetDevice = () => {
   const device: OhbugDevice = {
     platform,
     version,

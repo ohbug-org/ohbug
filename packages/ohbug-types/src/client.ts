@@ -1,7 +1,7 @@
 import type { OhbugExtension } from './extension'
 import type { OhbugConfig, OhbugLoggerConfig, OhbugSchema } from './config'
 import type { OhbugCreateEvent, OhbugEventWithMethods } from './event'
-import type { OhbugDevice } from './device'
+import type { OhbugGetDevice } from './device'
 import type { OhbugNotifier } from './notify'
 import type { OhbugAction } from './action'
 import type { OhbugUser } from './user'
@@ -9,7 +9,7 @@ import type { OhbugUser } from './user'
 export interface OhbugClientConstructorValues {
   config: OhbugConfig
   schema?: OhbugSchema
-  device: OhbugDevice
+  device: OhbugGetDevice
   notifier: OhbugNotifier
 }
 export interface OhbugClientConstructor {
@@ -24,7 +24,7 @@ export interface OhbugHooks {
 export interface OhbugClient {
   readonly _config: OhbugConfig
   readonly _logger: OhbugLoggerConfig
-  readonly _device: OhbugDevice
+  readonly _device: OhbugGetDevice
   readonly _notifier: OhbugNotifier
 
   readonly _extensions: OhbugExtension[]

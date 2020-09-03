@@ -10,7 +10,6 @@ import type {
   OhbugReleaseStage,
 } from '@ohbug/types'
 
-import { createDevice } from './device'
 import { isObject, isString } from '@ohbug/utils'
 import { Action } from './action'
 import { getErrorMessage } from './lib/getErrorMessage'
@@ -185,7 +184,7 @@ export function createEvent<D>(
 ): OhbugEventWithMethods<D> {
   const { apiKey, appVersion, appType, releaseStage } = client._config
   const timestamp = new Date().toISOString()
-  const device = createDevice(client)
+  const device = client._device(client)
   let category: OhbugCategory, type: string, detail: D
   if (
     isObject(values) &&

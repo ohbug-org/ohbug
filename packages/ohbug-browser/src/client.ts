@@ -2,11 +2,10 @@ import type { OhbugClient, OhbugConfig } from '@ohbug/types'
 import { Client } from '@ohbug/core'
 import { getGlobal } from '@ohbug/utils'
 
+import { getDevice } from './device'
+import { version } from './version'
 import { extension } from './extension'
 import { notifier } from './notifier'
-
-const platform = 'browser'
-const version = '__VERSION__'
 
 interface BrowserClient {
   _client: OhbugClient | null
@@ -16,7 +15,7 @@ interface BrowserClient {
 function createClient(config: OhbugConfig) {
   const global = getGlobal<Window>()
 
-  const client = new Client({ config, device: { platform, version }, notifier })
+  const client = new Client({ config, device: getDevice, notifier })
   global.__OHBUG__ = { client }
   client.use(extension)
   console.log(

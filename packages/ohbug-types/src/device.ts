@@ -1,3 +1,5 @@
+import type { OhbugClient } from './client'
+
 export type OhbugPlatform = 'browser' | 'node' | string
 
 export interface OhbugDevice {
@@ -8,4 +10,8 @@ export interface OhbugDevice {
   userAgent?: string
   title?: string
   url?: string
+
+  [key: string]: any
 }
+
+export type OhbugGetDevice = (client?: OhbugClient) => OhbugDevice
