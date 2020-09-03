@@ -1,6 +1,6 @@
 {
   "name": "@ohbug/webpack-plugin",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Webpack plugin for upload your sourceMap files to Ohbug",
   "author": "chenyueban <jasonchan0527@gmail.com>",
   "homepage": "https://github.com/ohbug-org/ohbug",
@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "@ohbug/cli": "^1.0.1",
-    "@ohbug/types": "^1.0.0-alpha.0"
+    "@ohbug/types": "^1.0.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.3",
