@@ -8,6 +8,7 @@ import type {
   OhbugCategory,
   OhbugDevice,
   OhbugReleaseStage,
+  OhbugSDK,
 } from '@ohbug/types'
 
 import { isObject, isString } from '@ohbug/utils'
@@ -22,6 +23,7 @@ export class Event<D> implements OhbugEventWithMethods<D> {
   readonly timestamp: string
   readonly category?: OhbugCategory
   readonly type: string
+  readonly sdk: OhbugSDK
   readonly device: OhbugDevice
   readonly detail: D
   user?: OhbugUser
@@ -40,6 +42,7 @@ export class Event<D> implements OhbugEventWithMethods<D> {
       timestamp,
       category,
       type,
+      sdk,
 
       detail,
       device,
@@ -54,6 +57,7 @@ export class Event<D> implements OhbugEventWithMethods<D> {
     this.timestamp = timestamp
     this.category = category
     this.type = type
+    this.sdk = sdk
 
     this.detail = detail
     this.device = device
@@ -154,6 +158,7 @@ export class Event<D> implements OhbugEventWithMethods<D> {
       timestamp,
       category,
       type,
+      sdk,
       device,
       detail,
       user,
@@ -168,6 +173,7 @@ export class Event<D> implements OhbugEventWithMethods<D> {
       timestamp,
       category,
       type,
+      sdk,
       device,
       detail,
       user,
@@ -208,6 +214,7 @@ export function createEvent<D>(
       timestamp,
       category,
       type,
+      sdk: client._sdk,
       device,
       user: client._user,
       detail,

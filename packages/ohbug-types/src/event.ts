@@ -2,8 +2,12 @@ import type { OhbugDevice } from './device'
 import { OhbugUser } from './user'
 import { OhbugAction } from './action'
 
-export type OhbugCategory = 'error' | 'message' | 'feedback' | 'view' | 'performance' | 'other'
 export type OhbugReleaseStage = 'development' | 'production' | string
+export type OhbugCategory = 'error' | 'message' | 'feedback' | 'view' | 'performance' | 'other'
+export interface OhbugSDK {
+  platform: string
+  version: string
+}
 
 export interface OhbugEvent<D> {
   apiKey: string
@@ -13,6 +17,7 @@ export interface OhbugEvent<D> {
   timestamp: string
   category?: OhbugCategory
   type: string
+  sdk: OhbugSDK
 
   detail: D
   device: OhbugDevice

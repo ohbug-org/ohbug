@@ -12,6 +12,7 @@ import type {
   OhbugNotifier,
   OhbugHooks,
   OhbugUser,
+  OhbugSDK,
 } from '@ohbug/types'
 import { isFunction, isString, isObject } from '@ohbug/utils'
 
@@ -25,6 +26,7 @@ import { getConfigErrorMessage, getErrorMessage } from './lib/getErrorMessage'
 import { addMetaData, getMetaData, deleteMetaData } from './lib/metaData'
 
 export const Client: OhbugClientConstructor = class Client implements OhbugClient {
+  readonly _sdk: OhbugSDK
   readonly _config: OhbugConfig
   readonly _logger: OhbugLoggerConfig
   readonly _device: OhbugGetDevice
@@ -38,6 +40,7 @@ export const Client: OhbugClientConstructor = class Client implements OhbugClien
   readonly _metaData: Map<string, any>
 
   constructor({
+    sdk,
     config: baseConfig,
     schema = baseSchema,
     device,
@@ -46,6 +49,7 @@ export const Client: OhbugClientConstructor = class Client implements OhbugClien
     const { config, errors } = verifyConfig(baseConfig, schema)
 
     // initialization
+    this._sdk = sdk
     this._config = config
     this._logger = config.logger
     this._device = device

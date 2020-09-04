@@ -1,13 +1,7 @@
 import type { OhbugGetDevice, OhbugDevice } from '@ohbug/types'
-import { version } from './version'
-
-const platform = 'browser'
 
 export const getDevice: OhbugGetDevice = () => {
-  const device: OhbugDevice = {
-    platform,
-    version,
-  }
+  const device: OhbugDevice = {}
   if (navigator) {
     const { language, userAgent } = navigator
     device.language = language
