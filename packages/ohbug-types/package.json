@@ -1,6 +1,6 @@
 {
   "name": "@ohbug/types",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Types for all Ohbug SDKs",
   "author": "chenyueban <jasonchan0527@gmail.com>",
   "homepage": "https://github.com/ohbug-org/ohbug",
