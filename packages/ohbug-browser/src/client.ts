@@ -1,4 +1,4 @@
-import type { OhbugClient, OhbugConfig } from '@ohbug/types'
+import type { OhbugClient, OhbugConfig, OhbugSDK } from '@ohbug/types'
 import { Client } from '@ohbug/core'
 import { getGlobal } from '@ohbug/utils'
 
@@ -15,7 +15,7 @@ interface BrowserClient {
 function createClient(config: OhbugConfig) {
   const global = getGlobal<Window>()
 
-  const sdk = {
+  const sdk: OhbugSDK = {
     platform: 'ohbug-browser',
     version,
   }

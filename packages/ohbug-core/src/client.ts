@@ -13,6 +13,7 @@ import type {
   OhbugHooks,
   OhbugUser,
   OhbugSDK,
+  OhbugMetaData,
 } from '@ohbug/types'
 import { isFunction, isString, isObject } from '@ohbug/utils'
 
@@ -37,7 +38,7 @@ export const Client: OhbugClientConstructor = class Client implements OhbugClien
 
   readonly _actions: OhbugAction[]
   _user: OhbugUser
-  readonly _metaData: Map<string, any>
+  readonly _metaData: OhbugMetaData
 
   constructor({
     sdk,
@@ -62,7 +63,7 @@ export const Client: OhbugClientConstructor = class Client implements OhbugClien
     }
     this._actions = []
     this._user = config.user
-    this._metaData = new Map<string, any>()
+    this._metaData = {}
     if (isObject(config.metaData)) {
       Object.keys(config.metaData).forEach((key) => {
         this.addMetaData(key, config.metaData[key])

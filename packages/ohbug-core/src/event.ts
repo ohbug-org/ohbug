@@ -9,6 +9,7 @@ import type {
   OhbugDevice,
   OhbugReleaseStage,
   OhbugSDK,
+  OhbugMetaData,
 } from '@ohbug/types'
 
 import { isObject, isString } from '@ohbug/utils'
@@ -28,7 +29,7 @@ export class Event<D> implements OhbugEventWithMethods<D> {
   readonly detail: D
   user?: OhbugUser
   readonly actions?: OhbugAction[]
-  readonly metaData?: any
+  readonly metaData: OhbugMetaData
   readonly releaseStage?: OhbugReleaseStage
 
   readonly _client?: OhbugClient
@@ -178,7 +179,7 @@ export class Event<D> implements OhbugEventWithMethods<D> {
       detail,
       user,
       actions,
-      metaData: Object.fromEntries(metaData),
+      metaData,
       releaseStage,
     }
   }

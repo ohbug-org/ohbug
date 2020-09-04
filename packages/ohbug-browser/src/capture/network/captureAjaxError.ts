@@ -51,7 +51,7 @@ export function captureAjaxError() {
       function (...args: any[]) {
         this.addEventListener('readystatechange', function () {
           if (this.readyState === 4) {
-            if (desc.url !== '__URL__') {
+            if (desc.url !== client._config.endpoint) {
               const detail: AjaxErrorDetail = {
                 req: {
                   url: desc.url,

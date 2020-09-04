@@ -5,6 +5,7 @@ import type { OhbugGetDevice } from './device'
 import type { OhbugNotifier } from './notify'
 import type { OhbugAction } from './action'
 import type { OhbugUser } from './user'
+import type { OhbugMetaData } from './metaData'
 
 export interface OhbugClientConstructorValues {
   sdk: OhbugSDK
@@ -34,7 +35,7 @@ export interface OhbugClient {
 
   readonly _actions: OhbugAction[]
   _user: OhbugUser
-  readonly _metaData: Map<string, any>
+  readonly _metaData: OhbugMetaData
 
   use: (extension: OhbugExtension, ...args: any[]) => OhbugClient | any
   createEvent: <D = any>(value: OhbugCreateEvent<D>) => OhbugEventWithMethods<D> | false

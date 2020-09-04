@@ -207,7 +207,7 @@ describe('@ohbug/core/client', () => {
           metaData,
         })
       )
-      expect(client._metaData.get('organization')).toEqual(metaData.organization)
+      expect(client._metaData['organization']).toEqual(metaData.organization)
     })
 
     it('should be add the metaData correctly', () => {
@@ -222,7 +222,7 @@ describe('@ohbug/core/client', () => {
         name: 'ohbug',
         platform: 'jest',
       })
-      expect(client._metaData.get('organization')).toEqual(metaData.organization)
+      expect(client._metaData['organization']).toEqual(metaData.organization)
     })
 
     it('should be get the metaData correctly', () => {
@@ -250,7 +250,7 @@ describe('@ohbug/core/client', () => {
       const client = new Client(getValues({ apiKey, metaData }))
       client.deleteMetaData('organization')
       expect(client.getMetaData('organization')).toBeUndefined()
-      expect(client._metaData.size).toBe(0)
+      expect(Object.keys(client._metaData).length).toBe(0)
     })
   })
 })
