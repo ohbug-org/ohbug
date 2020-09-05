@@ -25,14 +25,15 @@ Ohbug 是一套集 行为监控、异常监控、自定义行为监控 于一体
 ### Platform
 
 - [@ohbug/browser](./packages/ohbug-browser): SDK for Browsers.
-- [@ohbug/react](packages/ohbug-react): SDK for React.
-- [@ohbug/vue](packages/ohbug-vue): SDK for Vue.
+- [@ohbug/react](./packages/ohbug-react): SDK for React.
+- [@ohbug/vue](./packages/ohbug-vue): SDK for Vue.
+- [@ohbug/miniapp](https://github.com/ohbug-org/ohbug-miniapp): Ohbug 小程序 SDK 用于小程序平台（支持微信、字节跳动、支付宝、QQ 小程序）
 
 ### Extensions
 
-- [@ohbug/extension-perfume](packages/ohbug-extension-perfume): 封装 [perfume.js](https://github.com/Zizzamia/perfume.js)，用于收集性能信息。
-- [@ohbug/extension-rrweb](packages/ohbug-extension-rrweb): 封装 [rrweb](https://github.com/rrweb-io/rrweb)，用于“录屏”。
-- [@ohbug/extension-uuid](packages/ohbug-extension-uuid): 扩展 `Event.user` 增加 `UUID` 标识。
+- [@ohbug/extension-perfume](./packages/ohbug-extension-perfume): 封装 [perfume.js](https://github.com/Zizzamia/perfume.js)，用于收集性能信息。
+- [@ohbug/extension-rrweb](./packages/ohbug-extension-rrweb): 封装 [rrweb](https://github.com/rrweb-io/rrweb)，用于“录屏”。
+- [@ohbug/extension-uuid](./packages/ohbug-extension-uuid): 扩展 `Event.user` 增加 `UUID` 标识。
 
 ### Others
 

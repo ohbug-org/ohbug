@@ -25,14 +25,15 @@ Will support Mini Program, NodeJS, React Native and other JavaScript platforms.
 ### Platform
 
 - [@ohbug/browser](./packages/ohbug-browser): SDK for Browsers.
-- [@ohbug/react](packages/ohbug-react): SDK for React.
-- [@ohbug/vue](packages/ohbug-vue): SDK for Vue.
+- [@ohbug/react](./packages/ohbug-react): SDK for React.
+- [@ohbug/vue](./packages/ohbug-vue): SDK for Vue.
+- [@ohbug/miniapp](https://github.com/ohbug-org/ohbug-miniapp): SDK for miniapp.
 
 ### Extensions
 
-- [@ohbug/extension-perfume](packages/ohbug-extension-perfume): Package [perfume.js](https://github.com/Zizzamia/perfume.js), to collect performance information.
-- [@ohbug/extension-rrweb](packages/ohbug-extension-rrweb): Package [rrweb](https://github.com/rrweb-io/rrweb), to "screen recording".
-- [@ohbug/extension-uuid](packages/ohbug-extension-uuid): Extend `Event.user` and add `UUID` .
+- [@ohbug/extension-perfume](./packages/ohbug-extension-perfume): Package [perfume.js](https://github.com/Zizzamia/perfume.js), to collect performance information.
+- [@ohbug/extension-rrweb](./packages/ohbug-extension-rrweb): Package [rrweb](https://github.com/rrweb-io/rrweb), to "screen recording".
+- [@ohbug/extension-uuid](./packages/ohbug-extension-uuid): Extend `Event.user` and add `UUID` .
 
 ### Others
 
