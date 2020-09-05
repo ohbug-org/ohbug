@@ -12,9 +12,9 @@ function listener(e: ErrorEvent) {
  * capture UNCAUGHT_ERROR RESOURCE_ERROR
  */
 export function captureUncaughtError() {
-  global.addEventListener('error', listener, true)
+  global?.addEventListener?.('error', listener, true)
 }
 
 export function removeCaptureUncaughtError() {
-  global.removeEventListener('error', listener, true)
+  global?.removeEventListener?.('error', listener, true)
 }

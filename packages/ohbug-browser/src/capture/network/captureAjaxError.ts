@@ -31,7 +31,7 @@ export function captureAjaxError() {
     url: '',
   }
 
-  const xhrProto = XMLHttpRequest.prototype
+  const xhrProto = XMLHttpRequest?.prototype
 
   xhrOriginal.open = replace(
     xhrProto,
@@ -80,7 +80,7 @@ export function captureAjaxError() {
 
 export function removeCaptureAjaxError() {
   if (access && xhrOriginal.open && xhrOriginal.send) {
-    const xhrProto = XMLHttpRequest.prototype
+    const xhrProto = XMLHttpRequest?.prototype
     xhrProto.open = xhrOriginal.open
     xhrProto.send = xhrOriginal.send
   }

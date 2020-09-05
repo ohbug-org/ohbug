@@ -12,9 +12,9 @@ function listener(e: PromiseRejectionEvent) {
  * capture UNHANDLEDREJECTION_ERROR
  */
 export function captureUnhandledrejectionError() {
-  global.addEventListener('unhandledrejection', listener, true)
+  global?.addEventListener?.('unhandledrejection', listener, true)
 }
 
 export function removeCaptureUnhandledrejectionError() {
-  global.removeEventListener('unhandledrejection', listener, true)
+  global?.removeEventListener?.('unhandledrejection', listener, true)
 }

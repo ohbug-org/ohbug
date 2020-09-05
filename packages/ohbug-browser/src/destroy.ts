@@ -9,7 +9,7 @@ import {
 const global = getGlobal<Window>()
 
 export function handleDestroy() {
-  global.addEventListener(
+  global?.addEventListener?.(
     'unload',
     () => {
       removeCaptureScript()

@@ -26,9 +26,9 @@ function listener(e: MouseEvent) {
 }
 
 export function captureClick() {
-  global.document.addEventListener('click', listener)
+  global?.document?.addEventListener?.('click', listener)
 }
 
 export function removeCaptureClick() {
-  global.document.removeEventListener('click', listener)
+  global?.document?.removeEventListener?.('click', listener)
 }

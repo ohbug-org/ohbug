@@ -5,7 +5,7 @@ let lastHref: string | undefined
 
 function handleUrlChange(from?: string, to?: string) {
   const { client } = getOhbugObject<Window>()
-  const _href = parseUrl(global.location.href)
+  const _href = parseUrl(global?.location?.href)
   let _from = parseUrl(from as string)
   const _to = parseUrl(to as string)
 
@@ -43,15 +43,15 @@ function historyReplacement(original: () => void) {
 }
 
 const historyOriginal = {
-  pushState: global.history.pushState,
-  replaceState: global.history.replaceState,
-  onpopstate: global.onpopstate,
+  pushState: global?.history?.pushState,
+  replaceState: global?.history?.replaceState,
+  onpopstate: global?.onpopstate,
 }
 function historyListener() {
-  historyOriginal.pushState = replace(global.history, 'pushState', historyReplacement)
-  historyOriginal.replaceState = replace(global.history, 'replaceState', historyReplacement)
+  historyOriginal.pushState = replace(global?.history, 'pushState', historyReplacement)
+  historyOriginal.replaceState = replace(global?.history, 'replaceState', historyReplacement)
   historyOriginal.onpopstate = replace(global, 'onpopstate', () => {
-    const current = global.location.href
+    const current = global?.location?.href
     handleUrlChange(lastHref, current)
   })
 }
@@ -65,7 +65,7 @@ export function captureUrlChange() {
   // history
   historyListener()
   // hash
-  global.addEventListener('hashchange', hashListener, true)
+  global?.addEventListener?.('hashchange', hashListener, true)
 }
 
 export function removeCaptureUrlChange() {
@@ -74,5 +74,5 @@ export function removeCaptureUrlChange() {
   global.history.replaceState = historyOriginal.replaceState
   global.onpopstate = historyOriginal.onpopstate
   // hash
-  global.removeEventListener('hashchange', hashListener, true)
+  global?.removeEventListener?.('hashchange', hashListener, true)
 }

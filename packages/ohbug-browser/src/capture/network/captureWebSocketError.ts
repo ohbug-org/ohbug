@@ -17,7 +17,7 @@ export function captureWebSocketError() {
   )
   if (!('WebSocket' in global)) return
 
-  const wsProto = WebSocket.prototype
+  const wsProto = WebSocket?.prototype
 
   const backup = Object.getOwnPropertyDescriptor(wsProto, 'onerror')
 
