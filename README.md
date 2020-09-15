@@ -10,6 +10,11 @@
   [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg?style=flat-square)](https://lerna.js.org/)
 </div>
 
+<p align="center">
+  <img width="300" src="https://raw.githubusercontent.com/ohbug-org/ohbug-website/master/static/images/dashboard-issues.png" alt="dashboard-issues">
+  <img width="300" src="https://raw.githubusercontent.com/ohbug-org/ohbug-website/master/static/images/dashboard-event.png" alt="dashboard-event">
+</p>
+
 English | [简体中文](./README-zh_CN.md)
 
 ## Introduction
@@ -18,7 +23,7 @@ Ohbug is a JavaScript monitoring module that integrates behavior monitoring, exc
 
 Through the flexible plug-in system, functions such as performance monitoring, collection of specific information, and "screen recording" of black technology can be realized.
 
-Will support Mini Program, NodeJS, React Native and other JavaScript platforms.
+Will support NodeJS, React Native and other JavaScript platforms.
 
 ## Packages
 
@@ -43,6 +48,13 @@ Will support Mini Program, NodeJS, React Native and other JavaScript platforms.
 - [@ohbug/redux-middleware](./packages/ohbug-redux-middleware): Redux middleware for propagating Redux state/actions to use with Ohbug.
 - [@ohbug/webpack-plugin](./packages/ohbug-webpack-plugin): webpack plugin for uploading sourceMap files.
 - [@ohbug/cli](https://github.com/ohbug-org/ohbug-cli): Upload your sourceMap file to Ohbug or other services in one click.
+
+## Dashboard
+
+This part contains the entire dashboard, you can deploy Ohbug privately, view the [deployment document](https://github.com/ohbug-org/ohbug-server/blob/master/setup.md).
+
+- [ohbug-server](https://github.com/ohbug-org/ohbug-server): The back end of the dashboard is implemented based on nestjs.
+- [ohbug-web-app](https://github.com/ohbug-org/ohbug-web-app): Front end of the dashboard.
 
 ## License
 

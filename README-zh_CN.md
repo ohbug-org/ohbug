@@ -10,6 +10,11 @@
   [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg?style=flat-square)](https://lerna.js.org/)
 </div>
 
+<p align="center">
+  <img width="300" src="https://raw.githubusercontent.com/ohbug-org/ohbug-website/master/static/images/dashboard-issues.png" alt="dashboard-issues">
+  <img width="300" src="https://raw.githubusercontent.com/ohbug-org/ohbug-website/master/static/images/dashboard-event.png" alt="dashboard-event">
+</p>
+
 [English](./README.md) | 简体中文
 
 ## 简介
@@ -18,7 +23,7 @@ Ohbug 是一套集 行为监控、异常监控、自定义行为监控 于一体
 
 通过灵活的插件系统，可以实现性能监控、特定信息的采集、黑科技“录屏“等功能。
 
-将支持 小程序、NodeJS、React Native 等 JavaScript 平台。
+将支持 NodeJS、React Native 等 JavaScript 平台。
 
 ## Packages
 
@@ -43,6 +48,13 @@ Ohbug 是一套集 行为监控、异常监控、自定义行为监控 于一体
 - [@ohbug/redux-middleware](./packages/ohbug-redux-middleware): Redux 中间件，用于将 Redux state/actions 记录在 Ohbug Actions 内.
 - [@ohbug/webpack-plugin](./packages/ohbug-webpack-plugin): webpack 插件，用于上传 sourceMap 文件。
 - [@ohbug/cli](https://github.com/ohbug-org/ohbug-cli): 一键上传您的 sourceMap 文件到 Ohbug 或其他服务。
+
+## Dashboard
+
+这部分包含了整个控制台，你可以私有部署 Ohbug，查看[部署文档](https://github.com/ohbug-org/ohbug-server/blob/master/setup.md)。
+
+- [ohbug-server](https://github.com/ohbug-org/ohbug-server): 控制台后端部分，基于 nestjs 实现。
+- [ohbug-web-app](https://github.com/ohbug-org/ohbug-web-app): 控制台前端部分。
 
 ## License
 
