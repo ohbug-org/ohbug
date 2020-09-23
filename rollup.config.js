@@ -44,7 +44,7 @@ const input = resolve('src/index.ts')
 const defaultFormats = ['esm', 'umd']
 const inlineFormats = process.env.FORMATS && process.env.FORMATS.split(',')
 const packageFormats = inlineFormats || packageOptions.formats || defaultFormats
-const external = ['perfume.js', 'rrweb', 'react']
+const external = ['react']
 const url = process.env.URL
 
 function createConfig(isProduction = false) {

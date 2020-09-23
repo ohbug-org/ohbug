@@ -1,12 +1,15 @@
-import { OhbugClient, OhbugEventWithMethods, OhbugExtension } from '@ohbug/types'
+import { OhbugClient, OhbugEventWithMethods, OhbugExtension, OhbugExtensionUI } from '@ohbug/types'
 import { isFunction } from '@ohbug/utils'
 
 export function createExtension(extension: OhbugExtension) {
   return extension
 }
+export function createExtensionUI(extensionUI: OhbugExtensionUI) {
+  return extensionUI
+}
 
 /**
- * Plugin loading and initialization
+ * Extension loading and initialization
  *
  * @param extension
  * @param client
