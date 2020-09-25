@@ -19,8 +19,3 @@ import Ohbug from '@ohbug/browser'
 
 Ohbug.init({ apiKey: 'YOUR_API_KEY' })
 ```
-
-### List of plugins
-
-- [plugin-perfume](https://github.com/ohbug-org/ohbug/tree/master/packages/plugin-perfume) For performance information monitoring
-- [plugin-rrweb](https://github.com/ohbug-org/ohbug/tree/master/packages/plugin-rrweb) Used to restore the scene when an exception occurs

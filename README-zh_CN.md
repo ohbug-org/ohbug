@@ -1,6 +1,10 @@
 <div align="center">
-  <h1>Ohbug</h1>
-  <p>为您的应用提供实时监控。</p>
+
+  <a href="https://ohbug.net" target="_blank">
+    <img src="https://raw.githubusercontent.com/ohbug-org/blog/master/images/ohbug_logo.svg" alt="Ohbug" height="72">
+  </a>
+  
+  <p>开源应用信息监控平台</p>
 
   [![build](https://img.shields.io/github/workflow/status/ohbug-org/ohbug/Node.js%20CI/master?style=flat-square)](https://github.com/ohbug-org/ohbug/actions?query=workflow%3A%22Node.js+CI%22)
   [![npm](https://img.shields.io/npm/v/@ohbug/core.svg?style=flat-square)](https://www.npmjs.com/package/@ohbug/core)
