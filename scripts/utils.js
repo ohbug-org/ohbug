@@ -2,7 +2,7 @@ const fs = require('fs')
 
 const targets = fs
   .readdirSync('packages')
-  .filter(f => {
+  .filter((f) => {
     if (!fs.statSync(`packages/${f}`).isDirectory()) {
       return false
     }
@@ -22,5 +22,5 @@ const targets = fs
   })
 
 module.exports = {
-  targets
+  targets,
 }

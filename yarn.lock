@@ -1838,11 +1838,6 @@
     "@types/express-serve-static-core" "*"
     "@types/mime" "*"
 
-"@types/smoothscroll-polyfill@^0.3.0":
-  version "0.3.1"
-  resolved "https://registry.npmjs.org/@types/smoothscroll-polyfill/-/smoothscroll-polyfill-0.3.1.tgz#77fb3a6e116bdab4a5959122e3b8e201224dcd49"
-  integrity sha512-+KkHw4y+EyeCtVXET7woHUhIbfWFCflc0E0mZnSV+ZdjPQeHt/9KPEuT7gSW/kFQ8O3EG30PLO++YhChDt8+Ag==
-
 "@types/source-list-map@*":
   version "0.1.2"
   resolved "https://registry.npmjs.org/@types/source-list-map/-/source-list-map-0.1.2.tgz#0078836063ffaf17412349bba364087e0ac02ec9"
@@ -2107,11 +2102,6 @@
     "@webassemblyjs/ast" "1.9.0"
     "@webassemblyjs/wast-parser" "1.9.0"
     "@xtuc/long" "4.2.2"
-
-"@xstate/fsm@^1.4.0":
-  version "1.5.1"
-  resolved "https://registry.npmjs.org/@xstate/fsm/-/fsm-1.5.1.tgz#b1ebedc77b11e4956fda0a6429cef986cd17979e"
-  integrity sha512-t8blLI0e90jCE71yUQHLH5uEljD1v0aC8PKkHUtNWEnXt81EOj7xBjnlwmaHn/8cmE2aSygiBElUpkRZUV9hXA==
 
 "@xtuc/ieee754@^1.2.0":
   version "1.2.0"
@@ -6950,11 +6940,6 @@ mississippi@^3.0.0:
     stream-each "^1.1.0"
     through2 "^2.0.0"
 
-mitt@^1.1.3:
-  version "1.2.0"
-  resolved "https://registry.npmjs.org/mitt/-/mitt-1.2.0.tgz#cb24e6569c806e31bd4e3995787fe38a04fdf90d"
-  integrity sha512-r6lj77KlwqLhIUku9UWYes7KJtsczvolZkzp8hbaDPPaE24OmWl5s539Mytlj22siEQKosZ26qCBgda2PKwoJw==
-
 mixin-deep@^1.2.0:
   version "1.3.2"
   resolved "https://registry.npmjs.org/mixin-deep/-/mixin-deep-1.3.2.tgz#1120b43dc359a785dce65b55b82e257ccf479566"
@@ -7570,7 +7555,7 @@ p-waterfall@^1.0.0:
   dependencies:
     p-reduce "^1.0.0"
 
-pako@^1.0.11, pako@~1.0.5:
+pako@~1.0.5:
   version "1.0.11"
   resolved "https://registry.npmjs.org/pako/-/pako-1.0.11.tgz#6c9599d340d54dfd3946380252a35705a6b992bf"
   integrity sha512-4hLB8Py4zZce5s4yd9XzopqwVv/yGNhV1Bl8NTmCq1763HeK2+EwVTv+leGeL13Dnh2wfbqowVPXCIO0z4taYw==
@@ -7758,11 +7743,6 @@ performance-now@^2.1.0:
   version "2.1.0"
   resolved "https://registry.npmjs.org/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
-
-perfume.js@^5.2.3:
-  version "5.2.3"
-  resolved "https://registry.npmjs.org/perfume.js/-/perfume.js-5.2.3.tgz#92397c8c702e9e8da66f935579435c23f30da79a"
-  integrity sha512-iVoocdAgwZbEF4w5AXMBpR8czLFqkLaeGld9BYPwh0vpMy+4MHNv7z8O9any63zxOWot5NKHgpHtwFJqbzXpYA==
 
 picomatch@^2.0.4, picomatch@^2.0.5, picomatch@^2.2.1, picomatch@^2.2.2:
   version "2.2.2"
@@ -8503,23 +8483,6 @@ rollup@^2.26.7:
   optionalDependencies:
     fsevents "~2.1.2"
 
-rrweb-snapshot@^0.8.0:
-  version "0.8.1"
-  resolved "https://registry.npmjs.org/rrweb-snapshot/-/rrweb-snapshot-0.8.1.tgz#989bda187a01a7dba0af92f3a31a72be15a361f8"
-  integrity sha512-JQsyTfS5RSebJ6nx/FFOkdpuvQBNCDAvvw0zuscFL0g3zLZltcE3MBK+3sxfLzthWl8OCMoGxSCcRt+5TYVLoQ==
-
-rrweb@^0.9.0:
-  version "0.9.0"
-  resolved "https://registry.npmjs.org/rrweb/-/rrweb-0.9.0.tgz#94e5370b931fcbad61280845a540f39a3e8eb13a"
-  integrity sha512-sfLu1Wu7rE85mZu0kSvdVoM3VwDNo1SPqnz7wl96sIC0RchcthxifhMLrldmI9/btdGCi8jJrpcEnuW09vpdWw==
-  dependencies:
-    "@types/smoothscroll-polyfill" "^0.3.0"
-    "@xstate/fsm" "^1.4.0"
-    mitt "^1.1.3"
-    pako "^1.0.11"
-    rrweb-snapshot "^0.8.0"
-    smoothscroll-polyfill "^0.4.3"
-
 rsvp@^4.8.4:
   version "4.8.5"
   resolved "https://registry.npmjs.org/rsvp/-/rsvp-4.8.5.tgz#c8f155311d167f68f21e168df71ec5b083113734"
@@ -8792,11 +8755,6 @@ smart-buffer@^4.1.0:
   version "4.1.0"
   resolved "https://registry.npmjs.org/smart-buffer/-/smart-buffer-4.1.0.tgz#91605c25d91652f4661ea69ccf45f1b331ca21ba"
   integrity sha512-iVICrxOzCynf/SNaBQCw34eM9jROU/s5rzIhpOvzhzuYHfJR/DhZfDkXiZSgKXfgv26HT3Yni3AV/DGw0cGnnw==
-
-smoothscroll-polyfill@^0.4.3:
-  version "0.4.4"
-  resolved "https://registry.npmjs.org/smoothscroll-polyfill/-/smoothscroll-polyfill-0.4.4.tgz#3a259131dc6930e6ca80003e1cb03b603b69abf8"
-  integrity sha512-TK5ZA9U5RqCwMpfoMq/l1mrH0JAR7y7KRvOBx0n2869aLxch+gT9GhN3yUfjiw+d/DiF1mKo14+hd62JyMmoBg==
 
 snapdragon-node@^2.0.1:
   version "2.1.1"

@@ -19,7 +19,7 @@ async function buildAll(targets) {
 
 async function build(target) {
   try {
-    if (target !== 'types') {
+    if (target !== 'ohbug-types') {
       const pkgDir = path.resolve(`packages/${target}`)
 
       await fs.remove(`${pkgDir}/dist`)

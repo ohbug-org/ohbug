@@ -6,7 +6,7 @@ const target = args._.length ? args._ : 'ohbug-core'
 
 const env = 'development'
 
-if (target[0] !== 'types') {
+if (target[0] !== 'ohbug-types') {
   execa(
     'rollup',
     [

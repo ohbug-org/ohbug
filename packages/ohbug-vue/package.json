@@ -12,10 +12,10 @@
     "url": "https://github.com/ohbug-org/ohbug"
   },
   "license": "Apache-2.0",
-  "main": "dist/ohbug-vue.cjs.prod.js",
-  "module": "dist/ohbug-vue.esm.prod.js",
-  "unpkg": "dist/ohbug-vue.global.prod.js",
-  "jsdelivr": "dist/ohbug-vue.global.prod.js",
+  "main": "dist/ohbug-vue.cjs.js",
+  "module": "dist/ohbug-vue.esm.js",
+  "unpkg": "dist/ohbug-vue.umd.js",
+  "jsdelivr": "dist/ohbug-vue.umd.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
@@ -34,7 +34,6 @@
     "formats": [
       "esm",
       "umd",
-      "global",
       "cjs"
     ],
     "order": 4

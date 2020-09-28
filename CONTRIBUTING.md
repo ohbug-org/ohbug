@@ -28,10 +28,13 @@ Transform with rollup.
 yarn build
 
 # Build specified package only
-yarn build core
+yarn build ohbug-core
 
 # Build and monitor file changes
 yarn dev
+
+# Build and monitor specified package only
+yarn dev ohbug-core
 ```
 
 ## Test

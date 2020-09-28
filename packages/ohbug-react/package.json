@@ -12,10 +12,10 @@
     "url": "https://github.com/ohbug-org/ohbug"
   },
   "license": "Apache-2.0",
-  "main": "dist/ohbug-react.cjs.prod.js",
-  "module": "dist/ohbug-react.esm.prod.js",
-  "unpkg": "dist/ohbug-react.global.prod.js",
-  "jsdelivr": "dist/ohbug-react.global.prod.js",
+  "main": "dist/ohbug-react.cjs.js",
+  "module": "dist/ohbug-react.esm.js",
+  "unpkg": "dist/ohbug-react.umd.js",
+  "jsdelivr": "dist/ohbug-react.umd.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
@@ -34,7 +34,6 @@
     "formats": [
       "esm",
       "umd",
-      "global",
       "cjs"
     ],
     "order": 4
