@@ -1,6 +1,6 @@
 {
   "name": "@ohbug/react",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Ohbug SDK for React",
   "author": "chenyueban <jasonchan0527@gmail.com>",
   "homepage": "https://github.com/ohbug-org/ohbug",
@@ -21,7 +21,7 @@
     "dist"
   ],
   "dependencies": {
-    "@ohbug/core": "^1.1.0"
+    "@ohbug/core": "^1.1.1"
   },
   "devDependencies": {
     "@types/react": "^16.9.41"

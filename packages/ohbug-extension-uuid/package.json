@@ -1,6 +1,6 @@
 {
   "name": "@ohbug/extension-uuid",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Ohbug extension to add uuid",
   "author": "chenyueban <jasonchan0527@gmail.com>",
   "homepage": "https://github.com/ohbug-org/ohbug",
@@ -21,8 +21,8 @@
     "dist"
   ],
   "dependencies": {
-    "@ohbug/core": "^1.1.0",
-    "@ohbug/utils": "^1.0.7",
+    "@ohbug/core": "^1.1.1",
+    "@ohbug/utils": "^1.0.8",
     "uuid": "^8.2.0"
   },
   "devDependencies": {
