@@ -36,6 +36,7 @@ Will support NodeJS, React Native and other JavaScript platforms.
 - [@ohbug/browser](./packages/ohbug-browser): SDK for Browsers.
 - [@ohbug/react](./packages/ohbug-react): SDK for React.
 - [@ohbug/vue](./packages/ohbug-vue): SDK for Vue.
+- [@ohbug/angular](./packages/ohbug-angular): SDK for Angular.
 - [@ohbug/miniapp](https://github.com/ohbug-org/ohbug-miniapp): SDK for miniapp.
 
 ### Extensions

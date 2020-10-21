@@ -36,6 +36,7 @@ Ohbug 是一套集 行为监控、异常监控、自定义行为监控 于一体
 - [@ohbug/browser](./packages/ohbug-browser): SDK for Browsers.
 - [@ohbug/react](./packages/ohbug-react): SDK for React.
 - [@ohbug/vue](./packages/ohbug-vue): SDK for Vue.
+- [@ohbug/angular](./packages/ohbug-angular): SDK for Angular.
 - [@ohbug/miniapp](https://github.com/ohbug-org/ohbug-miniapp): Ohbug 小程序 SDK 用于小程序平台（支持微信、字节跳动、支付宝、QQ 小程序）
 
 ### Extensions
