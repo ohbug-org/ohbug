@@ -1,0 +1,47 @@
+{
+  "name": "@ohbug/angular",
+  "version": "1.0.0",
+  "description": "Ohbug SDK for Angular",
+  "author": "chenyueban <jasonchan0527@gmail.com>",
+  "homepage": "https://github.com/ohbug-org/ohbug",
+  "bugs": {
+    "url": "https://github.com/ohbug-org/ohbug/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ohbug-org/ohbug"
+  },
+  "license": "Apache-2.0",
+  "main": "dist/ohbug-angular.cjs.js",
+  "module": "dist/ohbug-angular.esm.js",
+  "unpkg": "dist/ohbug-angular.umd.js",
+  "jsdelivr": "dist/ohbug-angular.umd.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@ohbug/core": "^1.1.1"
+  },
+  "devDependencies": {
+    "@angular/core": "^10.1.6"
+  },
+  "peerDependencies": {
+    "@angular/core": "^10.0.0"
+  },
+  "buildOptions": {
+    "name": "OhbugAngular",
+    "formats": [
+      "esm",
+      "umd",
+      "cjs"
+    ],
+    "order": 4
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "jest --config ../../jest.config.js"
+  }
+}
