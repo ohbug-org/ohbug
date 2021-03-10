@@ -3,6 +3,7 @@
   "compilerOptions": {
     "baseUrl": "./packages",
     "module": "ESNext",
+    "moduleResolution": "node",
     "lib": ["esnext", "dom"],
     "paths": {
       "@ohbug/*": ["packages/*/src"]
