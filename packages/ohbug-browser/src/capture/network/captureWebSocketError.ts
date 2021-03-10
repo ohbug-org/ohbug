@@ -4,7 +4,7 @@ import * as types from '../../types'
 import { networkDispatcher } from '../../dispatch'
 import { WebsocketErrorDetail } from '../../handle'
 
-const global = getGlobal<Window>()
+const _global = getGlobal<Window>()
 const { WEBSOCKET_ERROR } = types
 
 /**
@@ -12,10 +12,10 @@ const { WEBSOCKET_ERROR } = types
  */
 export function captureWebSocketError() {
   warning(
-    'WebSocket' in global,
+    'WebSocket' in _global,
     'Binding `WebSocket` monitoring failed, the current environment did not find the object `WebSocket`'
   )
-  if (!('WebSocket' in global)) return
+  if (!('WebSocket' in _global)) return
 
   const wsProto = WebSocket?.prototype
 
@@ -28,7 +28,14 @@ export function captureWebSocketError() {
       // @ts-ignore
       backup.set.call(this, function (e) {
         const {
-          target: { url, readyState, protocol, extensions, binaryType, bufferedAmount },
+          target: {
+            url,
+            readyState,
+            protocol,
+            extensions,
+            binaryType,
+            bufferedAmount,
+          },
           timeStamp,
         } = e
         const detail: WebsocketErrorDetail = {
@@ -41,6 +48,7 @@ export function captureWebSocketError() {
           bufferedAmount,
         }
         networkDispatcher(WEBSOCKET_ERROR, detail)
+        // @ts-ignore
         // eslint-disable-next-line prefer-rest-params
         arg.apply(this, arguments)
       })

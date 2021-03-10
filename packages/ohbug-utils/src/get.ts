@@ -13,11 +13,14 @@ export function getGlobal<T = Window>(): T & OhbugGlobal {
 }
 
 export function getOhbugObject<T = Window>(): OhbugObject {
-  const global = getGlobal<T>()
+  const _global = getGlobal<T>()
 
-  error(Boolean(global.__OHBUG__), 'Failed to get `OhbugObject`, please confirm if `Ohbug.init`')
+  error(
+    Boolean(_global.__OHBUG__),
+    'Failed to get `OhbugObject`, please confirm if `Ohbug.init`'
+  )
 
-  return global.__OHBUG__
+  return _global.__OHBUG__
 }
 
 export function isNode(): boolean {

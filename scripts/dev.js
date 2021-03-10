@@ -12,7 +12,11 @@ if (target[0] !== 'ohbug-types') {
     [
       '-cw',
       '--environment',
-      [`NODE_ENV:${env}`, `TARGET:${target}`, `FORMATS:${formats || 'esm'}`].join(','),
+      [
+        `NODE_ENV:${env}`,
+        `TARGET:${target}`,
+        `FORMATS:${formats || 'esm'}`,
+      ].join(','),
     ],
     {
       stdio: 'inherit',

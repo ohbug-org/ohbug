@@ -84,7 +84,12 @@ export class Event<D> implements OhbugEventWithMethods<D> {
    * @param type
    * @param timestamp
    */
-  addAction(message: string, data: Record<string, any>, type: string, timestamp?: string): void {
+  addAction(
+    message: string,
+    data: Record<string, any>,
+    type: string,
+    timestamp?: string
+  ): void {
     const actions = this.actions!
 
     message = isString(message) ? message : ''
@@ -92,7 +97,7 @@ export class Event<D> implements OhbugEventWithMethods<D> {
     type = isString(type) ? type : ''
 
     const action = new Action(message, data, type, timestamp)
-    if (actions.length >= this._client?._config.maxActions!) {
+    if (actions.length >= (this._client?._config.maxActions ?? 30)) {
       actions.shift()
     }
     actions.push(action)
@@ -116,8 +121,12 @@ export class Event<D> implements OhbugEventWithMethods<D> {
       return this.getUser()
     }
     this._client?._logger.warn(
-      getErrorMessage('setUser should be an object and have up to 6 attributes', user)
+      getErrorMessage(
+        'setUser should be an object and have up to 6 attributes',
+        user
+      )
     )
+    return
   }
 
   /**
@@ -227,6 +236,8 @@ export function createEvent<D>(
   )
 }
 
-export function isEvent(eventLike: any): eventLike is OhbugEventWithMethods<any> {
+export function isEvent(
+  eventLike: any
+): eventLike is OhbugEventWithMethods<any> {
   return Boolean(eventLike?._isOhbugEvent)
 }

@@ -3,7 +3,13 @@ import { OhbugUser } from './user'
 import { OhbugAction } from './action'
 
 export type OhbugReleaseStage = 'development' | 'production' | string
-export type OhbugCategory = 'error' | 'message' | 'feedback' | 'view' | 'performance' | 'other'
+export type OhbugCategory =
+  | 'error'
+  | 'message'
+  | 'feedback'
+  | 'view'
+  | 'performance'
+  | 'other'
 export interface OhbugSDK {
   platform: string
   version: string
@@ -26,7 +32,12 @@ export interface OhbugEvent<D> {
   metaData?: any
 }
 export interface OhbugEventWithMethods<D> extends OhbugEvent<D> {
-  addAction: (message: string, data: Record<string, any>, type: string, timestamp?: string) => void
+  addAction: (
+    message: string,
+    data: Record<string, any>,
+    type: string,
+    timestamp?: string
+  ) => void
   getUser: () => OhbugUser | undefined
   setUser: (user: OhbugUser) => OhbugUser | undefined
   addMetaData: (section: string, data: any) => any

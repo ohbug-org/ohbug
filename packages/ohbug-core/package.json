@@ -35,8 +35,5 @@
   "dependencies": {
     "@ohbug/types": "^1.1.0",
     "@ohbug/utils": "^1.0.8"
-  },
-  "scripts": {
-    "test": "jest --config ../../jest.config.js"
   }
 }

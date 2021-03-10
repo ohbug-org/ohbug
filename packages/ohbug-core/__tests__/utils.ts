@@ -1,4 +1,8 @@
-import { OhbugConfig, OhbugEventWithMethods, OhbugGetDevice } from '@ohbug/types'
+import {
+  OhbugConfig,
+  OhbugEventWithMethods,
+  OhbugGetDevice,
+} from '@ohbug/types'
 
 export const apiKey = 'API_KEY_TEST'
 export const sdk = {

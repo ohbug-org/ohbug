@@ -7,7 +7,7 @@ export interface VueErrorDetail extends OhbugBaseDetail {
   errorInfo: string
   component: string
   file: string
-  props?: {}
+  props?: Record<string, any>
 }
 
 const getComponent = (vm: any) => {
@@ -41,11 +41,16 @@ export function install(client: OhbugClient, Vue: VueConstructor) {
       file,
       props: vm ? vm.$options.propsData : undefined,
     }
-    const event = client.createEvent<VueErrorDetail>({ category: 'error', type: 'vue', detail })
+    const event = client.createEvent<VueErrorDetail>({
+      category: 'error',
+      type: 'vue',
+      detail,
+    })
     client.notify(event)
 
-    if (typeof console !== 'undefined' && typeof console.error === 'function') console.error(error)
-    if (typeof prev === 'function') prev.call(this, error, vm, info)
+    if (typeof console !== 'undefined' && typeof console.error === 'function')
+      console.error(error)
+    if (typeof prev === 'function') prev(error, vm, info)
   }
 
   Vue.config.errorHandler = handler

@@ -6,7 +6,12 @@ module.exports = {
   testEnvironment: 'jsdom',
   moduleFileExtensions: ['ts', 'js', 'json', 'node'],
   coveragePathIgnorePatterns: ['node_modules', 'dist'],
-  collectCoverageFrom: ['**/*.ts', '!**/node_modules/**', '!**/index.ts', '!**/types.ts'],
+  collectCoverageFrom: [
+    '**/*.ts',
+    '!**/node_modules/**',
+    '!**/index.ts',
+    '!**/types.ts',
+  ],
   coverageDirectory: '<rootDir>/coverage/',
   collectCoverage: true,
   verbose: true,

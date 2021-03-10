@@ -24,7 +24,7 @@
     "@ohbug/core": "^1.1.1"
   },
   "devDependencies": {
-    "@angular/core": "^10.1.6"
+    "@angular/core": "^11.2.4"
   },
   "peerDependencies": {
     "@angular/core": "^10.0.0"
@@ -40,8 +40,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "scripts": {
-    "test": "jest --config ../../jest.config.js"
   }
 }

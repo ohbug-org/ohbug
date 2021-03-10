@@ -16,23 +16,23 @@ yarn add @ohbug/browser @ohbug/redux-middleware
 
 ```js
 import Ohbug from '@ohbug/browser'
-import { createStore, applyMiddleware } from "redux"
+import { createStore, applyMiddleware } from 'redux'
 import createOhbugMiddleware from '@ohbug/redux-middleware'
-import reducer from "./reducer"
+import reducer from './reducer'
 
 Ohbug.init({ apiKey: 'YOUR_API_KEY' })
 
-const store = createStore(
-  reducer,
-  applyMiddleware(createOhbugMiddleware())
-)
+const store = createStore(reducer, applyMiddleware(createOhbugMiddleware()))
 ```
 
 ## API
 
 ```typescript
 import type { Action, MiddlewareAPI } from 'redux'
-type CreateOhbugMiddlewareOption = (action: Action, store: MiddlewareAPI) => Action | false
+type CreateOhbugMiddlewareOption = (
+  action: Action,
+  store: MiddlewareAPI
+) => Action | false
 ```
 
 ### example
@@ -48,7 +48,7 @@ function before(action: Action, store: MiddlewareAPI) {
     // If you want to collect some data after processing
     return {
       type: action.type,
-      payload: store.getState() + action.payload
+      payload: store.getState() + action.payload,
     }
   }
   return action

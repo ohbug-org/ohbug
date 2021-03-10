@@ -41,7 +41,10 @@ describe('@ohbug/redux-middleware', () => {
       }
     }
     const client = Ohbug.init({ apiKey })
-    const store = createStore(counter, applyMiddleware(createOhbugMiddleware(before)))
+    const store = createStore(
+      counter,
+      applyMiddleware(createOhbugMiddleware(before))
+    )
 
     store.dispatch({ type: 'INCREMENT' })
 
@@ -56,7 +59,10 @@ describe('@ohbug/redux-middleware', () => {
       return false
     }
     const client = Ohbug.init({ apiKey })
-    const store = createStore(counter, applyMiddleware(createOhbugMiddleware(before)))
+    const store = createStore(
+      counter,
+      applyMiddleware(createOhbugMiddleware(before))
+    )
 
     const _beforeLength = client._actions.length
 

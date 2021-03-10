@@ -37,8 +37,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "scripts": {
-    "test": "jest --config ../../jest.config.js"
   }
 }

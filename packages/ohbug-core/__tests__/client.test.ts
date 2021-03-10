@@ -56,7 +56,9 @@ describe('@ohbug/core/client', () => {
         clientCreated: jest.fn(),
         extensionCreated: jest.fn(),
       }
-      const client = new Client(getValues({ apiKey, created: hooks.clientCreated }))
+      const client = new Client(
+        getValues({ apiKey, created: hooks.clientCreated })
+      )
       const extension = createExtension({
         name: 'test_extension',
         created: hooks.extensionCreated,
@@ -101,7 +103,9 @@ describe('@ohbug/core/client', () => {
         clientNotified: jest.fn(),
         extensionNotified: jest.fn(),
       }
-      const client = new Client(getValues({ apiKey, notified: hooks.clientNotified }))
+      const client = new Client(
+        getValues({ apiKey, notified: hooks.clientNotified })
+      )
       const extension = createExtension({
         name: 'test_extension',
         notified: hooks.extensionNotified,
@@ -131,7 +135,12 @@ describe('@ohbug/core/client', () => {
         timestamp: now,
       }
       expect(client._actions.length).toBe(0)
-      client.addAction(action.message, action.data, action.type, action.timestamp)
+      client.addAction(
+        action.message,
+        action.data,
+        action.type,
+        action.timestamp
+      )
       expect(client._actions.length).toBe(1)
       expect(client._actions[0]).toEqual(
         new Action(action.message, action.data, action.type, action.timestamp)
@@ -149,13 +158,23 @@ describe('@ohbug/core/client', () => {
       }
       expect(client._actions.length).toBe(0)
       for (let i = 1; i <= maxActions; i++) {
-        client.addAction(action.message, { index: i }, action.type, action.timestamp)
+        client.addAction(
+          action.message,
+          { index: i },
+          action.type,
+          action.timestamp
+        )
       }
       expect(client._actions.length).toBe(maxActions)
       expect(client._actions[client._actions.length - 1]).toEqual(
         new Action(action.message, { index: 5 }, action.type, action.timestamp)
       )
-      client.addAction(action.message, { index: 6 }, action.type, action.timestamp)
+      client.addAction(
+        action.message,
+        { index: 6 },
+        action.type,
+        action.timestamp
+      )
       expect(client._actions[0]).toEqual(
         new Action(action.message, { index: 2 }, action.type, action.timestamp)
       )

@@ -1,4 +1,8 @@
-export function replace(source: any, name: string, behavior: (...args: any[]) => any) {
+export function replace(
+  source: any,
+  name: string,
+  behavior: (...args: any[]) => any
+) {
   if (!(name in source)) {
     return
   }
@@ -22,7 +26,9 @@ export function parseUrl(
   }
 
   // eslint-disable-next-line
-  const match = url.match(/^(([^:\/?#]+):)?(\/\/([^\/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?$/)
+  const match = url.match(
+    /^(([^:\/?#]+):)?(\/\/([^\/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?$/
+  )
 
   if (!match) {
     return {}

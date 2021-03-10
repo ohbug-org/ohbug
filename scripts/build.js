@@ -30,7 +30,11 @@ async function build(target) {
         [
           '-c',
           '--environment',
-          [`NODE_ENV:${env}`, `TARGET:${target}`, formats ? `FORMATS:${formats}` : ``].join(','),
+          [
+            `NODE_ENV:${env}`,
+            `TARGET:${target}`,
+            formats ? `FORMATS:${formats}` : ``,
+          ].join(','),
         ],
         {
           stdio: 'inherit',

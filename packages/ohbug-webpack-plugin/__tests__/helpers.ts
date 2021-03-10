@@ -44,35 +44,28 @@ export const url = `http://localhost:${port}/upload`
 
 let server: Server | null, app: Express | null
 export const createTestServer = (): Promise<void> =>
-  new Promise((resolve, reject) => {
+  new Promise((resolve) => {
     app = express()
 
     app.post('/upload', upload.single('file'), (_: any, res: any) => {
       res.end('good')
     })
 
-    const args = [
-      port,
-      (err: Error) => {
-        if (err) return reject(err)
-        server = _server
-        resolve()
-      },
-    ]
-
-    const _server = app.listen.apply(app, args)
+    const _server = app.listen(port, () => {
+      server = _server
+      // eslint-disable-next-line no-console
+      console.log(`createTestServer at port: ${port}`)
+      resolve()
+    })
   })
 
 export const closeTestServer = () =>
   new Promise((resolve) => {
-    server &&
-      server.close(() => {
-        resolve()
-      })
+    server && server.close(resolve)
     server = null
     app = null
   })
 
 export const clearUploads = () => {
-  rimraf(`${uploads}/*`, () => {})
+  rimraf(`${uploads}/*`, () => void 0)
 }

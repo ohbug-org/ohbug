@@ -1,11 +1,23 @@
 import { getGlobal, warning } from '@ohbug/utils'
-import { captureUrlChange, removeCaptureUrlChange } from './action/captureUrlChange'
+import {
+  captureUrlChange,
+  removeCaptureUrlChange,
+} from './action/captureUrlChange'
 import { captureClick, removeCaptureClick } from './action/captureClick'
 import { captureConsole, removeCaptureConsole } from './console/captureConsole'
-import { captureAjaxError, removeCaptureAjaxError } from './network/captureAjaxError'
-import { captureFetchError, removeCaptureFetchError } from './network/captureFetchError'
+import {
+  captureAjaxError,
+  removeCaptureAjaxError,
+} from './network/captureAjaxError'
+import {
+  captureFetchError,
+  removeCaptureFetchError,
+} from './network/captureFetchError'
 import { captureWebSocketError } from './network/captureWebSocketError'
-import { captureUncaughtError, removeCaptureUncaughtError } from './script/captureUncaughtError'
+import {
+  captureUncaughtError,
+  removeCaptureUncaughtError,
+} from './script/captureUncaughtError'
 import {
   captureUnhandledrejectionError,
   removeCaptureUnhandledrejectionError,
@@ -33,12 +45,12 @@ export function removeCaptureNetwork() {
 }
 
 export function captureScript() {
-  const global = getGlobal<Window>()
+  const _global = getGlobal<Window>()
   warning(
-    Boolean(global.addEventListener),
+    Boolean(_global.addEventListener),
     'Binding script monitoring failed, the current environment did not find the object `addEventListener`'
   )
-  if (!global.addEventListener) return
+  if (!_global.addEventListener) return
 
   captureUncaughtError()
   captureUnhandledrejectionError()

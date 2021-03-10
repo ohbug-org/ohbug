@@ -80,7 +80,9 @@ const packageConfigs = packageFormats.map((format) =>
 if (process.env.NODE_ENV === 'production') {
   packageFormats.forEach((format) => {
     if (format === 'umd' || format === 'esm') {
-      packageConfigs.push(createMinifiedConfig(input, configs[format], [], external))
+      packageConfigs.push(
+        createMinifiedConfig(input, configs[format], [], external)
+      )
     }
   })
 }

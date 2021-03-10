@@ -24,7 +24,7 @@
     "@ohbug/core": "^1.1.1"
   },
   "devDependencies": {
-    "@types/react": "^16.9.41"
+    "@types/react": "^17.0.3"
   },
   "peerDependencies": {
     "react": "^16.8.6"
@@ -40,8 +40,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "scripts": {
-    "test": "jest --config ../../jest.config.js"
   }
 }

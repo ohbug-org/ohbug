@@ -6,7 +6,12 @@ export class Action implements OhbugAction {
   readonly message: string
   readonly data: Record<string, any>
 
-  constructor(message: string, data: Record<string, any>, type: string, timestamp?: string) {
+  constructor(
+    message: string,
+    data: Record<string, any>,
+    type: string,
+    timestamp?: string
+  ) {
     this.type = type
     this.timestamp = timestamp || new Date().toISOString()
     this.message = message

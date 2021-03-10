@@ -13,14 +13,14 @@ interface BrowserClient {
 }
 
 function createClient(config: OhbugConfig) {
-  const global = getGlobal<Window>()
+  const _global = getGlobal<Window>()
 
   const sdk: OhbugSDK = {
     platform: 'ohbug-browser',
     version,
   }
   const client = new Client({ sdk, config, device: getDevice, notifier })
-  global.__OHBUG__ = { client }
+  _global.__OHBUG__ = { client }
   client.use(extension)
   console.log(
     `%c @ohbug/browser %c Detected Ohbug v${version} %c`,

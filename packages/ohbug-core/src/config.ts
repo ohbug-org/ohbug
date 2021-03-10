@@ -31,7 +31,8 @@ export const schema: OhbugSchema = {
   maxActions: {
     defaultValue: 30,
     message: 'should be a number between 0 and 100',
-    validate: (value) => value === undefined || (isNumber(value) && 1 <= value && value <= 100),
+    validate: (value) =>
+      value === undefined || (isNumber(value) && 1 <= value && value <= 100),
   },
   // hooks
   created: {
@@ -40,19 +41,21 @@ export const schema: OhbugSchema = {
     validate: (value) => value === undefined || isFunction(value),
   },
   notified: {
-    defaultValue: () => {},
+    defaultValue: () => void 0,
     message: 'should be a function',
     validate: (value) => value === undefined || isFunction(value),
   },
   // utils
   logger: {
     defaultValue: logger,
-    message: 'should be null or an object with methods { log, info, warn, error }',
+    message:
+      'should be null or an object with methods { log, info, warn, error }',
     validate: (value) =>
       value === undefined ||
       (value &&
-        ['log', 'info', 'warn', 'error'].reduce(
-          (accumulator, method) => accumulator && typeof value[method] === 'function',
+        ['log', 'info', 'warn', 'error'].reduce<boolean>(
+          (accumulator, method) =>
+            accumulator && typeof value[method] === 'function',
           true
         )),
   },
@@ -60,7 +63,9 @@ export const schema: OhbugSchema = {
   user: {
     defaultValue: undefined,
     message: 'should be an object and have up to 6 attributes',
-    validate: (value) => value === undefined || (isObject(value) && Object.keys(value).length <= 6),
+    validate: (value) =>
+      value === undefined ||
+      (isObject(value) && Object.keys(value).length <= 6),
   },
   metaData: {
     defaultValue: undefined,

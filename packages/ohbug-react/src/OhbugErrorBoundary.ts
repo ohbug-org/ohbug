@@ -15,8 +15,14 @@ interface ErrorBoundaryState {
   info: any
 }
 
-export function createOhbugErrorBoundary(client: OhbugClient, react: typeof React) {
-  return class OhbugErrorBoundary extends react.Component<ErrorBoundaryProp, ErrorBoundaryState> {
+export function createOhbugErrorBoundary(
+  client: OhbugClient,
+  react: typeof React
+) {
+  return class OhbugErrorBoundary extends react.Component<
+    ErrorBoundaryProp,
+    ErrorBoundaryState
+  > {
     constructor(props: ErrorBoundaryProp) {
       super(props)
       this.state = {

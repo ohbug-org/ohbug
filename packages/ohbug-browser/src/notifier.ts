@@ -14,7 +14,8 @@ export function notifier<D>(event: OhbugEventWithMethods<D>) {
       const xhr = new XMLHttpRequest()
       xhr.onreadystatechange = () => {
         if (xhr.readyState === XMLHttpRequest.DONE) {
-          if (xhr.status >= 200 && xhr.status < 300) return resolve(xhr.response)
+          if (xhr.status >= 200 && xhr.status < 300)
+            return resolve(xhr.response)
           reject(xhr)
         }
       }

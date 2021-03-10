@@ -18,15 +18,21 @@ export const getSelector = (event: Event) => {
   const elements = []
   for (
     let i = 0;
-    target && target.nodeType === Node.ELEMENT_NODE && target.nodeType !== Node.DOCUMENT_TYPE_NODE;
+    target &&
+    target.nodeType === Node.ELEMENT_NODE &&
+    target.nodeType !== Node.DOCUMENT_TYPE_NODE;
     target = target.previousSibling
   ) {
     i && elements.push(target)
     i += 1
   }
   // error.path 只有 chrome 实现，需要 polyfill
-  // @ts-ignore
-  const path = typeof event.path === 'undefined' ? getPath(event.target as Node) : event.path
+  const path =
+    // @ts-ignore
+    typeof event.path === 'undefined'
+      ? getPath(event.target as Node)
+      : // @ts-ignore
+        event.path
   const { outerHTML } = immutableTarget
   return path
     .reverse()

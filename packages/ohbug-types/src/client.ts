@@ -38,12 +38,21 @@ export interface OhbugClient {
   readonly _metaData: OhbugMetaData
 
   use: (extension: OhbugExtension, ...args: any[]) => OhbugClient | any
-  createEvent: <D = any>(value: OhbugCreateEvent<D>) => OhbugEventWithMethods<D> | false
+  createEvent: <D = any>(
+    value: OhbugCreateEvent<D>
+  ) => OhbugEventWithMethods<D> | false
   notify: <D = any>(
     eventLike: any,
-    beforeNotify?: (event: OhbugEventWithMethods<D> | false) => OhbugEventWithMethods<D> | false
+    beforeNotify?: (
+      event: OhbugEventWithMethods<D> | false
+    ) => OhbugEventWithMethods<D> | false
   ) => Promise<any | null>
-  addAction: (message: string, data: Record<string, any>, type: string, timestamp?: string) => void
+  addAction: (
+    message: string,
+    data: Record<string, any>,
+    type: string,
+    timestamp?: string
+  ) => void
   getUser: () => OhbugUser | undefined
   setUser: (user: OhbugUser) => OhbugUser | undefined
   addMetaData: (section: string, data: any) => any

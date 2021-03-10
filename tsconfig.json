@@ -1,26 +1,12 @@
 {
+  "extends": "@chenyueban/tsconfig",
   "compilerOptions": {
     "baseUrl": "./packages",
-    "sourceMap": false,
-    "declaration": true,
-    "target": "es5",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "allowJs": false,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "strictNullChecks": true,
-    "noImplicitAny": true,
-    "noImplicitThis": false,
-    "experimentalDecorators": true,
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "removeComments": true,
+    "module": "ESNext",
     "lib": ["esnext", "dom"],
     "paths": {
       "@ohbug/*": ["packages/*/src"]
     }
   },
-  "include": ["packages/global.d.ts", "packages/*/src"],
-  "exclude": ["**/__tests__"]
+  "include": ["packages/global.d.ts", "packages/*/src"]
 }

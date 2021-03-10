@@ -19,7 +19,10 @@ export interface OhbugConfig {
   endpoint?: string
   maxActions?: number
   // hooks
-  created?: (event: OhbugEvent<any>, client: OhbugClient) => OhbugEvent<any> | false
+  created?: (
+    event: OhbugEvent<any>,
+    client: OhbugClient
+  ) => OhbugEvent<any> | false
   notified?: (event: OhbugEvent<any>, client: OhbugClient) => void
   // data
   user?: OhbugUser

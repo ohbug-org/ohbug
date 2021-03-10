@@ -22,9 +22,9 @@ const config = {
   plugins: [
     new OhbugWebpackPlugin({
       apiKey: 'YOUR_API_KEY',
-      appVersion: 'YOUR_APP_VERSION'
-    })
-  ]
+      appVersion: 'YOUR_APP_VERSION',
+    }),
+  ],
 }
 ```
 

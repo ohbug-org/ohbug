@@ -27,6 +27,9 @@ export function verifyConfig(config: OhbugConfig, schema: OhbugSchema) {
 
       return accumulator
     },
-    { config: {} as ConfigAndErrors['config'], errors: {} as ConfigAndErrors['errors'] }
+    {
+      config: {} as ConfigAndErrors['config'],
+      errors: {} as ConfigAndErrors['errors'],
+    }
   )
 }

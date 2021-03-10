@@ -7,7 +7,8 @@ export function getConfigErrorMessage(
   return new Error(
     `Invalid configuration\n${Object.keys(errors)
       .map(
-        (key: keyof OhbugConfig) => `- ${key} ${errors[key]}, got ${JSON.stringify(config[key])}`
+        // @ts-ignore
+        (key) => `- ${key} ${errors[key]}, got ${JSON.stringify(config[key])}`
       )
       .join('\n')}
       `

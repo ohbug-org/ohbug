@@ -20,6 +20,10 @@ export interface AjaxErrorDetail extends OhbugBaseDetail {
 
 export function ajaxErrorHandler(detail: AjaxErrorDetail) {
   const { client } = getOhbugObject<Window>()
-  const event = client.createEvent<AjaxErrorDetail>({ category: 'error', type: AJAX_ERROR, detail })
+  const event = client.createEvent<AjaxErrorDetail>({
+    category: 'error',
+    type: AJAX_ERROR,
+    detail,
+  })
   client.notify(event)
 }

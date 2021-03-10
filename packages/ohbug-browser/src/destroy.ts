@@ -6,10 +6,10 @@ import {
   removeCaptureConsole,
 } from './capture'
 
-const global = getGlobal<Window>()
+const _global = getGlobal<Window>()
 
 export function handleDestroy() {
-  global?.addEventListener?.(
+  _global?.addEventListener?.(
     'unload',
     () => {
       removeCaptureScript()

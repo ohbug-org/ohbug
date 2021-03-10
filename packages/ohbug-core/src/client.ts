@@ -26,7 +26,8 @@ import { verifyConfig } from './lib/verifyConfig'
 import { getConfigErrorMessage, getErrorMessage } from './lib/getErrorMessage'
 import { addMetaData, getMetaData, deleteMetaData } from './lib/metaData'
 
-export const Client: OhbugClientConstructor = class Client implements OhbugClient {
+export const Client: OhbugClientConstructor = class Client
+  implements OhbugClient {
   readonly _sdk: OhbugSDK
   readonly _config: OhbugConfig
   readonly _logger: OhbugLoggerConfig
@@ -92,7 +93,9 @@ export const Client: OhbugClientConstructor = class Client implements OhbugClien
    *
    * @param value
    */
-  createEvent<D = any>(value: OhbugCreateEvent<D>): OhbugEventWithMethods<D> | false {
+  createEvent<D = any>(
+    value: OhbugCreateEvent<D>
+  ): OhbugEventWithMethods<D> | false {
     const event = createEvent(value, this)
 
     if (isFunction(this._hooks.created)) {
@@ -111,7 +114,9 @@ export const Client: OhbugClientConstructor = class Client implements OhbugClien
    */
   notify<D = any>(
     eventLike: any,
-    beforeNotify?: (event: OhbugEventWithMethods<D> | false) => OhbugEventWithMethods<D> | false
+    beforeNotify?: (
+      event: OhbugEventWithMethods<D> | false
+    ) => OhbugEventWithMethods<D> | false
   ): Promise<any | null> {
     let event: OhbugEventWithMethods<D> | false
     if (Boolean(eventLike) && !isEvent(eventLike)) {
@@ -136,7 +141,12 @@ export const Client: OhbugClientConstructor = class Client implements OhbugClien
    * @param type
    * @param timestamp
    */
-  addAction(message: string, data: Record<string, any>, type: string, timestamp?: string): void {
+  addAction(
+    message: string,
+    data: Record<string, any>,
+    type: string,
+    timestamp?: string
+  ): void {
     const actions = this._actions
 
     message = isString(message) ? message : ''
@@ -168,8 +178,12 @@ export const Client: OhbugClientConstructor = class Client implements OhbugClien
       return this.getUser()
     }
     this._logger.warn(
-      getErrorMessage('setUser should be an object and have up to 6 attributes', user)
+      getErrorMessage(
+        'setUser should be an object and have up to 6 attributes',
+        user
+      )
     )
+    return
   }
 
   /**
