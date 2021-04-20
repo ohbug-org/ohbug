@@ -1,6 +1,6 @@
 {
   "name": "@ohbug/browser",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "Ohbug SDK for browsers",
   "author": "chenyueban <jasonchan0527@gmail.com>",
   "homepage": "https://github.com/ohbug-org/ohbug",
@@ -33,6 +33,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@ohbug/core": "^1.1.2"
+    "@ohbug/core": "^1.1.3"
   }
 }
