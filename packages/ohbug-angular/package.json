@@ -24,7 +24,7 @@
     "@ohbug/core": "^1.1.2"
   },
   "devDependencies": {
-    "@angular/core": "^11.2.4"
+    "@angular/core": "^11.2.10"
   },
   "peerDependencies": {
     "@angular/core": "^10.0.0"

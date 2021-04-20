@@ -2,9 +2,7 @@
   "extends": "@chenyueban/tsconfig",
   "compilerOptions": {
     "baseUrl": "./packages",
-    "module": "ESNext",
-    "moduleResolution": "node",
-    "lib": ["esnext", "dom"],
+    "lib": ["ESNext", "DOM"],
     "paths": {
       "@ohbug/*": ["packages/*/src"]
     }
