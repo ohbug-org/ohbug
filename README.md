@@ -60,7 +60,6 @@ Will support NodeJS, React Native and other JavaScript platforms.
 This part contains the entire dashboard, you can deploy Ohbug privately, view the [deployment document](https://github.com/ohbug-org/ohbug-server/blob/master/setup.md).
 
 - [ohbug-server](https://github.com/ohbug-org/ohbug-server): The back end of the dashboard is implemented based on nestjs.
-- [ohbug-web-app](https://github.com/ohbug-org/ohbug-web-app): Front end of the dashboard.
 
 ## License
 
