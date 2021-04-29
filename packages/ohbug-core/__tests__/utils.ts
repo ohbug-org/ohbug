@@ -11,10 +11,10 @@ export const sdk = {
 }
 export const getDevice: OhbugGetDevice = () => ({})
 export const getValues = (config?: OhbugConfig) => {
-  config = config || { apiKey }
+  const targetConfig = config || { apiKey }
   return {
     sdk,
-    config,
+    config: targetConfig,
     device: getDevice,
     notifier: (event: OhbugEventWithMethods<any>) => event,
   }

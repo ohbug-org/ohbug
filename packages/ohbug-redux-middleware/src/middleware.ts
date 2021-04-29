@@ -1,7 +1,7 @@
 import { getOhbugObject, error } from '@ohbug/utils'
 import type { Middleware, Action, MiddlewareAPI } from 'redux'
 
-const identity = (action: Action, _: MiddlewareAPI) => action
+const identity = (action: Action) => action
 
 type CreateOhbugMiddlewareOption = (
   action: Action,

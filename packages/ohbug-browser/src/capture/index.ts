@@ -45,12 +45,12 @@ export function removeCaptureNetwork() {
 }
 
 export function captureScript() {
-  const _global = getGlobal<Window>()
+  const global = getGlobal<Window>()
   warning(
-    Boolean(_global.addEventListener),
+    Boolean(global.addEventListener),
     'Binding script monitoring failed, the current environment did not find the object `addEventListener`'
   )
-  if (!_global.addEventListener) return
+  if (!global.addEventListener) return
 
   captureUncaughtError()
   captureUnhandledrejectionError()

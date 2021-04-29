@@ -32,7 +32,7 @@ export const schema: OhbugSchema = {
     defaultValue: 30,
     message: 'should be a number between 0 and 100',
     validate: (value) =>
-      value === undefined || (isNumber(value) && 1 <= value && value <= 100),
+      value === undefined || (isNumber(value) && value >= 1 && value <= 100),
   },
   // hooks
   created: {
@@ -41,7 +41,7 @@ export const schema: OhbugSchema = {
     validate: (value) => value === undefined || isFunction(value),
   },
   notified: {
-    defaultValue: () => void 0,
+    defaultValue: () => {},
     message: 'should be a function',
     validate: (value) => value === undefined || isFunction(value),
   },

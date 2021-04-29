@@ -1,6 +1,7 @@
-import { BrowserClient } from '../src/client'
-jest.mock('@ohbug/core')
 import { Client } from '@ohbug/core'
+import { BrowserClient } from '../src/client'
+
+jest.mock('@ohbug/core')
 
 const mockClient = jest.fn()
 ;(Client as jest.Mock).mockImplementation((...args) => {

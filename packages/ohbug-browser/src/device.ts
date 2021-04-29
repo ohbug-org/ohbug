@@ -11,8 +11,8 @@ export const getDevice: OhbugGetDevice = () => {
     const { title } = document
     device.title = title
   }
-  if (location) {
-    const { href: url } = location
+  if (window.location) {
+    const { href: url } = window.location
     device.url = url
   }
   return device

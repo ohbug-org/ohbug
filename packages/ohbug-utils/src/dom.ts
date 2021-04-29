@@ -23,7 +23,7 @@ export const getSelector = (event: Event) => {
     target.nodeType !== Node.DOCUMENT_TYPE_NODE;
     target = target.previousSibling
   ) {
-    i && elements.push(target)
+    if (i) elements.push(target)
     i += 1
   }
   // error.path 只有 chrome 实现，需要 polyfill

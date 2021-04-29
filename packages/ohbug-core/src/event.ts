@@ -19,17 +19,29 @@ import { addMetaData, getMetaData, deleteMetaData } from './lib/metaData'
 
 export class Event<D> implements OhbugEventWithMethods<D> {
   readonly apiKey: string
+
   readonly appVersion?: string
+
   readonly appType?: string
+
   readonly timestamp: string
+
   readonly category?: OhbugCategory
+
   readonly type: string
+
   readonly sdk: OhbugSDK
+
   readonly device: OhbugDevice
+
   readonly detail: D
+
   user?: OhbugUser
+
   readonly actions?: OhbugAction[]
+
   readonly metaData: OhbugMetaData
+
   readonly releaseStage?: OhbugReleaseStage
 
   readonly _client?: OhbugClient
@@ -92,11 +104,11 @@ export class Event<D> implements OhbugEventWithMethods<D> {
   ): void {
     const actions = this.actions!
 
-    message = isString(message) ? message : ''
-    data = data || {}
-    type = isString(type) ? type : ''
+    const targetMessage = isString(message) ? message : ''
+    const targetData = data || {}
+    const targetType = isString(type) ? type : ''
 
-    const action = new Action(message, data, type, timestamp)
+    const action = new Action(targetMessage, targetData, targetType, timestamp)
     if (actions.length >= (this._client?._config.maxActions ?? 30)) {
       actions.shift()
     }
@@ -117,7 +129,7 @@ export class Event<D> implements OhbugEventWithMethods<D> {
    */
   setUser(user: OhbugUser): OhbugUser | undefined {
     if (isObject(user) && Object.keys(user).length <= 6) {
-      this.user = Object.assign({}, this.user, user)
+      this.user = { ...this.user, ...user }
       return this.getUser()
     }
     this._client?._logger.warn(
@@ -126,7 +138,7 @@ export class Event<D> implements OhbugEventWithMethods<D> {
         user
       )
     )
-    return
+    return undefined
   }
 
   /**
@@ -201,7 +213,9 @@ export function createEvent<D>(
   const { apiKey, appVersion, appType, releaseStage } = client._config
   const timestamp = new Date().toISOString()
   const device = client._device(client)
-  let category: OhbugCategory, type: string, detail: D
+  let category: OhbugCategory
+  let type: string
+  let detail: D
   if (
     isObject(values) &&
     Object.prototype.hasOwnProperty.call(values, 'type') &&

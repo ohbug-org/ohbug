@@ -1,5 +1,5 @@
-import { BrowserClient } from '../src/client'
 import type { OhbugEventWithMethods } from '@ohbug/types'
+import { BrowserClient } from '../src/client'
 import { notifier } from '../src/notifier'
 
 const mockSendBeacon = jest.fn()

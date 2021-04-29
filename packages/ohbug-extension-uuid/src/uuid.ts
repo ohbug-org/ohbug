@@ -11,12 +11,13 @@ export function getUUID(): string {
       const extraTime = 60 * 30 * 24 * 3600 * 1000 // 30天后过期
       const endTime = new Date()
       endTime.setTime(endTime.getTime() + extraTime)
-      const _uuid = uuidv4()
-      docCookies.setItem(key, _uuid, endTime)
-      return _uuid
+      const uuid = uuidv4()
+      docCookies.setItem(key, uuid, endTime)
+      return uuid
     }
     return UUID
-  } else if (isNode()) {
+  }
+  if (isNode()) {
     return uuidv4()
   }
   return ''

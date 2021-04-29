@@ -29,15 +29,18 @@ describe('@ohbug/webpack-plugin', () => {
   })
 
   it(`"apiKey" is required`, () => {
-    expect(() => {
-      // @ts-ignore
-      new OhbugWebpackPlugin({})
-    }).toThrowError(/"apiKey" is required!/)
+    expect(
+      () =>
+        // @ts-ignore
+        // eslint-disable-next-line no-new
+        new OhbugWebpackPlugin({})
+    ).toThrowError(/"apiKey" is required!/)
   })
 
   it(`"appVersion" is required`, () => {
     expect(() => {
       // @ts-ignore
+      // eslint-disable-next-line no-new
       new OhbugWebpackPlugin({
         apiKey,
       })

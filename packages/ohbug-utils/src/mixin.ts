@@ -8,6 +8,7 @@ export function replace(
   }
   const original = source[name]
   const wrapped = behavior(original)
+  // eslint-disable-next-line no-param-reassign
   source[name] = wrapped
 
   return original
@@ -27,7 +28,7 @@ export function parseUrl(
 
   // eslint-disable-next-line
   const match = url.match(
-    /^(([^:\/?#]+):)?(\/\/([^\/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?$/
+    /^(([^:/?#]+):)?(\/\/([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?$/
   )
 
   if (!match) {

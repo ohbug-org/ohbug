@@ -1,5 +1,6 @@
 import type { OhbugClient, OhbugConfig, OhbugSDK } from '@ohbug/types'
 import { Client } from '@ohbug/core'
+
 import { getGlobal } from '@ohbug/utils'
 
 import { getDevice } from './device'
@@ -7,21 +8,22 @@ import { version } from './version'
 import { extension } from './extension'
 import { notifier } from './notifier'
 
-interface BrowserClient {
+interface OhbugBrowserClient {
   _client: OhbugClient | null
   init: (config: OhbugConfig) => OhbugClient
 }
 
 function createClient(config: OhbugConfig) {
-  const _global = getGlobal<Window>()
+  const global = getGlobal<Window>()
 
   const sdk: OhbugSDK = {
     platform: 'ohbug-browser',
     version,
   }
   const client = new Client({ sdk, config, device: getDevice, notifier })
-  _global.__OHBUG__ = { client }
+  global.__OHBUG__ = { client }
   client.use(extension)
+  // eslint-disable-next-line no-console
   console.log(
     `%c @ohbug/browser %c Detected Ohbug v${version} %c`,
     'background:#333; padding: 2px 1px; color: #FFF',
@@ -31,7 +33,7 @@ function createClient(config: OhbugConfig) {
   return client
 }
 
-export const BrowserClient: BrowserClient = {
+export const BrowserClient: OhbugBrowserClient = {
   _client: null,
   init(config: OhbugConfig) {
     if (BrowserClient._client) {

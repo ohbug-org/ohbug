@@ -1,6 +1,6 @@
 import { getGlobal, getOhbugObject, getSelector } from '@ohbug/utils'
 
-const _global = getGlobal<Window>()
+const global = getGlobal<Window>()
 
 function listener(e: MouseEvent) {
   if (e.target) {
@@ -34,9 +34,9 @@ function listener(e: MouseEvent) {
 }
 
 export function captureClick() {
-  _global?.document?.addEventListener?.('click', listener)
+  global?.document?.addEventListener?.('click', listener)
 }
 
 export function removeCaptureClick() {
-  _global?.document?.removeEventListener?.('click', listener)
+  global?.document?.removeEventListener?.('click', listener)
 }

@@ -53,5 +53,6 @@ export function install(client: OhbugClient, Vue: VueConstructor) {
     if (typeof prev === 'function') prev(error, vm, info)
   }
 
+  // eslint-disable-next-line no-param-reassign
   Vue.config.errorHandler = handler
 }

@@ -3,7 +3,5 @@ import createProvider from './createProvider'
 
 export const extension = createExtension({
   name: 'OhbugAngular',
-  init: (client, ErrorHandler) => {
-    return createProvider(client, ErrorHandler)
-  },
+  init: (client, ErrorHandler) => createProvider(client, ErrorHandler),
 })

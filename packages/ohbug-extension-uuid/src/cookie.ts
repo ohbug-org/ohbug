@@ -5,9 +5,10 @@ export const docCookies = {
       decodeURIComponent(
         document.cookie.replace(
           new RegExp(
-            '(?:(?:^|.*;)\\s*' +
-              encodeURIComponent(sKey).replace(/[-.+*]/g, '\\$&') +
-              '\\s*\\=\\s*([^;]*).*$)|^.*$'
+            `(?:(?:^|.*;)\\s*${encodeURIComponent(sKey).replace(
+              /[-.+*]/g,
+              '\\$&'
+            )}\\s*\\=\\s*([^;]*).*$)|^.*$`
           ),
           '$1'
         )
@@ -33,24 +34,23 @@ export const docCookies = {
           sExpires =
             vEnd === Infinity
               ? '; expires=Fri, 31 Dec 9999 23:59:59 GMT'
-              : '; max-age=' + vEnd
+              : `; max-age=${vEnd}`
           break
         case String:
-          sExpires = '; expires=' + vEnd
+          sExpires = `; expires=${vEnd}`
           break
         case Date:
-          sExpires = '; expires=' + (vEnd as Date).toUTCString()
+          sExpires = `; expires=${(vEnd as Date).toUTCString()}`
+          break
+        default:
           break
       }
     }
-    const value =
-      encodeURIComponent(sKey) +
-      '=' +
-      encodeURIComponent(sValue) +
-      sExpires +
-      (sDomain ? '; domain=' + sDomain : '') +
-      (sPath ? '; path=' + sPath : '') +
-      (bSecure ? '; secure' : '')
+    const value = `${encodeURIComponent(sKey)}=${encodeURIComponent(
+      sValue
+    )}${sExpires}${sDomain ? `; domain=${sDomain}` : ''}${
+      sPath ? `; path=${sPath}` : ''
+    }${bSecure ? '; secure' : ''}`
     document.cookie = value
 
     return value
@@ -59,11 +59,11 @@ export const docCookies = {
     if (!sKey || !this.getItem(sKey)) {
       return false
     }
-    document.cookie =
-      encodeURIComponent(sKey) +
-      '=; expires=Thu, 01 Jan 1970 00:00:00 GMT' +
-      (sDomain ? '; domain=' + sDomain : '') +
-      (sPath ? '; path=' + sPath : '')
+    document.cookie = `${encodeURIComponent(
+      sKey
+    )}=; expires=Thu, 01 Jan 1970 00:00:00 GMT${
+      sDomain ? `; domain=${sDomain}` : ''
+    }${sPath ? `; path=${sPath}` : ''}`
     return true
   },
 }

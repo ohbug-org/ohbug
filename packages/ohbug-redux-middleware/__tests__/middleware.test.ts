@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware } from 'redux'
 import type { Action } from 'redux'
+
 import Ohbug from '@ohbug/browser'
 
 import { createOhbugMiddleware } from '../src/middleware'
@@ -64,13 +65,13 @@ describe('@ohbug/redux-middleware', () => {
       applyMiddleware(createOhbugMiddleware(before))
     )
 
-    const _beforeLength = client._actions.length
+    const beforeLength = client._actions.length
 
     store.dispatch({ type: 'INCREMENT' })
 
-    const _afterLength = client._actions.length
+    const afterLength = client._actions.length
 
     expect(store.getState()).toBe(1)
-    expect(_beforeLength).toBe(_afterLength)
+    expect(beforeLength).toBe(afterLength)
   })
 })

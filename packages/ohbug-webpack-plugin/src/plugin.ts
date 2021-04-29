@@ -17,9 +17,13 @@ export interface Asset extends Config {
 
 class OhbugWebpackPlugin implements Options {
   apiKey: string
+
   appVersion: string
+
   appType?: string
+
   publicPath?: string
+
   url?: string
 
   constructor(options: Options) {

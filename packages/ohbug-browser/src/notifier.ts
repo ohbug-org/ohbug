@@ -1,4 +1,5 @@
 import type { OhbugEventWithMethods } from '@ohbug/types'
+
 import { getOhbugObject } from '@ohbug/utils'
 
 export function notifier<D>(event: OhbugEventWithMethods<D>) {

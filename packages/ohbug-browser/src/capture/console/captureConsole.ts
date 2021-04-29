@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+
 import { replace, getOhbugObject } from '@ohbug/utils'
 
 type Level = 'log' | 'info' | 'warn' | 'error'
@@ -24,14 +25,13 @@ export function captureConsole() {
       console,
       level,
       (origin) =>
-        function (...args: any[]) {
+        function call(...args: any[]) {
           const isOhbugConsole = args.some(
             (arg) => typeof arg === 'string' && arg.includes('Ohbug')
           )
           if (!isOhbugConsole) {
             client.addAction(`console.${level}`, args, 'console')
           }
-          // @ts-ignore
           return origin.apply(this, args)
         }
     )
@@ -41,7 +41,6 @@ export function captureConsole() {
 export function removeCaptureConsole() {
   if (console) {
     levels.forEach((level) => {
-      // @ts-ignore
       console[level] = consoleOriginal[level]
     })
   }

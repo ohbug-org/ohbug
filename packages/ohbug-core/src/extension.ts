@@ -28,6 +28,7 @@ export function loadExtension(
   const result = extension.init?.(client, ...args)
   client._extensions.push(extension)
   // @ts-ignore
+  // eslint-disable-next-line no-param-reassign
   client._hooks.created = (
     _event: OhbugEventWithMethods<any>,
     _client: OhbugClient
@@ -38,7 +39,7 @@ export function loadExtension(
         .filter(({ created }) => isFunction(created))
         .map(({ created }) => created),
     ]
-    if (funcs.length === 0) return ((...args) => args)(_event, _client)
+    if (funcs.length === 0) return ((...arg) => arg)(_event, _client)
     if (funcs.length === 1) return funcs[0]?.(_event, _client)
     // @ts-ignore
     return funcs.reduce((a, b) => (event) => b(a(event, _client), _client))?.(
@@ -46,6 +47,7 @@ export function loadExtension(
       _client
     )
   }
+  // eslint-disable-next-line no-param-reassign
   client._hooks.notified = (
     _event: OhbugEventWithMethods<any>,
     _client: OhbugClient

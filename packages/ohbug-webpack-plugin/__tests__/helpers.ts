@@ -1,10 +1,11 @@
 import webpack from 'webpack'
-import { resolve } from 'path'
+import path from 'path'
 import { Server } from 'http'
 import express, { Express } from 'express'
 import multer from 'multer'
 import rimraf from 'rimraf'
-const upload = multer({ dest: resolve(__dirname, './uploads/') })
+
+const upload = multer({ dest: path.resolve(__dirname, './uploads/') })
 
 export function compile(compiler: webpack.Compiler) {
   return new Promise((resolve, reject) => {
@@ -38,11 +39,12 @@ export function createCompiler(options: webpack.Configuration = {}) {
   return compiler
 }
 
-export const uploads = resolve(__dirname, './uploads')
+export const uploads = path.resolve(__dirname, './uploads')
 const port = 10086
 export const url = `http://localhost:${port}/upload`
 
-let server: Server | null, app: Express | null
+let server: Server | null
+let app: Express | null
 export const createTestServer = (): Promise<void> =>
   new Promise((resolve) => {
     app = express()
@@ -51,8 +53,8 @@ export const createTestServer = (): Promise<void> =>
       res.end('good')
     })
 
-    const _server = app.listen(port, () => {
-      server = _server
+    const target = app.listen(port, () => {
+      server = target
       // eslint-disable-next-line no-console
       console.log(`createTestServer at port: ${port}`)
       resolve()
@@ -61,11 +63,11 @@ export const createTestServer = (): Promise<void> =>
 
 export const closeTestServer = () =>
   new Promise((resolve) => {
-    server && server.close(resolve)
+    if (server) server.close(resolve)
     server = null
     app = null
   })
 
 export const clearUploads = () => {
-  rimraf(`${uploads}/*`, () => void 0)
+  rimraf(`${uploads}/*`, () => {})
 }

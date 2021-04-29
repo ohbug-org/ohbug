@@ -1,4 +1,9 @@
 module.exports = {
-  '*.{js,jsx,less,sass,scss,md,json,yml,html}': ['prettier --write', 'git add'],
-  '*.ts?(x)': ['prettier --parser=typescript --write', 'git add'],
+  '*.{less,sass,scss,md,json,yml}': ['prettier --write', 'git add'],
+  '*.{js,jsx,html}': ['prettier --write', 'eslint --fix', 'git add'],
+  '*.ts?(x)': [
+    'prettier --parser=typescript --write',
+    'eslint --fix',
+    'git add',
+  ],
 }

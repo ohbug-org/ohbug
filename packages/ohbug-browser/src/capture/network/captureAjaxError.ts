@@ -4,9 +4,9 @@ import * as types from '../../types'
 import { networkDispatcher } from '../../dispatch'
 import { AjaxErrorDetail } from '../../handle'
 
-const _global = getGlobal<Window>()
+const global = getGlobal<Window>()
 const { AJAX_ERROR } = types
-const access = 'XMLHttpRequest' in _global
+const access = 'XMLHttpRequest' in global
 const xhrOriginal = access
   ? {
       open: XMLHttpRequest.prototype.open,
@@ -37,10 +37,10 @@ export function captureAjaxError() {
     xhrProto,
     'open',
     (origin) =>
-      function (...args: any[]) {
-        desc.method = args[0]
-        desc.url = args[1]
-        // @ts-ignore
+      function call(...args: any[]) {
+        const [method, url] = args
+        desc.method = method
+        desc.url = url
         return origin.apply(this, args)
       }
   )
@@ -49,10 +49,8 @@ export function captureAjaxError() {
     xhrProto,
     'send',
     (origin) =>
-      function (...args: any[]) {
-        // @ts-ignore
-        this.addEventListener('readystatechange', function () {
-          // @ts-ignore
+      function call(...args: any[]) {
+        this.addEventListener('readystatechange', function handle() {
           if (this.readyState === 4) {
             if (desc.url !== client._config.endpoint) {
               const detail: AjaxErrorDetail = {
@@ -62,24 +60,19 @@ export function captureAjaxError() {
                   data: args[0] || {},
                 },
                 res: {
-                  // @ts-ignore
                   status: this.status,
-                  // @ts-ignore
                   statusText: this.statusText,
-                  // @ts-ignore
                   response: this.response,
                 },
               }
 
               client.addAction('ajax', detail, 'ajax')
-              // @ts-ignore
               if (!this.status || this.status >= 400) {
                 networkDispatcher(AJAX_ERROR, detail)
               }
             }
           }
         })
-        // @ts-ignore
         return origin.apply(this, args)
       }
   )

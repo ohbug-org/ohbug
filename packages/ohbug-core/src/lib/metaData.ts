@@ -1,9 +1,10 @@
+/* eslint-disable no-param-reassign */
 import type { OhbugMetaData } from '@ohbug/types'
 
 export function addMetaData(map: OhbugMetaData, section: string, data: any) {
   if (!section) return
 
-  return (map[section] = data)
+  map[section] = data
 }
 
 export function getMetaData(map: OhbugMetaData, section: string) {

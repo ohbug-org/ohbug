@@ -9,13 +9,13 @@ export function scriptDispatcher(e: ErrorEvent | PromiseRejectionEvent) {
   try {
     const { type } = e
     if (type === 'error') {
-      const _e = e as ErrorEvent
-      const { message, error } = _e
+      const targetEvent = e as ErrorEvent
+      const { message, error } = targetEvent
       const immutableTarget = e.target || e.srcElement
       if (message && error) {
-        uncaughtErrorHandler(_e)
+        uncaughtErrorHandler(targetEvent)
       } else if (immutableTarget) {
-        resourceErrorHandler(_e)
+        resourceErrorHandler(targetEvent)
       }
     } else if (type === 'unhandledrejection') {
       unhandledrejectionErrorHandler(e as PromiseRejectionEvent)

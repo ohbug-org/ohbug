@@ -3,7 +3,7 @@ export function isString(value: any): value is string {
 }
 
 export function isNumber(value: any): value is number {
-  return typeof value === 'number' && parseInt('' + value, 10) === value
+  return typeof value === 'number' && parseInt(`${value}`, 10) === value
 }
 
 export function isFunction(value: any): value is Function {

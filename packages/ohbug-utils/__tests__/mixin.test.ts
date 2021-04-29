@@ -52,7 +52,7 @@ describe('@ohbug/utils/mixin', () => {
 
   describe('parseUrl', () => {
     const target = `http://localhost:1234/bar`
-    const expect_result = {
+    const expectResult = {
       host: 'localhost:1234',
       path: '/bar',
       protocol: 'http',
@@ -60,7 +60,7 @@ describe('@ohbug/utils/mixin', () => {
     }
 
     it('URL should be parsed correctly', () => {
-      expect(parseUrl(target)).toEqual(expect_result)
+      expect(parseUrl(target)).toEqual(expectResult)
     })
 
     it('should do fault tolerance', () => {

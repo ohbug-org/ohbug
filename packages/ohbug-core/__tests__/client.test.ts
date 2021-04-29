@@ -157,7 +157,7 @@ describe('@ohbug/core/client', () => {
         timestamp: now,
       }
       expect(client._actions.length).toBe(0)
-      for (let i = 1; i <= maxActions; i++) {
+      for (let i = 1; i <= maxActions; i += 1) {
         client.addAction(
           action.message,
           { index: i },
@@ -226,7 +226,7 @@ describe('@ohbug/core/client', () => {
           metaData,
         })
       )
-      expect(client._metaData['organization']).toEqual(metaData.organization)
+      expect(client._metaData.organization).toEqual(metaData.organization)
     })
 
     it('should be add the metaData correctly', () => {
@@ -241,7 +241,7 @@ describe('@ohbug/core/client', () => {
         name: 'ohbug',
         platform: 'jest',
       })
-      expect(client._metaData['organization']).toEqual(metaData.organization)
+      expect(client._metaData.organization).toEqual(metaData.organization)
     })
 
     it('should be get the metaData correctly', () => {

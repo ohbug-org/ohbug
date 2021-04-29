@@ -1,27 +1,36 @@
 import { replace, getGlobal, getOhbugObject, parseUrl } from '@ohbug/utils'
 
-const _global = getGlobal<Window>()
+const global = getGlobal<Window>()
 let lastHref: string | undefined
 
 function handleUrlChange(from?: string, to?: string) {
   const { client } = getOhbugObject<Window>()
-  const _href = parseUrl(_global?.location?.href)
-  let _from = parseUrl(from as string)
-  const _to = parseUrl(to as string)
+  const parsedHref = parseUrl(global?.location?.href)
+  let parsedFrom = parseUrl(from as string)
+  const parsedTo = parseUrl(to as string)
 
-  if (!_from.path) {
-    _from = _href
+  if (!parsedFrom.path) {
+    parsedFrom = parsedHref
   }
 
   lastHref = to
 
-  if (_href.protocol === _to.protocol && _href.host === _to.host) {
-    to = _to.relative
+  let targetFrom = from
+  let targetTo = to
+
+  if (
+    parsedHref.protocol === parsedTo.protocol &&
+    parsedHref.host === parsedTo.host
+  ) {
+    targetTo = parsedTo.relative
   }
-  if (_href.protocol === _from.protocol && _href.host === _from.host) {
-    from = _from.relative
+  if (
+    parsedHref.protocol === parsedFrom.protocol &&
+    parsedHref.host === parsedFrom.host
+  ) {
+    targetFrom = parsedFrom.relative
   }
-  if (from === to) return
+  if (targetFrom === targetTo) return
 
   client.addAction(
     `navigation to ${to}`,
@@ -36,33 +45,32 @@ function handleUrlChange(from?: string, to?: string) {
 function historyReplacement(
   original: (data: any, title: string, url?: string) => void
 ) {
-  return function (data: any, title: string, url?: string) {
+  return function call(data: any, title: string, url?: string) {
     if (url) {
       handleUrlChange(lastHref, String(url))
     }
-    // @ts-ignore
     return original.apply(this, [data, title, url])
   }
 }
 
 const historyOriginal = {
-  pushState: _global?.history?.pushState,
-  replaceState: _global?.history?.replaceState,
-  onpopstate: _global?.onpopstate,
+  pushState: global?.history?.pushState,
+  replaceState: global?.history?.replaceState,
+  onpopstate: global?.onpopstate,
 }
 function historyListener() {
   historyOriginal.pushState = replace(
-    _global?.history,
+    global?.history,
     'pushState',
     historyReplacement
   )
   historyOriginal.replaceState = replace(
-    _global?.history,
+    global?.history,
     'replaceState',
     historyReplacement
   )
-  historyOriginal.onpopstate = replace(_global, 'onpopstate', () => {
-    const current = _global?.location?.href
+  historyOriginal.onpopstate = replace(global, 'onpopstate', () => {
+    const current = global?.location?.href
     handleUrlChange(lastHref, current)
   })
 }
@@ -76,14 +84,14 @@ export function captureUrlChange() {
   // history
   historyListener()
   // hash
-  _global?.addEventListener?.('hashchange', hashListener, true)
+  global?.addEventListener?.('hashchange', hashListener, true)
 }
 
 export function removeCaptureUrlChange() {
   // history
-  _global.history.pushState = historyOriginal.pushState
-  _global.history.replaceState = historyOriginal.replaceState
-  _global.onpopstate = historyOriginal.onpopstate
+  global.history.pushState = historyOriginal.pushState
+  global.history.replaceState = historyOriginal.replaceState
+  global.onpopstate = historyOriginal.onpopstate
   // hash
-  _global?.removeEventListener?.('hashchange', hashListener, true)
+  global?.removeEventListener?.('hashchange', hashListener, true)
 }

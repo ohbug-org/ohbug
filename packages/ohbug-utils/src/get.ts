@@ -1,3 +1,5 @@
+/* eslint-disable no-restricted-globals */
+/* eslint-disable no-nested-ternary */
 import type { OhbugGlobal, OhbugObject } from '@ohbug/types'
 import { error } from './warning'
 
@@ -13,14 +15,14 @@ export function getGlobal<T = Window>(): T & OhbugGlobal {
 }
 
 export function getOhbugObject<T = Window>(): OhbugObject {
-  const _global = getGlobal<T>()
+  const global = getGlobal<T>()
 
   error(
-    Boolean(_global.__OHBUG__),
+    Boolean(global.__OHBUG__),
     'Failed to get `OhbugObject`, please confirm if `Ohbug.init`'
   )
 
-  return _global.__OHBUG__
+  return global.__OHBUG__
 }
 
 export function isNode(): boolean {

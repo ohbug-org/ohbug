@@ -29,16 +29,23 @@ import { addMetaData, getMetaData, deleteMetaData } from './lib/metaData'
 export const Client: OhbugClientConstructor = class Client
   implements OhbugClient {
   readonly _sdk: OhbugSDK
+
   readonly _config: OhbugConfig
+
   readonly _logger: OhbugLoggerConfig
+
   readonly _device: OhbugGetDevice
+
   readonly _notifier: OhbugNotifier
 
   readonly _extensions: OhbugExtension[]
+
   readonly _hooks: OhbugHooks
 
   readonly _actions: OhbugAction[]
+
   _user: OhbugUser
+
   readonly _metaData: OhbugMetaData
 
   constructor({
@@ -149,11 +156,11 @@ export const Client: OhbugClientConstructor = class Client
   ): void {
     const actions = this._actions
 
-    message = isString(message) ? message : ''
-    data = data || {}
-    type = isString(type) ? type : ''
+    const targetMessage = isString(message) ? message : ''
+    const targetData = data || {}
+    const targetType = isString(type) ? type : ''
 
-    const action = new Action(message, data, type, timestamp)
+    const action = new Action(targetMessage, targetData, targetType, timestamp)
     if (actions.length >= this._config.maxActions!) {
       actions.shift()
     }
@@ -174,7 +181,7 @@ export const Client: OhbugClientConstructor = class Client
    */
   setUser(user: OhbugUser): OhbugUser | undefined {
     if (isObject(user) && Object.keys(user).length <= 6) {
-      this._user = Object.assign({}, this._user, user)
+      this._user = { ...this._user, ...user }
       return this.getUser()
     }
     this._logger.warn(
@@ -183,7 +190,7 @@ export const Client: OhbugClientConstructor = class Client
         user
       )
     )
-    return
+    return undefined
   }
 
   /**

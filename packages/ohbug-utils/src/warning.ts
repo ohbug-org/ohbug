@@ -9,6 +9,7 @@ export function error(condition: boolean, format: string, ...args: any[]) {
 
   if (!condition) {
     let argIndex = 0
+    // eslint-disable-next-line no-plusplus
     const message = format.replace(/%s/g, () => args[argIndex++])
     throw new Error(`Ohbug ${message}`)
   }
@@ -25,10 +26,11 @@ export function warning(condition: boolean, format: string, ...args: any[]) {
 
       if (!condition) {
         let argIndex = 0
+        // eslint-disable-next-line no-plusplus
         const message = format.replace(/%s/g, () => args[argIndex++])
         logger.warn(message)
       }
     }
     // eslint-disable-next-line no-empty
-  } catch (error) {}
+  } catch (e) {}
 }
