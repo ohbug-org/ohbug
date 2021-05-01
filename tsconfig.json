@@ -3,6 +3,7 @@
   "compilerOptions": {
     "baseUrl": "./packages",
     "lib": ["ESNext", "DOM"],
+    "target": "ES5",
     "paths": {
       "@ohbug/*": ["packages/*/src"]
     }
