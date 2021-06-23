@@ -69,10 +69,16 @@ function historyListener() {
     'replaceState',
     historyReplacement
   )
-  historyOriginal.onpopstate = replace(global, 'onpopstate', () => {
-    const current = global?.location?.href
-    handleUrlChange(lastHref, current)
-  })
+  historyOriginal.onpopstate = replace(
+    global,
+    'onpopstate',
+    (origin) =>
+      function call(...args: any[]) {
+        const current = global?.location?.href
+        handleUrlChange(lastHref, current)
+        return origin.apply(this, args)
+      }
+  )
 }
 
 function hashListener(e: HashChangeEvent) {
