@@ -1,4 +1,3 @@
-import type React from 'react'
 import type { OhbugClient } from './client'
 import type { OhbugEvent, OhbugEventWithMethods } from './event'
 
@@ -12,14 +11,8 @@ export interface OhbugExtension<T = any> {
   notified?: (event: OhbugEventWithMethods<any>, client: OhbugClient) => void
 }
 
-export interface OhbugExtensionUIComponentProps {
-  event: OhbugEvent<any>
-}
 export interface OhbugExtensionUI {
   name: string
   key: string
-  components: {
-    event?: (react: typeof React) => React.FC<OhbugExtensionUIComponentProps>
-    analysis?: (react: typeof React) => React.FC<OhbugExtensionUIComponentProps>
-  }
+  component: (event: OhbugEvent<any>, root: HTMLDivElement) => void
 }
