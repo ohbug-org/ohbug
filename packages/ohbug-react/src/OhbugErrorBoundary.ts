@@ -45,7 +45,6 @@ export function createOhbugErrorBoundary(
         detail,
       })
       client.notify(event)
-
       this.setState({
         error,
         info,
