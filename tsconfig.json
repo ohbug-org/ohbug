@@ -13,7 +13,9 @@
     ".eslintrc.js",
     ".prettierrc.js",
     "commitlint.config.js",
-    "lint-staged.config.js"
+    "lint-staged.config.js",
+    "test/**/*",
+    "jest.config.js"
   ],
   "exclude": ["node_modules/", "dist/"]
 }
