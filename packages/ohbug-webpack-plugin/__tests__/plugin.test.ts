@@ -47,7 +47,7 @@ describe('@ohbug/webpack-plugin', () => {
     }).toThrowError(/"appVersion" is required!/)
   })
 
-  it('should works', (done) => {
+  it('should works', async () => {
     const compiler = createCompiler()
     new OhbugWebpackPlugin({
       apiKey,
@@ -55,10 +55,8 @@ describe('@ohbug/webpack-plugin', () => {
       url,
     }).apply(compiler)
 
-    return compile(compiler).then(() => {
-      const files = fs.readdirSync(uploads).length
-      expect(files).toBe(1)
-      done()
-    })
+    await compile(compiler)
+    const files = fs.readdirSync(uploads).length
+    expect(files).toBe(1)
   })
 })
