@@ -57,7 +57,7 @@ Ohbug 是一套集 行为监控、异常监控、自定义行为监控 于一体
 
 ## Dashboard
 
-这部分包含了整个控制台，你可以私有部署 Ohbug，查看[部署文档](https://github.com/ohbug-org/ohbug-server/blob/master/setup.md)。
+这部分包含了整个控制台，你可以私有部署 Ohbug，查看[部署文档](https://ohbug.net/docs/deploy/Deploy)。
 
 - [ohbug-server](https://github.com/ohbug-org/ohbug-server): 控制台后端部分，基于 nestjs 实现。
 

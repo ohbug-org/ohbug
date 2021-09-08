@@ -6,10 +6,12 @@ import { extension as OhbugReact } from '../src/extension'
 const client = Ohbug.init({ apiKey: 'YOUR_API_KEY' })
 const OhbugErrorBoundary = client.use(OhbugReact, React)
 const originErrorConsole = console.error
+
 describe('test extension', () => {
   // to avoid react print error when having componentDidCatch
   // https://stackoverflow.com/questions/52096804/react-still-showing-errors-after-catching-with-errorboundary
   console.error = () => {}
+
   it('should render the FallbackComponent with error', async () => {
     const FallbackComponent = () => <div>FallbackComponent error</div>
     const ComponentThatMightThrowAnError = () => {
@@ -28,6 +30,7 @@ describe('test extension', () => {
     const container = await screen.findByText('FallbackComponent error')
     expect(container.tagName).toEqual('DIV')
   })
+
   it('should notified with error', async () => {
     const mockSendBeacon = jest.fn()
     navigator.sendBeacon = mockSendBeacon
@@ -71,6 +74,7 @@ describe('test extension', () => {
     fireEvent.click(button)
     expect(mockSendBeacon).toBeCalledTimes(2)
   })
+
   afterAll(() => {
     console.error = originErrorConsole
   })
