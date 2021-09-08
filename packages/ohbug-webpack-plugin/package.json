@@ -1,6 +1,6 @@
 {
   "name": "@ohbug/webpack-plugin",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "Webpack plugin for upload your sourceMap files to Ohbug",
   "author": "chenyueban <jasonchan0527@gmail.com>",
   "homepage": "https://github.com/ohbug-org/ohbug",

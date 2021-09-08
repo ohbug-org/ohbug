@@ -1,6 +1,6 @@
 {
   "name": "@ohbug/core",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "Responsible for managing Ohbug's workflow",
   "author": "chenyueban <jasonchan0527@gmail.com>",
   "homepage": "https://github.com/ohbug-org/ohbug",
@@ -39,6 +39,6 @@
   },
   "dependencies": {
     "@ohbug/types": "^1.1.4",
-    "@ohbug/utils": "^1.0.12"
+    "@ohbug/utils": "^1.0.13"
   }
 }
