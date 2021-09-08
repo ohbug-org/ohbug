@@ -1,0 +1,9 @@
+{
+  "extends": "./node_modules/@chenyueban/lint/src/eslint.js",
+  "rules": {
+    // 限制使用下划线命名
+    "no-underscore-dangle": "off",
+    // 导入外部依赖
+    "import/no-extraneous-dependencies": "off"
+  }
+}

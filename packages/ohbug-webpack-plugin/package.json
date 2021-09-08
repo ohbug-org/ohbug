@@ -12,20 +12,25 @@
     "url": "https://github.com/ohbug-org/ohbug"
   },
   "license": "Apache-2.0",
-  "main": "dist/ohbug-webpack-plugin.cjs.js",
-  "module": "dist/ohbug-webpack-plugin.esm.js",
-  "unpkg": "dist/ohbug-webpack-plugin.umd.js",
-  "jsdelivr": "dist/ohbug-webpack-plugin.umd.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/ohbug-webpack-plugin.umd.js",
+  "module": "./dist/ohbug-webpack-plugin.es.js",
+  "unpkg": "./dist/ohbug-webpack-plugin.umd.js",
+  "jsdelivr": "./dist/ohbug-webpack-plugin.umd.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/ohbug-webpack-plugin.es.js",
+      "require": "./dist/ohbug-webpack-plugin.umd.js"
+    }
+  },
   "files": [
     "dist"
   ],
   "buildOptions": {
     "name": "OhbugWebpackPlugin",
     "formats": [
-      "esm",
-      "umd",
-      "cjs"
+      "es",
+      "umd"
     ]
   },
   "publishConfig": {
@@ -38,10 +43,10 @@
   "devDependencies": {
     "@types/express": "^4.17.11",
     "@types/multer": "^1.4.5",
-    "@types/rimraf": "^3.0.0",
+    "@types/rimraf": "^3.0.2",
     "express": "^4.17.1",
     "multer": "^1.4.2",
     "rimraf": "^3.0.2",
-    "webpack": "^5.36.1"
+    "webpack": "^5.52.0"
   }
 }

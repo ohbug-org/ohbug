@@ -81,8 +81,8 @@ function historyListener() {
   )
 }
 
-function hashListener(e: HashChangeEvent) {
-  const { oldURL, newURL } = e
+function hashListener(e: Event) {
+  const { oldURL, newURL } = e as HashChangeEvent
   handleUrlChange(oldURL, newURL)
 }
 

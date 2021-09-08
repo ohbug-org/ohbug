@@ -12,20 +12,25 @@
     "url": "https://github.com/ohbug-org/ohbug"
   },
   "license": "Apache-2.0",
-  "main": "dist/ohbug-browser.cjs.js",
-  "module": "dist/ohbug-browser.esm.js",
-  "unpkg": "dist/ohbug-browser.umd.js",
-  "jsdelivr": "dist/ohbug-browser.umd.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/ohbug-browser.umd.js",
+  "module": "./dist/ohbug-browser.es.js",
+  "unpkg": "./dist/ohbug-browser.umd.js",
+  "jsdelivr": "./dist/ohbug-browser.umd.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/ohbug-browser.es.js",
+      "require": "./dist/ohbug-browser.umd.js"
+    }
+  },
   "files": [
     "dist"
   ],
   "buildOptions": {
     "name": "Ohbug",
     "formats": [
-      "esm",
-      "umd",
-      "cjs"
+      "es",
+      "umd"
     ],
     "order": 3
   },

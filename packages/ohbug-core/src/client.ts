@@ -27,7 +27,8 @@ import { getConfigErrorMessage, getErrorMessage } from './lib/getErrorMessage'
 import { addMetaData, getMetaData, deleteMetaData } from './lib/metaData'
 
 export const Client: OhbugClientConstructor = class Client
-  implements OhbugClient {
+  implements OhbugClient
+{
   readonly _sdk: OhbugSDK
 
   readonly _config: OhbugConfig

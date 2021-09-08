@@ -12,11 +12,17 @@
     "url": "https://github.com/ohbug-org/ohbug"
   },
   "license": "Apache-2.0",
-  "main": "dist/ohbug-react.cjs.js",
-  "module": "dist/ohbug-react.esm.js",
-  "unpkg": "dist/ohbug-react.umd.js",
-  "jsdelivr": "dist/ohbug-react.umd.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/ohbug-react.umd.js",
+  "module": "./dist/ohbug-react.es.js",
+  "unpkg": "./dist/ohbug-react.umd.js",
+  "jsdelivr": "./dist/ohbug-react.umd.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/ohbug-react.es.js",
+      "require": "./dist/ohbug-react.umd.js"
+    }
+  },
   "files": [
     "dist"
   ],
@@ -24,7 +30,7 @@
     "@ohbug/core": "^1.1.5"
   },
   "devDependencies": {
-    "@types/react": "^17.0.4"
+    "@types/react": "^17.0.20"
   },
   "peerDependencies": {
     "react": "^16.8.6"
@@ -32,9 +38,8 @@
   "buildOptions": {
     "name": "OhbugReact",
     "formats": [
-      "esm",
-      "umd",
-      "cjs"
+      "es",
+      "umd"
     ],
     "order": 4
   },

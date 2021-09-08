@@ -12,11 +12,17 @@
     "url": "https://github.com/ohbug-org/ohbug"
   },
   "license": "Apache-2.0",
-  "main": "dist/ohbug-redux-middleware.cjs.js",
-  "module": "dist/ohbug-redux-middleware.esm.js",
-  "unpkg": "dist/ohbug-redux-middleware.umd.js",
-  "jsdelivr": "dist/ohbug-redux-middleware.umd.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/ohbug-redux-middleware.umd.js",
+  "module": "./dist/ohbug-redux-middleware.es.js",
+  "unpkg": "./dist/ohbug-redux-middleware.umd.js",
+  "jsdelivr": "./dist/ohbug-redux-middleware.umd.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/ohbug-redux-middleware.es.js",
+      "require": "./dist/ohbug-redux-middleware.umd.js"
+    }
+  },
   "files": [
     "dist"
   ],
@@ -29,9 +35,8 @@
   "buildOptions": {
     "name": "OhbugReduxMiddleware",
     "formats": [
-      "esm",
-      "umd",
-      "cjs"
+      "es",
+      "umd"
     ],
     "order": 4
   },

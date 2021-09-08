@@ -7,21 +7,23 @@ type CreateOhbugMiddlewareOption = (
   action: Action,
   store: MiddlewareAPI
 ) => Action | false
-export const createOhbugMiddleware = (
-  before: CreateOhbugMiddlewareOption = identity
-): Middleware => (store) => (next) => (action) => {
-  const data = before(action, store)
+export const createOhbugMiddleware =
+  (before: CreateOhbugMiddlewareOption = identity): Middleware =>
+  (store) =>
+  (next) =>
+  (action) => {
+    const data = before(action, store)
 
-  if (data) {
-    const ohbugObject = getOhbugObject<Window>()
-    error(Boolean(ohbugObject), '`Ohbug.init` is not running yet!')
+    if (data) {
+      const ohbugObject = getOhbugObject<Window>()
+      error(Boolean(ohbugObject), '`Ohbug.init` is not running yet!')
 
-    ohbugObject.client.addAction(
-      'dispatch a redux action',
-      data,
-      'redux-action'
-    )
+      ohbugObject.client.addAction(
+        'dispatch a redux action',
+        data,
+        'redux-action'
+      )
+    }
+
+    return next(action)
   }
-
-  return next(action)
-}

@@ -15,7 +15,7 @@ if (target[0] !== 'ohbug-types') {
       [
         `NODE_ENV:${env}`,
         `TARGET:${target}`,
-        `FORMATS:${formats || 'esm'}`,
+        `FORMATS:${formats || 'es'}`,
       ].join(','),
     ],
     {

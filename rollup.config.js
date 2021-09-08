@@ -4,6 +4,7 @@ import commonjs from '@rollup/plugin-commonjs'
 import json from '@rollup/plugin-json'
 import ts from 'rollup-plugin-typescript2'
 import replace from '@rollup/plugin-replace'
+import { terser } from 'rollup-plugin-terser'
 
 require('dotenv').config()
 
@@ -11,6 +12,7 @@ const packagesDir = path.resolve(__dirname, 'packages')
 const packageDir = path.resolve(packagesDir, process.env.TARGET)
 const name = path.basename(packageDir)
 const resolve = (p) => path.resolve(packageDir, p)
+// eslint-disable-next-line import/no-dynamic-require
 const pkg = require(resolve(`package.json`))
 const packageOptions = pkg.buildOptions || {}
 const configs = {
@@ -19,20 +21,11 @@ const configs = {
     format: `umd`,
     name: packageOptions.name,
   },
-  esm: {
-    file: resolve(`dist/${name}.esm.js`),
+  es: {
+    file: resolve(`dist/${name}.es.js`),
     format: `es`,
   },
-  cjs: {
-    file: resolve(`dist/${name}.cjs.js`),
-    format: `cjs`,
-  },
 }
-const input = resolve('src/index.ts')
-const defaultFormats = ['esm', 'umd']
-const inlineFormats = process.env.FORMATS && process.env.FORMATS.split(',')
-const packageFormats = inlineFormats || packageOptions.formats || defaultFormats
-const external = ['react']
 const url = process.env.URL
 
 function createConfig(input, output, plugins = [], external = []) {
@@ -44,6 +37,7 @@ function createConfig(input, output, plugins = [], external = []) {
   const commonjsOptions = {
     ignoreGlobal: true,
     include: /node_modules/,
+    extensions,
   }
 
   return {
@@ -51,6 +45,7 @@ function createConfig(input, output, plugins = [], external = []) {
     output,
     plugins: [
       replace({
+        preventAssignment: true,
         __VERSION__: pkg.version,
         __URL__: url,
       }),
@@ -65,21 +60,25 @@ function createConfig(input, output, plugins = [], external = []) {
 }
 
 function createMinifiedConfig(input, output, plugins = [], external = []) {
-  const { terser } = require('rollup-plugin-terser')
   return createConfig(
     input,
     { ...output, file: output.file.replace(/\.js$/, '.min.js') },
-    [terser(), ...plugins],
+    [...plugins, terser()],
     external
   )
 }
 
+const input = resolve('src/index.ts')
+const defaultFormats = ['es', 'umd']
+const inlineFormats = process.env.FORMATS && process.env.FORMATS.split(',')
+const packageFormats = inlineFormats || packageOptions.formats || defaultFormats
+const external = ['react']
 const packageConfigs = packageFormats.map((format) =>
   createConfig(input, configs[format], [], external)
 )
 if (process.env.NODE_ENV === 'production') {
   packageFormats.forEach((format) => {
-    if (format === 'umd' || format === 'esm') {
+    if (format === 'umd' || format === 'es') {
       packageConfigs.push(
         createMinifiedConfig(input, configs[format], [], external)
       )

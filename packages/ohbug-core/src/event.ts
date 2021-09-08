@@ -227,7 +227,7 @@ export function createEvent<D>(
   } else {
     category = 'error'
     type = 'unknownError'
-    detail = (values as unknown) as D
+    detail = values as unknown as D
   }
 
   return new Event(

@@ -12,20 +12,25 @@
     "url": "https://github.com/ohbug-org/ohbug"
   },
   "license": "Apache-2.0",
-  "main": "dist/ohbug-core.cjs.js",
-  "module": "dist/ohbug-core.esm.js",
-  "unpkg": "dist/ohbug-core.umd.js",
-  "jsdelivr": "dist/ohbug-core.umd.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/ohbug-core.umd.js",
+  "module": "./dist/ohbug-core.es.js",
+  "unpkg": "./dist/ohbug-core.umd.js",
+  "jsdelivr": "./dist/ohbug-core.umd.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/ohbug-core.es.js",
+      "require": "./dist/ohbug-core.umd.js"
+    }
+  },
   "files": [
     "dist"
   ],
   "buildOptions": {
     "name": "OhbugCore",
     "formats": [
-      "esm",
-      "umd",
-      "cjs"
+      "es",
+      "umd"
     ],
     "order": 2
   },

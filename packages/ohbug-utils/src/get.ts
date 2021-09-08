@@ -5,13 +5,15 @@ import { error } from './warning'
 
 const fallbackGlobalObject = {}
 export function getGlobal<T = Window>(): T & OhbugGlobal {
-  return (typeof window !== 'undefined'
-    ? window
-    : typeof global !== 'undefined'
-    ? global
-    : typeof self !== 'undefined'
-    ? self
-    : fallbackGlobalObject) as T & OhbugGlobal
+  return (
+    typeof window !== 'undefined'
+      ? window
+      : typeof global !== 'undefined'
+      ? global
+      : typeof self !== 'undefined'
+      ? self
+      : fallbackGlobalObject
+  ) as T & OhbugGlobal
 }
 
 export function getOhbugObject<T = Window>(): OhbugObject {
