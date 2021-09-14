@@ -1,4 +1,4 @@
-import { OhbugObject } from '@ohbug/types'
+import type { OhbugObject } from '@ohbug/types'
 
 declare global {
   interface Window {
