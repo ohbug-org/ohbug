@@ -15,11 +15,6 @@
 
 </div>
 
-<p align="center">
-  <img width="300" src="https://raw.githubusercontent.com/ohbug-org/ohbug-website/master/static/images/dashboard-issues.png" alt="dashboard-issues">
-  <img width="300" src="https://raw.githubusercontent.com/ohbug-org/ohbug-website/master/static/images/dashboard-event.png" alt="dashboard-event">
-</p>
-
 English | [简体中文](./README-zh_CN.md)
 
 ## Introduction
@@ -52,7 +47,7 @@ Will support NodeJS, React Native and other JavaScript platforms.
 - [@ohbug/utils](./packages/ohbug-utils): Contains some helper/tool programs.
 - [@ohbug/types](./packages/ohbug-types): Contains types used in all packages.
 - [@ohbug/redux-middleware](./packages/ohbug-redux-middleware): Redux middleware for propagating Redux state/actions to use with Ohbug.
-- [@ohbug/webpack-plugin](./packages/ohbug-webpack-plugin): webpack plugin for uploading sourceMap files.
+- [@ohbug/unplugin](https://github.com/ohbug-org/unplugin-ohbug): plugin for upload your sourceMap files to Ohbug.
 - [@ohbug/cli](https://github.com/ohbug-org/ohbug-cli): Upload your sourceMap file to Ohbug or other services in one click.
 
 ## Dashboard
