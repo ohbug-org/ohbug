@@ -53,19 +53,11 @@ function createConfig(input, output, plugins = [], external = []) {
       nodeResolve({ extensions }),
       commonjs(commonjsOptions),
       json(),
+      terser(),
       ...plugins,
     ],
     external,
   }
-}
-
-function createMinifiedConfig(input, output, plugins = [], external = []) {
-  return createConfig(
-    input,
-    { ...output, file: output.file.replace(/\.js$/, '.min.js') },
-    [...plugins, terser()],
-    external
-  )
 }
 
 const input = resolve('src/index.ts')
@@ -76,14 +68,5 @@ const external = ['react']
 const packageConfigs = packageFormats.map((format) =>
   createConfig(input, configs[format], [], external)
 )
-if (process.env.NODE_ENV === 'production') {
-  packageFormats.forEach((format) => {
-    if (format === 'umd' || format === 'es') {
-      packageConfigs.push(
-        createMinifiedConfig(input, configs[format], [], external)
-      )
-    }
-  })
-}
 
 export default packageConfigs
