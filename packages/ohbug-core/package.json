@@ -1,6 +1,6 @@
 {
   "name": "@ohbug/core",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "Responsible for managing Ohbug's workflow",
   "author": "chenyueban <jasonchan0527@gmail.com>",
   "homepage": "https://github.com/ohbug-org/ohbug",
