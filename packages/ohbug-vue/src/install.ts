@@ -1,5 +1,6 @@
 import type { OhbugBaseDetail, OhbugClient } from '@ohbug/types'
 import type { VueConstructor } from 'vue'
+import { VUE } from '@ohbug/core'
 
 export interface VueErrorDetail extends OhbugBaseDetail {
   name: string
@@ -43,7 +44,7 @@ export function install(client: OhbugClient, Vue: VueConstructor) {
     }
     const event = client.createEvent<VueErrorDetail>({
       category: 'error',
-      type: 'vue',
+      type: VUE,
       detail,
     })
     client.notify(event)

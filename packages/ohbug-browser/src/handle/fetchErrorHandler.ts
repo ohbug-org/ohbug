@@ -1,9 +1,6 @@
 import { getOhbugObject } from '@ohbug/utils'
 import type { OhbugBaseDetail } from '@ohbug/types'
-
-import * as types from '../types'
-
-const { FETCH_ERROR } = types
+import { FETCH_ERROR } from '@ohbug/core'
 
 export interface FetchErrorDetail extends OhbugBaseDetail {
   req: {

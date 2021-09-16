@@ -1,9 +1,6 @@
 import { getOhbugObject } from '@ohbug/utils'
 import type { OhbugBaseDetail } from '@ohbug/types'
-
-import * as types from '../types'
-
-const { WEBSOCKET_ERROR } = types
+import { WEBSOCKET_ERROR } from '@ohbug/core'
 
 export interface WebsocketErrorDetail extends OhbugBaseDetail {
   url: string

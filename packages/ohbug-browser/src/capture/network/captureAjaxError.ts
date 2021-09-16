@@ -1,11 +1,10 @@
 import { getGlobal, getOhbugObject, warning, replace } from '@ohbug/utils'
+import { AJAX_ERROR } from '@ohbug/core'
 
-import * as types from '../../types'
 import { networkDispatcher } from '../../dispatch'
 import { AjaxErrorDetail } from '../../handle'
 
 const global = getGlobal<Window>()
-const { AJAX_ERROR } = types
 const access = 'XMLHttpRequest' in global
 const xhrOriginal = access
   ? {

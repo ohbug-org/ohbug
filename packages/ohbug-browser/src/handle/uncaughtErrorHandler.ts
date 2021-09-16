@@ -1,9 +1,6 @@
 import { getOhbugObject } from '@ohbug/utils'
 import type { OhbugBaseDetail } from '@ohbug/types'
-
-import * as types from '../types'
-
-const { UNCAUGHT_ERROR } = types
+import { UNCAUGHT_ERROR } from '@ohbug/core'
 
 export interface UncaughtErrorDetail extends OhbugBaseDetail {
   name: string

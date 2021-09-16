@@ -1,11 +1,10 @@
 import { getGlobal, getOhbugObject, warning, replace } from '@ohbug/utils'
+import { FETCH_ERROR } from '@ohbug/core'
 
-import * as types from '../../types'
 import { networkDispatcher } from '../../dispatch'
 import { FetchErrorDetail } from '../../handle'
 
 const global = getGlobal<Window>()
-const { FETCH_ERROR } = types
 const access = 'fetch' in global
 
 let fetchOriginal = access ? global.fetch : null

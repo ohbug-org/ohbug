@@ -1,12 +1,11 @@
+import { AJAX_ERROR, FETCH_ERROR, WEBSOCKET_ERROR } from '@ohbug/core'
+
 import {
   ajaxErrorHandler,
   fetchErrorHandler,
   websocketErrorHandler,
   unknownErrorHandler,
 } from '../handle'
-import * as types from '../types'
-
-const { AJAX_ERROR, FETCH_ERROR, WEBSOCKET_ERROR } = types
 
 export function networkDispatcher(type: string, detail: any) {
   try {

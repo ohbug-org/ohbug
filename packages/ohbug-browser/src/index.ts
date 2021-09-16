@@ -1,5 +1,4 @@
 import { BrowserClient } from './client'
-import * as types from './types'
 
 export type {
   UncaughtErrorDetail,
@@ -11,5 +10,5 @@ export type {
   WebsocketErrorDetail,
 } from './handle'
 
-export { BrowserClient as Client, types }
+export { BrowserClient as Client }
 export default BrowserClient

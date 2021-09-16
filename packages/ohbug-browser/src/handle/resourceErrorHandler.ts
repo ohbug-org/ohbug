@@ -1,9 +1,6 @@
 import { getOhbugObject, getSelector } from '@ohbug/utils'
 import type { OhbugBaseDetail } from '@ohbug/types'
-
-import * as types from '../types'
-
-const { RESOURCE_ERROR } = types
+import { RESOURCE_ERROR } from '@ohbug/core'
 
 export interface ResourceErrorDetail extends OhbugBaseDetail {
   outerHTML: string

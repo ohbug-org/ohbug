@@ -1,9 +1,6 @@
 import { getOhbugObject } from '@ohbug/utils'
 import type { OhbugBaseDetail } from '@ohbug/types'
-
-import * as types from '../types'
-
-const { AJAX_ERROR } = types
+import { AJAX_ERROR } from '@ohbug/core'
 
 export interface AjaxErrorDetail extends OhbugBaseDetail {
   req: {

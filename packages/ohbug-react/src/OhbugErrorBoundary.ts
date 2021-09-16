@@ -1,5 +1,6 @@
 import type { OhbugBaseDetail, OhbugClient } from '@ohbug/types'
 import React from 'react'
+import { REACT } from '@ohbug/core'
 
 export interface ReactErrorDetail extends OhbugBaseDetail {
   name: string
@@ -41,7 +42,7 @@ export function createOhbugErrorBoundary(
 
       const event = client.createEvent<ReactErrorDetail>({
         category: 'error',
-        type: 'react',
+        type: REACT,
         detail,
       })
       client.notify(event)
