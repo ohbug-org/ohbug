@@ -1,10 +1,8 @@
 <div align="center">
 
   <a href="https://ohbug.net" target="_blank">
-    <img src="https://raw.githubusercontent.com/ohbug-org/blog/master/images/ohbug_logo.svg" alt="Ohbug" height="72">
+    <img src="https://raw.githubusercontent.com/ohbug-org/blog/master/images/ohbug_logo.svg" alt="Ohbug" height="40">
   </a>
-  
-  <p>开源应用信息监控平台</p>
 
 [![build](https://img.shields.io/github/workflow/status/ohbug-org/ohbug/Node.js%20CI/master?style=flat-square)](https://github.com/ohbug-org/ohbug/actions?query=workflow%3A%22Node.js+CI%22)
 [![npm](https://img.shields.io/npm/v/@ohbug/core.svg?style=flat-square)](https://www.npmjs.com/package/@ohbug/core)
@@ -40,6 +38,7 @@ Ohbug 是一套集 行为监控、异常监控、自定义行为监控 于一体
 - [@ohbug/extension-perfume](https://github.com/ohbug-org/ohbug-extension-perfume): 封装 [perfume.js](https://github.com/Zizzamia/perfume.js)，用于收集性能信息。
 - [@ohbug/extension-rrweb](https://github.com/ohbug-org/ohbug-extension-rrweb): 封装 [rrweb](https://github.com/rrweb-io/rrweb)，用于“录屏”。
 - [@ohbug/extension-uuid](./packages/ohbug-extension-uuid): 扩展 `Event.user` 增加 `UUID` 标识。
+- [@ohbug/extension-feedback](https://github.com/ohbug-org/ohbug-extension-feedback): 可视化操作, 用于收集用户反馈信息。
 
 ### Others
 
@@ -55,6 +54,19 @@ Ohbug 是一套集 行为监控、异常监控、自定义行为监控 于一体
 这部分包含了整个控制台，你可以私有部署 Ohbug，查看[部署文档](https://ohbug.net/docs/deploy/Deploy)。
 
 - [ohbug-server](https://github.com/ohbug-org/ohbug-server): 控制台后端部分，基于 nestjs 实现。
+- [ohbug-app](https://github.com/ohbug-org/ohbug-app): 控制台前端部分。
+
+## Contributors
+
+This project exists thanks to all the people who contribute.
+
+<a href="https://github.com/ohbug-org/ohbug/graphs/contributors"><img src="https://opencollective.com/ohbug/contributors.svg?width=890&button=false" /></a>
+
+## Feedback
+
+| Github Issue                                                        | 微信群                                                                                                                 |
+| ------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| [ohbug-org/ohbug/issues](https://github.com/ohbug-org/ohbug/issues) | <img src="https://github.com/ohbug-org/blog/blob/master/images/qrcode.jpg?raw=true" width="200" /> 关注后回复「ohbug」 |
 
 ## License
 
