@@ -76,7 +76,7 @@ function historyListener() {
       function call(...args: any[]) {
         const current = global?.location?.href
         handleUrlChange(lastHref, current)
-        return origin.apply(this, args)
+        return origin?.apply(this, args)
       }
   )
 }
