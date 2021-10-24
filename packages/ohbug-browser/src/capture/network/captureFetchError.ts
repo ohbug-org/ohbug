@@ -25,9 +25,8 @@ export function captureFetchError() {
     'fetch',
     (origin) =>
       function call(...args: any[]) {
-        return origin
-          .apply(this, args)
-          .then((res: Response) => {
+        return origin.apply(this, args).then(
+          (res: Response) => {
             const [url, conf] = args
             const detail: FetchErrorDetail = {
               req: {
@@ -46,10 +45,24 @@ export function captureFetchError() {
               networkDispatcher(FETCH_ERROR, detail)
             }
             return res
-          })
-          .catch((err: Error) => {
-            networkDispatcher(FETCH_ERROR, err)
-          })
+          },
+          (err: Error) => {
+            const [url, conf] = args
+            const detail: FetchErrorDetail = {
+              req: {
+                url,
+                method: conf && conf.method,
+                data: (conf && conf.body) || {},
+              },
+              res: {
+                status: 400,
+                statusText: 'unknownError',
+              },
+            }
+            networkDispatcher(FETCH_ERROR, detail)
+            throw err
+          }
+        )
       }
   )
 }
