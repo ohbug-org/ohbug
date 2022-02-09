@@ -12,36 +12,33 @@
     "url": "https://github.com/ohbug-org/ohbug"
   },
   "license": "Apache-2.0",
-  "main": "./dist/ohbug-angular.umd.js",
-  "module": "./dist/ohbug-angular.es.js",
-  "unpkg": "./dist/ohbug-angular.umd.js",
-  "jsdelivr": "./dist/ohbug-angular.umd.js",
-  "types": "./dist/index.d.ts",
+  "sideEffects": false,
   "exports": {
     ".": {
-      "import": "./dist/ohbug-angular.es.js",
-      "require": "./dist/ohbug-angular.umd.js"
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
     }
   },
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
+  "scripts": {
+    "build": "unbuild",
+    "stub": "unbuild --stub"
+  },
   "dependencies": {
-    "@ohbug/core": "^1.1.7"
+    "@ohbug/core": "workspace:*",
+    "@ohbug/types": "workspace:*"
   },
   "devDependencies": {
     "@angular/core": "^12.2.4"
   },
   "peerDependencies": {
     "@angular/core": "^10.0.0"
-  },
-  "buildOptions": {
-    "name": "OhbugAngular",
-    "formats": [
-      "es",
-      "umd"
-    ],
-    "order": 4
   },
   "publishConfig": {
     "access": "public"

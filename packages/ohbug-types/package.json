@@ -15,9 +15,5 @@
   "types": "src/index.ts",
   "publishConfig": {
     "access": "public"
-  },
-  "buildOptions": {
-    "name": "OhbugTypes",
-    "order": 1
   }
 }

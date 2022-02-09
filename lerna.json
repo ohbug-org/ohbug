@@ -6,6 +6,5 @@
       "message": "chore(release): publish"
     }
   },
-  "npmClient": "yarn",
   "useWorkspaces": true
 }

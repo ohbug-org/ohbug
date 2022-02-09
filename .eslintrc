@@ -1,0 +1,3 @@
+{
+  "extends": "./node_modules/@chenyueban/lint/src/index.cjs"
+}

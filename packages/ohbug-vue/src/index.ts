@@ -1,2 +1,4 @@
+import { extension } from './extension'
+
+export default extension
 export type { VueErrorDetail } from './install'
-export { extension as default } from './extension'

@@ -1,6 +1,6 @@
+import { VUE } from '@ohbug/core'
 import type { OhbugBaseDetail, OhbugClient } from '@ohbug/types'
 import type { VueConstructor } from 'vue'
-import { VUE } from '@ohbug/core'
 
 export interface VueErrorDetail extends OhbugBaseDetail {
   name: string

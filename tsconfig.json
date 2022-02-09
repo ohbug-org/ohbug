@@ -1,9 +1,9 @@
 {
   "extends": "./node_modules/@chenyueban/tsconfig/tsconfig.json",
   "compilerOptions": {
-    "baseUrl": "./packages",
     "lib": ["ESNext", "DOM"],
     "target": "ES5",
+    "baseUrl": "./packages",
     "paths": {
       "@ohbug/*": ["packages/*/src"]
     }

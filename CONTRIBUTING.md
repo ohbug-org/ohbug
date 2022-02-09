@@ -11,13 +11,7 @@ git clone git@github.com:ohbug-org/ohbug.git
 Install dev deps.
 
 ```bash
-yarn
-```
-
-Link each module.
-
-```bash
-yarn bootstrap
+pnpm i
 ```
 
 ## Build
@@ -25,20 +19,20 @@ yarn bootstrap
 Transform with rollup.
 
 ```bash
-yarn build
+pnpm build
 
 # Build specified package only
-yarn build ohbug-core
+pnpm build ohbug-core
 
 # Build and monitor file changes
-yarn dev
+pnpm dev
 
 # Build and monitor specified package only
-yarn dev ohbug-core
+pnpm dev ohbug-core
 ```
 
 ## Test
 
 ```bash
-yarn test
+pnpm test
 ```

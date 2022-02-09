@@ -1,1 +1,3 @@
-export { createOhbugMiddleware as default } from './middleware'
+import { createOhbugMiddleware } from './middleware'
+
+export default createOhbugMiddleware

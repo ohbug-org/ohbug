@@ -12,33 +12,25 @@
     "url": "https://github.com/ohbug-org/ohbug"
   },
   "license": "Apache-2.0",
-  "main": "./dist/ohbug-redux-middleware.umd.js",
-  "module": "./dist/ohbug-redux-middleware.es.js",
-  "unpkg": "./dist/ohbug-redux-middleware.umd.js",
-  "jsdelivr": "./dist/ohbug-redux-middleware.umd.js",
-  "types": "./dist/index.d.ts",
+  "sideEffects": false,
   "exports": {
     ".": {
-      "import": "./dist/ohbug-redux-middleware.es.js",
-      "require": "./dist/ohbug-redux-middleware.umd.js"
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
     }
   },
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
   "dependencies": {
-    "@ohbug/utils": "^1.0.13"
+    "@ohbug/utils": "workspace:*"
   },
   "devDependencies": {
     "redux": "^4.0.5"
-  },
-  "buildOptions": {
-    "name": "OhbugReduxMiddleware",
-    "formats": [
-      "es",
-      "umd"
-    ],
-    "order": 4
   },
   "publishConfig": {
     "access": "public"
