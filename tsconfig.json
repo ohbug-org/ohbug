@@ -2,8 +2,9 @@
   "extends": "./node_modules/@chenyueban/tsconfig/tsconfig.json",
   "compilerOptions": {
     "lib": ["ESNext", "DOM"],
-    "target": "ES5",
+    "target": "ES6",
     "baseUrl": "./packages",
+    "isolatedModules": true,
     "paths": {
       "@ohbug/*": ["packages/*/src"]
     }
@@ -13,7 +14,7 @@
     "scripts/**/*",
     "test/**/*",
     "jest.config.js",
-    "rollup.config.js"
+    "tsup.config.ts"
   ],
   "exclude": ["node_modules/", "dist/"]
 }
