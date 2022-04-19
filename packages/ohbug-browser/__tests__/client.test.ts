@@ -11,8 +11,8 @@ const mockClient = jest.fn()
 const apiKey = 'API_KEY_TEST'
 
 describe('@ohbug/browser/client', () => {
-  it('should execute init inside core package', () => {
-    BrowserClient.init({ apiKey })
+  test('should execute init inside core package', () => {
+    BrowserClient.setup({ apiKey })
 
     expect(mockClient).toBeCalledTimes(1)
     expect(mockClient.mock.calls[0][0].config).toEqual({ apiKey })

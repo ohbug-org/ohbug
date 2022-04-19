@@ -1,57 +1,37 @@
-import { replace, parseUrl } from '../src/mixin'
+import { parseUrl, replace } from '../src/mixin'
 
 describe('@ohbug/utils/mixin', () => {
   jest.useFakeTimers()
 
   describe('replace', () => {
-    it('if name does not exist with source, nothing should be done', () => {
-      const source = {
-        foo: {
-          name: 'fooo',
-        },
-      }
+    test('if name does not exist with source, nothing should be done', () => {
+      const source = { foo: { name: 'fooo' } }
       const name = 'foo1'
-      replace(source, name, () => ({
-        name: 'bar',
-      }))
+      replace(source, name, () => ({ name: 'bar' }))
 
       expect(source.foo.name).toBe('fooo')
     })
 
-    it('the source should be changed according to the requirements of the behavior', () => {
-      const source = {
-        foo: {
-          name: 'fooo',
-        },
-      }
+    test('the source should be changed according to the requirements of the behavior', () => {
+      const source = { foo: { name: 'fooo' } }
       const name = 'foo'
-      replace(source, name, () => ({
-        name: 'bar',
-      }))
+      replace(source, name, () => ({ name: 'bar' }))
 
       expect(source.foo.name).toBe('bar')
     })
 
-    it('should be return the original', () => {
-      const source = {
-        foo: {
-          name: 'fooo',
-        },
-      }
+    test('should be return the original', () => {
+      const source = { foo: { name: 'fooo' } }
       const name = 'foo'
-      const original = replace(source, name, () => ({
-        name: 'bar',
-      }))
+      const original = replace(source, name, () => ({ name: 'bar' }))
 
       expect(source.foo.name).toBe('bar')
-      expect(original).toEqual({
-        name: 'fooo',
-      })
+      expect(original).toEqual({ name: 'fooo' })
     })
   })
 
   describe('parseUrl', () => {
-    const target = `http://localhost:1234/bar`
+    const target = 'http://localhost:1234/bar'
     const expectResult = {
       host: 'localhost:1234',
       path: '/bar',
@@ -59,14 +39,14 @@ describe('@ohbug/utils/mixin', () => {
       relative: '/bar',
     }
 
-    it('URL should be parsed correctly', () => {
+    test('URL should be parsed correctly', () => {
       expect(parseUrl(target)).toEqual(expectResult)
     })
 
-    it('should do fault tolerance', () => {
-      // @ts-ignore
+    test('should do fault tolerance', () => {
+      // @ts-expect-error 需要支持传入 string 以外的兜底
       expect(parseUrl(undefined)).toEqual({})
-      // @ts-ignore
+      // @ts-expect-error 需要支持传入 string 以外的兜底
       expect(parseUrl(1)).toEqual({})
     })
   })

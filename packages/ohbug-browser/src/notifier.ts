@@ -4,14 +4,15 @@ import { getOhbugObject } from '@ohbug/utils'
 
 export function notifier<D>(event: OhbugEventWithMethods<D>) {
   const { client } = getOhbugObject<Window>()
-  const url = client._config.endpoint!
+  const url = client.__config.endpoint!
 
   return new Promise((resolve, reject) => {
     const json = JSON.stringify(event)
     if (navigator.sendBeacon) {
       const result = navigator.sendBeacon(url, json)
       resolve(result)
-    } else {
+    }
+    else {
       const xhr = new XMLHttpRequest()
       xhr.onreadystatechange = () => {
         if (xhr.readyState === XMLHttpRequest.DONE) {

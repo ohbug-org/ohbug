@@ -2,9 +2,8 @@ import { schema } from '../src/config'
 
 describe('@ohbug/core/config', () => {
   describe('schema', () => {
-    it('has the required properties { validate, defaultValue, message }', () => {
-      // @ts-ignore
-      Object.keys(schema).forEach((key: keyof typeof schema) => {
+    test('has the required properties { validate, defaultValue, message }', () => {
+      Object.keys(schema).forEach((key) => {
         const value = schema[key]
         expect(value).toHaveProperty('defaultValue')
         expect(value).toHaveProperty('message')

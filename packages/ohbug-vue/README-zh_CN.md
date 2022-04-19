@@ -19,6 +19,6 @@ import Vue from 'vue'
 import Ohbug from '@ohbug/browser'
 import OhbugVue from '@ohbug/vue'
 
-const client = Ohbug.init({ apiKey: 'YOUR_API_KEY' })
+const client = Ohbug.setup({ apiKey: 'YOUR_API_KEY' })
 client.use(OhbugVue, Vue)
 ```

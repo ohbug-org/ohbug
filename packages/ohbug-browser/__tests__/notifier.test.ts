@@ -7,7 +7,7 @@ const event = { type: 'test' } as OhbugEventWithMethods<any>
 const apiKey = 'API_KEY_TEST'
 
 describe('@ohbug/browser/client', () => {
-  it('notify via `navigator.sendBeacon`', () => {
+  test('notify via `navigator.sendBeacon`', () => {
     BrowserClient.init({ apiKey })
     navigator.sendBeacon = mockSendBeacon
 

@@ -2,6 +2,7 @@
   "name": "@ohbug/extension-uuid",
   "version": "1.0.14",
   "description": "Ohbug extension to add uuid",
+  "license": "Apache-2.0",
   "author": "chenyueban <jasonchan0527@gmail.com>",
   "homepage": "https://github.com/ohbug-org/ohbug",
   "bugs": {
@@ -11,8 +12,9 @@
     "type": "git",
     "url": "https://github.com/ohbug-org/ohbug"
   },
-  "license": "Apache-2.0",
-  "sideEffects": false,
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "require": "./dist/index.js",
@@ -20,12 +22,11 @@
       "types": "./dist/index.d.ts"
     }
   },
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
+  "sideEffects": false,
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch"

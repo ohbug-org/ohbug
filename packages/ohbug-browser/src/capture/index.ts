@@ -48,7 +48,7 @@ export function captureScript() {
   const global = getGlobal<Window>()
   warning(
     Boolean(global.addEventListener),
-    'Binding script monitoring failed, the current environment did not find the object `addEventListener`'
+    'Binding script monitoring failed, the current environment did not find the object `addEventListener`',
   )
   if (!global.addEventListener) return
 

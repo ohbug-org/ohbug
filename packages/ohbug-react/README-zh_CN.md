@@ -19,7 +19,7 @@ import React from 'react'
 import Ohbug from '@ohbug/browser'
 import OhbugReact from '@ohbug/react'
 
-const client = Ohbug.init({ apiKey: 'YOUR_API_KEY' })
+const client = Ohbug.setup({ apiKey: 'YOUR_API_KEY' })
 const OhbugErrorBoundary = client.use(OhbugReact, React)
 
 function App() {

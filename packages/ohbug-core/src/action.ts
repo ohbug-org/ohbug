@@ -1,4 +1,4 @@
-import { OhbugAction } from '@ohbug/types'
+import type { OhbugAction } from '@ohbug/types'
 
 export class Action implements OhbugAction {
   readonly type: string
@@ -13,7 +13,7 @@ export class Action implements OhbugAction {
     message: string,
     data: Record<string, any>,
     type: string,
-    timestamp?: string
+    timestamp?: string,
   ) {
     this.type = type
     this.timestamp = timestamp || new Date().toISOString()

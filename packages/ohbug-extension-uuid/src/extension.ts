@@ -1,13 +1,11 @@
-import { createExtension } from '@ohbug/core'
+import { defineExtension } from '@ohbug/core'
 import { getUUID } from './uuid'
 
-export const extension = createExtension({
+export const extension = defineExtension({
   name: 'OhbugExtensionUUID',
   created: (event) => {
     const uuid = getUUID()
-    event.setUser({
-      uuid,
-    })
+    event.setUser({ uuid })
     return event
   },
 })

@@ -1,4 +1,4 @@
-import { OhbugClient } from './client'
+import type { OhbugClient } from './client'
 
 export interface OhbugObject {
   client: OhbugClient

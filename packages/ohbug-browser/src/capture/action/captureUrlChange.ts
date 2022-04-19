@@ -1,4 +1,4 @@
-import { replace, getGlobal, getOhbugObject, parseUrl } from '@ohbug/utils'
+import { getGlobal, getOhbugObject, parseUrl, replace } from '@ohbug/utils'
 
 const global = getGlobal<Window>()
 let lastHref: string | undefined
@@ -9,9 +9,8 @@ function handleUrlChange(from?: string, to?: string) {
   let parsedFrom = parseUrl(from as string)
   const parsedTo = parseUrl(to as string)
 
-  if (!parsedFrom.path) {
+  if (!parsedFrom.path)
     parsedFrom = parsedHref
-  }
 
   lastHref = to
 
@@ -19,17 +18,17 @@ function handleUrlChange(from?: string, to?: string) {
   let targetTo = to
 
   if (
-    parsedHref.protocol === parsedTo.protocol &&
-    parsedHref.host === parsedTo.host
-  ) {
+    parsedHref.protocol === parsedTo.protocol
+    && parsedHref.host === parsedTo.host
+  )
     targetTo = parsedTo.relative
-  }
+
   if (
-    parsedHref.protocol === parsedFrom.protocol &&
-    parsedHref.host === parsedFrom.host
-  ) {
+    parsedHref.protocol === parsedFrom.protocol
+    && parsedHref.host === parsedFrom.host
+  )
     targetFrom = parsedFrom.relative
-  }
+
   if (targetFrom === targetTo) return
 
   client.addAction(
@@ -38,17 +37,15 @@ function handleUrlChange(from?: string, to?: string) {
       from,
       to,
     },
-    'navigation'
+    'navigation',
   )
 }
 
-function historyReplacement(
-  original: (data: any, title: string, url?: string) => void
-) {
+function historyReplacement(original: (data: any, title: string, url?: string) => void) {
   return function call(data: any, title: string, url?: string) {
-    if (url) {
+    if (url)
       handleUrlChange(lastHref, String(url))
-    }
+
     return original.apply(this, [data, title, url])
   }
 }
@@ -62,22 +59,22 @@ function historyListener() {
   historyOriginal.pushState = replace(
     global?.history,
     'pushState',
-    historyReplacement
+    historyReplacement,
   )
   historyOriginal.replaceState = replace(
     global?.history,
     'replaceState',
-    historyReplacement
+    historyReplacement,
   )
   historyOriginal.onpopstate = replace(
     global,
     'onpopstate',
-    (origin) =>
+    origin =>
       function call(...args: any[]) {
         const current = global?.location?.href
         handleUrlChange(lastHref, current)
         return origin?.apply(this, args)
-      }
+      },
   )
 }
 

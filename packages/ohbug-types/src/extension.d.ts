@@ -1,18 +1,21 @@
 import type { OhbugClient } from './client'
 import type { OhbugEvent, OhbugEventWithMethods } from './event'
 
-export interface OhbugExtension<T = any> {
+export interface OhbugExtension {
   name: string
-  init?: (client: OhbugClient, ...args: any[]) => T
-  created?: (
-    event: OhbugEventWithMethods<any>,
+  setup?: (client: OhbugClient, ...args: any[]) => void
+  created?: <D = any>(
+    event: OhbugEventWithMethods<D>,
     client: OhbugClient
-  ) => OhbugEventWithMethods<any> | false
-  notified?: (event: OhbugEventWithMethods<any>, client: OhbugClient) => void
+  ) => OhbugEventWithMethods<D> | null
+  notified?: <D = any>(
+    event: OhbugEventWithMethods<D>,
+    client: OhbugClient
+  ) => void
 }
 
 export interface OhbugExtensionUI {
   name: string
   key: string
-  component: (event: OhbugEvent<any>, root: HTMLDivElement) => void
+  component: <D = any>(event: OhbugEvent<D>, root: HTMLDivElement) => void
 }

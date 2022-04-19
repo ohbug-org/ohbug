@@ -15,11 +15,13 @@ export function verifyConfig(config: OhbugConfig, schema: OhbugSchema) {
         const valid = validate(configValue)
         if (valid) {
           accumulator.config[key] = configValue
-        } else {
+        }
+        else {
           accumulator.config[key] = defaultValue
           accumulator.errors[key] = message
         }
-      } else {
+      }
+      else {
         // if there is no corresponding configuration, use the default value
         // 如果没有传入相应配置 使用默认值
         accumulator.config[key] = defaultValue
@@ -30,6 +32,6 @@ export function verifyConfig(config: OhbugConfig, schema: OhbugSchema) {
     {
       config: {} as ConfigAndErrors['config'],
       errors: {} as ConfigAndErrors['errors'],
-    }
+    },
   )
 }

@@ -1,10 +1,10 @@
 import { Client } from '../src/client'
-import { getValues } from './utils'
 import { isEvent } from '../src/event'
+import { getValues } from './utils'
 
 describe('@ohbug/core/event', () => {
   describe('isEvent()', () => {
-    it('should be return whether the specified data is event', () => {
+    test('should be return whether the specified data is event', () => {
       const client = new Client(getValues())
       const eventTrue = client.createEvent({
         category: 'error',

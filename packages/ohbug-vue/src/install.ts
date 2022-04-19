@@ -1,4 +1,4 @@
-import { VUE } from '@ohbug/core'
+import { EventTypes } from '@ohbug/core'
 import type { OhbugBaseDetail, OhbugClient } from '@ohbug/types'
 import type { VueConstructor } from 'vue'
 
@@ -13,9 +13,7 @@ export interface VueErrorDetail extends OhbugBaseDetail {
 
 const getComponent = (vm: any) => {
   if (vm.$root === vm)
-    return {
-      component: 'Root',
-    }
+    return { component: 'Root' }
 
   const options = vm.$options
   const component = options.name
@@ -44,7 +42,7 @@ export function install(client: OhbugClient, Vue: VueConstructor) {
     }
     const event = client.createEvent<VueErrorDetail>({
       category: 'error',
-      type: VUE,
+      type: EventTypes.VUE,
       detail,
     })
     client.notify(event)
@@ -54,6 +52,5 @@ export function install(client: OhbugClient, Vue: VueConstructor) {
     if (typeof prev === 'function') prev(error, vm, info)
   }
 
-  // eslint-disable-next-line no-param-reassign
   Vue.config.errorHandler = handler
 }

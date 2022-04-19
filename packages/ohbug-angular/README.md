@@ -19,7 +19,7 @@ yarn add @ohbug/browser @ohbug/angular
 import Ohbug from '@ohbug/browser'
 import { ErrorHandler } from '@angular/core'
 
-const client = Ohbug.init({ apiKey: 'YOUR_API_KEY' })
+const client = Ohbug.setup({ apiKey: 'YOUR_API_KEY' })
 const OhbugProvider = client.use(OhbugAngular, ErrorHandler)
 
 @NgModule({

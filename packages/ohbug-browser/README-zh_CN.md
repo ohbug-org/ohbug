@@ -17,5 +17,5 @@ yarn add @ohbug/browser
 ```javascript
 import Ohbug from '@ohbug/browser'
 
-Ohbug.init({ apiKey: 'YOUR_API_KEY' })
+Ohbug.setup({ apiKey: 'YOUR_API_KEY' })
 ```

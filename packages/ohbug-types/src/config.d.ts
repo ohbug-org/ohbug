@@ -1,4 +1,7 @@
-import type { OhbugEvent, OhbugReleaseStage } from './event'
+import type {
+  OhbugEventWithMethods,
+  OhbugReleaseStage,
+} from './event'
 import type { OhbugClient } from './client'
 import type { OhbugUser } from './user'
 import type { OhbugMetaData } from './metaData'
@@ -19,11 +22,14 @@ export interface OhbugConfig {
   endpoint?: string
   maxActions?: number
   // hooks
-  created?: (
-    event: OhbugEvent<any>,
+  created?: <D = any>(
+    event: OhbugEventWithMethods<D>,
     client: OhbugClient
-  ) => OhbugEvent<any> | false
-  notified?: (event: OhbugEvent<any>, client: OhbugClient) => void
+  ) => OhbugEventWithMethods<D> | null
+  notified?: <D = any>(
+    event: OhbugEventWithMethods<D>,
+    client: OhbugClient
+  ) => void
   // data
   user?: OhbugUser
   metaData?: OhbugMetaData

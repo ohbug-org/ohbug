@@ -1,6 +1,6 @@
 import { getOhbugObject, getSelector } from '@ohbug/utils'
 import type { OhbugBaseDetail } from '@ohbug/types'
-import { RESOURCE_ERROR } from '@ohbug/core'
+import { EventTypes } from '@ohbug/core'
 
 export interface ResourceErrorDetail extends OhbugBaseDetail {
   outerHTML: string
@@ -34,7 +34,7 @@ export function resourceErrorHandler(error: ErrorEvent) {
   const { client } = getOhbugObject<Window>()
   const event = client.createEvent<ResourceErrorDetail>({
     category: 'error',
-    type: RESOURCE_ERROR,
+    type: EventTypes.RESOURCE_ERROR,
     detail,
   })
   client.notify(event)

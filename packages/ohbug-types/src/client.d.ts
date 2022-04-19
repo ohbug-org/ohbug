@@ -18,34 +18,28 @@ export interface OhbugClientConstructor {
   new (values: OhbugClientConstructorValues): OhbugClient
 }
 
-export interface OhbugHooks {
-  created: (...args: any[]) => OhbugEventWithMethods<any> | false
-  notified: (...args: any[]) => void
-}
-
 export interface OhbugClient {
-  readonly _sdk: OhbugSDK
-  readonly _config: OhbugConfig
-  readonly _logger: OhbugLoggerConfig
-  readonly _device: OhbugGetDevice
-  readonly _notifier: OhbugNotifier
+  readonly __sdk: OhbugSDK
+  readonly __config: OhbugConfig
+  readonly __logger: OhbugLoggerConfig
+  readonly __device: OhbugGetDevice
+  readonly __notifier: OhbugNotifier
 
-  readonly _extensions: OhbugExtension[]
-  readonly _hooks: OhbugHooks
+  readonly __extensions: OhbugExtension[]
 
-  readonly _actions: OhbugAction[]
-  _user: OhbugUser
-  readonly _metaData: OhbugMetaData
+  readonly __actions: OhbugAction[]
+  __user: OhbugUser
+  readonly __metaData: OhbugMetaData
 
-  use: (extension: OhbugExtension, ...args: any[]) => OhbugClient | any
+  use: (extension: OhbugExtension) => OhbugClient
   createEvent: <D = any>(
     value: OhbugCreateEvent<D>
-  ) => OhbugEventWithMethods<D> | false
+  ) => OhbugEventWithMethods<D> | null
   notify: <D = any>(
     eventLike: any,
     beforeNotify?: (
-      event: OhbugEventWithMethods<D> | false
-    ) => OhbugEventWithMethods<D> | false
+      event: OhbugEventWithMethods<D> | null
+    ) => OhbugEventWithMethods<D> | null
   ) => Promise<any | null>
   addAction: (
     message: string,

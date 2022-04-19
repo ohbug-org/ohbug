@@ -16,6 +16,6 @@ yarn add @ohbug/extension-uuid
 import Ohbug from '@ohbug/browser'
 import OhbugExtensionUUID from '@ohbug/extension-uuid'
 
-const client = Ohbug.init({ apiKey: 'YOUR_API_KEY' })
+const client = Ohbug.setup({ apiKey: 'YOUR_API_KEY' })
 client.use(OhbugExtensionUUID)
 ```

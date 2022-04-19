@@ -1,8 +1,8 @@
 import { getGlobal, warning } from '@ohbug/utils'
-import { WEBSOCKET_ERROR } from '@ohbug/core'
+import { EventTypes } from '@ohbug/core'
 
 import { networkDispatcher } from '../../dispatch'
-import { WebsocketErrorDetail } from '../../handle'
+import type { WebsocketErrorDetail } from '../../handle'
 
 const global = getGlobal<Window>()
 
@@ -12,7 +12,7 @@ const global = getGlobal<Window>()
 export function captureWebSocketError() {
   warning(
     'WebSocket' in global,
-    'Binding `WebSocket` monitoring failed, the current environment did not find the object `WebSocket`'
+    'Binding `WebSocket` monitoring failed, the current environment did not find the object `WebSocket`',
   )
   if (!('WebSocket' in global)) return
 
@@ -20,10 +20,12 @@ export function captureWebSocketError() {
 
   const backup = Object.getOwnPropertyDescriptor(wsProto, 'onerror')
 
+  // eslint-disable-next-line accessor-pairs
   Object.defineProperty(wsProto, 'onerror', {
     set() {
       // eslint-disable-next-line prefer-rest-params
-      const arg = arguments[0]
+      const args = arguments
+      const arg = args[0]
       backup?.set?.call(this, function call(e: any) {
         const {
           target: {
@@ -45,9 +47,8 @@ export function captureWebSocketError() {
           binaryType,
           bufferedAmount,
         }
-        networkDispatcher(WEBSOCKET_ERROR, detail)
-        // eslint-disable-next-line prefer-rest-params
-        arg.apply(this, arguments)
+        networkDispatcher(EventTypes.WEBSOCKET_ERROR, detail)
+        arg.apply(this, args)
       })
     },
   })

@@ -1,14 +1,13 @@
 export function replace(
   source: any,
   name: string,
-  behavior: (...args: any[]) => any
+  behavior: (...args: any[]) => any,
 ) {
-  if (!(name in source)) {
+  if (!(name in source))
     return
-  }
+
   const original = source[name]
   const wrapped = behavior(original)
-  // eslint-disable-next-line no-param-reassign
   source[name] = wrapped
 
   return original
@@ -20,18 +19,13 @@ export function parseUrl(url: string): {
   protocol?: string
   relative?: string
 } {
-  if (typeof url !== 'string') {
+  if (typeof url !== 'string')
     return {}
-  }
 
-  // eslint-disable-next-line
-  const match = url.match(
-    /^(([^:/?#]+):)?(\/\/([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?$/
-  )
+  const match = url.match(/^(([^:/?#]+):)?(\/\/([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?$/)
 
-  if (!match) {
+  if (!match)
     return {}
-  }
 
   const query = match[6] || ''
   const fragment = match[8] || ''

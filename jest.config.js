@@ -1,7 +1,5 @@
 module.exports = {
-  transform: {
-    '^.+\\.ts?x?$': 'ts-jest',
-  },
+  transform: { '^.+\\.ts?x?$': 'ts-jest' },
   testMatch: ['**/__tests__/?(*.)+(spec|test).[jt]s?(x)'],
   setupFilesAfterEnv: ['./test/setupTests.ts'],
   testEnvironment: 'jsdom',

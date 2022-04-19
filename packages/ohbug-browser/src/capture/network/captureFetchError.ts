@@ -1,8 +1,8 @@
-import { getGlobal, getOhbugObject, warning, replace } from '@ohbug/utils'
-import { FETCH_ERROR } from '@ohbug/core'
+import { getGlobal, getOhbugObject, replace, warning } from '@ohbug/utils'
+import { EventTypes } from '@ohbug/core'
 
 import { networkDispatcher } from '../../dispatch'
-import { FetchErrorDetail } from '../../handle'
+import type { FetchErrorDetail } from '../../handle'
 
 const global = getGlobal<Window>()
 const access = 'fetch' in global
@@ -14,7 +14,7 @@ let fetchOriginal = access ? global.fetch : null
 export function captureFetchError() {
   warning(
     access,
-    'Binding `fetch` monitoring failed, the current environment did not find the object `fetch`'
+    'Binding `fetch` monitoring failed, the current environment did not find the object `fetch`',
   )
   if (!access) return
 
@@ -23,7 +23,7 @@ export function captureFetchError() {
   fetchOriginal = replace(
     global,
     'fetch',
-    (origin) =>
+    origin =>
       function call(...args: any[]) {
         return origin.apply(this, args).then(
           (res: Response) => {
@@ -41,9 +41,9 @@ export function captureFetchError() {
             }
             client.addAction('fetch', detail, 'fetch')
 
-            if (!res.status || res.status >= 400) {
-              networkDispatcher(FETCH_ERROR, detail)
-            }
+            if (!res.status || res.status >= 400)
+              networkDispatcher(EventTypes.FETCH_ERROR, detail)
+
             return res
           },
           (err: Error) => {
@@ -59,16 +59,15 @@ export function captureFetchError() {
                 statusText: 'unknownError',
               },
             }
-            networkDispatcher(FETCH_ERROR, detail)
+            networkDispatcher(EventTypes.FETCH_ERROR, detail)
             throw err
-          }
+          },
         )
-      }
+      },
   )
 }
 
 export function removeCaptureFetchError() {
-  if (access && fetchOriginal) {
+  if (access && fetchOriginal)
     global.fetch = fetchOriginal
-  }
 }

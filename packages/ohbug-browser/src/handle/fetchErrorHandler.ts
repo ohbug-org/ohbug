@@ -1,6 +1,6 @@
 import { getOhbugObject } from '@ohbug/utils'
 import type { OhbugBaseDetail } from '@ohbug/types'
-import { FETCH_ERROR } from '@ohbug/core'
+import { EventTypes } from '@ohbug/core'
 
 export interface FetchErrorDetail extends OhbugBaseDetail {
   req: {
@@ -18,7 +18,7 @@ export function fetchErrorHandler(detail: FetchErrorDetail) {
   const { client } = getOhbugObject<Window>()
   const event = client.createEvent<FetchErrorDetail>({
     category: 'error',
-    type: FETCH_ERROR,
+    type: EventTypes.FETCH_ERROR,
     detail,
   })
   client.notify(event)

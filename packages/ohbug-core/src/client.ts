@@ -1,53 +1,48 @@
 import type {
+  OhbugAction,
   OhbugClient,
-  OhbugConfig,
-  OhbugLoggerConfig,
-  OhbugExtension,
-  OhbugCreateEvent,
-  OhbugEventWithMethods,
   OhbugClientConstructor,
   OhbugClientConstructorValues,
+  OhbugConfig,
+  OhbugCreateEvent,
+  OhbugEventWithMethods,
+  OhbugExtension,
   OhbugGetDevice,
-  OhbugAction,
-  OhbugNotifier,
-  OhbugHooks,
-  OhbugUser,
-  OhbugSDK,
+  OhbugLoggerConfig,
   OhbugMetaData,
+  OhbugNotifier,
+  OhbugSDK,
+  OhbugUser,
 } from '@ohbug/types'
-import { isFunction, isString, isObject } from '@ohbug/utils'
+import { isObject, isString } from '@ohbug/utils'
 
 import { schema as baseSchema } from './config'
-import { loadExtension } from './extension'
-import { createEvent, isEvent } from './event'
+import { createEvent, handleEventCreated, isEvent } from './event'
 import { notify } from './notify'
 import { Action } from './action'
 import { verifyConfig } from './lib/verifyConfig'
 import { getConfigErrorMessage, getErrorMessage } from './lib/getErrorMessage'
-import { addMetaData, getMetaData, deleteMetaData } from './lib/metaData'
+import { addMetaData, deleteMetaData, getMetaData } from './lib/metaData'
 
 export const Client: OhbugClientConstructor = class Client
-  implements OhbugClient
-{
-  readonly _sdk: OhbugSDK
+implements OhbugClient {
+  readonly __sdk: OhbugSDK
 
-  readonly _config: OhbugConfig
+  readonly __config: OhbugConfig
 
-  readonly _logger: OhbugLoggerConfig
+  readonly __logger: OhbugLoggerConfig
 
-  readonly _device: OhbugGetDevice
+  readonly __device: OhbugGetDevice
 
-  readonly _notifier: OhbugNotifier
+  readonly __notifier: OhbugNotifier
 
-  readonly _extensions: OhbugExtension[]
+  readonly __extensions: OhbugExtension[]
 
-  readonly _hooks: OhbugHooks
+  readonly __actions: OhbugAction[]
 
-  readonly _actions: OhbugAction[]
+  __user: OhbugUser
 
-  _user: OhbugUser
-
-  readonly _metaData: OhbugMetaData
+  readonly __metaData: OhbugMetaData
 
   constructor({
     sdk,
@@ -59,29 +54,25 @@ export const Client: OhbugClientConstructor = class Client
     const { config, errors } = verifyConfig(baseConfig, schema)
 
     // initialization
-    this._sdk = sdk
-    this._config = config
-    this._logger = config.logger
-    this._device = device
-    this._notifier = notifier
+    this.__sdk = sdk
+    this.__config = config
+    this.__logger = config.logger
+    this.__device = device
+    this.__notifier = notifier
 
-    this._extensions = []
-    this._hooks = {
-      created: config.created,
-      notified: config.notified,
-    }
-    this._actions = []
-    this._user = config.user
-    this._metaData = {}
+    this.__extensions = []
+
+    this.__actions = []
+    this.__user = config.user
+    this.__metaData = {}
     if (isObject(config.metaData)) {
       Object.keys(config.metaData).forEach((key) => {
         this.addMetaData(key, config.metaData[key])
       })
     }
 
-    if (Object.keys(errors).length) {
-      this._logger.warn(getConfigErrorMessage(errors, baseConfig))
-    }
+    if (Object.keys(errors).length)
+      this.__logger.warn(getConfigErrorMessage(errors, baseConfig))
   }
 
   /**
@@ -91,8 +82,9 @@ export const Client: OhbugClientConstructor = class Client
    * @param extension
    * @param args
    */
-  use(extension: OhbugExtension, ...args: any[]): Client | any {
-    return loadExtension(extension, this, ...args)
+  use(extension: OhbugExtension): OhbugClient {
+    this.__extensions.push(extension)
+    return this
   }
 
   /**
@@ -101,16 +93,10 @@ export const Client: OhbugClientConstructor = class Client
    *
    * @param value
    */
-  createEvent<D = any>(
-    value: OhbugCreateEvent<D>
-  ): OhbugEventWithMethods<D> | false {
+  createEvent<D = any>(value: OhbugCreateEvent<D>): OhbugEventWithMethods<D> | null {
     const event = createEvent(value, this)
 
-    if (isFunction(this._hooks.created)) {
-      // trigger created hook
-      return this._hooks.created(event, this)
-    }
-    return event
+    return handleEventCreated(event, this)
   }
 
   /**
@@ -123,15 +109,14 @@ export const Client: OhbugClientConstructor = class Client
   notify<D = any>(
     eventLike: any,
     beforeNotify?: (
-      event: OhbugEventWithMethods<D> | false
-    ) => OhbugEventWithMethods<D> | false
+      event: OhbugEventWithMethods<D> | null
+    ) => OhbugEventWithMethods<D> | null,
   ): Promise<any | null> {
-    let event: OhbugEventWithMethods<D> | false
-    if (Boolean(eventLike) && !isEvent(eventLike)) {
+    let event: OhbugEventWithMethods<D> | null
+    if (Boolean(eventLike) && !isEvent(eventLike))
       event = this.createEvent(eventLike)
-    } else {
+    else
       event = eventLike
-    }
 
     if (beforeNotify) event = beforeNotify(event)
 
@@ -153,18 +138,18 @@ export const Client: OhbugClientConstructor = class Client
     message: string,
     data: Record<string, any>,
     type: string,
-    timestamp?: string
+    timestamp?: string,
   ): void {
-    const actions = this._actions
+    const actions = this.__actions
 
     const targetMessage = isString(message) ? message : ''
     const targetData = data || {}
     const targetType = isString(type) ? type : ''
 
     const action = new Action(targetMessage, targetData, targetType, timestamp)
-    if (actions.length >= this._config.maxActions!) {
+    if (actions.length >= this.__config.maxActions!)
       actions.shift()
-    }
+
     actions.push(action)
   }
 
@@ -173,7 +158,7 @@ export const Client: OhbugClientConstructor = class Client
    * 获取当前的用户信息
    */
   getUser(): OhbugUser | undefined {
-    return this._user
+    return this.__user
   }
 
   /**
@@ -182,15 +167,13 @@ export const Client: OhbugClientConstructor = class Client
    */
   setUser(user: OhbugUser): OhbugUser | undefined {
     if (isObject(user) && Object.keys(user).length <= 6) {
-      this._user = { ...this._user, ...user }
+      this.__user = { ...this.__user, ...user }
       return this.getUser()
     }
-    this._logger.warn(
-      getErrorMessage(
-        'setUser should be an object and have up to 6 attributes',
-        user
-      )
-    )
+    this.__logger.warn(getErrorMessage(
+      'setUser should be an object and have up to 6 attributes',
+      user,
+    ))
     return undefined
   }
 
@@ -202,7 +185,7 @@ export const Client: OhbugClientConstructor = class Client
    * @param data
    */
   addMetaData(section: string, data: any) {
-    return addMetaData(this._metaData, section, data)
+    return addMetaData(this.__metaData, section, data)
   }
 
   /**
@@ -212,7 +195,7 @@ export const Client: OhbugClientConstructor = class Client
    * @param section
    */
   getMetaData(section: string) {
-    return getMetaData(this._metaData, section)
+    return getMetaData(this.__metaData, section)
   }
 
   /**
@@ -222,6 +205,6 @@ export const Client: OhbugClientConstructor = class Client
    * @param section
    */
   deleteMetaData(section: string) {
-    return deleteMetaData(this._metaData, section)
+    return deleteMetaData(this.__metaData, section)
   }
 }

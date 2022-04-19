@@ -1,6 +1,6 @@
 import { getOhbugObject } from '@ohbug/utils'
 import type { OhbugBaseDetail } from '@ohbug/types'
-import { UNCAUGHT_ERROR } from '@ohbug/core'
+import { EventTypes } from '@ohbug/core'
 
 export interface UncaughtErrorDetail extends OhbugBaseDetail {
   name: string
@@ -30,7 +30,7 @@ export function uncaughtErrorHandler(error: ErrorEvent) {
   const { client } = getOhbugObject<Window>()
   const event = client.createEvent<UncaughtErrorDetail>({
     category: 'error',
-    type: UNCAUGHT_ERROR,
+    type: EventTypes.UNCAUGHT_ERROR,
     detail,
   })
   client.notify(event)

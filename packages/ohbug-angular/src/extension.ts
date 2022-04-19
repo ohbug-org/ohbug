@@ -1,7 +1,7 @@
-import { createExtension } from '@ohbug/core'
+import { defineExtension } from '@ohbug/core'
 import createProvider from './createProvider'
 
-export const extension = createExtension({
+export const extension = defineExtension({
   name: 'OhbugAngular',
-  init: (client, ErrorHandler) => createProvider(client, ErrorHandler),
+  setup: (client, ErrorHandler) => createProvider(client, ErrorHandler),
 })
