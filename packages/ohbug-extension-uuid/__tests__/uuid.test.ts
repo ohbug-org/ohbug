@@ -1,3 +1,4 @@
+import { describe, expect, test } from 'vitest'
 import { getUUID } from '../src/uuid'
 
 describe('@ohbug/extension-uuid', () => {

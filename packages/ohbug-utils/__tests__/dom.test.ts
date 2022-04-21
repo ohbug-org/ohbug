@@ -1,3 +1,4 @@
+import { describe, expect, test } from 'vitest'
 import userEvent from '@testing-library/user-event'
 import { getSelector } from '../src/dom'
 

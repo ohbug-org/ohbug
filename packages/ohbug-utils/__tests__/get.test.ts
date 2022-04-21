@@ -1,3 +1,4 @@
+import { describe, expect, test } from 'vitest'
 import { getGlobal } from '../src/get'
 
 describe('@ohbug/utils/get', () => {

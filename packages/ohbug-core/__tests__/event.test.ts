@@ -1,3 +1,4 @@
+import { describe, expect, test } from 'vitest'
 import { Client } from '../src/client'
 import { isEvent } from '../src/event'
 import { getValues } from './utils'

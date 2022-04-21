@@ -1,10 +1,11 @@
+import { describe, expect, test, vi } from 'vitest'
 import { logger } from '../src/logger'
 
 describe('@ohbug/utils/logger', () => {
   const prefix = 'Ohbug'
   const content = 'hello'
   test('calls logger.log with `content`', () => {
-    const logSpy = jest.spyOn(console, 'log')
+    const logSpy = vi.spyOn(console, 'log')
 
     logger.log(content)
 
@@ -12,7 +13,7 @@ describe('@ohbug/utils/logger', () => {
   })
 
   test('calls logger.error with `content`', () => {
-    const errorSpy = jest.spyOn(console, 'error')
+    const errorSpy = vi.spyOn(console, 'error')
 
     logger.error(content)
 
@@ -20,7 +21,7 @@ describe('@ohbug/utils/logger', () => {
   })
 
   test('calls logger.info with `content`', () => {
-    const infoSpy = jest.spyOn(console, 'info')
+    const infoSpy = vi.spyOn(console, 'info')
 
     logger.info(content)
 

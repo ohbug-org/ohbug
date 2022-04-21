@@ -80,10 +80,10 @@ implements OhbugClient {
    * 加载扩展
    *
    * @param extension
-   * @param args
    */
   use(extension: OhbugExtension): OhbugClient {
     this.__extensions.push(extension)
+    extension.setup?.(this)
     return this
   }
 

@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, test } from 'vitest'
 import { docCookies } from '../src/cookie'
 
 describe('@ohbug/extension-uuid/cookie', () => {

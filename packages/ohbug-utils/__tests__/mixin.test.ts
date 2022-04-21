@@ -1,7 +1,8 @@
+import { describe, expect, test, vi } from 'vitest'
 import { parseUrl, replace } from '../src/mixin'
 
 describe('@ohbug/utils/mixin', () => {
-  jest.useFakeTimers()
+  vi.useFakeTimers()
 
   describe('replace', () => {
     test('if name does not exist with source, nothing should be done', () => {

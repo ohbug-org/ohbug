@@ -1,3 +1,4 @@
+import { describe, expect, test } from 'vitest'
 import { schema } from '../src/config'
 
 describe('@ohbug/core/config', () => {

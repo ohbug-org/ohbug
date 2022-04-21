@@ -1,3 +1,4 @@
+import { describe, expect, test, vi } from 'vitest'
 import type { OhbugMetaData, OhbugUser } from '@ohbug/types'
 import { isObject, isPromise } from '@ohbug/utils'
 
@@ -10,10 +11,10 @@ import { apiKey, getValues } from './utils'
 describe('@ohbug/core/client', () => {
   describe('constructor', () => {
     const logger = {
-      log: jest.fn(),
-      warn: jest.fn(),
-      info: jest.fn(),
-      error: jest.fn(),
+      log: vi.fn(),
+      warn: vi.fn(),
+      info: vi.fn(),
+      error: vi.fn(),
     }
     test('an exception should be thrown when entering wrong parameter', () => {
       // @ts-expect-error no apiKey
@@ -53,8 +54,8 @@ describe('@ohbug/core/client', () => {
 
     test('should be trigger all created hooks', () => {
       const hooks = {
-        clientCreated: jest.fn(),
-        extensionCreated: jest.fn(),
+        clientCreated: vi.fn(),
+        extensionCreated: vi.fn(),
       }
       const client = new Client(getValues({ apiKey, created: hooks.clientCreated }))
       const extension = defineExtension({
@@ -82,7 +83,7 @@ describe('@ohbug/core/client', () => {
     })
 
     test('should be called beforeNotify', () => {
-      const beforeNotify = jest.fn()
+      const beforeNotify = vi.fn()
       const client = new Client(getValues())
       client.notify('should be package events', beforeNotify)
       expect(beforeNotify).toBeCalledTimes(1)
@@ -98,8 +99,8 @@ describe('@ohbug/core/client', () => {
 
     test('should be trigger all notified hooks', async() => {
       const hooks = {
-        clientNotified: jest.fn(),
-        extensionNotified: jest.fn(),
+        clientNotified: vi.fn(),
+        extensionNotified: vi.fn(),
       }
       const client = new Client(getValues({ apiKey, notified: hooks.clientNotified }))
       const extension = defineExtension({
@@ -127,7 +128,7 @@ describe('@ohbug/core/client', () => {
       const action = {
         message: 'action should be added to actions correctly',
         data: { a: 1 },
-        type: 'jest',
+        type: 'test',
         timestamp: now,
       }
       expect(client.__actions.length).toBe(0)
@@ -147,7 +148,7 @@ describe('@ohbug/core/client', () => {
       const now = new Date().toISOString()
       const action = {
         message: 'once the threshold is reached, delete the oldest breadcrumbs',
-        type: 'jest',
+        type: 'test',
         timestamp: now,
       }
       expect(client.__actions.length).toBe(0)
@@ -207,7 +208,7 @@ describe('@ohbug/core/client', () => {
       const metaData: OhbugMetaData = {
         organization: {
           name: 'ohbug',
-          platform: 'jest',
+          platform: 'test',
         },
       }
       const client = new Client(getValues({
@@ -221,13 +222,13 @@ describe('@ohbug/core/client', () => {
       const metaData: OhbugMetaData = {
         organization: {
           name: 'ohbug',
-          platform: 'jest',
+          platform: 'test',
         },
       }
       const client = new Client(getValues())
       client.addMetaData('organization', {
         name: 'ohbug',
-        platform: 'jest',
+        platform: 'test',
       })
       expect(client.__metaData.organization).toEqual(metaData.organization)
     })
@@ -236,13 +237,13 @@ describe('@ohbug/core/client', () => {
       const metaData: OhbugMetaData = {
         organization: {
           name: 'ohbug',
-          platform: 'jest',
+          platform: 'test',
         },
       }
       const client = new Client(getValues())
       client.addMetaData('organization', {
         name: 'ohbug',
-        platform: 'jest',
+        platform: 'test',
       })
       expect(client.getMetaData('organization')).toEqual(metaData.organization)
     })
@@ -251,7 +252,7 @@ describe('@ohbug/core/client', () => {
       const metaData: OhbugMetaData = {
         organization: {
           name: 'ohbug',
-          platform: 'jest',
+          platform: 'test',
         },
       }
       const client = new Client(getValues({ apiKey, metaData }))

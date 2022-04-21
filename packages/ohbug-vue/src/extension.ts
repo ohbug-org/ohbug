@@ -1,11 +1,11 @@
 import { defineExtension } from '@ohbug/core'
-import type { VueConstructor } from 'vue'
+import Vue from 'vue'
 
 import { install } from './install'
 
 export const extension = defineExtension({
   name: 'OhbugVue',
-  setup: (client, Vue: VueConstructor) => {
+  setup: (client) => {
     if (!Vue)
       throw new Error('Ohbug @ohbug/vue reference to `Vue` was undefined')
 
