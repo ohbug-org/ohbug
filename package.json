@@ -2,9 +2,8 @@
   "private": true,
   "packageManager": "pnpm@7.1.0",
   "scripts": {
-    "version": "changeset version",
-    "publish": "changeset publish",
-    "prepublishOnly": "pnpm run build",
+    "version": "changeset && changeset version",
+    "publish": "pnpm run build && changeset publish",
     "dev": "pnpm -r --parallel run dev",
     "build": "pnpm -r --filter !playground run build",
     "lint": "tsc && eslint . --fix",
