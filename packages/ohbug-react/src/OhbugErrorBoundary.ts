@@ -1,6 +1,6 @@
 import type { OhbugBaseDetail, OhbugClient } from '@ohbug/types'
 import React from 'react'
-import { REACT } from '@ohbug/core'
+import { EventTypes } from '@ohbug/core'
 
 export interface ReactErrorDetail extends OhbugBaseDetail {
   name: string
@@ -9,57 +9,47 @@ export interface ReactErrorDetail extends OhbugBaseDetail {
 }
 
 interface ErrorBoundaryProp {
-  FallbackComponent: React.ReactElement
+  client: OhbugClient
+  FallbackComponent?: React.ReactElement
+  children?: React.ReactNode
 }
 interface ErrorBoundaryState {
   error: any
-  info: any
 }
+export class OhbugErrorBoundary extends React.Component<
+ErrorBoundaryProp,
+ErrorBoundaryState
+> {
+  constructor(props: ErrorBoundaryProp) {
+    super(props)
+    this.state = { error: null }
+  }
 
-export function createOhbugErrorBoundary(
-  client: OhbugClient,
-  react: typeof React
-) {
-  return class OhbugErrorBoundary extends react.Component<
-    ErrorBoundaryProp,
-    ErrorBoundaryState
-  > {
-    constructor(props: ErrorBoundaryProp) {
-      super(props)
-      this.state = {
-        error: null,
-        info: null,
-      }
+  componentDidCatch(error: Error, info: any) {
+    const { client } = this.props
+    const detail: ReactErrorDetail = {
+      name: error.name,
+      message: error.message,
+      stack: error.stack,
+      errorInfo: info,
     }
 
-    componentDidCatch(error: Error, info: any) {
-      const detail: ReactErrorDetail = {
-        name: error.name,
-        message: error.message,
-        stack: error.stack,
-        errorInfo: info,
-      }
+    const event = client.createEvent<ReactErrorDetail>({
+      category: 'error',
+      type: EventTypes.REACT,
+      detail,
+    })
+    client.notify(event)
+    this.setState({ error })
+  }
 
-      const event = client.createEvent<ReactErrorDetail>({
-        category: 'error',
-        type: REACT,
-        detail,
-      })
-      client.notify(event)
-      this.setState({
-        error,
-        info,
-      })
+  render() {
+    const { error } = this.state
+    const { FallbackComponent, children } = this.props
+    if (error) {
+      if (FallbackComponent) return FallbackComponent
+      return null
     }
-
-    render() {
-      const { error } = this.state
-      if (error) {
-        const { FallbackComponent } = this.props
-        if (FallbackComponent) return FallbackComponent
-        return null
-      }
-      return this.props.children
-    }
+    return children
   }
 }

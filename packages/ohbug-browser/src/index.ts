@@ -10,5 +10,4 @@ export type {
   WebsocketErrorDetail,
 } from './handle'
 
-export { BrowserClient as Client }
 export default BrowserClient

@@ -1,7 +1,8 @@
 {
   "name": "@ohbug/types",
-  "version": "1.1.4",
+  "version": "2.0.0",
   "description": "Types for all Ohbug SDKs",
+  "license": "Apache-2.0",
   "author": "chenyueban <jasonchan0527@gmail.com>",
   "homepage": "https://github.com/ohbug-org/ohbug",
   "bugs": {
@@ -11,13 +12,16 @@
     "type": "git",
     "url": "https://github.com/ohbug-org/ohbug"
   },
-  "license": "Apache-2.0",
-  "types": "src/index.ts",
+  "types": "src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts"
+    }
+  },
+  "files": [
+    "src"
+  ],
   "publishConfig": {
     "access": "public"
-  },
-  "buildOptions": {
-    "name": "OhbugTypes",
-    "order": 1
   }
 }

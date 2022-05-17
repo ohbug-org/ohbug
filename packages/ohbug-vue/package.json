@@ -1,7 +1,8 @@
 {
   "name": "@ohbug/vue",
-  "version": "1.0.14",
+  "version": "2.0.0",
   "description": "Ohbug SDK for Vue",
+  "license": "Apache-2.0",
   "author": "chenyueban <jasonchan0527@gmail.com>",
   "homepage": "https://github.com/ohbug-org/ohbug",
   "bugs": {
@@ -11,37 +12,34 @@
     "type": "git",
     "url": "https://github.com/ohbug-org/ohbug"
   },
-  "license": "Apache-2.0",
-  "main": "./dist/ohbug-vue.umd.js",
-  "module": "./dist/ohbug-vue.es.js",
-  "unpkg": "./dist/ohbug-vue.umd.js",
-  "jsdelivr": "./dist/ohbug-vue.umd.js",
-  "types": "./dist/index.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/ohbug-vue.es.js",
-      "require": "./dist/ohbug-vue.umd.js"
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
-  "dependencies": {
-    "@ohbug/core": "^1.1.7"
-  },
-  "devDependencies": {
-    "vue": "^2.6.11"
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch"
   },
   "peerDependencies": {
-    "vue": "^2.6.0"
+    "vue": "^3.0.0"
   },
-  "buildOptions": {
-    "name": "OhbugVue",
-    "formats": [
-      "es",
-      "umd"
-    ],
-    "order": 4
+  "dependencies": {
+    "@ohbug/core": "workspace:*",
+    "@ohbug/types": "workspace:*"
+  },
+  "devDependencies": {
+    "vue": "^3.2.33"
   },
   "publishConfig": {
     "access": "public"

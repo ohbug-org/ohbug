@@ -1,6 +1,6 @@
 import { getOhbugObject } from '@ohbug/utils'
 import type { OhbugBaseDetail } from '@ohbug/types'
-import { WEBSOCKET_ERROR } from '@ohbug/core'
+import { EventTypes } from '@ohbug/core'
 
 export interface WebsocketErrorDetail extends OhbugBaseDetail {
   url: string
@@ -16,7 +16,7 @@ export function websocketErrorHandler(detail: WebsocketErrorDetail) {
   const { client } = getOhbugObject<Window>()
   const event = client.createEvent<WebsocketErrorDetail>({
     category: 'error',
-    type: WEBSOCKET_ERROR,
+    type: EventTypes.WEBSOCKET_ERROR,
     detail,
   })
   client.notify(event)

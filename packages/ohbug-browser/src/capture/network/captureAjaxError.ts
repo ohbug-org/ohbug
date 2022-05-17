@@ -1,26 +1,22 @@
-import { getGlobal, getOhbugObject, warning, replace } from '@ohbug/utils'
-import { AJAX_ERROR } from '@ohbug/core'
+import { getGlobal, getOhbugObject, replace } from '@ohbug/utils'
+import { EventTypes } from '@ohbug/core'
 
 import { networkDispatcher } from '../../dispatch'
-import { AjaxErrorDetail } from '../../handle'
+import type { AjaxErrorDetail } from '../../handle'
 
 const global = getGlobal<Window>()
 const access = 'XMLHttpRequest' in global
 const xhrOriginal = access
   ? {
-      open: XMLHttpRequest.prototype.open,
-      send: XMLHttpRequest.prototype.send,
-    }
+    open: XMLHttpRequest.prototype.open,
+    send: XMLHttpRequest.prototype.send,
+  }
   : {}
 
 /**
  * capture AJAX_ERROR
  */
 export function captureAjaxError() {
-  warning(
-    access,
-    'Binding `AJAX` monitoring failed, the current environment did not find the object `XMLHttpRequest`'
-  )
   if (!access) return
 
   const { client } = getOhbugObject<Window>()
@@ -35,23 +31,23 @@ export function captureAjaxError() {
   xhrOriginal.open = replace(
     xhrProto,
     'open',
-    (origin) =>
+    origin =>
       function call(...args: any[]) {
         const [method, url] = args
         desc.method = method
         desc.url = url
         return origin.apply(this, args)
-      }
+      },
   )
 
   xhrOriginal.send = replace(
     xhrProto,
     'send',
-    (origin) =>
+    origin =>
       function call(...args: any[]) {
         this.addEventListener('readystatechange', function handle() {
           if (this.readyState === 4) {
-            if (desc.url !== client._config.endpoint) {
+            if (desc.url !== client.__config.endpoint) {
               const detail: AjaxErrorDetail = {
                 req: {
                   url: desc.url,
@@ -66,14 +62,13 @@ export function captureAjaxError() {
               }
 
               client.addAction('ajax', detail, 'ajax')
-              if (!this.status || this.status >= 400) {
-                networkDispatcher(AJAX_ERROR, detail)
-              }
+              if (!this.status || this.status >= 400)
+                networkDispatcher(EventTypes.AJAX_ERROR, detail)
             }
           }
         })
         return origin.apply(this, args)
-      }
+      },
   )
 }
 

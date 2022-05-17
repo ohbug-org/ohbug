@@ -1,19 +1,19 @@
-import type { OhbugGetDevice, OhbugDevice } from '@ohbug/types'
+import type { OhbugDevice, OhbugGetDevice } from '@ohbug/types'
 
-export const getDevice: OhbugGetDevice = () => {
-  const device: OhbugDevice = {}
+export const device: OhbugGetDevice = () => {
+  const ohbugDevice: OhbugDevice = {}
   if (navigator) {
     const { language, userAgent } = navigator
-    device.language = language
-    device.userAgent = userAgent
+    ohbugDevice.language = language
+    ohbugDevice.userAgent = userAgent
   }
   if (document) {
     const { title } = document
-    device.title = title
+    ohbugDevice.title = title
   }
   if (window.location) {
     const { href: url } = window.location
-    device.url = url
+    ohbugDevice.url = url
   }
-  return device
+  return ohbugDevice
 }

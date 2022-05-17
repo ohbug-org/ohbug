@@ -1,6 +1,6 @@
 import {
-  uncaughtErrorHandler,
   resourceErrorHandler,
+  uncaughtErrorHandler,
   unhandledrejectionErrorHandler,
   unknownErrorHandler,
 } from '../handle'
@@ -12,17 +12,19 @@ export function scriptDispatcher(e: ErrorEvent | PromiseRejectionEvent) {
       const targetEvent = e as ErrorEvent
       const { message, error } = targetEvent
       const immutableTarget = e.target || e.srcElement
-      if (message && error) {
+      if (message && error)
         uncaughtErrorHandler(targetEvent)
-      } else if (immutableTarget) {
+      else if (immutableTarget)
         resourceErrorHandler(targetEvent)
-      }
-    } else if (type === 'unhandledrejection') {
+    }
+    else if (type === 'unhandledrejection') {
       unhandledrejectionErrorHandler(e as PromiseRejectionEvent)
-    } else {
+    }
+    else {
       unknownErrorHandler(e)
     }
-  } catch (error) {
+  }
+  catch (error) {
     unknownErrorHandler(error)
   }
 }

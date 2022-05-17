@@ -1,6 +1,19 @@
 import type { OhbugClient, OhbugEventWithMethods } from '@ohbug/types'
 import { isFunction } from '@ohbug/utils'
 
+function handleNotified<D>(
+  event: OhbugEventWithMethods<D>,
+  client: OhbugClient,
+) {
+  const funcs = [
+    client.__config.notified,
+    ...client.__extensions
+      .filter(({ notified }) => isFunction(notified))
+      .map(({ notified }) => notified),
+  ]
+  funcs.forEach(func => func?.(event, client))
+}
+
 /**
  * Used to control the timing of reporting events and the related life cycle.
  *
@@ -8,19 +21,18 @@ import { isFunction } from '@ohbug/utils'
  * @param client
  */
 export async function notify<D>(
-  event: OhbugEventWithMethods<D> | false,
-  client: OhbugClient
+  event: OhbugEventWithMethods<D> | null,
+  client: OhbugClient,
 ): Promise<any> {
   try {
     let result = null
     if (event) {
-      result = await client._notifier(event)
-    }
-    if (isFunction(client._hooks.notified)) {
-      client._hooks.notified(event, client)
+      result = await client.__notifier(event)
+      handleNotified(event, client)
     }
     return result
-  } catch (e) {
-    client._logger.error(e)
+  }
+  catch (e) {
+    client.__logger.error(e)
   }
 }

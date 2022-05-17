@@ -1,7 +1,8 @@
 {
   "name": "@ohbug/core",
-  "version": "1.1.7",
+  "version": "2.0.0",
   "description": "Responsible for managing Ohbug's workflow",
+  "license": "Apache-2.0",
   "author": "chenyueban <jasonchan0527@gmail.com>",
   "homepage": "https://github.com/ohbug-org/ohbug",
   "bugs": {
@@ -11,34 +12,30 @@
     "type": "git",
     "url": "https://github.com/ohbug-org/ohbug"
   },
-  "license": "Apache-2.0",
-  "main": "./dist/ohbug-core.umd.js",
-  "module": "./dist/ohbug-core.es.js",
-  "unpkg": "./dist/ohbug-core.umd.js",
-  "jsdelivr": "./dist/ohbug-core.umd.js",
-  "types": "./dist/index.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/ohbug-core.es.js",
-      "require": "./dist/ohbug-core.umd.js"
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
-  "buildOptions": {
-    "name": "OhbugCore",
-    "formats": [
-      "es",
-      "umd"
-    ],
-    "order": 2
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch"
   },
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@ohbug/types": "^1.1.4",
-    "@ohbug/utils": "^1.0.13"
+    "@ohbug/types": "workspace:*",
+    "@ohbug/utils": "workspace:*"
   }
 }

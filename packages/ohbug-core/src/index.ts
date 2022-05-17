@@ -1,5 +1,5 @@
-export { Client } from './client'
+export * from './client'
 export { isEvent } from './event'
-export { createExtension, createExtensionUI } from './extension'
+export * from './extension'
 export * from './types'
 export * as types from './types'

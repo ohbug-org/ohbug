@@ -1,18 +1,15 @@
-import { OhbugConfig } from '@ohbug/types'
+import type { OhbugConfig } from '@ohbug/types'
 
 export function getConfigErrorMessage(
   errors: Record<keyof OhbugConfig, string>,
-  config: OhbugConfig
+  config: OhbugConfig,
 ) {
-  return new Error(
-    `Invalid configuration\n${Object.keys(errors)
-      .map(
-        // @ts-ignore
-        (key) => `- ${key} ${errors[key]}, got ${JSON.stringify(config[key])}`
-      )
-      .join('\n')}
-      `
-  )
+  return new Error(`Invalid configuration\n${Object.keys(errors)
+    .map((key) => {
+      return `- ${key} ${errors[key as keyof OhbugConfig]}, got ${JSON.stringify(config[key as keyof OhbugConfig])}`
+    })
+    .join('\n')}
+      `)
 }
 
 export function getErrorMessage(message: string, data: any) {

@@ -1,23 +1,20 @@
-import { OhbugLoggerConfig } from '@ohbug/types'
-
-const prefix = 'Ohbug'
+/* eslint-disable no-console */
+import type { OhbugLoggerConfig } from '@ohbug/types'
 
 export const logger: OhbugLoggerConfig = {
   log(...args: any[]) {
-    // eslint-disable-next-line no-console
-    console.log(prefix, ...args)
+    console.log(...args)
   },
 
   info(...args: any[]) {
-    // eslint-disable-next-line no-console
-    console.info(prefix, ...args)
+    console.info(...args)
   },
 
   warn(...args: any[]) {
-    console.warn(prefix, ...args)
+    console.warn(...args)
   },
 
   error(...args: any[]) {
-    console.error(prefix, ...args)
+    console.error(...args)
   },
 }

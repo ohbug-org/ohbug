@@ -1,7 +1,8 @@
 {
   "name": "@ohbug/angular",
-  "version": "1.0.6",
+  "version": "2.0.0",
   "description": "Ohbug SDK for Angular",
+  "license": "Apache-2.0",
   "author": "chenyueban <jasonchan0527@gmail.com>",
   "homepage": "https://github.com/ohbug-org/ohbug",
   "bugs": {
@@ -11,37 +12,34 @@
     "type": "git",
     "url": "https://github.com/ohbug-org/ohbug"
   },
-  "license": "Apache-2.0",
-  "main": "./dist/ohbug-angular.umd.js",
-  "module": "./dist/ohbug-angular.es.js",
-  "unpkg": "./dist/ohbug-angular.umd.js",
-  "jsdelivr": "./dist/ohbug-angular.umd.js",
-  "types": "./dist/index.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/ohbug-angular.es.js",
-      "require": "./dist/ohbug-angular.umd.js"
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
-  "dependencies": {
-    "@ohbug/core": "^1.1.7"
-  },
-  "devDependencies": {
-    "@angular/core": "^12.2.4"
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch"
   },
   "peerDependencies": {
-    "@angular/core": "^10.0.0"
+    "@angular/core": "^13.0.0"
   },
-  "buildOptions": {
-    "name": "OhbugAngular",
-    "formats": [
-      "es",
-      "umd"
-    ],
-    "order": 4
+  "dependencies": {
+    "@ohbug/core": "workspace:*",
+    "@ohbug/types": "workspace:*"
+  },
+  "devDependencies": {
+    "@angular/core": "^13.3.8"
   },
   "publishConfig": {
     "access": "public"

@@ -1,7 +1,8 @@
 {
   "name": "@ohbug/extension-uuid",
-  "version": "1.0.14",
+  "version": "2.0.0",
   "description": "Ohbug extension to add uuid",
+  "license": "Apache-2.0",
   "author": "chenyueban <jasonchan0527@gmail.com>",
   "homepage": "https://github.com/ohbug-org/ohbug",
   "bugs": {
@@ -11,35 +12,32 @@
     "type": "git",
     "url": "https://github.com/ohbug-org/ohbug"
   },
-  "license": "Apache-2.0",
-  "main": "./dist/ohbug-extension-uuid.umd.js",
-  "module": "./dist/ohbug-extension-uuid.es.js",
-  "unpkg": "./dist/ohbug-extension-uuid.umd.js",
-  "jsdelivr": "./dist/ohbug-extension-uuid.umd.js",
-  "types": "./dist/index.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/ohbug-extension-uuid.es.js",
-      "require": "./dist/ohbug-extension-uuid.umd.js"
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch"
+  },
   "dependencies": {
-    "@ohbug/core": "^1.1.7",
-    "@ohbug/utils": "^1.0.13",
+    "@ohbug/core": "workspace:*",
+    "@ohbug/utils": "workspace:*",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@types/uuid": "^8.0.0"
-  },
-  "buildOptions": {
-    "name": "OhbugExtensionUUID",
-    "formats": [
-      "es",
-      "umd"
-    ]
   },
   "publishConfig": {
     "access": "public"

@@ -1,50 +1,40 @@
 {
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
   "scripts": {
-    "bootstrap": "lerna bootstrap",
-    "clean": "lerna clean",
-    "dev": "node scripts/dev.js",
-    "build": "node scripts/build.js",
-    "prettier": "prettier --write '**/*.{js,ts,md,json}'",
-    "lint": "eslint --fix packages/**/*.{ts,tsx}",
-    "test": "jest --config ./jest.config.js",
-    "codecov": "codecov",
-    "update:deps": "yarn upgrade-interactive --latest"
+    "version": "changeset version",
+    "publish": "changeset publish",
+    "prepublishOnly": "pnpm run build",
+    "dev": "pnpm -r run dev --parallel",
+    "build": "pnpm -r --filter !playground run build",
+    "lint": "tsc && eslint . --fix",
+    "test": "vitest",
+    "update:deps": "pnpm update -i -r --latest",
+    "prepare": "husky install",
+    "preinstall": "npx only-allow pnpm"
   },
   "devDependencies": {
-    "@chenyueban/lint": "^1.0.9",
-    "@chenyueban/tsconfig": "^0.2.0",
-    "@rollup/plugin-commonjs": "^20.0.0",
-    "@rollup/plugin-json": "^4.1.0",
-    "@rollup/plugin-node-resolve": "^13.0.2",
-    "@rollup/plugin-replace": "^3.0.0",
-    "@testing-library/dom": "^8.3.0",
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^12.0.0",
-    "@testing-library/user-event": "^13.2.0",
-    "@types/jest": "^27.0.1",
-    "codecov": "^3.8.3",
+    "@changesets/cli": "^2.22.0",
+    "@chenyueban/eslint-config": "^1.0.9",
+    "@chenyueban/tsconfig": "^2.1.0",
+    "@commitlint/cli": "^17.0.0",
+    "@commitlint/config-conventional": "^17.0.0",
+    "@testing-library/dom": "^8.13.0",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.2.0",
+    "@testing-library/user-event": "^14.2.0",
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "3.3.0",
-    "dotenv": "^10.0.0",
-    "jest": "^27.1.0",
-    "lerna": "^4.0.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "rollup": "^2.56.3",
-    "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-typescript2": "^0.30.0",
-    "ts-jest": "^27.0.5",
-    "tslib": "^2.3.0",
-    "typedoc": "^0.22.3",
-    "typescript": "^4.4.2"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
+    "esbuild": "^0.14.39",
+    "eslint": "^8.15.0",
+    "husky": "^8.0.1",
+    "jsdom": "^19.0.0",
+    "lint-staged": "^12.4.1",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "tsup": "^5.12.8",
+    "typescript": "^4.6.4",
+    "unbuild": "^0.7.4",
+    "vite": "^2.9.9",
+    "vitest": "^0.12.6"
   }
 }

@@ -1,14 +1,15 @@
+import { describe, expect, test, vi } from 'vitest'
 import type { OhbugEventWithMethods } from '@ohbug/types'
 import { BrowserClient } from '../src/client'
 import { notifier } from '../src/notifier'
 
-const mockSendBeacon = jest.fn()
+const mockSendBeacon = vi.fn()
 const event = { type: 'test' } as OhbugEventWithMethods<any>
 const apiKey = 'API_KEY_TEST'
 
 describe('@ohbug/browser/client', () => {
-  it('notify via `navigator.sendBeacon`', () => {
-    BrowserClient.init({ apiKey })
+  test('notify via `navigator.sendBeacon`', () => {
+    BrowserClient.setup({ apiKey })
     navigator.sendBeacon = mockSendBeacon
 
     notifier(event)

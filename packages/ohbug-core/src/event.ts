@@ -1,21 +1,21 @@
 import type {
-  OhbugEventWithMethods,
-  OhbugEvent,
-  OhbugCreateEvent,
-  OhbugClient,
-  OhbugUser,
   OhbugAction,
   OhbugCategory,
+  OhbugClient,
+  OhbugCreateEvent,
   OhbugDevice,
+  OhbugEvent,
+  OhbugEventWithMethods,
+  OhbugMetaData,
   OhbugReleaseStage,
   OhbugSDK,
-  OhbugMetaData,
+  OhbugUser,
 } from '@ohbug/types'
 
-import { isObject, isString } from '@ohbug/utils'
+import { isFunction, isObject, isString } from '@ohbug/utils'
 import { Action } from './action'
 import { getErrorMessage } from './lib/getErrorMessage'
-import { addMetaData, getMetaData, deleteMetaData } from './lib/metaData'
+import { addMetaData, deleteMetaData, getMetaData } from './lib/metaData'
 
 export class Event<D> implements OhbugEventWithMethods<D> {
   readonly apiKey: string
@@ -44,7 +44,7 @@ export class Event<D> implements OhbugEventWithMethods<D> {
 
   readonly releaseStage?: OhbugReleaseStage
 
-  readonly _client?: OhbugClient
+  readonly __client?: OhbugClient
 
   constructor(values: OhbugEvent<D>, client?: OhbugClient) {
     const {
@@ -76,12 +76,12 @@ export class Event<D> implements OhbugEventWithMethods<D> {
     this.device = device
     this.user = user
     this.actions = actions
-    this.metaData = metaData
+    this.metaData = metaData ?? {}
 
-    this._client = client
+    this.__client = client
   }
 
-  get _isOhbugEvent() {
+  get __isOhbugEvent() {
     return true
   }
 
@@ -100,7 +100,7 @@ export class Event<D> implements OhbugEventWithMethods<D> {
     message: string,
     data: Record<string, any>,
     type: string,
-    timestamp?: string
+    timestamp?: string,
   ): void {
     const actions = this.actions!
 
@@ -109,9 +109,9 @@ export class Event<D> implements OhbugEventWithMethods<D> {
     const targetType = isString(type) ? type : ''
 
     const action = new Action(targetMessage, targetData, targetType, timestamp)
-    if (actions.length >= (this._client?._config.maxActions ?? 30)) {
+    if (actions.length >= (this.__client?.__config.maxActions ?? 30))
       actions.shift()
-    }
+
     actions.push(action)
   }
 
@@ -132,12 +132,10 @@ export class Event<D> implements OhbugEventWithMethods<D> {
       this.user = { ...this.user, ...user }
       return this.getUser()
     }
-    this._client?._logger.warn(
-      getErrorMessage(
-        'setUser should be an object and have up to 6 attributes',
-        user
-      )
-    )
+    this.__client?.__logger.error(getErrorMessage(
+      'setUser should be an object and have up to 6 attributes',
+      user,
+    ))
     return undefined
   }
 
@@ -208,23 +206,24 @@ export class Event<D> implements OhbugEventWithMethods<D> {
 
 export function createEvent<D>(
   values: OhbugCreateEvent<D>,
-  client: OhbugClient
+  client: OhbugClient,
 ): OhbugEventWithMethods<D> {
-  const { apiKey, appVersion, appType, releaseStage } = client._config
+  const { apiKey, appVersion, appType, releaseStage } = client.__config
   const timestamp = new Date().toISOString()
-  const device = client._device(client)
+  const device = client.__device(client)
   let category: OhbugCategory
   let type: string
   let detail: D
   if (
-    isObject(values) &&
-    Object.prototype.hasOwnProperty.call(values, 'type') &&
-    Object.prototype.hasOwnProperty.call(values, 'detail')
+    isObject(values)
+    && Object.prototype.hasOwnProperty.call(values, 'type')
+    && Object.prototype.hasOwnProperty.call(values, 'detail')
   ) {
     category = values.category || 'error'
     type = values.type
     detail = values.detail
-  } else {
+  }
+  else {
     category = 'error'
     type = 'unknownError'
     detail = values as unknown as D
@@ -238,20 +237,40 @@ export function createEvent<D>(
       timestamp,
       category,
       type,
-      sdk: client._sdk,
+      sdk: client.__sdk,
       device,
-      user: client._user,
+      user: client.__user,
       detail,
-      actions: client._actions,
-      metaData: client._metaData,
+      actions: client.__actions,
+      metaData: client.__metaData,
       releaseStage,
     },
-    client
+    client,
   )
 }
 
-export function isEvent(
-  eventLike: any
-): eventLike is OhbugEventWithMethods<any> {
-  return Boolean(eventLike?._isOhbugEvent)
+export function handleEventCreated<D = any>(
+  event: OhbugEventWithMethods<D>,
+  client: OhbugClient,
+): OhbugEventWithMethods<D> | null {
+  const funcs = [
+    client.__config.created,
+    ...client.__extensions.map(({ created }) => created),
+  ].filter(v => isFunction(v)) as ((
+    event: OhbugEventWithMethods<D>,
+    client: OhbugClient
+  ) => OhbugEventWithMethods<D> | null)[]
+  if (funcs.length === 0)
+    return event
+
+  return funcs.reduce<OhbugEventWithMethods<D> | null>((previous, current) => {
+    if (previous && isFunction(current))
+      return current(previous, client)
+
+    return null
+  }, event)
+}
+
+export function isEvent(eventLike: any): eventLike is OhbugEventWithMethods<any> {
+  return Boolean(eventLike?.__isOhbugEvent)
 }

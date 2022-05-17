@@ -1,9 +1,9 @@
 import { getGlobal } from '@ohbug/utils'
 import {
-  removeCaptureScript,
-  removeCaptureNetwork,
   removeCaptureAction,
   removeCaptureConsole,
+  removeCaptureNetwork,
+  removeCaptureScript,
 } from './capture'
 
 const global = getGlobal<Window>()
@@ -17,6 +17,6 @@ export function handleDestroy() {
       removeCaptureAction()
       removeCaptureConsole()
     },
-    true
+    true,
   )
 }

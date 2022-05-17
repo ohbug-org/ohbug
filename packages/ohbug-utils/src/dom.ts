@@ -18,31 +18,27 @@ export const getSelector = (event: Event) => {
   const elements = []
   for (
     let i = 0;
-    target &&
-    target.nodeType === Node.ELEMENT_NODE &&
-    target.nodeType !== Node.DOCUMENT_TYPE_NODE;
+    target
+    && target.nodeType === Node.ELEMENT_NODE
+    && target.nodeType !== Node.DOCUMENT_TYPE_NODE;
     target = target.previousSibling
   ) {
     if (i) elements.push(target)
     i += 1
   }
-  // error.path 只有 chrome 实现，需要 polyfill
-  const path =
-    // @ts-ignore
-    typeof event.path === 'undefined'
-      ? getPath(event.target as Node)
-      : // @ts-ignore
-        event.path
+  // @ts-expect-error error.path 只有 chrome 实现，需要 polyfill
+  const path = typeof event.path === 'undefined'
+    ? getPath(event.target as Node)
+    // @ts-expect-error error.path 只有 chrome 实现，需要 polyfill
+    : event.path
   const { outerHTML } = immutableTarget
   return path
     .reverse()
-    .map(
-      (node: Element) =>
-        (node.localName || '') +
-        (node.id ? `#${node.id}` : '') +
-        (node.className ? `.${node.className}` : '') +
-        (node.outerHTML === outerHTML ? `:nth-child(${elements.length})` : '')
-    )
+    .map((node: Element) =>
+      (node.localName || '')
+        + (node.id ? `#${node.id}` : '')
+        + (node.className ? `.${node.className}` : '')
+        + (node.outerHTML === outerHTML ? `:nth-child(${elements.length})` : ''))
     .filter((v: string): boolean => Boolean(v))
     .join(' > ')
 }

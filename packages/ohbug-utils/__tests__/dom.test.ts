@@ -1,3 +1,4 @@
+import { describe, expect, test } from 'vitest'
 import userEvent from '@testing-library/user-event'
 import { getSelector } from '../src/dom'
 
@@ -10,7 +11,7 @@ describe('@ohbug/utils/dom', () => {
     return div
   }
 
-  it('should return selector correctly', () => {
+  test('should return selector correctly', () => {
     const dom = getDOM()
     const button = dom.querySelector('button') as HTMLButtonElement
     let selector
