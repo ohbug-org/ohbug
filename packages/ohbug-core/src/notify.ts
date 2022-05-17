@@ -6,10 +6,10 @@ function handleNotified<D>(
   client: OhbugClient,
 ) {
   const funcs = [
-    client.__config.notified,
+    client.__config.onNotify,
     ...client.__extensions
-      .filter(({ notified }) => isFunction(notified))
-      .map(({ notified }) => notified),
+      .filter(({ onNotify }) => isFunction(onNotify))
+      .map(({ onNotify }) => onNotify),
   ]
   funcs.forEach(func => func?.(event, client))
 }

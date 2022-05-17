@@ -52,22 +52,22 @@ describe('@ohbug/core/client', () => {
       expect(isObject(event)).toBe(true)
     })
 
-    test('should be trigger all created hooks', () => {
+    test('should be trigger all onEvent hooks', () => {
       const hooks = {
         clientCreated: vi.fn(),
         extensionCreated: vi.fn(),
       }
-      const client = new Client(getValues({ apiKey, created: hooks.clientCreated }))
+      const client = new Client(getValues({ apiKey, onEvent: hooks.clientCreated }))
       const extension = defineExtension({
         name: 'test_extension',
-        created: hooks.extensionCreated,
+        onEvent: hooks.extensionCreated,
       })
       client.use(extension)
 
       client.createEvent({
         category: 'error',
         type: 'exception',
-        detail: 'should be trigger all created hooks',
+        detail: 'should be trigger all onEvent hooks',
       })
 
       expect(hooks.clientCreated).toBeCalledTimes(1)
@@ -97,22 +97,22 @@ describe('@ohbug/core/client', () => {
       })
     })
 
-    test('should be trigger all notified hooks', async() => {
+    test('should be trigger all onNotify hooks', async() => {
       const hooks = {
         clientNotified: vi.fn(),
         extensionNotified: vi.fn(),
       }
-      const client = new Client(getValues({ apiKey, notified: hooks.clientNotified }))
+      const client = new Client(getValues({ apiKey, onNotify: hooks.clientNotified }))
       const extension = defineExtension({
         name: 'test_extension',
-        notified: hooks.extensionNotified,
+        onNotify: hooks.extensionNotified,
       })
       client.use(extension)
 
       const event = client.createEvent({
         category: 'error',
         type: 'exception',
-        detail: 'should be trigger all notified hooks',
+        detail: 'should be trigger all onNotify hooks',
       })
       await client.notify(event)
 

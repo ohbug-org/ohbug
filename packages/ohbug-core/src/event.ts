@@ -254,8 +254,8 @@ export function handleEventCreated<D = any>(
   client: OhbugClient,
 ): OhbugEventWithMethods<D> | null {
   const funcs = [
-    client.__config.created,
-    ...client.__extensions.map(({ created }) => created),
+    client.__config.onEvent,
+    ...client.__extensions.map(({ onEvent }) => onEvent),
   ].filter(v => isFunction(v)) as ((
     event: OhbugEventWithMethods<D>,
     client: OhbugClient

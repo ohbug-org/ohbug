@@ -35,12 +35,12 @@ export const schema: OhbugSchema = {
       value === undefined || (isNumber(value) && value >= 1 && value <= 100),
   },
   // hooks
-  created: {
+  onEvent: {
     defaultValue: (event: OhbugEventWithMethods<any>) => event,
     message: 'should be a function',
     validate: value => value === undefined || isFunction(value),
   },
-  notified: {
+  onNotify: {
     defaultValue: () => {},
     message: 'should be a function',
     validate: value => value === undefined || isFunction(value),

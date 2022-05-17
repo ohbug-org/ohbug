@@ -22,11 +22,11 @@ export interface OhbugConfig {
   endpoint?: string
   maxActions?: number
   // hooks
-  created?: <D = any>(
+  onEvent?: <D = any>(
     event: OhbugEventWithMethods<D>,
     client: OhbugClient
   ) => OhbugEventWithMethods<D> | null
-  notified?: <D = any>(
+  onNotify?: <D = any>(
     event: OhbugEventWithMethods<D>,
     client: OhbugClient
   ) => void
