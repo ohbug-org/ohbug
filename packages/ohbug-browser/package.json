@@ -1,6 +1,6 @@
 {
   "name": "@ohbug/browser",
-  "version": "1.0.20",
+  "version": "2.0.0",
   "description": "Ohbug SDK for browsers",
   "license": "Apache-2.0",
   "author": "chenyueban <jasonchan0527@gmail.com>",
