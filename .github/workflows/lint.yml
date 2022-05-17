@@ -1,4 +1,4 @@
-name: Test
+name: Lint
 
 on:
   push:
@@ -11,13 +11,7 @@ on:
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        node: [14.x, 16.x]
-        os: [ubuntu-latest, windows-latest, macos-latest]
-      fail-fast: false
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
@@ -25,10 +19,10 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@v2.2.1
 
-      - name: Set node version to ${{ matrix.node }}
+      - name: Set node
         uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node }}
+          node-version: 16.x
           cache: pnpm
 
       - name: Setup
@@ -37,8 +31,5 @@ jobs:
       - name: Install
         run: nci
 
-      - name: Build
-        run: nr build
-
-      - name: Test
-        run: nr test --if-present
+      - name: Lint
+        run: nr lint
