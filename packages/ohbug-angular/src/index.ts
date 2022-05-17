@@ -1,4 +1,2 @@
-import { extension } from './extension'
-
-export default extension
 export type { AngularErrorDetail } from './createProvider'
+export { default } from './createProvider'

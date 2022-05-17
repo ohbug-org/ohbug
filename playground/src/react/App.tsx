@@ -12,7 +12,8 @@ function Trigger() {
     fetch('http://a.com/b', { method: 'GET' })
   }, [])
   const onClickTriggerUnhandledrejection = useCallback(async() => {
-    const promise = new Promise((resolve, reject) => {
+    // eslint-disable-next-line promise/param-names
+    const promise = new Promise((_, reject) => {
       reject(new Error('this is a reject message in Promise'))
     })
     await promise

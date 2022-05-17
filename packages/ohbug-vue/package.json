@@ -32,14 +32,14 @@
     "dev": "tsup --watch"
   },
   "peerDependencies": {
-    "vue": "^2.6.0"
+    "vue": "^3.0.0"
   },
   "dependencies": {
     "@ohbug/core": "workspace:*",
     "@ohbug/types": "workspace:*"
   },
   "devDependencies": {
-    "vue": "^2.6.11"
+    "vue": "^3.2.33"
   },
   "publishConfig": {
     "access": "public"

@@ -24,7 +24,7 @@ export const schema: OhbugSchema = {
     validate: value => value === undefined || isString(value),
   },
   endpoint: {
-    defaultValue: '__URL__',
+    defaultValue: 'http://localhost:6660',
     message: 'should be a string',
     validate: value => value === undefined || isString(value),
   },

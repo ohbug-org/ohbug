@@ -35,6 +35,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@ohbug/types": "workspace:*"
+    "@ohbug/types": "workspace:*",
+    "@types/node": "^17.0.34"
   }
 }

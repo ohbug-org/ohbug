@@ -1,4 +1,4 @@
-import { getGlobal, getOhbugObject, replace, warning } from '@ohbug/utils'
+import { getGlobal, getOhbugObject, replace } from '@ohbug/utils'
 import { EventTypes } from '@ohbug/core'
 
 import { networkDispatcher } from '../../dispatch'
@@ -12,10 +12,6 @@ let fetchOriginal = access ? global.fetch : null
  * capture FETCH_ERROR
  */
 export function captureFetchError() {
-  warning(
-    access,
-    'Binding `fetch` monitoring failed, the current environment did not find the object `fetch`',
-  )
   if (!access) return
 
   const { client } = getOhbugObject<Window>()

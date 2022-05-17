@@ -1,4 +1,4 @@
-import { getGlobal, getOhbugObject, replace, warning } from '@ohbug/utils'
+import { getGlobal, getOhbugObject, replace } from '@ohbug/utils'
 import { EventTypes } from '@ohbug/core'
 
 import { networkDispatcher } from '../../dispatch'
@@ -17,10 +17,6 @@ const xhrOriginal = access
  * capture AJAX_ERROR
  */
 export function captureAjaxError() {
-  warning(
-    access,
-    'Binding `AJAX` monitoring failed, the current environment did not find the object `XMLHttpRequest`',
-  )
   if (!access) return
 
   const { client } = getOhbugObject<Window>()

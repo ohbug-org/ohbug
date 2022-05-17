@@ -32,14 +32,14 @@
     "dev": "tsup --watch"
   },
   "peerDependencies": {
-    "@angular/core": "^10.0.0"
+    "@angular/core": "^13.0.0"
   },
   "dependencies": {
     "@ohbug/core": "workspace:*",
     "@ohbug/types": "workspace:*"
   },
   "devDependencies": {
-    "@angular/core": "^12.2.4"
+    "@angular/core": "^13.3.8"
   },
   "publishConfig": {
     "access": "public"

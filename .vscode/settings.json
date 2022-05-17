@@ -2,5 +2,6 @@
   "cSpell.words": [
     "esbuild",
     "Ohbug"
-  ]
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

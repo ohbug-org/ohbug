@@ -14,8 +14,9 @@
 
       import { OhbugVue, client } from './ohbug'
 
-      const app = createApp(VueApp).mount('#vue-root')
-      client.use(OhbugVue, app)
+      createApp(VueApp)
+        .use(OhbugVue(client))
+        .mount('#vue-root')
     </script>
   </body>
 </html>

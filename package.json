@@ -3,11 +3,11 @@
   "scripts": {
     "version": "changeset version",
     "publish": "changeset publish",
-    "dev": "pnpm -r run dev",
+    "dev": "pnpm -r run dev --parallel",
     "build": "pnpm -r --filter !playground run build",
-    "lint": "eslint . --fix",
+    "lint": "tsc && eslint . --fix",
     "test": "vitest",
-    "update:deps": "pnpm update -i --latest",
+    "update:deps": "pnpm update -i -r --latest",
     "prepare": "husky install",
     "preinstall": "npx only-allow pnpm"
   },

@@ -1,4 +1,4 @@
-import { getGlobal, warning } from '@ohbug/utils'
+import { getGlobal } from '@ohbug/utils'
 import {
   captureUrlChange,
   removeCaptureUrlChange,
@@ -46,10 +46,6 @@ export function removeCaptureNetwork() {
 
 export function captureScript() {
   const global = getGlobal<Window>()
-  warning(
-    Boolean(global.addEventListener),
-    'Binding script monitoring failed, the current environment did not find the object `addEventListener`',
-  )
   if (!global.addEventListener) return
 
   captureUncaughtError()

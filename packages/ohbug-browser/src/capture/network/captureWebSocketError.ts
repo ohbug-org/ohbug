@@ -1,4 +1,4 @@
-import { getGlobal, warning } from '@ohbug/utils'
+import { getGlobal } from '@ohbug/utils'
 import { EventTypes } from '@ohbug/core'
 
 import { networkDispatcher } from '../../dispatch'
@@ -10,10 +10,6 @@ const global = getGlobal<Window>()
  * capture WEBSOCKET_ERROR
  */
 export function captureWebSocketError() {
-  warning(
-    'WebSocket' in global,
-    'Binding `WebSocket` monitoring failed, the current environment did not find the object `WebSocket`',
-  )
   if (!('WebSocket' in global)) return
 
   const wsProto = WebSocket?.prototype
