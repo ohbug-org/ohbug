@@ -16,19 +16,14 @@ pnpm i
 
 ## Build
 
-Transform with rollup.
-
 ```bash
 pnpm build
+```
 
-# Build specified package only
-pnpm build ohbug-core
+## Dev
 
-# Build and monitor file changes
+```bash
 pnpm dev
-
-# Build and monitor specified package only
-pnpm dev ohbug-core
 ```
 
 ## Test
