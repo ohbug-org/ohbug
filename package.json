@@ -3,6 +3,7 @@
   "scripts": {
     "version": "changeset version",
     "publish": "changeset publish",
+    "prepublishOnly": "pnpm run build",
     "dev": "pnpm -r run dev --parallel",
     "build": "pnpm -r --filter !playground run build",
     "lint": "tsc && eslint . --fix",
