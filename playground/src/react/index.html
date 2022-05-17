@@ -12,22 +12,20 @@
   <div id="react-root"></div>
   <script type="module">
     import { createElement } from 'react'
-    import { render } from 'react-dom'
+    import { createRoot } from 'react-dom/client'
     import ReactApp from './App'
-
     import { OhbugErrorBoundary, client } from './ohbug'
 
     function FallbackComponent() {
       return 'Ohbug Error FallbackComponent'
     }
-    render(
-      createElement(
-        OhbugErrorBoundary,
-        { client, FallbackComponent: createElement(FallbackComponent) },
-        createElement(ReactApp),
-      ),
-      document.getElementById('react-root'),
-    )
+    const container = document.getElementById('react-root')
+    const root = createRoot(container)
+    root.render(createElement(
+      OhbugErrorBoundary,
+      { client, FallbackComponent: createElement(FallbackComponent) },
+      createElement(ReactApp),
+    ))
   </script>
 </body>
 

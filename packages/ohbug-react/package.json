@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "@ohbug/browser": "workspace:*",
-    "@types/react": "^17.0.20"
+    "@types/react": "^18.0.9"
   },
   "publishConfig": {
     "access": "public"

@@ -11,6 +11,7 @@ export interface ReactErrorDetail extends OhbugBaseDetail {
 interface ErrorBoundaryProp {
   client: OhbugClient
   FallbackComponent?: React.ReactElement
+  children?: React.ReactNode
 }
 interface ErrorBoundaryState {
   error: any
