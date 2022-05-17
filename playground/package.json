@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@ohbug/browser": "workspace:*",
+    "@ohbug/core": "workspace:*",
     "@ohbug/react": "workspace:*",
     "@ohbug/vue": "workspace:*",
     "react": "^18.1.0",

@@ -54,13 +54,13 @@ describe('@ohbug/core/client', () => {
 
     test('should be trigger all onEvent hooks', () => {
       const hooks = {
-        clientCreated: vi.fn(),
-        extensionCreated: vi.fn(),
+        clientOnEvent: vi.fn(e => e),
+        extensionOnEvent: vi.fn(e => e),
       }
-      const client = new Client(getValues({ apiKey, onEvent: hooks.clientCreated }))
+      const client = new Client(getValues({ apiKey, onEvent: hooks.clientOnEvent }))
       const extension = defineExtension({
         name: 'test_extension',
-        onEvent: hooks.extensionCreated,
+        onEvent: hooks.extensionOnEvent,
       })
       client.use(extension)
 
@@ -70,8 +70,8 @@ describe('@ohbug/core/client', () => {
         detail: 'should be trigger all onEvent hooks',
       })
 
-      expect(hooks.clientCreated).toBeCalledTimes(1)
-      expect(hooks.extensionCreated).toBeCalledTimes(1)
+      expect(hooks.clientOnEvent).toBeCalledTimes(1)
+      expect(hooks.extensionOnEvent).toBeCalledTimes(1)
     })
   })
 
