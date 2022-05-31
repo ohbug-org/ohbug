@@ -1,6 +1,6 @@
 export interface OhbugUser {
   uuid?: string
-  ip_address?: string
+  ipAddress?: string
   id?: number | string
   name?: string
   email?: string
