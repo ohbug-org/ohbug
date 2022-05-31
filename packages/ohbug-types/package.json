@@ -1,6 +1,6 @@
 {
   "name": "@ohbug/types",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Types for all Ohbug SDKs",
   "license": "Apache-2.0",
   "author": "chenyueban <jasonchan0527@gmail.com>",

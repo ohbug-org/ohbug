@@ -1,5 +1,12 @@
 # @ohbug/extension-uuid
 
+## 2.0.2
+
+### Patch Changes
+
+- @ohbug/core@2.0.2
+- @ohbug/utils@2.0.2
+
 ## 2.0.1
 
 ### Patch Changes

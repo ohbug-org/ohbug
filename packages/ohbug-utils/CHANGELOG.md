@@ -1,5 +1,12 @@
 # @ohbug/utils
 
+## 2.0.2
+
+### Patch Changes
+
+- Updated dependencies
+  - @ohbug/types@2.0.2
+
 ## 2.0.1
 
 ### Patch Changes

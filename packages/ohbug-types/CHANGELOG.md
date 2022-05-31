@@ -1,5 +1,11 @@
 # @ohbug/types
 
+## 2.0.2
+
+### Patch Changes
+
+- update user ip field
+
 ## 2.0.1
 
 ### Patch Changes
