@@ -67,7 +67,7 @@ export const schema: OhbugSchema = {
       value === undefined
       || (isObject(value) && Object.keys(value).length <= 6),
   },
-  metaData: {
+  metadata: {
     defaultValue: undefined,
     message: 'should be an object',
     validate: value => value === undefined || isObject(value),

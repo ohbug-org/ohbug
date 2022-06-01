@@ -5,7 +5,7 @@ import type { OhbugGetDevice } from './device'
 import type { OhbugNotifier } from './notify'
 import type { OhbugAction } from './action'
 import type { OhbugUser } from './user'
-import type { OhbugMetaData } from './metaData'
+import type { OhbugMetadata } from './metadata'
 
 export interface OhbugClientConstructorValues {
   sdk: OhbugSDK
@@ -29,7 +29,7 @@ export interface OhbugClient {
 
   readonly __actions: OhbugAction[]
   __user: OhbugUser
-  readonly __metaData: OhbugMetaData
+  readonly __metadata: OhbugMetadata
 
   use: (extension: OhbugExtension) => OhbugClient
   createEvent: <D = any>(
@@ -49,7 +49,7 @@ export interface OhbugClient {
   ) => void
   getUser: () => OhbugUser | undefined
   setUser: (user: OhbugUser) => OhbugUser | undefined
-  addMetaData: (section: string, data: any) => any
-  getMetaData: (section: string) => any
-  deleteMetaData: (section: string) => any
+  addMetadata: (section: string, data: any) => any
+  getMetadata: (section: string) => any
+  deleteMetadata: (section: string) => any
 }

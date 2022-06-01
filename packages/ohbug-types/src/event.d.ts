@@ -1,7 +1,7 @@
 import type { OhbugDevice } from './device'
 import type { OhbugUser } from './user'
 import type { OhbugAction } from './action'
-import type { OhbugMetaData } from './metaData'
+import type { OhbugMetadata } from './metadata'
 
 export type OhbugReleaseStage = 'development' | 'production' | string
 export type OhbugCategory =
@@ -30,7 +30,7 @@ export interface OhbugEvent<D> {
   device: OhbugDevice
   user?: OhbugUser
   actions?: OhbugAction[]
-  metaData?: OhbugMetaData
+  metadata?: OhbugMetadata
 }
 export interface OhbugEventWithMethods<D> extends OhbugEvent<D> {
   addAction: (
@@ -41,9 +41,9 @@ export interface OhbugEventWithMethods<D> extends OhbugEvent<D> {
   ) => void
   getUser: () => OhbugUser | undefined
   setUser: (user: OhbugUser) => OhbugUser | undefined
-  addMetaData: (section: string, data: any) => any
-  getMetaData: (section: string) => any
-  deleteMetaData: (section: string) => any
+  addMetadata: (section: string, data: any) => any
+  getMetadata: (section: string) => any
+  deleteMetadata: (section: string) => any
 }
 
 export interface OhbugBaseDetail {

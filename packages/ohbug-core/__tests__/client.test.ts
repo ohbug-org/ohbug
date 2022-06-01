@@ -1,5 +1,5 @@
 import { describe, expect, test, vi } from 'vitest'
-import type { OhbugMetaData, OhbugUser } from '@ohbug/types'
+import type { OhbugMetadata, OhbugUser } from '@ohbug/types'
 import { isObject, isPromise } from '@ohbug/utils'
 
 import { Client } from '../src/client'
@@ -203,9 +203,9 @@ describe('@ohbug/core/client', () => {
     })
   })
 
-  describe('metaData', () => {
-    test('should be set the metaData correctly', () => {
-      const metaData: OhbugMetaData = {
+  describe('metadata', () => {
+    test('should be set the metadata correctly', () => {
+      const metadata: OhbugMetadata = {
         organization: {
           name: 'ohbug',
           platform: 'test',
@@ -213,52 +213,52 @@ describe('@ohbug/core/client', () => {
       }
       const client = new Client(getValues({
         apiKey,
-        metaData,
+        metadata,
       }))
-      expect(client.__metaData.organization).toEqual(metaData.organization)
+      expect(client.__metadata.organization).toEqual(metadata.organization)
     })
 
-    test('should be add the metaData correctly', () => {
-      const metaData: OhbugMetaData = {
+    test('should be add the metadata correctly', () => {
+      const metadata: OhbugMetadata = {
         organization: {
           name: 'ohbug',
           platform: 'test',
         },
       }
       const client = new Client(getValues())
-      client.addMetaData('organization', {
+      client.addMetadata('organization', {
         name: 'ohbug',
         platform: 'test',
       })
-      expect(client.__metaData.organization).toEqual(metaData.organization)
+      expect(client.__metadata.organization).toEqual(metadata.organization)
     })
 
-    test('should be get the metaData correctly', () => {
-      const metaData: OhbugMetaData = {
+    test('should be get the metadata correctly', () => {
+      const metadata: OhbugMetadata = {
         organization: {
           name: 'ohbug',
           platform: 'test',
         },
       }
       const client = new Client(getValues())
-      client.addMetaData('organization', {
+      client.addMetadata('organization', {
         name: 'ohbug',
         platform: 'test',
       })
-      expect(client.getMetaData('organization')).toEqual(metaData.organization)
+      expect(client.getMetadata('organization')).toEqual(metadata.organization)
     })
 
-    test('should be delete the metaData correctly', () => {
-      const metaData: OhbugMetaData = {
+    test('should be delete the metadata correctly', () => {
+      const metadata: OhbugMetadata = {
         organization: {
           name: 'ohbug',
           platform: 'test',
         },
       }
-      const client = new Client(getValues({ apiKey, metaData }))
-      client.deleteMetaData('organization')
-      expect(client.getMetaData('organization')).toBeUndefined()
-      expect(Object.keys(client.__metaData).length).toBe(0)
+      const client = new Client(getValues({ apiKey, metadata }))
+      client.deleteMetadata('organization')
+      expect(client.getMetadata('organization')).toBeUndefined()
+      expect(Object.keys(client.__metadata).length).toBe(0)
     })
   })
 })

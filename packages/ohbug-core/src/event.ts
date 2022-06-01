@@ -6,7 +6,7 @@ import type {
   OhbugDevice,
   OhbugEvent,
   OhbugEventWithMethods,
-  OhbugMetaData,
+  OhbugMetadata,
   OhbugReleaseStage,
   OhbugSDK,
   OhbugUser,
@@ -15,7 +15,7 @@ import type {
 import { isFunction, isObject, isString } from '@ohbug/utils'
 import { Action } from './action'
 import { getErrorMessage } from './lib/getErrorMessage'
-import { addMetaData, deleteMetaData, getMetaData } from './lib/metaData'
+import { addMetadata, deleteMetadata, getMetadata } from './lib/metadata'
 
 export class Event<D> implements OhbugEventWithMethods<D> {
   readonly apiKey: string
@@ -40,7 +40,7 @@ export class Event<D> implements OhbugEventWithMethods<D> {
 
   readonly actions?: OhbugAction[]
 
-  readonly metaData: OhbugMetaData
+  readonly metadata: OhbugMetadata
 
   readonly releaseStage?: OhbugReleaseStage
 
@@ -61,7 +61,7 @@ export class Event<D> implements OhbugEventWithMethods<D> {
       device,
       user,
       actions,
-      metaData,
+      metadata,
     } = values
     this.apiKey = apiKey
     this.appVersion = appVersion
@@ -76,7 +76,7 @@ export class Event<D> implements OhbugEventWithMethods<D> {
     this.device = device
     this.user = user
     this.actions = actions
-    this.metaData = metaData ?? {}
+    this.metadata = metadata ?? {}
 
     this.__client = client
   }
@@ -140,34 +140,34 @@ export class Event<D> implements OhbugEventWithMethods<D> {
   }
 
   /**
-   * Add metaData
-   * 新增 metaData
+   * Add metadata
+   * 新增 metadata
    *
    * @param section
    * @param data
    */
-  addMetaData(section: string, data: any) {
-    return addMetaData(this.metaData, section, data)
+  addMetadata(section: string, data: any) {
+    return addMetadata(this.metadata, section, data)
   }
 
   /**
-   * Get metaData
-   * 获取 metaData
+   * Get metadata
+   * 获取 metadata
    *
    * @param section
    */
-  getMetaData(section: string) {
-    return getMetaData(this.metaData, section)
+  getMetadata(section: string) {
+    return getMetadata(this.metadata, section)
   }
 
   /**
-   * Delete metaData
-   * 删除 metaData
+   * Delete metadata
+   * 删除 metadata
    *
    * @param section
    */
-  deleteMetaData(section: string) {
-    return deleteMetaData(this.metaData, section)
+  deleteMetadata(section: string) {
+    return deleteMetadata(this.metadata, section)
   }
 
   toJSON() {
@@ -183,7 +183,7 @@ export class Event<D> implements OhbugEventWithMethods<D> {
       detail,
       user,
       actions,
-      metaData,
+      metadata,
       releaseStage,
     } = this
     return {
@@ -198,7 +198,7 @@ export class Event<D> implements OhbugEventWithMethods<D> {
       detail,
       user,
       actions,
-      metaData,
+      metadata,
       releaseStage,
     }
   }
@@ -242,7 +242,7 @@ export function createEvent<D>(
       user: client.__user,
       detail,
       actions: client.__actions,
-      metaData: client.__metaData,
+      metadata: client.__metadata,
       releaseStage,
     },
     client,

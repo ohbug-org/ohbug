@@ -9,7 +9,7 @@ import type {
   OhbugExtension,
   OhbugGetDevice,
   OhbugLoggerConfig,
-  OhbugMetaData,
+  OhbugMetadata,
   OhbugNotifier,
   OhbugSDK,
   OhbugUser,
@@ -22,7 +22,7 @@ import { notify } from './notify'
 import { Action } from './action'
 import { verifyConfig } from './lib/verifyConfig'
 import { getConfigErrorMessage, getErrorMessage } from './lib/getErrorMessage'
-import { addMetaData, deleteMetaData, getMetaData } from './lib/metaData'
+import { addMetadata, deleteMetadata, getMetadata } from './lib/metadata'
 
 export const Client: OhbugClientConstructor = class Client
 implements OhbugClient {
@@ -42,7 +42,7 @@ implements OhbugClient {
 
   __user: OhbugUser
 
-  readonly __metaData: OhbugMetaData
+  readonly __metadata: OhbugMetadata
 
   constructor({
     sdk,
@@ -64,10 +64,10 @@ implements OhbugClient {
 
     this.__actions = []
     this.__user = config.user
-    this.__metaData = {}
-    if (isObject(config.metaData)) {
-      Object.keys(config.metaData).forEach((key) => {
-        this.addMetaData(key, config.metaData[key])
+    this.__metadata = {}
+    if (isObject(config.metadata)) {
+      Object.keys(config.metadata).forEach((key) => {
+        this.addMetadata(key, config.metadata[key])
       })
     }
 
@@ -178,33 +178,33 @@ implements OhbugClient {
   }
 
   /**
-   * Add metaData
-   * 新增 metaData
+   * Add metadata
+   * 新增 metadata
    *
    * @param section
    * @param data
    */
-  addMetaData(section: string, data: any) {
-    return addMetaData(this.__metaData, section, data)
+  addMetadata(section: string, data: any) {
+    return addMetadata(this.__metadata, section, data)
   }
 
   /**
-   * Get metaData
-   * 获取 metaData
+   * Get metadata
+   * 获取 metadata
    *
    * @param section
    */
-  getMetaData(section: string) {
-    return getMetaData(this.__metaData, section)
+  getMetadata(section: string) {
+    return getMetadata(this.__metadata, section)
   }
 
   /**
-   * Delete metaData
-   * 删除 metaData
+   * Delete metadata
+   * 删除 metadata
    *
    * @param section
    */
-  deleteMetaData(section: string) {
-    return deleteMetaData(this.__metaData, section)
+  deleteMetadata(section: string) {
+    return deleteMetadata(this.__metadata, section)
   }
 }
