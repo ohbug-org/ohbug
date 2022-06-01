@@ -4,6 +4,16 @@
 
 ### Patch Changes
 
+- Updated dependencies
+  - @ohbug/browser@2.0.3
+  - @ohbug/core@2.0.3
+  - @ohbug/react@2.0.3
+  - @ohbug/vue@2.0.3
+
+## null
+
+### Patch Changes
+
 - @ohbug/browser@2.0.2
 - @ohbug/core@2.0.2
 - @ohbug/react@2.0.2

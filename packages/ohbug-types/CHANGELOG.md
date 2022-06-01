@@ -1,5 +1,11 @@
 # @ohbug/types
 
+## 2.0.3
+
+### Patch Changes
+
+- rename metaData to metadata
+
 ## 2.0.2
 
 ### Patch Changes

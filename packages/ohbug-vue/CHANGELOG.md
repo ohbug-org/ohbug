@@ -1,5 +1,14 @@
 # @ohbug/vue
 
+## 2.0.3
+
+### Patch Changes
+
+- rename metaData to metadata
+- Updated dependencies
+  - @ohbug/core@2.0.3
+  - @ohbug/types@2.0.3
+
 ## 2.0.2
 
 ### Patch Changes
