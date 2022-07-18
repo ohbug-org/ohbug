@@ -7,7 +7,6 @@
 [![build](https://img.shields.io/github/workflow/status/ohbug-org/ohbug/Node.js%20CI/master?style=flat-square)](https://github.com/ohbug-org/ohbug/actions?query=workflow%3A%22Node.js+CI%22)
 [![npm](https://img.shields.io/npm/v/@ohbug/core.svg?style=flat-square)](https://www.npmjs.com/package/@ohbug/core)
 [![license](https://img.shields.io/github/license/ohbug-org/ohbug?style=flat-square)](https://github.com/ohbug-org/ohbug/blob/master/LICENSE)
-[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg?style=flat-square)](https://lerna.js.org/)
 
 </div>
 
@@ -49,10 +48,9 @@ Will support NodeJS, React Native and other JavaScript platforms.
 
 ## Dashboard
 
-This part contains the entire dashboard, you can deploy Ohbug privately, view the [deployment document](https://ohbug.net/docs/deploy/Deploy).
+This part contains the entire dashboard, you can deploy Ohbug privately, view the [deployment document](https://ohbug.net/guide/deploying.html).
 
-- [ohbug-server](https://github.com/ohbug-org/ohbug-server): The back end of the dashboard is implemented based on nestjs.
-- [ohbug-app](https://github.com/ohbug-org/ohbug-app): The front end of the dashboard.
+- [ohbug-dashboard](https://github.com/ohbug-org/ohbug-dashboard): The dashboard is implemented based on nestjs and nextjs.
 
 ## Contributors
 

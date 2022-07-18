@@ -7,7 +7,6 @@
 [![build](https://img.shields.io/github/workflow/status/ohbug-org/ohbug/Node.js%20CI/master?style=flat-square)](https://github.com/ohbug-org/ohbug/actions?query=workflow%3A%22Node.js+CI%22)
 [![npm](https://img.shields.io/npm/v/@ohbug/core.svg?style=flat-square)](https://www.npmjs.com/package/@ohbug/core)
 [![license](https://img.shields.io/github/license/ohbug-org/ohbug?style=flat-square)](https://github.com/ohbug-org/ohbug/blob/master/LICENSE)
-[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg?style=flat-square)](https://lerna.js.org/)
 
 </div>
 
@@ -49,10 +48,10 @@ Ohbug 是一套集 行为监控、异常监控、自定义行为监控 于一体
 
 ## Dashboard
 
-这部分包含了整个控制台，你可以私有部署 Ohbug，查看[部署文档](https://ohbug.net/docs/deploy/Deploy)。
+这部分包含了整个控制台，你可以私有部署 Ohbug，查看[部署文档](https://ohbug.net/guide/deploying.html)。
 
-- [ohbug-server](https://github.com/ohbug-org/ohbug-server): 控制台后端部分，基于 nestjs 实现。
-- [ohbug-app](https://github.com/ohbug-org/ohbug-app): 控制台前端部分。
+- [ohbug-dashboard](https://github.com/ohbug-org/ohbug-dashboard): 控制台应用，基于 nestjs 和 nextjs。
+
 
 ## Contributors
 

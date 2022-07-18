@@ -35,6 +35,6 @@
   },
   "dependencies": {
     "@ohbug/types": "workspace:*",
-    "@types/node": "^17.0.34"
+    "@types/node": "^18.0.6"
   }
 }

@@ -38,7 +38,7 @@
     "@ohbug/types": "workspace:*"
   },
   "devDependencies": {
-    "@angular/core": "^13.3.8"
+    "@angular/core": "^14.0.6"
   },
   "publishConfig": {
     "access": "public"
