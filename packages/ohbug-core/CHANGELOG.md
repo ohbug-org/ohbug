@@ -1,5 +1,14 @@
 # @ohbug/core
 
+## 2.0.5
+
+### Patch Changes
+
+- fixed OhbugExtension setup type error
+- Updated dependencies
+  - @ohbug/types@2.0.4
+  - @ohbug/utils@2.0.4
+
 ## 2.0.4
 
 ### Patch Changes

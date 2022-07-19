@@ -1,5 +1,13 @@
 # @ohbug/react
 
+## 2.0.5
+
+### Patch Changes
+
+- Updated dependencies
+  - @ohbug/core@2.0.5
+  - @ohbug/types@2.0.4
+
 ## 2.0.4
 
 ### Patch Changes
