@@ -1,5 +1,14 @@
 # playground
 
+## 0.0.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @ohbug/core@2.0.4
+  - @ohbug/browser@2.0.4
+  - @ohbug/react@2.0.4
+
 ## null
 
 ### Patch Changes
