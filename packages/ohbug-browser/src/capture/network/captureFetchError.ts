@@ -37,8 +37,7 @@ export function captureFetchError() {
             }
             client.addAction('fetch', detail, 'fetch')
 
-            if (!res.status || res.status >= 400)
-              networkDispatcher(EventTypes.FETCH_ERROR, detail)
+            if (!res.status || res.status >= 400) { networkDispatcher(EventTypes.FETCH_ERROR, detail) }
 
             return res
           },
@@ -64,6 +63,5 @@ export function captureFetchError() {
 }
 
 export function removeCaptureFetchError() {
-  if (access && fetchOriginal)
-    global.fetch = fetchOriginal
+  if (access && fetchOriginal) { global.fetch = fetchOriginal }
 }

@@ -9,8 +9,7 @@ function handleUrlChange(from?: string, to?: string) {
   let parsedFrom = parseUrl(from as string)
   const parsedTo = parseUrl(to as string)
 
-  if (!parsedFrom.path)
-    parsedFrom = parsedHref
+  if (!parsedFrom.path) { parsedFrom = parsedHref }
 
   lastHref = to
 
@@ -20,14 +19,12 @@ function handleUrlChange(from?: string, to?: string) {
   if (
     parsedHref.protocol === parsedTo.protocol
     && parsedHref.host === parsedTo.host
-  )
-    targetTo = parsedTo.relative
+  ) { targetTo = parsedTo.relative }
 
   if (
     parsedHref.protocol === parsedFrom.protocol
     && parsedHref.host === parsedFrom.host
-  )
-    targetFrom = parsedFrom.relative
+  ) { targetFrom = parsedFrom.relative }
 
   if (targetFrom === targetTo) return
 
@@ -43,8 +40,7 @@ function handleUrlChange(from?: string, to?: string) {
 
 function historyReplacement(original: (data: any, title: string, url?: string) => void) {
   return function call(data: any, title: string, url?: string) {
-    if (url)
-      handleUrlChange(lastHref, String(url))
+    if (url) { handleUrlChange(lastHref, String(url)) }
 
     return original.apply(this, [data, title, url])
   }

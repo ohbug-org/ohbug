@@ -17,8 +17,7 @@ export function getUUID(): string {
     }
     return UUID
   }
-  if (isNode())
-    return uuidv4()
+  if (isNode()) { return uuidv4() }
 
   return ''
 }

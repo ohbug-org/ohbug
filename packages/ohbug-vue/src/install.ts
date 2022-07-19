@@ -12,8 +12,7 @@ export interface VueErrorDetail extends OhbugBaseDetail {
 }
 
 const getComponent = (instance: ComponentPublicInstance | null) => {
-  if (instance?.$root === instance)
-    return { component: 'Root' }
+  if (instance?.$root === instance) { return { component: 'Root' } }
 
   const options = instance?.$options
   const component = options?.name
@@ -48,8 +47,7 @@ export function install(client: OhbugClient, Vue: App) {
 
     client.notify(event)
 
-    if (typeof console !== 'undefined' && typeof console.error === 'function')
-      console.error(error)
+    if (typeof console !== 'undefined' && typeof console.error === 'function') { console.error(error) }
     if (typeof prev === 'function') prev(error, instance, info)
   }
 

@@ -109,8 +109,7 @@ export class Event<D> implements OhbugEventWithMethods<D> {
     const targetType = isString(type) ? type : ''
 
     const action = new Action(targetMessage, targetData, targetType, timestamp)
-    if (actions.length >= (this.__client?.__config.maxActions ?? 30))
-      actions.shift()
+    if (actions.length >= (this.__client?.__config.maxActions ?? 30)) { actions.shift() }
 
     actions.push(action)
   }
@@ -260,12 +259,10 @@ export function handleEventCreated<D = any>(
     event: OhbugEventWithMethods<D>,
     client: OhbugClient
   ) => OhbugEventWithMethods<D> | null)[]
-  if (funcs.length === 0)
-    return event
+  if (funcs.length === 0) { return event }
 
   return funcs.reduce<OhbugEventWithMethods<D> | null>((previous, current) => {
-    if (previous && isFunction(current))
-      return current(previous, client)
+    if (previous && isFunction(current)) { return current(previous, client) }
 
     return null
   }, event)

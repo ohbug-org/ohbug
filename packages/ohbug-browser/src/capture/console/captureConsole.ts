@@ -27,8 +27,7 @@ export function captureConsole() {
       origin =>
         function call(...args: any[]) {
           const isOhbugConsole = args.some(arg => typeof arg === 'string' && arg.includes('Ohbug'))
-          if (!isOhbugConsole)
-            client.addAction(`console.${level}`, args, 'console')
+          if (!isOhbugConsole) { client.addAction(`console.${level}`, args, 'console') }
 
           return origin.apply(this, args)
         },

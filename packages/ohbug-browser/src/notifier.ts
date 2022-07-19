@@ -6,8 +6,7 @@ const getCircularReplacer = () => {
   const seen = new WeakSet()
   return (_: any, value: any) => {
     if (typeof value === 'object' && value !== null) {
-      if (seen.has(value))
-        return
+      if (seen.has(value)) { return }
 
       seen.add(value)
     }
@@ -29,8 +28,7 @@ export function notifier<D>(event: OhbugEventWithMethods<D>) {
       const xhr = new XMLHttpRequest()
       xhr.onreadystatechange = () => {
         if (xhr.readyState === XMLHttpRequest.DONE) {
-          if (xhr.status >= 200 && xhr.status < 300)
-            return resolve(xhr.response)
+          if (xhr.status >= 200 && xhr.status < 300) { return resolve(xhr.response) }
           reject(xhr)
         }
       }

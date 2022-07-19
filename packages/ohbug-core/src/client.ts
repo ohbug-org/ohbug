@@ -71,8 +71,9 @@ implements OhbugClient {
       })
     }
 
-    if (Object.keys(errors).length)
+    if (Object.keys(errors).length) {
       this.__logger.warn(getConfigErrorMessage(errors, baseConfig))
+    }
   }
 
   /**
@@ -113,10 +114,8 @@ implements OhbugClient {
     ) => OhbugEventWithMethods<D> | null,
   ): Promise<any | null> {
     let event: OhbugEventWithMethods<D> | null
-    if (Boolean(eventLike) && !isEvent(eventLike))
-      event = this.createEvent(eventLike)
-    else
-      event = eventLike
+    if (Boolean(eventLike) && !isEvent(eventLike)) { event = this.createEvent(eventLike) }
+    else { event = eventLike }
 
     if (beforeNotify) event = beforeNotify(event)
 
@@ -147,8 +146,7 @@ implements OhbugClient {
     const targetType = isString(type) ? type : ''
 
     const action = new Action(targetMessage, targetData, targetType, timestamp)
-    if (actions.length >= this.__config.maxActions!)
-      actions.shift()
+    if (actions.length >= this.__config.maxActions!) { actions.shift() }
 
     actions.push(action)
   }

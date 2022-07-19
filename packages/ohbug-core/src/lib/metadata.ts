@@ -7,15 +7,13 @@ export function addMetadata(map: OhbugMetadata, section: string, data: any) {
 }
 
 export function getMetadata(map: OhbugMetadata, section: string) {
-  if (map[section])
-    return map[section]
+  if (map[section]) { return map[section] }
 
   return undefined
 }
 
 export function deleteMetadata(map: OhbugMetadata, section: string) {
-  if (map[section])
-    return delete map[section]
+  if (map[section]) { return delete map[section] }
 
   return undefined
 }

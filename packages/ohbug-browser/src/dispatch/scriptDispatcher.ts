@@ -12,10 +12,8 @@ export function scriptDispatcher(e: ErrorEvent | PromiseRejectionEvent) {
       const targetEvent = e as ErrorEvent
       const { message, error } = targetEvent
       const immutableTarget = e.target || e.srcElement
-      if (message && error)
-        uncaughtErrorHandler(targetEvent)
-      else if (immutableTarget)
-        resourceErrorHandler(targetEvent)
+      if (message && error) { uncaughtErrorHandler(targetEvent) }
+      else if (immutableTarget) { resourceErrorHandler(targetEvent) }
     }
     else if (type === 'unhandledrejection') {
       unhandledrejectionErrorHandler(e as PromiseRejectionEvent)

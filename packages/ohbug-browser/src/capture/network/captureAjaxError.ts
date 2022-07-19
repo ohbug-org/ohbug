@@ -62,8 +62,7 @@ export function captureAjaxError() {
               }
 
               client.addAction('ajax', detail, 'ajax')
-              if (!this.status || this.status >= 400)
-                networkDispatcher(EventTypes.AJAX_ERROR, detail)
+              if (!this.status || this.status >= 400) { networkDispatcher(EventTypes.AJAX_ERROR, detail) }
             }
           }
         })
