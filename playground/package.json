@@ -11,6 +11,7 @@
     "@ohbug/browser": "workspace:*",
     "@ohbug/core": "workspace:*",
     "@ohbug/react": "workspace:*",
+    "@ohbug/types": "workspace:*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

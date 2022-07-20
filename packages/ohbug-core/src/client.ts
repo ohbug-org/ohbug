@@ -84,7 +84,7 @@ implements OhbugClient {
    */
   use(extension: OhbugExtension): OhbugClient {
     this.__extensions.push(extension)
-    extension.setup?.(this)
+    extension.onSetup?.(this)
     return this
   }
 
