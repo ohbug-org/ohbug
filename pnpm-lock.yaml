@@ -125,27 +125,29 @@ importers:
     specifiers:
       '@ohbug/browser': workspace:*
       '@ohbug/core': workspace:*
+      '@ohbug/extension-rrweb': ^1.8.0
       '@ohbug/react': workspace:*
       '@ohbug/types': workspace:*
       '@ohbug/unplugin': ^0.1.2
       '@types/react': ^18.0.15
       '@types/react-dom': ^18.0.6
-      '@vitejs/plugin-basic-ssl': ^0.1.1
       '@vitejs/plugin-react': ^2.0.0
       react: ^18.2.0
       react-dom: ^18.2.0
+      rrweb: 2.0.0-alpha.0
     dependencies:
       '@ohbug/browser': link:../packages/ohbug-browser
       '@ohbug/core': link:../packages/ohbug-core
+      '@ohbug/extension-rrweb': 1.8.0_rrweb@2.0.0-alpha.0
       '@ohbug/react': link:../packages/ohbug-react
       '@ohbug/types': link:../packages/ohbug-types
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+      rrweb: 2.0.0-alpha.0
     devDependencies:
       '@ohbug/unplugin': 0.1.2
       '@types/react': 18.0.15
       '@types/react-dom': 18.0.6
-      '@vitejs/plugin-basic-ssl': 0.1.1
       '@vitejs/plugin-react': 2.0.0
 
 packages:
@@ -1181,16 +1183,33 @@ packages:
       prompts: 2.4.2
     dev: true
 
-  /@ohbug/types/2.0.3:
-    resolution: {integrity: sha512-Q8Twr7aYZGjpyy8Nyo3Aj7gl31l96Sz3hft81p9s/lfx0r2LiDEkQe7dWJxMbgHtUAoh/YPPDjNsxHbjNyyWAQ==}
-    dev: true
+  /@ohbug/core/2.1.0:
+    resolution: {integrity: sha512-Wi8s+WQ783QR9Is6zeKOby2sQiSCIrZvECKT15dk/zIVrDvPcIHckKzvyl2kclW7JxqnE6Nt7prqDpWfnrcGJg==}
+    dependencies:
+      '@ohbug/types': 2.1.0
+      '@ohbug/utils': 2.0.5
+    dev: false
+
+  /@ohbug/extension-rrweb/1.8.0_rrweb@2.0.0-alpha.0:
+    resolution: {integrity: sha512-mkvHIkshDpbYvjkq1+hlAt/+JqjijrZXRRDe3hsvuFPw1eB+2K0UlCccPz0ehwGtYNwnghY26WR6zax04uc62w==}
+    requiresBuild: true
+    peerDependencies:
+      rrweb: ^2.0.0
+    dependencies:
+      '@ohbug/core': 2.1.0
+      '@ohbug/types': 2.1.0
+      rrweb: 2.0.0-alpha.0
+    dev: false
+
+  /@ohbug/types/2.1.0:
+    resolution: {integrity: sha512-Br6D9Ye76YWCK8Z3+gJgpeqOTGzVjBMJ1v1xsP+CpQl+dgfiPTVKan8f4jilEfDna6vUVzTEMsvfPp3R9UN3xA==}
 
   /@ohbug/unplugin/0.1.2:
     resolution: {integrity: sha512-aya4waOvMFtT+X+19c+4mdYLeVs9fvoGF6xATwQsWh2KrLN4hR/5T1+bz/+j773pp2bqu3WQ9sByNQ358Qpysg==}
     requiresBuild: true
     dependencies:
       '@ohbug/cli': 1.1.3
-      '@ohbug/types': 2.0.3
+      '@ohbug/types': 2.1.0
       unplugin: 0.7.0
     transitivePeerDependencies:
       - esbuild
@@ -1198,6 +1217,13 @@ packages:
       - vite
       - webpack
     dev: true
+
+  /@ohbug/utils/2.0.5:
+    resolution: {integrity: sha512-at8CXUPVUI88AEU4aO+qE0TbxFR+w+ANWd7owPkbObG7uW6dSNVpxnBafAO2czRYlXcVL8ri/XVJOOJ5VIOPLQ==}
+    dependencies:
+      '@ohbug/types': 2.1.0
+      '@types/node': 18.0.6
+    dev: false
 
   /@rollup/plugin-alias/3.1.9_rollup@2.70.2:
     resolution: {integrity: sha512-QI5fsEvm9bDzt32k39wpOwZhVzRcL5ydcffUHMyLVaVaLeC70I8TJZ17F1z1eMoLu4E/UOcH9BWVkKpIKdrfiw==}
@@ -1309,6 +1335,10 @@ packages:
   /@types/chai/4.3.1:
     resolution: {integrity: sha512-/zPMqDkzSZ8t3VtxOa4KPq7uzzW978M9Tvh+j7GHKuo6k6GTLxPJ4J5gE5cjfJ26pnXst0N5Hax8Sr0T2Mi9zQ==}
     dev: true
+
+  /@types/css-font-loading-module/0.0.7:
+    resolution: {integrity: sha512-nl09VhutdjINdWyXxHWN/w9zlNCfr60JUqJbd24YXUuCwgeL0TpFSdElCwb6cxfB6ybE19Gjj4g0jsgkXxKv1Q==}
+    dev: false
 
   /@types/estree/0.0.39:
     resolution: {integrity: sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw==}
@@ -1527,13 +1557,6 @@ packages:
       eslint-visitor-keys: 3.3.0
     dev: true
 
-  /@vitejs/plugin-basic-ssl/0.1.1:
-    resolution: {integrity: sha512-UhfGAZ8HgIMEPktKF8k58Y1LSwuYs1i1O4HY8E+yiOoYM+rkaPFBZo1SOkRsZN8DZTw90Q+ZznPej1o/mtTisg==}
-    engines: {node: '>=14.6.0'}
-    peerDependencies:
-      vite: ^3.0.0-beta.0
-    dev: true
-
   /@vitejs/plugin-react/2.0.0:
     resolution: {integrity: sha512-zHkRR+X4zqEPNBbKV2FvWSxK7Q6crjMBVIAYroSU8Nbb4M3E5x4qOiLoqJBHtXgr27kfednXjkwr3lr8jS6Wrw==}
     engines: {node: '>=14.18.0'}
@@ -1633,6 +1656,10 @@ packages:
   /@vue/shared/3.2.37:
     resolution: {integrity: sha512-4rSJemR2NQIo9Klm1vabqWjD8rs/ZaJSzMxkMNeJS6lHiUjjUeYFbooN19NgFjztubEKh3WlZUeOLVdbbUWHsw==}
     dev: true
+
+  /@xstate/fsm/1.6.5:
+    resolution: {integrity: sha512-b5o1I6aLNeYlU/3CPlj/Z91ybk1gUsKT+5NAJI+2W4UjvS5KLG28K9v5UvNoFVjHV8PajVZ00RH3vnjyQO7ZAw==}
+    dev: false
 
   /JSONStream/1.3.5:
     resolution: {integrity: sha512-E+iruNOY8VV9s4JEbe1aNEm6MiszPRr/UfcHMz0TQh1BXSxHK+ASV1R6W4HpjBhSeS+54PIsAMCBmwD06LLsqQ==}
@@ -1851,6 +1878,11 @@ packages:
   /balanced-match/1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
     dev: true
+
+  /base64-arraybuffer/1.0.2:
+    resolution: {integrity: sha512-I3yl4r9QB5ZRY3XuJVEPfc2XhZO6YweFPI+UovAzn+8/hb3oJ6lnysaFcjVpkCPfVWFUDvoZ8kmVDP7WyRtYtQ==}
+    engines: {node: '>= 0.6.0'}
+    dev: false
 
   /base64-js/1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
@@ -3524,6 +3556,10 @@ packages:
       reusify: 1.0.4
     dev: true
 
+  /fflate/0.4.8:
+    resolution: {integrity: sha512-FJqqoDBR00Mdj9ppamLa/Y7vxm+PRmNWA67N846RvsoYVMKB4q3y/de5PA7gUmRMYK/8CMz2GDZQmCRN1wBcWA==}
+    dev: false
+
   /figures/3.2.0:
     resolution: {integrity: sha512-yaduQFRKLXYOGgEn6AZau90j3ggSOyiqXU0F9JZfeXYhNa+Jk4X+s45A2zg5jns87GAFa34BBm2kXw4XpNcbdg==}
     engines: {node: '>=8'}
@@ -4774,6 +4810,10 @@ packages:
     resolution: {integrity: sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==}
     dev: true
 
+  /mitt/3.0.0:
+    resolution: {integrity: sha512-7dX2/10ITVyqh4aOSVI9gdape+t9l2/8QxHrFmUXu4EEUpdlxl6RudZUPZoc+zuY2hk1j7XxVroIVIan/pD/SQ==}
+    dev: false
+
   /mixme/0.5.4:
     resolution: {integrity: sha512-3KYa4m4Vlqx98GPdOHghxSdNtTvcP8E0kkaJ5Dlh+h2DRzF7zpuVVcA8B0QpKd11YJeP9QQ7ASkKzOeu195Wzw==}
     engines: {node: '>= 8.0.0'}
@@ -5576,6 +5616,28 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
+
+  /rrdom/0.1.3:
+    resolution: {integrity: sha512-nZFl2fGUOgHy7GapRwUmlOPcGcLNxfK97xW8qmfg4mV3FQ12rIf+NMMjyj7J1XehweYYygdwT4uuvQAS4YcXig==}
+    dependencies:
+      rrweb-snapshot: 2.0.0-alpha.0
+    dev: false
+
+  /rrweb-snapshot/2.0.0-alpha.0:
+    resolution: {integrity: sha512-W9DwRVP+sDTKtZqPSZPdYwe71g+NNRMSOhYR7TwZPiHYGhbh6lWLp6hC1oAkAO+H6YtYrqBlNm55w7hUoT2OVw==}
+    dev: false
+
+  /rrweb/2.0.0-alpha.0:
+    resolution: {integrity: sha512-X4lASTpdp4PYP6MCjAizzoLhT5fntrRAjrnpothfrc7FR51WBIwIAmp0m5KcbgFecuwkJoWJK98AnUkvIcoRxw==}
+    dependencies:
+      '@types/css-font-loading-module': 0.0.7
+      '@xstate/fsm': 1.6.5
+      base64-arraybuffer: 1.0.2
+      fflate: 0.4.8
+      mitt: 3.0.0
+      rrdom: 0.1.3
+      rrweb-snapshot: 2.0.0-alpha.0
+    dev: false
 
   /run-async/2.4.1:
     resolution: {integrity: sha512-tvVnVv01b8c1RrA6Ep7JkStj85Guv/YrMcwqYQnwjsAS2cTmmPGBBjAjpCW7RrSodNSoE2/qg9O4bceNvUuDgQ==}

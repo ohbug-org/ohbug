@@ -5,7 +5,7 @@ import { handleDestroy } from './destroy'
 
 export const extension = defineExtension({
   name: 'OhbugBrowser',
-  setup: () => {
+  onSetup: () => {
     handleCapture()
     handleDestroy()
   },

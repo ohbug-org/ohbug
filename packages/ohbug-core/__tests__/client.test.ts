@@ -30,7 +30,7 @@ describe('@ohbug/core/client', () => {
       const client = new Client(getValues())
       const extension = defineExtension({
         name: 'test_extension',
-        setup: (_client) => {
+        onSetup: (_client) => {
           expect(_client).toEqual(client)
         },
       })
