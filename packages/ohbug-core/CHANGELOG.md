@@ -1,5 +1,17 @@
 # @ohbug/core
 
+## 2.1.0
+
+### Minor Changes
+
+- rename extension setup to onSetup
+
+### Patch Changes
+
+- Updated dependencies
+  - @ohbug/types@2.1.0
+  - @ohbug/utils@2.0.5
+
 ## 2.0.5
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@ohbug/vue",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "Ohbug SDK for Vue",
   "license": "Apache-2.0",
   "author": "chenyueban <jasonchan0527@gmail.com>",

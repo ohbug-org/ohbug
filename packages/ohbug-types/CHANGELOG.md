@@ -1,5 +1,11 @@
 # @ohbug/types
 
+## 2.1.0
+
+### Minor Changes
+
+- rename extension setup to onSetup
+
 ## 2.0.4
 
 ### Patch Changes
