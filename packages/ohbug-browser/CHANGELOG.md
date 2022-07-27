@@ -1,5 +1,11 @@
 # @ohbug/browser
 
+## 2.1.0
+
+### Minor Changes
+
+- add referrer connection fields to device
+
 ## 2.0.7
 
 ### Patch Changes
