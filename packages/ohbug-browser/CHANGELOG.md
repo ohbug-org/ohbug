@@ -1,5 +1,11 @@
 # @ohbug/browser
 
+## 2.1.1
+
+### Patch Changes
+
+- fix device connection is empty
+
 ## 2.1.0
 
 ### Minor Changes
