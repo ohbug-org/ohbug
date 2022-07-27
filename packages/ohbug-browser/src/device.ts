@@ -6,7 +6,17 @@ export const device: OhbugGetDevice = () => {
     const { language, userAgent, connection } = navigator
     ohbugDevice.language = language
     ohbugDevice.userAgent = userAgent
-    ohbugDevice.connection = connection
+    if (connection) {
+      // Chromium only
+      ohbugDevice.connection = {
+        // @ts-expect-error Chromium only
+        downlink: connection.downlink,
+        // @ts-expect-error Chromium only
+        effectiveType: connection.effectiveType,
+        // @ts-expect-error Chromium only
+        rtt: connection.rtt,
+      }
+    }
   }
   if (document) {
     const { title, referrer } = document
