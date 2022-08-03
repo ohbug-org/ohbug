@@ -1,6 +1,6 @@
 import { EventTypes } from '@ohbug/core'
 import type { OhbugBaseDetail, OhbugClient } from '@ohbug/types'
-import type { App, ComponentPublicInstance } from 'vue'
+import type { Vue } from './types'
 
 export interface VueErrorDetail extends OhbugBaseDetail {
   name: string
@@ -11,7 +11,7 @@ export interface VueErrorDetail extends OhbugBaseDetail {
   props?: Record<string, any>
 }
 
-const getComponent = (instance: ComponentPublicInstance | null) => {
+const getComponent = (instance: any) => {
   if (instance?.$root === instance) { return { component: 'Root' } }
 
   const options = instance?.$options
@@ -24,10 +24,10 @@ const getComponent = (instance: ComponentPublicInstance | null) => {
   }
 }
 
-export function install(client: OhbugClient, Vue: App) {
+export function install(client: OhbugClient, Vue: Vue) {
   const prev = Vue.config.errorHandler
 
-  const handler = (error: Error, instance: ComponentPublicInstance | null, info: string) => {
+  const handler = (error: Error, instance: any, info: string) => {
     const { component, file } = getComponent(instance)
 
     const detail: VueErrorDetail = {
@@ -51,6 +51,5 @@ export function install(client: OhbugClient, Vue: App) {
     if (typeof prev === 'function') prev(error, instance, info)
   }
 
-  // @ts-expect-error type is not assignable
   Vue.config.errorHandler = handler
 }
