@@ -20,11 +20,11 @@ const replace = (): Plugin => {
   }
 }
 
-export default defineConfig(options => ({
+export default defineConfig(() => ({
   entry: ['./src/index.ts'],
   clean: true,
   dts: true,
   format: ['esm', 'cjs'],
-  minify: !options.watch,
+  target: 'es2017',
   esbuildPlugins: [replace()],
 }))
