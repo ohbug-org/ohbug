@@ -1,5 +1,14 @@
 # @ohbug/extension-uuid
 
+## 2.0.7
+
+### Patch Changes
+
+- build use target es2017
+- Updated dependencies
+  - @ohbug/core@2.1.1
+  - @ohbug/utils@2.0.6
+
 ## 2.0.6
 
 ### Patch Changes

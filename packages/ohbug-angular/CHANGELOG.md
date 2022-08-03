@@ -1,5 +1,14 @@
 # @ohbug/angular
 
+## 2.0.7
+
+### Patch Changes
+
+- build use target es2017
+- Updated dependencies
+  - @ohbug/core@2.1.1
+  - @ohbug/types@2.1.1
+
 ## 2.0.6
 
 ### Patch Changes

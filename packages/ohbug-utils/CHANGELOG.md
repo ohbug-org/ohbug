@@ -1,5 +1,13 @@
 # @ohbug/utils
 
+## 2.0.6
+
+### Patch Changes
+
+- build use target es2017
+- Updated dependencies
+  - @ohbug/types@2.1.1
+
 ## 2.0.5
 
 ### Patch Changes

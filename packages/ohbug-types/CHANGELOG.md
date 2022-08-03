@@ -1,5 +1,11 @@
 # @ohbug/types
 
+## 2.1.1
+
+### Patch Changes
+
+- build use target es2017
+
 ## 2.1.0
 
 ### Minor Changes
