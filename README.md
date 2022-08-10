@@ -32,17 +32,13 @@ Will support NodeJS, React Native and other JavaScript platforms.
 
 ### Extensions
 
-- [@ohbug/extension-perfume](https://github.com/ohbug-org/ohbug-extension-perfume): Package [perfume.js](https://github.com/Zizzamia/perfume.js), to collect performance information.
-- [@ohbug/extension-rrweb](https://github.com/ohbug-org/ohbug-extension-rrweb): Package [rrweb](https://github.com/rrweb-io/rrweb), to "screen recording".
-- [@ohbug/extension-uuid](./packages/ohbug-extension-uuid): Extend `Event.user` and add `UUID` .
-- [@ohbug/extension-feedback](https://github.com/ohbug-org/ohbug-extension-feedback): Visual operation, used to collect user feedback information.
+see [extensions](https://github.com/ohbug-org/extensions)
 
 ### Others
 
 - [@ohbug/core](./packages/ohbug-core): Core function modules.
 - [@ohbug/utils](./packages/ohbug-utils): Contains some helper/tool programs.
 - [@ohbug/types](./packages/ohbug-types): Contains types used in all packages.
-- [@ohbug/redux-middleware](./packages/ohbug-redux-middleware): Redux middleware for propagating Redux state/actions to use with Ohbug.
 - [@ohbug/unplugin](https://github.com/ohbug-org/unplugin-ohbug): plugin for upload your sourceMap files to Ohbug.
 - [@ohbug/cli](https://github.com/ohbug-org/ohbug-cli): Upload your sourceMap file to Ohbug or other services in one click.
 

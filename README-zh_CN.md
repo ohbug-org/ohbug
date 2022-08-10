@@ -32,17 +32,13 @@ Ohbug 是一套集 行为监控、异常监控、自定义行为监控 于一体
 
 ### Extensions
 
-- [@ohbug/extension-perfume](https://github.com/ohbug-org/ohbug-extension-perfume): 封装 [perfume.js](https://github.com/Zizzamia/perfume.js)，用于收集性能信息。
-- [@ohbug/extension-rrweb](https://github.com/ohbug-org/ohbug-extension-rrweb): 封装 [rrweb](https://github.com/rrweb-io/rrweb)，用于“录屏”。
-- [@ohbug/extension-uuid](./packages/ohbug-extension-uuid): 扩展 `Event.user` 增加 `UUID` 标识。
-- [@ohbug/extension-feedback](https://github.com/ohbug-org/ohbug-extension-feedback): 可视化操作, 用于收集用户反馈信息。
+see [extensions](https://github.com/ohbug-org/extensions)
 
 ### Others
 
 - [@ohbug/core](./packages/ohbug-core): 核心功能模块。
 - [@ohbug/utils](./packages/ohbug-utils): 包含一些帮助/工具程序。
 - [@ohbug/types](./packages/ohbug-types): 包含所有包中使用的类型。
-- [@ohbug/redux-middleware](./packages/ohbug-redux-middleware): Redux 中间件，用于将 Redux state/actions 记录在 Ohbug Actions 内.
 - [@ohbug/unplugin](https://github.com/ohbug-org/unplugin-ohbug): Unplugin 用于上传 sourceMap 文件.
 - [@ohbug/cli](https://github.com/ohbug-org/ohbug-cli): 一键上传您的 sourceMap 文件到 Ohbug 或其他服务。
 
