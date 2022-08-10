@@ -1,6 +1,5 @@
 {
   "name": "playground",
-  "version": "0.0.7",
   "private": true,
   "scripts": {
     "dev": "vite",
