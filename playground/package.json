@@ -9,7 +9,7 @@
   "dependencies": {
     "@ohbug/browser": "workspace:*",
     "@ohbug/core": "workspace:*",
-    "@ohbug/extension-rrweb": "^1.8.0",
+    "@ohbug/extension-rrweb": "^1.8.1",
     "@ohbug/react": "workspace:*",
     "@ohbug/types": "workspace:*",
     "react": "^18.2.0",
@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@ohbug/unplugin": "^0.1.2",
-    "@types/react": "^18.0.15",
+    "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^2.0.0"
   }
