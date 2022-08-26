@@ -87,7 +87,7 @@ export class Event<D> implements OhbugEventWithMethods<D> {
 
   /**
    * Add an action.
-   * Once the threshold is reached, the oldest breadcrumbs will be deleted.
+   * Once the threshold is reached, the oldest actions will be deleted.
    * 新增一个动作。
    * 一旦达到阈值，最老的 Action 将被删除。
    *
@@ -109,9 +109,11 @@ export class Event<D> implements OhbugEventWithMethods<D> {
     const targetType = isString(type) ? type : ''
 
     const action = new Action(targetMessage, targetData, targetType, timestamp)
-    if (actions.length >= (this.__client?.__config.maxActions ?? 30)) { actions.shift() }
-
-    actions.push(action)
+    const maxActions = this.__client?.__config.maxActions ?? 30
+    if (maxActions > 0) {
+      if (actions.length >= maxActions) { actions.shift() }
+      actions.push(action)
+    }
   }
 
   /**

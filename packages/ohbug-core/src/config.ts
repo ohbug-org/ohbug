@@ -32,7 +32,7 @@ export const schema: OhbugSchema = {
     defaultValue: 30,
     message: 'should be a number between 0 and 100',
     validate: value =>
-      value === undefined || (isNumber(value) && value >= 1 && value <= 100),
+      value === undefined || (isNumber(value) && value >= 0 && value <= 100),
   },
   // hooks
   onEvent: {

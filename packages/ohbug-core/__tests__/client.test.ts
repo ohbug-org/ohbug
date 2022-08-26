@@ -142,12 +142,12 @@ describe('@ohbug/core/client', () => {
       expect(client.__actions[0]).toEqual(new Action(action.message, action.data, action.type, action.timestamp))
     })
 
-    test('once the threshold is reached, delete the oldest breadcrumbs', () => {
+    test('once the threshold is reached, delete the oldest actions', () => {
       const maxActions = 5
       const client = new Client(getValues({ apiKey, maxActions }))
       const now = new Date().toISOString()
       const action = {
-        message: 'once the threshold is reached, delete the oldest breadcrumbs',
+        message: 'once the threshold is reached, delete the oldest actions',
         type: 'test',
         timestamp: now,
       }
@@ -172,6 +172,33 @@ describe('@ohbug/core/client', () => {
       expect(client.__actions[0]).toEqual(new Action(action.message, { index: 2 }, action.type, action.timestamp))
       expect(client.__actions[client.__actions.length - 1])
         .toEqual(new Action(action.message, { index: 6 }, action.type, action.timestamp))
+    })
+
+    test('maxActions support settings to 0', () => {
+      const maxActions = 0
+      const client = new Client(getValues({ apiKey, maxActions }))
+
+      const now = new Date().toISOString()
+      const action = {
+        message: 'once the threshold is reached, delete the oldest actions',
+        type: 'test',
+        timestamp: now,
+      }
+      expect(client.__actions.length).toBe(0)
+      client.addAction(
+        action.message,
+        { index: 1 },
+        action.type,
+        action.timestamp,
+      )
+      expect(client.__actions.length).toBe(0)
+      client.addAction(
+        action.message,
+        { index: 2 },
+        action.type,
+        action.timestamp,
+      )
+      expect(client.__actions.length).toBe(0)
     })
   })
 
