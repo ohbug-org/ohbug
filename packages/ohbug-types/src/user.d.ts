@@ -4,5 +4,5 @@ export interface OhbugUser {
   id?: number | string
   name?: string
   email?: string
-  metadata: any
+  metadata?: any
 }
