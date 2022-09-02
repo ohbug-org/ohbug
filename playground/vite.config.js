@@ -9,7 +9,7 @@ export default defineConfig({
   plugins: [
     react(),
     OhbugUnplugin({
-      apiKey: 'f8b38e2ea956e6d295aefcc88e0bbd6739021fd07eebe420e71a4ac4d70f43eb',
+      apiKey: '2714c5cc067e104ea76f6074f38ab721e011b469ef7f2e12daabff8debe24ca2',
       appVersion: pkg.version,
       appType: 'react',
     }),

@@ -36,6 +36,7 @@
   "dependencies": {
     "@ohbug/core": "workspace:*",
     "@ohbug/types": "workspace:*",
-    "@ohbug/utils": "workspace:*"
+    "@ohbug/utils": "workspace:*",
+    "error-stack-parser": "^2.1.4"
   }
 }
