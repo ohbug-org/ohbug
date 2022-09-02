@@ -1,5 +1,11 @@
 # @ohbug/browser
 
+## 2.3.0
+
+### Minor Changes
+
+- promise error support stack message
+
 ## 2.2.0
 
 ### Minor Changes
