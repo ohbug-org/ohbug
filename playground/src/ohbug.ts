@@ -3,10 +3,9 @@ import { OhbugErrorBoundary } from '@ohbug/react'
 import OhbugExtensionRrweb from '@ohbug/extension-rrweb'
 
 export const client = Ohbug.setup({
-  apiKey: '5c00f9696c97880bed9dc701168fa734e5f063132ba5a9df6775678b67b91db8',
+  apiKey: '2714c5cc067e104ea76f6074f38ab721e011b469ef7f2e12daabff8debe24ca2',
   appType: 'react',
   appVersion: __APP_VERSION__,
-  maxActions: 0,
 })
 client.use(OhbugExtensionRrweb)
 export { OhbugErrorBoundary }

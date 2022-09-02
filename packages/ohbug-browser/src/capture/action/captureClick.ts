@@ -5,24 +5,26 @@ const global = getGlobal<Window>()
 function listener(e: MouseEvent) {
   if (e.target) {
     const { client } = getOhbugObject<Window>()
-    const { tagName, id, className, name, src, outerHTML, nodeType }
+    const { tagName, id, className, name, src, nodeType }
       = e.target as any
-    const selector = getSelector(e)
 
-    client.addAction(
-      'click node',
-      {
-        tagName,
-        id,
-        className,
-        name,
-        src,
-        outerHTML,
-        nodeType,
-        selector,
-      },
-      'click',
-    )
+    if ((tagName as string).toUpperCase() !== 'HTML' && (tagName as string).toUpperCase() !== 'BODY') {
+      const selector = getSelector(e)
+
+      client.addAction(
+        'click node',
+        {
+          tagName,
+          id,
+          className,
+          name,
+          src,
+          nodeType,
+          selector,
+        },
+        'click',
+      )
+    }
   }
 }
 
