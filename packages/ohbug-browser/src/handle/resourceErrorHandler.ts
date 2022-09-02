@@ -3,7 +3,6 @@ import type { OhbugBaseDetail } from '@ohbug/types'
 import { EventTypes } from '@ohbug/core'
 
 export interface ResourceErrorDetail extends OhbugBaseDetail {
-  outerHTML: string
   src: string
   tagName: string
   id: string
@@ -16,12 +15,10 @@ export interface ResourceErrorDetail extends OhbugBaseDetail {
 
 export function resourceErrorHandler(error: ErrorEvent) {
   const target = (error.target || error.srcElement) as any
-  const { outerHTML } = target
 
   const selector = getSelector(error)
 
   const detail: ResourceErrorDetail = {
-    outerHTML,
     src: target && target.src,
     tagName: target && target.tagName,
     id: target && target.id,
