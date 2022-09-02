@@ -1,5 +1,11 @@
 # @ohbug/browser
 
+## 2.2.0
+
+### Minor Changes
+
+- simplify data
+
 ## 2.1.2
 
 ### Patch Changes
