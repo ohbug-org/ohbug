@@ -52,12 +52,6 @@ export function captureAjaxError() {
                 req: {
                   url: desc.url,
                   method: desc.method,
-                  data: args[0] || {},
-                },
-                res: {
-                  status: this.status,
-                  statusText: this.statusText,
-                  response: this.response,
                 },
               }
 

@@ -28,11 +28,6 @@ export function captureFetchError() {
               req: {
                 url,
                 method: conf && conf.method,
-                data: (conf && conf.body) || {},
-              },
-              res: {
-                status: res.status,
-                statusText: res.statusText,
               },
             }
             client.addAction('fetch', detail, 'fetch')
@@ -47,11 +42,6 @@ export function captureFetchError() {
               req: {
                 url,
                 method: conf && conf.method,
-                data: (conf && conf.body) || {},
-              },
-              res: {
-                status: 400,
-                statusText: 'unknownError',
               },
             }
             networkDispatcher(EventTypes.FETCH_ERROR, detail)

@@ -27,10 +27,6 @@ export function captureWebSocketError() {
           target: {
             url,
             readyState,
-            protocol,
-            extensions,
-            binaryType,
-            bufferedAmount,
           },
           timeStamp,
         } = e
@@ -38,10 +34,6 @@ export function captureWebSocketError() {
           url,
           timeStamp,
           readyState,
-          protocol,
-          extensions,
-          binaryType,
-          bufferedAmount,
         }
         networkDispatcher(EventTypes.WEBSOCKET_ERROR, detail)
         arg.apply(this, args)

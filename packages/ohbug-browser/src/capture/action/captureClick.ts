@@ -15,12 +15,12 @@ function listener(e: MouseEvent) {
         'click node',
         {
           tagName,
-          id,
-          className,
-          name,
-          src,
-          nodeType,
-          selector,
+          id: id || undefined,
+          className: className || undefined,
+          name: name || undefined,
+          src: src || undefined,
+          nodeType: nodeType || undefined,
+          selector: selector || undefined,
         },
         'click',
       )
