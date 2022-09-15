@@ -1,4 +1,5 @@
 import { getGlobal } from '@ohbug/utils'
+import { removeReplaceAddEventListener } from './replaceAddEventListener'
 import {
   removeCaptureAction,
   removeCaptureConsole,
@@ -12,6 +13,7 @@ export function handleDestroy() {
   global?.addEventListener?.(
     'unload',
     () => {
+      removeReplaceAddEventListener()
       removeCaptureScript()
       removeCaptureNetwork()
       removeCaptureAction()

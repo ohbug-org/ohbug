@@ -1,5 +1,4 @@
 import { defineExtension } from '@ohbug/core'
-
 import { handleCapture } from './capture'
 import { handleDestroy } from './destroy'
 

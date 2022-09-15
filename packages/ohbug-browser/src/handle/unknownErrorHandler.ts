@@ -11,7 +11,7 @@ export interface UnknownErrorDetail extends OhbugBaseDetail {
   stack: string
 }
 
-export function unknownErrorHandler(e: ErrorEvent) {
+export function unknownErrorHandler(e: any) {
   const [stackFrame] = ErrorStackParser.parse(e.error)
 
   const detail: UnknownErrorDetail = {

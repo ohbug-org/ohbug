@@ -1,4 +1,5 @@
 import { getGlobal } from '@ohbug/utils'
+import { replaceAddEventListener } from '../replaceAddEventListener'
 import {
   captureUrlChange,
   removeCaptureUrlChange,
@@ -57,6 +58,7 @@ export function removeCaptureScript() {
 }
 
 export function handleCapture() {
+  replaceAddEventListener()
   captureScript()
   captureNetwork()
   captureAction()
