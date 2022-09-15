@@ -1,5 +1,11 @@
 # @ohbug/browser
 
+## 2.4.0
+
+### Minor Changes
+
+- fix script error and unknown error detail
+
 ## 2.3.0
 
 ### Minor Changes
