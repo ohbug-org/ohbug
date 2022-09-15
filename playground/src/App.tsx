@@ -38,9 +38,7 @@ function Trigger() {
   const onClickRenderError = useCallback(() => {
     setRenderError(true)
   }, [])
-  const onClickTriggerRejectionWithAnNumber = useCallback(async(number: number) => {
-    for (let i = 0; i < number; i++) { createCustomEvent() }
-  }, [])
+
   if (renderError) {
     throw new Error('is Render error')
   }
@@ -54,12 +52,6 @@ function Trigger() {
         <button onClick={onClickTriggerCodeError}>代码错误</button>
         <button onClick={onClickCustomLog}>自定义log</button>
         <button onClick={onClickRenderError}>render错误</button>
-
-        <button onClick={() => onClickTriggerRejectionWithAnNumber(100)}>100 errors</button>
-        <button onClick={() => onClickTriggerRejectionWithAnNumber(1000)}>1000 errors</button>
-        <button onClick={() => onClickTriggerRejectionWithAnNumber(10000)}>10000 errors</button>
-        <button onClick={() => onClickTriggerRejectionWithAnNumber(50000)}>50000 errors</button>
-        <button onClick={() => onClickTriggerRejectionWithAnNumber(100000)}>100000 errors</button>
       </div>
     )
   }

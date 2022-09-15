@@ -13,10 +13,10 @@ export interface ResourceErrorDetail extends OhbugBaseDetail {
   selector: string
 }
 
-export function resourceErrorHandler(error: ErrorEvent) {
-  const target = (error.target || error.srcElement) as any
+export function resourceErrorHandler(e: ErrorEvent) {
+  const target = (e.target || e.srcElement) as any
 
-  const selector = getSelector(error)
+  const selector = getSelector(e)
 
   const detail: ResourceErrorDetail = {
     src: target && target.src,

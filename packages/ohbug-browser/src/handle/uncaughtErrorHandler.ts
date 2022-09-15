@@ -11,16 +11,16 @@ export interface UncaughtErrorDetail extends OhbugBaseDetail {
   stack: string
 }
 
-export function uncaughtErrorHandler(error: ErrorEvent) {
-  const [stackFrame] = ErrorStackParser.parse(error.error)
+export function uncaughtErrorHandler(e: ErrorEvent) {
+  const [stackFrame] = ErrorStackParser.parse(e.error)
 
   const detail: UncaughtErrorDetail = {
-    name: error?.error?.name,
-    message: error?.message || error?.error?.message,
-    filename: error?.filename || stackFrame?.fileName,
-    lineno: error?.lineno || stackFrame?.lineNumber,
-    colno: error?.colno || stackFrame?.columnNumber,
-    stack: error?.error?.stack,
+    name: e?.error?.name,
+    message: e?.message || e?.error?.message,
+    filename: e?.filename || stackFrame?.fileName,
+    lineno: e?.lineno || stackFrame?.lineNumber,
+    colno: e?.colno || stackFrame?.columnNumber,
+    stack: e?.error?.stack,
   }
   const { client } = getOhbugObject<Window>()
   const event = client.createEvent<UncaughtErrorDetail>({
