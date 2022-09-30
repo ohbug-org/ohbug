@@ -3,6 +3,7 @@ import { EventTypes } from '@ohbug/core'
 
 import { networkDispatcher } from '../../dispatch'
 import type { WebsocketErrorDetail } from '../../handle'
+import { getParams } from './getParams'
 
 const global = getGlobal<Window>()
 
@@ -25,15 +26,25 @@ export function captureWebSocketError() {
       backup?.set?.call(this, function call(e: any) {
         const {
           target: {
-            url,
+            url: originalUrl,
             readyState,
+            protocol,
+            extensions,
+            binaryType,
+            bufferedAmount,
           },
           timeStamp,
         } = e
+        const { url, params } = getParams(originalUrl)
         const detail: WebsocketErrorDetail = {
           url,
+          params,
           timeStamp,
           readyState,
+          protocol,
+          extensions,
+          binaryType,
+          bufferedAmount,
         }
         networkDispatcher(EventTypes.WEBSOCKET_ERROR, detail)
         arg.apply(this, args)

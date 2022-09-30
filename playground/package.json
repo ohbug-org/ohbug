@@ -13,6 +13,7 @@
     "@ohbug/extension-rrweb": "^1.8.1",
     "@ohbug/react": "workspace:*",
     "@ohbug/types": "workspace:*",
+    "axios": "^0.27.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rrweb": "2.0.0-alpha.1"

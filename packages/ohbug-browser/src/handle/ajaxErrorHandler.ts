@@ -6,6 +6,13 @@ export interface AjaxErrorDetail extends OhbugBaseDetail {
   req: {
     url: string
     method: string
+    data?: string
+    params?: string
+  }
+  res: {
+    response: string
+    status: number
+    statusText?: string
   }
 }
 

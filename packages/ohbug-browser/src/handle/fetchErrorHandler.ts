@@ -6,6 +6,12 @@ export interface FetchErrorDetail extends OhbugBaseDetail {
   req: {
     url: string
     method: string
+    data?: string
+    params?: string
+  }
+  res: {
+    status: number
+    statusText?: string
   }
 }
 

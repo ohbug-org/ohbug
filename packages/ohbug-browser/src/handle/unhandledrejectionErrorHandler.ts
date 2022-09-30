@@ -12,16 +12,24 @@ export interface UnhandledrejectionErrorDetail extends OhbugBaseDetail {
 }
 
 export function unhandledrejectionErrorHandler(e: PromiseRejectionEvent) {
-  const [stackFrame] = ErrorStackParser.parse(e.reason)
-
   const detail: UnhandledrejectionErrorDetail = {
     name: e?.reason?.name,
     message: e?.reason?.message || e?.reason,
-    filename: stackFrame?.fileName,
-    lineno: stackFrame?.lineNumber,
-    colno: stackFrame?.columnNumber,
     stack: e?.reason?.stack,
   }
+  if (e.reason) {
+    try {
+      const stackFrame = ErrorStackParser.parse(e.reason)?.[0]
+      if (stackFrame) {
+        detail.filename = stackFrame.fileName
+        detail.lineno = stackFrame.lineNumber
+        detail.colno = stackFrame.columnNumber
+      }
+    }
+    catch (_) {
+    }
+  }
+
   const { client } = getOhbugObject<Window>()
   const event = client.createEvent<UnhandledrejectionErrorDetail>({
     category: 'error',

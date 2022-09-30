@@ -3,6 +3,7 @@ import { EventTypes } from '@ohbug/core'
 
 import { networkDispatcher } from '../../dispatch'
 import type { FetchErrorDetail } from '../../handle'
+import { getParams } from './getParams'
 
 const global = getGlobal<Window>()
 const access = 'fetch' in global
@@ -23,11 +24,18 @@ export function captureFetchError() {
       function call(...args: any[]) {
         return origin.apply(this, args).then(
           (res: Response) => {
-            const [url, conf] = args
+            const [originalUrl, conf] = args
+            const { url, params } = getParams(originalUrl)
             const detail: FetchErrorDetail = {
               req: {
                 url,
                 method: conf && conf.method,
+                data: (conf && conf.body),
+                params,
+              },
+              res: {
+                status: res.status,
+                statusText: res.statusText,
               },
             }
             client.addAction('fetch', detail, 'fetch')
@@ -37,12 +45,16 @@ export function captureFetchError() {
             return res
           },
           (err: Error) => {
-            const [url, conf] = args
+            const [originalUrl, conf] = args
+            const { url, params } = getParams(originalUrl)
             const detail: FetchErrorDetail = {
               req: {
                 url,
                 method: conf && conf.method,
+                data: (conf && conf.body),
+                params,
               },
+              res: { status: 400 },
             }
             networkDispatcher(EventTypes.FETCH_ERROR, detail)
             throw err

@@ -1,5 +1,11 @@
 import { useCallback, useState } from 'react'
+import axios from 'axios'
 import { client } from './ohbug'
+
+const instance = axios.create({ timeout: 1000 })
+instance.interceptors.response.use(() => {}, (error) => {
+  return Promise.reject(error)
+})
 
 async function createCustomEvent() {
   const event = client.createEvent({
@@ -13,12 +19,15 @@ async function createCustomEvent() {
 function Trigger() {
   const onClickAbnormalXhr = useCallback(() => {
     const xhr = new XMLHttpRequest()
-    xhr.open('get', 'http://a.com/b')
+    xhr.open('get', 'http://a.com/b?foo=bar')
     xhr.setRequestHeader('content-type', 'application/json')
     xhr.send()
   }, [])
   const onClickAbnormalFetch = useCallback(() => {
-    fetch('http://a.com/b', { method: 'GET' })
+    fetch('http://a.com/b/c?foo=bar', { method: 'POST', body: JSON.stringify({ foo2: 'bar2' }) })
+  }, [])
+  const onClickAbnormalAxios = useCallback(() => {
+    instance.post('http://a.com/b/c', { foo2: 'bar2' })
   }, [])
   const onClickTriggerUnhandledrejection = useCallback(async() => {
     // eslint-disable-next-line promise/param-names
@@ -48,6 +57,7 @@ function Trigger() {
       <div>
         <button onClick={onClickAbnormalXhr}>异常XHR</button>
         <button onClick={onClickAbnormalFetch}>异常Fetch</button>
+        <button onClick={onClickAbnormalAxios}>异常axios</button>
         <button onClick={onClickTriggerUnhandledrejection}>Promise错误</button>
         <button onClick={onClickTriggerCodeError}>代码错误</button>
         <button onClick={onClickCustomLog}>自定义log</button>

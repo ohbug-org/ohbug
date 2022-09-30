@@ -3,6 +3,7 @@ import { EventTypes } from '@ohbug/core'
 
 import { networkDispatcher } from '../../dispatch'
 import type { AjaxErrorDetail } from '../../handle'
+import { getParams } from './getParams'
 
 const global = getGlobal<Window>()
 const access = 'XMLHttpRequest' in global
@@ -48,10 +49,18 @@ export function captureAjaxError() {
         this.addEventListener('readystatechange', function handle() {
           if (this.readyState === 4) {
             if (desc.url !== client.__config.endpoint) {
+              const { url, params } = getParams(desc.url)
               const detail: AjaxErrorDetail = {
                 req: {
-                  url: desc.url,
+                  url,
                   method: desc.method,
+                  data: args[0],
+                  params,
+                },
+                res: {
+                  status: this.status,
+                  statusText: this.statusText,
+                  response: this.response,
                 },
               }
 
