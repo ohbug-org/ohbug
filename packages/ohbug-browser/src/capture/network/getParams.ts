@@ -24,12 +24,25 @@ const groupParamsByKey = (params: URLSearchParams) =>
   }, {})
 
 export function getParams(data: string) {
-  const location = new URL(data)
-  const url = location.origin + location.pathname
-  const searchParams = location.search ? new URLSearchParams(location.search) : undefined
-  const params = searchParams ? JSON.stringify(groupParamsByKey(searchParams)) : undefined
-  return {
-    url,
-    params,
+  try {
+    const location = new URL(data)
+    const url = location.origin + location.pathname
+    const searchParams = location.search ? location.searchParams : undefined
+    const params = searchParams ? JSON.stringify(groupParamsByKey(searchParams)) : undefined
+    return {
+      url,
+      params,
+    }
+  }
+  catch (_) {
+    const location = data.split('?')
+    const url = location?.[0]
+    const search = location?.[1]
+    const searchParams = search ? new URLSearchParams(search) : undefined
+    const params = searchParams ? JSON.stringify(groupParamsByKey(searchParams)) : undefined
+    return {
+      url,
+      params,
+    }
   }
 }
