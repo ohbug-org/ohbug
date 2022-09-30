@@ -1,5 +1,11 @@
 # @ohbug/browser
 
+## 2.4.1
+
+### Patch Changes
+
+- complete ajax fetch websocket detail
+
 ## 2.4.0
 
 ### Minor Changes
