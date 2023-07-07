@@ -7,5 +7,5 @@ export const client = Ohbug.setup({
   appType: 'react',
   appVersion: __APP_VERSION__,
 })
-client.use(OhbugExtensionRrweb)
+client.use(OhbugExtensionRrweb())
 export { OhbugErrorBoundary }

@@ -1,6 +1,6 @@
 {
   "private": true,
-  "packageManager": "pnpm@7.5.2",
+  "packageManager": "pnpm@8.6.6",
   "scripts": {
     "version": "changeset && changeset version",
     "publish": "pnpm run build && changeset publish",
@@ -8,28 +8,29 @@
     "build": "pnpm -r --filter !playground run build",
     "lint": "tsc && eslint . --fix",
     "test": "vitest",
-    "update:deps": "pnpm update -i -r --latest",
+    "up": "taze major -Ir",
     "prepare": "husky install",
     "preinstall": "npx only-allow pnpm"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.24.3",
-    "@chenyueban/eslint-config": "^1.0.12",
+    "@changesets/cli": "^2.26.2",
+    "@chenyueban/eslint-config": "^1.1.0",
     "@chenyueban/tsconfig": "^2.1.0",
-    "@commitlint/cli": "^17.0.3",
-    "@commitlint/config-conventional": "^17.0.3",
-    "commitizen": "^4.2.5",
+    "@commitlint/cli": "^17.6.6",
+    "@commitlint/config-conventional": "^17.6.6",
+    "commitizen": "^4.3.0",
     "cz-conventional-changelog": "3.3.0",
-    "esbuild": "^0.15.5",
-    "eslint": "^8.22.0",
-    "husky": "^8.0.1",
-    "jsdom": "^20.0.0",
-    "lint-staged": "^13.0.3",
+    "esbuild": "^0.18.11",
+    "eslint": "^8.44.0",
+    "husky": "^8.0.3",
+    "jsdom": "^22.1.0",
+    "lint-staged": "^13.2.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "tsup": "^6.2.3",
-    "typescript": "^4.8.2",
-    "vite": "^3.0.9",
-    "vitest": "^0.22.1"
+    "taze": "^0.11.2",
+    "tsup": "^7.1.0",
+    "typescript": "^5.1.6",
+    "vite": "^4.4.1",
+    "vitest": "^0.33.0"
   }
 }

@@ -10,18 +10,18 @@
   "dependencies": {
     "@ohbug/browser": "workspace:*",
     "@ohbug/core": "workspace:*",
-    "@ohbug/extension-rrweb": "^1.8.1",
+    "@ohbug/extension-rrweb": "^1.10.0",
     "@ohbug/react": "workspace:*",
     "@ohbug/types": "workspace:*",
-    "axios": "^0.27.2",
+    "axios": "^1.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "rrweb": "2.0.0-alpha.1"
+    "rrweb": "2.0.0-alpha.4"
   },
   "devDependencies": {
-    "@ohbug/unplugin": "^0.1.2",
-    "@types/react": "^18.0.17",
-    "@types/react-dom": "^18.0.6",
-    "@vitejs/plugin-react": "^2.0.1"
+    "@ohbug/unplugin": "^0.2.0",
+    "@types/react": "^18.2.14",
+    "@types/react-dom": "^18.2.6",
+    "@vitejs/plugin-react": "^4.0.2"
   }
 }
