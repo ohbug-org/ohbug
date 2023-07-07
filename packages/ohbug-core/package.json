@@ -1,6 +1,6 @@
 {
   "name": "@ohbug/core",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "Responsible for managing Ohbug's workflow",
   "license": "Apache-2.0",
   "author": "chenyueban <jasonchan0527@gmail.com>",

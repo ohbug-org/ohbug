@@ -1,5 +1,13 @@
 # @ohbug/angular
 
+## 2.0.8
+
+### Patch Changes
+
+- Updated dependencies
+  - @ohbug/core@2.2.0
+  - @ohbug/types@2.2.0
+
 ## 2.0.7
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@ohbug/react",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "description": "Ohbug SDK for React",
   "license": "Apache-2.0",
   "author": "chenyueban <jasonchan0527@gmail.com>",

@@ -1,5 +1,18 @@
 # @ohbug/browser
 
+## 2.5.0
+
+### Minor Changes
+
+- add destroy method to OhbugClient
+
+### Patch Changes
+
+- Updated dependencies
+  - @ohbug/core@2.2.0
+  - @ohbug/types@2.2.0
+  - @ohbug/utils@2.0.7
+
 ## 2.4.2
 
 ### Patch Changes

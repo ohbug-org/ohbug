@@ -1,5 +1,11 @@
 # @ohbug/types
 
+## 2.2.0
+
+### Minor Changes
+
+- add destroy method to OhbugClient
+
 ## 2.1.1
 
 ### Patch Changes
