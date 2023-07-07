@@ -4,6 +4,7 @@ import type { OhbugEventWithMethods } from './event'
 export interface OhbugExtension {
   name: string
   onSetup?: (client: OhbugClient) => void
+  onDestroy?: (client: OhbugClient) => void
   onEvent?: <D = any>(
     event: OhbugEventWithMethods<D>,
     client: OhbugClient

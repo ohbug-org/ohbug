@@ -101,6 +101,7 @@ implements OhbugClient {
         'background:#FF6F61; padding: 2px 1px; color: #FFF',
         'background:transparent',
       )
+      this.__extensions.forEach(extension => extension.onDestroy?.(this))
       return this.__destroy?.()
     }
   }
