@@ -1,5 +1,14 @@
 # @ohbug/browser
 
+## 2.5.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @ohbug/core@2.2.1
+  - @ohbug/types@2.2.1
+  - @ohbug/utils@2.0.8
+
 ## 2.5.0
 
 ### Minor Changes

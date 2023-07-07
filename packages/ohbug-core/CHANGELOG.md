@@ -1,5 +1,14 @@
 # @ohbug/core
 
+## 2.2.1
+
+### Patch Changes
+
+- add onDestroy method to OhbugExtension
+- Updated dependencies
+  - @ohbug/types@2.2.1
+  - @ohbug/utils@2.0.8
+
 ## 2.2.0
 
 ### Minor Changes

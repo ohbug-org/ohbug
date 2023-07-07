@@ -1,5 +1,13 @@
 # @ohbug/vue
 
+## 2.0.10
+
+### Patch Changes
+
+- Updated dependencies
+  - @ohbug/core@2.2.1
+  - @ohbug/types@2.2.1
+
 ## 2.0.9
 
 ### Patch Changes
