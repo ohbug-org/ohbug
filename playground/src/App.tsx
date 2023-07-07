@@ -47,6 +47,9 @@ function Trigger() {
   const onClickRenderError = useCallback(() => {
     setRenderError(true)
   }, [])
+  const onDestroy = useCallback(() => {
+    client.destroy()
+  }, [])
 
   if (renderError) {
     throw new Error('is Render error')
@@ -62,6 +65,8 @@ function Trigger() {
         <button onClick={onClickTriggerCodeError}>代码错误</button>
         <button onClick={onClickCustomLog}>自定义log</button>
         <button onClick={onClickRenderError}>render错误</button>
+
+        <button onClick={onDestroy}>destroy</button>
       </div>
     )
   }

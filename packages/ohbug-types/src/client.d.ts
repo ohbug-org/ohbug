@@ -7,12 +7,15 @@ import type { OhbugAction } from './action'
 import type { OhbugUser } from './user'
 import type { OhbugMetadata } from './metadata'
 
+export type OhbugDestroy = () => void
+
 export interface OhbugClientConstructorValues {
   sdk: OhbugSDK
   config: OhbugConfig
   schema?: OhbugSchema
   device: OhbugGetDevice
   notifier: OhbugNotifier
+  destroy?: OhbugDestroy
 }
 export interface OhbugClientConstructor {
   new (values: OhbugClientConstructorValues): OhbugClient
@@ -24,6 +27,7 @@ export interface OhbugClient {
   readonly __logger: OhbugLoggerConfig
   readonly __device: OhbugGetDevice
   readonly __notifier: OhbugNotifier
+  readonly __destroy?: OhbugDestroy
 
   readonly __extensions: OhbugExtension[]
 
@@ -32,6 +36,7 @@ export interface OhbugClient {
   readonly __metadata: OhbugMetadata
 
   use: (extension: OhbugExtension) => OhbugClient
+  destroy: () => void
   createEvent: <D = any>(
     value: OhbugCreateEvent<D>
   ) => OhbugEventWithMethods<D> | null

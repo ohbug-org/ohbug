@@ -5,6 +5,7 @@ import type {
   OhbugClientConstructorValues,
   OhbugConfig,
   OhbugCreateEvent,
+  OhbugDestroy,
   OhbugEventWithMethods,
   OhbugExtension,
   OhbugGetDevice,
@@ -36,6 +37,8 @@ implements OhbugClient {
 
   readonly __notifier: OhbugNotifier
 
+  readonly __destroy?: OhbugDestroy
+
   readonly __extensions: OhbugExtension[]
 
   readonly __actions: OhbugAction[]
@@ -50,6 +53,7 @@ implements OhbugClient {
     schema = baseSchema,
     device,
     notifier,
+    destroy,
   }: OhbugClientConstructorValues) {
     const { config, errors } = verifyConfig(baseConfig, schema)
 
@@ -59,6 +63,7 @@ implements OhbugClient {
     this.__logger = config.logger
     this.__device = device
     this.__notifier = notifier
+    this.__destroy = destroy
 
     this.__extensions = []
 
@@ -86,6 +91,18 @@ implements OhbugClient {
     this.__extensions.push(extension)
     extension.onSetup?.(this)
     return this
+  }
+
+  destroy(): void {
+    if (this.__destroy) {
+      this.__logger.info(
+        '%c @ohbug/core %c has been destroyed %c',
+        'background:#333; padding: 2px 1px; color: #FFF',
+        'background:#FF6F61; padding: 2px 1px; color: #FFF',
+        'background:transparent',
+      )
+      return this.__destroy?.()
+    }
   }
 
   /**

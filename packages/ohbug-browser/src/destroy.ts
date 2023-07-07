@@ -9,15 +9,19 @@ import {
 
 const global = getGlobal<Window>()
 
+export function destroy() {
+  removeReplaceAddEventListener()
+  removeCaptureScript()
+  removeCaptureNetwork()
+  removeCaptureAction()
+  removeCaptureConsole()
+}
+
 export function handleDestroy() {
   global?.addEventListener?.(
     'unload',
     () => {
-      removeReplaceAddEventListener()
-      removeCaptureScript()
-      removeCaptureNetwork()
-      removeCaptureAction()
-      removeCaptureConsole()
+      destroy()
     },
     true,
   )
