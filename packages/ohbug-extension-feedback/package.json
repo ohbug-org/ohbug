@@ -1,0 +1,48 @@
+{
+  "name": "@ohbug/extension-feedback",
+  "version": "0.7.3",
+  "description": "Ohbug extension to collect user feedback",
+  "homepage": "https://github.com/ohbug-org/ohbug#readme",
+  "bugs": {
+    "url": "https://github.com/ohbug-org/ohbug/issues"
+  },
+  "license": "Apache-2.0",
+  "author": {
+    "name": "xinyao",
+    "email": "hi@xinyao.me"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ohbug-org/ohbug.git"
+  },
+  "funding": "https://github.com/sponsors/xinyao27",
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "types": "dist/index.d.mts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "dev": "node build.mjs --watch"
+  },
+  "dependencies": {
+    "@ohbug/types": "workspace:*",
+    "@ohbug/utils": "workspace:*",
+    "solid-js": "^1.9.12"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.2.2",
+    "tailwindcss": "^4.2.2",
+    "vite-plugin-dts": "^4.5.4",
+    "vite-plugin-solid": "^2.11.11"
+  }
+}

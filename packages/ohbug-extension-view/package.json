@@ -1,0 +1,40 @@
+{
+  "name": "@ohbug/extension-view",
+  "version": "0.1.2",
+  "description": "Ohbug extension to collect view data",
+  "homepage": "https://github.com/ohbug-org/ohbug#readme",
+  "bugs": {
+    "url": "https://github.com/ohbug-org/ohbug/issues"
+  },
+  "license": "Apache-2.0",
+  "author": {
+    "name": "xinyao",
+    "email": "hi@xinyao.me"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ohbug-org/ohbug.git"
+  },
+  "funding": "https://github.com/sponsors/xinyao27",
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "types": "dist/index.d.mts",
+  "exports": {
+    ".": "./dist/index.mjs",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "dev": "vp pack --watch"
+  },
+  "dependencies": {
+    "@ohbug/types": "workspace:*",
+    "@ohbug/utils": "workspace:*",
+    "date-fns": "^4.1.0"
+  }
+}

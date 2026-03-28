@@ -1,0 +1,78 @@
+@import "tailwindcss/theme" layer(theme);
+@import "tailwindcss/utilities" layer(utilities);
+
+@source "./";
+
+@utility btn-main {
+  border: none;
+  border-radius: theme(borderRadius.DEFAULT);
+  cursor: pointer;
+  display: flex;
+  background-color: theme(colors.blue.500);
+  height: theme(spacing.8);
+  box-shadow: theme(boxShadow.DEFAULT);
+  color: white;
+  z-index: 99999;
+  transition-property: all;
+  transition-duration: 150ms;
+  right: theme(spacing.8);
+  bottom: theme(spacing.8);
+  width: theme(spacing.10);
+  position: fixed;
+  user-select: none;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    background-color: theme(colors.blue.600);
+    box-shadow: theme(boxShadow.xl);
+  }
+}
+
+@utility btn-send {
+  border: none;
+  cursor: pointer;
+  background-color: theme(colors.blue.500);
+  padding: theme(spacing.1) theme(spacing.3);
+  border-radius: theme(borderRadius.sm);
+  font-size: theme(fontSize.sm);
+  color: white;
+  transition-property: all;
+  transition-duration: 150ms;
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+@utility btn-stop {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  margin-left: theme(spacing.1);
+  pointer-events: auto;
+  transition-property: all;
+  transition-duration: 150ms;
+  &:hover {
+    background-color: rgb(107 114 128 / 0.3);
+  }
+}
+
+@utility tips {
+  border-radius: 0 0 theme(borderRadius.lg) theme(borderRadius.lg);
+  display: flex;
+  background-color: theme(colors.blue.500);
+  color: white;
+  font-size: theme(fontSize.sm);
+  z-index: 99999;
+  padding: theme(spacing.3);
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  user-select: none;
+  align-items: center;
+}
+
+@utility z-max {
+  z-index: 99999;
+}

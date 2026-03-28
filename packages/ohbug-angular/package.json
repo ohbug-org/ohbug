@@ -21,7 +21,7 @@
   ],
   "type": "module",
   "sideEffects": false,
-  "types": "dist/index.d.ts",
+  "types": "dist/index.d.mts",
   "exports": {
     ".": "./dist/index.mjs",
     "./package.json": "./package.json"
@@ -30,7 +30,6 @@
     "access": "public"
   },
   "scripts": {
-    "build": "vp pack",
     "dev": "vp pack --watch"
   },
   "dependencies": {

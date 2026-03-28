@@ -1,0 +1,57 @@
+{
+  "name": "@ohbug/cli",
+  "version": "2.0.0",
+  "description": "Command line utility to work with Ohbug",
+  "keywords": [
+    "cli",
+    "ohbug",
+    "source-map",
+    "source-maps"
+  ],
+  "homepage": "https://github.com/ohbug-org/ohbug#readme",
+  "bugs": {
+    "url": "https://github.com/ohbug-org/ohbug/issues"
+  },
+  "license": "Apache-2.0",
+  "author": {
+    "name": "xinyao",
+    "email": "hi@xinyao.me"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ohbug-org/ohbug.git"
+  },
+  "funding": "https://github.com/sponsors/xinyao27",
+  "bin": {
+    "ohbug": "dist/ohbug.mjs"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "types": "dist/index.d.mts",
+  "exports": {
+    ".": "./dist/index.mjs",
+    "./ohbug": "./dist/ohbug.mjs",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "dev": "vp pack --watch"
+  },
+  "dependencies": {
+    "chalk": "^5.6.2",
+    "fast-glob": "^3.3.3",
+    "ora": "^9.3.0",
+    "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "@types/prompts": "^2.4.9"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

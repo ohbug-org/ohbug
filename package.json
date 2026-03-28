@@ -18,8 +18,9 @@
   "scripts": {
     "version": "changeset && changeset version",
     "publish": "pnpm run build && changeset publish",
-    "dev": "vp run -r dev",
-    "build": "vp run --filter './packages/*' build",
+    "postinstall": "pnpm run build",
+    "dev": "pnpm run build && pnpm -r --parallel run dev",
+    "build": "vp run --filter './packages/*' --filter '!./packages/ohbug-unplugin' build && pnpm --filter @ohbug/unplugin exec vp pack",
     "check": "vp check --fix",
     "lint": "vp lint --fix",
     "fmt": "vp fmt",

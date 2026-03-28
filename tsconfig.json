@@ -6,6 +6,8 @@
     "types": ["vite/client", "node"],
     "skipLibCheck": true,
     "paths": {
+      "@ohbug/unplugin": ["./packages/ohbug-unplugin/src"],
+      "@ohbug/unplugin/*": ["./packages/ohbug-unplugin/src/*"],
       "@ohbug/*": ["./packages/ohbug-*/src"]
     },
 

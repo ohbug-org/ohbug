@@ -1,0 +1,46 @@
+{
+  "name": "@ohbug/extension-rrweb",
+  "version": "1.10.2",
+  "description": "Ohbug extension to 'screen recording'",
+  "homepage": "https://github.com/ohbug-org/ohbug#readme",
+  "bugs": {
+    "url": "https://github.com/ohbug-org/ohbug/issues"
+  },
+  "license": "Apache-2.0",
+  "author": {
+    "name": "xinyao",
+    "email": "hi@xinyao.me"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ohbug-org/ohbug.git"
+  },
+  "funding": "https://github.com/sponsors/xinyao27",
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "types": "dist/index.d.mts",
+  "exports": {
+    ".": "./dist/index.mjs",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "dev": "vp pack --watch"
+  },
+  "dependencies": {
+    "@ohbug/core": "workspace:*",
+    "@ohbug/types": "workspace:*",
+    "@rrweb/types": "2.0.0-alpha.20"
+  },
+  "devDependencies": {
+    "rrweb": "^2.0.0-alpha.4"
+  },
+  "peerDependencies": {
+    "rrweb": "^2.0.0"
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "name": "@ohbug/unplugin",
+  "version": "0.2.0",
+  "description": "Unplugin for uploading sourceMap files to Ohbug",
+  "homepage": "https://github.com/ohbug-org/ohbug#readme",
+  "bugs": {
+    "url": "https://github.com/ohbug-org/ohbug/issues"
+  },
+  "license": "Apache-2.0",
+  "author": {
+    "name": "xinyao",
+    "email": "hi@xinyao.me"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ohbug-org/ohbug.git"
+  },
+  "funding": "https://github.com/sponsors/xinyao27",
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "types": "dist/index.d.mts",
+  "typesVersions": {
+    "*": {
+      "vite": [
+        "./dist/vite.d.mts"
+      ],
+      "webpack": [
+        "./dist/webpack.d.mts"
+      ],
+      "rollup": [
+        "./dist/rollup.d.mts"
+      ],
+      "esbuild": [
+        "./dist/esbuild.d.mts"
+      ],
+      "rspack": [
+        "./dist/rspack.d.mts"
+      ],
+      "nuxt": [
+        "./dist/nuxt.d.mts"
+      ]
+    }
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
+    },
+    "./vite": {
+      "types": "./dist/vite.d.mts",
+      "import": "./dist/vite.mjs"
+    },
+    "./webpack": {
+      "types": "./dist/webpack.d.mts",
+      "import": "./dist/webpack.mjs"
+    },
+    "./rollup": {
+      "types": "./dist/rollup.d.mts",
+      "import": "./dist/rollup.mjs"
+    },
+    "./esbuild": {
+      "types": "./dist/esbuild.d.mts",
+      "import": "./dist/esbuild.mjs"
+    },
+    "./rspack": {
+      "types": "./dist/rspack.d.mts",
+      "import": "./dist/rspack.mjs"
+    },
+    "./nuxt": {
+      "types": "./dist/nuxt.d.mts",
+      "import": "./dist/nuxt.mjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "dev": "vp pack --watch --no-clean"
+  },
+  "dependencies": {
+    "@ohbug/cli": "^1.1.3",
+    "unplugin": "^3.0.0"
+  },
+  "devDependencies": {
+    "webpack": "^5.105.4"
+  }
+}

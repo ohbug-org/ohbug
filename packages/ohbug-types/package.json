@@ -23,7 +23,8 @@
   "types": "src/index.d.ts",
   "exports": {
     ".": {
-      "types": "./src/index.d.ts"
+      "types": "./src/index.d.ts",
+      "default": "./src/index.d.ts"
     }
   },
   "publishConfig": {

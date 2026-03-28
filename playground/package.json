@@ -11,16 +11,21 @@
   "dependencies": {
     "@ohbug/browser": "workspace:*",
     "@ohbug/core": "workspace:*",
-    "@ohbug/extension-rrweb": "^1.10.2",
+    "@ohbug/extension-feedback": "workspace:*",
+    "@ohbug/extension-rrweb": "workspace:*",
+    "@ohbug/extension-uuid": "workspace:*",
+    "@ohbug/extension-view": "workspace:*",
+    "@ohbug/extension-web-vitals": "workspace:*",
     "@ohbug/react": "workspace:*",
     "@ohbug/types": "workspace:*",
     "axios": "^1.14.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "rrweb": "2.0.0-alpha.4"
+    "rrweb": "2.0.0-alpha.4",
+    "web-vitals": "^5.2.0"
   },
   "devDependencies": {
-    "@ohbug/unplugin": "^0.2.0",
+    "@ohbug/unplugin": "workspace:*",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.1"
