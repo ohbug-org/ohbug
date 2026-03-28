@@ -3,38 +3,37 @@
   "version": "2.0.8",
   "description": "Utilities for all Ohbug SDKs",
   "license": "Apache-2.0",
-  "author": "chenyueban <jasonchan0527@gmail.com>",
-  "homepage": "https://github.com/ohbug-org/ohbug",
+  "author": {
+    "name": "xinyao",
+    "email": "hi@xinyao.me"
+  },
+  "homepage": "https://github.com/ohbug-org/ohbug#readme",
   "bugs": {
     "url": "https://github.com/ohbug-org/ohbug/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ohbug-org/ohbug"
+    "url": "git+https://github.com/ohbug-org/ohbug.git"
   },
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
+  "funding": "https://github.com/sponsors/xinyao27",
+  "type": "module",
   "types": "dist/index.d.ts",
   "exports": {
-    ".": {
-      "require": "./dist/index.js",
-      "import": "./dist/index.mjs",
-      "types": "./dist/index.d.ts"
-    }
+    ".": "./dist/index.mjs",
+    "./package.json": "./package.json"
   },
   "files": [
     "dist"
   ],
   "sideEffects": false,
   "scripts": {
-    "build": "tsup",
-    "dev": "tsup --watch"
+    "build": "vp pack",
+    "dev": "vp pack --watch"
   },
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@ohbug/types": "workspace:*",
-    "@types/node": "^20.4.0"
+    "@ohbug/types": "workspace:*"
   }
 }

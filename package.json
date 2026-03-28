@@ -1,36 +1,45 @@
 {
   "private": true,
-  "packageManager": "pnpm@8.6.6",
+  "type": "module",
+  "packageManager": "pnpm@10.32.1",
+  "homepage": "https://github.com/ohbug-org/ohbug#readme",
+  "bugs": {
+    "url": "https://github.com/ohbug-org/ohbug/issues"
+  },
+  "license": "Apache-2.0",
+  "author": {
+    "name": "xinyao",
+    "email": "hi@xinyao.me"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ohbug-org/ohbug.git"
+  },
+  "funding": "https://github.com/sponsors/xinyao27",
   "scripts": {
     "version": "changeset && changeset version",
     "publish": "pnpm run build && changeset publish",
-    "dev": "pnpm -r --parallel run dev",
-    "build": "pnpm -r --filter !playground run build",
-    "lint": "tsc && eslint . --fix",
-    "test": "vitest",
+    "dev": "vp run -r dev",
+    "build": "vp run --filter './packages/*' build",
+    "check": "vp check --fix",
+    "lint": "vp lint --fix",
+    "fmt": "vp fmt",
+    "test": "vp test",
     "up": "taze major -Ir",
-    "prepare": "husky install",
-    "preinstall": "npx only-allow pnpm"
+    "prepare": "vp config"
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.2",
-    "@chenyueban/eslint-config": "^1.1.0",
-    "@chenyueban/tsconfig": "^2.1.0",
-    "@commitlint/cli": "^17.6.6",
-    "@commitlint/config-conventional": "^17.6.6",
-    "commitizen": "^4.3.0",
-    "cz-conventional-changelog": "3.3.0",
-    "esbuild": "^0.18.11",
-    "eslint": "^8.44.0",
-    "husky": "^8.0.3",
-    "jsdom": "^22.1.0",
-    "lint-staged": "^13.2.3",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "taze": "^0.11.2",
-    "tsup": "^7.1.0",
-    "typescript": "^5.1.6",
-    "vite": "^4.4.1",
-    "vitest": "^0.33.0"
+    "jsdom": "^29.0.1",
+    "taze": "latest",
+    "typescript": "~5.9.3",
+    "vite": "npm:@voidzero-dev/vite-plus-core@latest",
+    "vite-plus": "latest"
+  },
+  "pnpm": {
+    "overrides": {
+      "vite": "npm:@voidzero-dev/vite-plus-core@latest",
+      "vitest": "npm:@voidzero-dev/vite-plus-test@latest"
+    }
   }
 }

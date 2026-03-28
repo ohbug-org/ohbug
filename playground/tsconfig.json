@@ -1,7 +1,9 @@
 {
-  "extends": "@chenyueban/tsconfig",
+  "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "dist",
-    "jsx": "react-jsx"
-  }
+    "jsx": "react-jsx",
+    "resolveJsonModule": true
+  },
+  "include": ["src"]
 }
