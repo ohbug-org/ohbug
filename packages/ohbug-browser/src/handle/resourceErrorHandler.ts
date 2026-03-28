@@ -1,22 +1,22 @@
-import { getOhbugObject, getSelector } from '@ohbug/utils'
-import type { OhbugBaseDetail } from '@ohbug/types'
-import { EventTypes } from '@ohbug/core'
+import { EventTypes } from "@ohbug/core";
+import type { OhbugBaseDetail } from "@ohbug/types";
+import { getOhbugObject, getSelector } from "@ohbug/utils";
 
 export interface ResourceErrorDetail extends OhbugBaseDetail {
-  src: string
-  tagName: string
-  id: string
-  className: string
-  name: string
+  src: string;
+  tagName: string;
+  id: string;
+  className: string;
+  name: string;
   // https://developer.mozilla.org/zh-CN/docs/Web/API/Node/nodeType
-  nodeType: number
-  selector: string
+  nodeType: number;
+  selector: string;
 }
 
 export function resourceErrorHandler(e: ErrorEvent) {
-  const target = (e.target || e.srcElement) as any
+  const target = (e.target || e.srcElement) as any;
 
-  const selector = getSelector(e)
+  const selector = getSelector(e);
 
   const detail: ResourceErrorDetail = {
     src: target && target.src,
@@ -27,12 +27,12 @@ export function resourceErrorHandler(e: ErrorEvent) {
     // https://developer.mozilla.org/zh-CN/docs/Web/API/Node/nodeType
     nodeType: target && target.nodeType,
     selector,
-  }
-  const { client } = getOhbugObject<Window>()
+  };
+  const { client } = getOhbugObject<Window>();
   const event = client.createEvent<ResourceErrorDetail>({
-    category: 'error',
+    category: "error",
     type: EventTypes.RESOURCE_ERROR,
     detail,
-  })
-  client.notify(event)
+  });
+  client.notify(event);
 }

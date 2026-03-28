@@ -1,6 +1,7 @@
-import react from "@vitejs/plugin-react";
 import OhbugUnplugin from "@ohbug/unplugin/vite";
+import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite-plus";
+
 import pkg from "./package.json";
 
 export default defineConfig({

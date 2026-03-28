@@ -6,8 +6,6 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.oxc": "explicit"
   },
-  "cSpell.words": [
-    "Ohbug"
-  ],
+  "cSpell.words": ["Ohbug"],
   "typescript.tsdk": "node_modules/typescript/lib"
 }

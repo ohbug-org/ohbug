@@ -2,45 +2,45 @@
   "name": "@ohbug/angular",
   "version": "2.0.9",
   "description": "Ohbug SDK for Angular",
+  "homepage": "https://github.com/ohbug-org/ohbug#readme",
+  "bugs": {
+    "url": "https://github.com/ohbug-org/ohbug/issues"
+  },
   "license": "Apache-2.0",
   "author": {
     "name": "xinyao",
     "email": "hi@xinyao.me"
-  },
-  "homepage": "https://github.com/ohbug-org/ohbug#readme",
-  "bugs": {
-    "url": "https://github.com/ohbug-org/ohbug/issues"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ohbug-org/ohbug.git"
   },
   "funding": "https://github.com/sponsors/xinyao27",
+  "files": [
+    "dist"
+  ],
   "type": "module",
+  "sideEffects": false,
   "types": "dist/index.d.ts",
   "exports": {
     ".": "./dist/index.mjs",
     "./package.json": "./package.json"
   },
-  "files": [
-    "dist"
-  ],
-  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "vp pack",
     "dev": "vp pack --watch"
-  },
-  "peerDependencies": {
-    "@angular/core": "^13.0.0"
   },
   "dependencies": {
     "@ohbug/core": "workspace:*",
     "@ohbug/types": "workspace:*"
   },
   "devDependencies": {
-    "@angular/core": "^16.1.4"
+    "@angular/core": "^21.2.6"
   },
-  "publishConfig": {
-    "access": "public"
+  "peerDependencies": {
+    "@angular/core": "^13.0.0"
   }
 }

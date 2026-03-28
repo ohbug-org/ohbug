@@ -14,7 +14,7 @@ pnpm instal @ohbug/browser
 ## 使用
 
 ```javascript
-import Ohbug from '@ohbug/browser'
+import Ohbug from "@ohbug/browser";
 
-Ohbug.setup({ apiKey: 'YOUR_API_KEY' })
+Ohbug.setup({ apiKey: "YOUR_API_KEY" });
 ```

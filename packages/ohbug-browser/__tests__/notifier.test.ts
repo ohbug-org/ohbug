@@ -1,19 +1,20 @@
-import { describe, expect, test, vi } from 'vitest'
-import type { OhbugEventWithMethods } from '@ohbug/types'
-import { BrowserClient } from '../src/client'
-import { notifier } from '../src/notifier'
+import type { OhbugEventWithMethods } from "@ohbug/types";
+import { describe, expect, test, vi } from "vitest";
 
-const mockSendBeacon = vi.fn()
-const event = { type: 'test' } as OhbugEventWithMethods<any>
-const apiKey = 'API_KEY_TEST'
+import { BrowserClient } from "../src/client";
+import { notifier } from "../src/notifier";
 
-describe('@ohbug/browser/client', () => {
-  test('notify via `navigator.sendBeacon`', () => {
-    BrowserClient.setup({ apiKey })
-    navigator.sendBeacon = mockSendBeacon
+const mockSendBeacon = vi.fn();
+const event = { type: "test" } as OhbugEventWithMethods<any>;
+const apiKey = "API_KEY_TEST";
 
-    notifier(event)
+describe("@ohbug/browser/client", () => {
+  test("notify via `navigator.sendBeacon`", () => {
+    BrowserClient.setup({ apiKey });
+    navigator.sendBeacon = mockSendBeacon;
 
-    expect(mockSendBeacon).toBeCalledTimes(1)
-  })
-})
+    notifier(event);
+
+    expect(mockSendBeacon).toBeCalledTimes(1);
+  });
+});

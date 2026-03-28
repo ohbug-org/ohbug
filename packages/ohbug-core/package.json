@@ -2,36 +2,36 @@
   "name": "@ohbug/core",
   "version": "2.2.1",
   "description": "Responsible for managing Ohbug's workflow",
+  "homepage": "https://github.com/ohbug-org/ohbug#readme",
+  "bugs": {
+    "url": "https://github.com/ohbug-org/ohbug/issues"
+  },
   "license": "Apache-2.0",
   "author": {
     "name": "xinyao",
     "email": "hi@xinyao.me"
-  },
-  "homepage": "https://github.com/ohbug-org/ohbug#readme",
-  "bugs": {
-    "url": "https://github.com/ohbug-org/ohbug/issues"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ohbug-org/ohbug.git"
   },
   "funding": "https://github.com/sponsors/xinyao27",
+  "files": [
+    "dist"
+  ],
   "type": "module",
+  "sideEffects": false,
   "types": "dist/index.d.ts",
   "exports": {
     ".": "./dist/index.mjs",
     "./package.json": "./package.json"
   },
-  "files": [
-    "dist"
-  ],
-  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "vp pack",
     "dev": "vp pack --watch"
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "dependencies": {
     "@ohbug/types": "workspace:*",

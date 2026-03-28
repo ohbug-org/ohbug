@@ -14,38 +14,37 @@ import type {
   OhbugNotifier,
   OhbugSDK,
   OhbugUser,
-} from '@ohbug/types'
-import { isObject, isString } from '@ohbug/utils'
+} from "@ohbug/types";
+import { isObject, isString } from "@ohbug/utils";
 
-import { schema as baseSchema } from './config'
-import { createEvent, handleEventCreated, isEvent } from './event'
-import { notify } from './notify'
-import { Action } from './action'
-import { verifyConfig } from './lib/verifyConfig'
-import { getConfigErrorMessage, getErrorMessage } from './lib/getErrorMessage'
-import { addMetadata, deleteMetadata, getMetadata } from './lib/metadata'
+import { Action } from "./action";
+import { schema as baseSchema } from "./config";
+import { createEvent, handleEventCreated, isEvent } from "./event";
+import { getConfigErrorMessage, getErrorMessage } from "./lib/getErrorMessage";
+import { addMetadata, deleteMetadata, getMetadata } from "./lib/metadata";
+import { verifyConfig } from "./lib/verifyConfig";
+import { notify } from "./notify";
 
-export const Client: OhbugClientConstructor = class Client
-implements OhbugClient {
-  readonly __sdk: OhbugSDK
+export const Client: OhbugClientConstructor = class Client implements OhbugClient {
+  readonly __sdk: OhbugSDK;
 
-  readonly __config: OhbugConfig
+  readonly __config: OhbugConfig;
 
-  readonly __logger: OhbugLoggerConfig
+  readonly __logger: OhbugLoggerConfig;
 
-  readonly __device: OhbugGetDevice
+  readonly __device: OhbugGetDevice;
 
-  readonly __notifier: OhbugNotifier
+  readonly __notifier: OhbugNotifier;
 
-  readonly __destroy?: OhbugDestroy
+  readonly __destroy?: OhbugDestroy;
 
-  readonly __extensions: OhbugExtension[]
+  readonly __extensions: OhbugExtension[];
 
-  readonly __actions: OhbugAction[]
+  readonly __actions: OhbugAction[];
 
-  __user: OhbugUser
+  __user: OhbugUser;
 
-  readonly __metadata: OhbugMetadata
+  readonly __metadata: OhbugMetadata;
 
   constructor({
     sdk,
@@ -55,29 +54,29 @@ implements OhbugClient {
     notifier,
     destroy,
   }: OhbugClientConstructorValues) {
-    const { config, errors } = verifyConfig(baseConfig, schema)
+    const { config, errors } = verifyConfig(baseConfig, schema);
 
     // initialization
-    this.__sdk = sdk
-    this.__config = config
-    this.__logger = config.logger
-    this.__device = device
-    this.__notifier = notifier
-    this.__destroy = destroy
+    this.__sdk = sdk;
+    this.__config = config;
+    this.__logger = config.logger;
+    this.__device = device;
+    this.__notifier = notifier;
+    this.__destroy = destroy;
 
-    this.__extensions = []
+    this.__extensions = [];
 
-    this.__actions = []
-    this.__user = config.user
-    this.__metadata = {}
+    this.__actions = [];
+    this.__user = config.user;
+    this.__metadata = {};
     if (isObject(config.metadata)) {
       Object.keys(config.metadata).forEach((key) => {
-        this.addMetadata(key, config.metadata[key])
-      })
+        this.addMetadata(key, config.metadata[key]);
+      });
     }
 
     if (Object.keys(errors).length) {
-      this.__logger.warn(getConfigErrorMessage(errors, baseConfig))
+      this.__logger.warn(getConfigErrorMessage(errors, baseConfig));
     }
   }
 
@@ -88,21 +87,21 @@ implements OhbugClient {
    * @param extension
    */
   use(extension: OhbugExtension): OhbugClient {
-    this.__extensions.push(extension)
-    extension.onSetup?.(this)
-    return this
+    this.__extensions.push(extension);
+    extension.onSetup?.(this);
+    return this;
   }
 
   destroy(): void {
     if (this.__destroy) {
       this.__logger.info(
-        '%c @ohbug/core %c has been destroyed %c',
-        'background:#333; padding: 2px 1px; color: #FFF',
-        'background:#FF6F61; padding: 2px 1px; color: #FFF',
-        'background:transparent',
-      )
-      this.__extensions.forEach(extension => extension.onDestroy?.(this))
-      return this.__destroy?.()
+        "%c @ohbug/core %c has been destroyed %c",
+        "background:#333; padding: 2px 1px; color: #FFF",
+        "background:#FF6F61; padding: 2px 1px; color: #FFF",
+        "background:transparent",
+      );
+      this.__extensions.forEach((extension) => extension.onDestroy?.(this));
+      return this.__destroy?.();
     }
   }
 
@@ -113,9 +112,9 @@ implements OhbugClient {
    * @param value
    */
   createEvent<D = any>(value: OhbugCreateEvent<D>): OhbugEventWithMethods<D> | null {
-    const event = createEvent(value, this)
+    const event = createEvent(value, this);
 
-    return handleEventCreated(event, this)
+    return handleEventCreated(event, this);
   }
 
   /**
@@ -127,17 +126,18 @@ implements OhbugClient {
    */
   notify<D = any>(
     eventLike: any,
-    beforeNotify?: (
-      event: OhbugEventWithMethods<D> | null
-    ) => OhbugEventWithMethods<D> | null,
+    beforeNotify?: (event: OhbugEventWithMethods<D> | null) => OhbugEventWithMethods<D> | null,
   ): Promise<any | null> {
-    let event: OhbugEventWithMethods<D> | null
-    if (Boolean(eventLike) && !isEvent(eventLike)) { event = this.createEvent(eventLike) }
-    else { event = eventLike }
+    let event: OhbugEventWithMethods<D> | null;
+    if (Boolean(eventLike) && !isEvent(eventLike)) {
+      event = this.createEvent(eventLike);
+    } else {
+      event = eventLike;
+    }
 
-    if (beforeNotify) event = beforeNotify(event)
+    if (beforeNotify) event = beforeNotify(event);
 
-    return notify<D>(event, this)
+    return notify<D>(event, this);
   }
 
   /**
@@ -151,23 +151,20 @@ implements OhbugClient {
    * @param type
    * @param timestamp
    */
-  addAction(
-    message: string,
-    data: Record<string, any>,
-    type: string,
-    timestamp?: string,
-  ): void {
-    const actions = this.__actions
+  addAction(message: string, data: Record<string, any>, type: string, timestamp?: string): void {
+    const actions = this.__actions;
 
-    const targetMessage = isString(message) ? message : ''
-    const targetData = data || {}
-    const targetType = isString(type) ? type : ''
+    const targetMessage = isString(message) ? message : "";
+    const targetData = data || {};
+    const targetType = isString(type) ? type : "";
 
-    const action = new Action(targetMessage, targetData, targetType, timestamp)
-    const maxActions = this.__config.maxActions ?? 30
+    const action = new Action(targetMessage, targetData, targetType, timestamp);
+    const maxActions = this.__config.maxActions ?? 30;
     if (maxActions > 0) {
-      if (actions.length >= maxActions) { actions.shift() }
-      actions.push(action)
+      if (actions.length >= maxActions) {
+        actions.shift();
+      }
+      actions.push(action);
     }
   }
 
@@ -176,7 +173,7 @@ implements OhbugClient {
    * 获取当前的用户信息
    */
   getUser(): OhbugUser | undefined {
-    return this.__user
+    return this.__user;
   }
 
   /**
@@ -185,14 +182,13 @@ implements OhbugClient {
    */
   setUser(user: OhbugUser): OhbugUser | undefined {
     if (isObject(user) && Object.keys(user).length <= 6) {
-      this.__user = { ...this.__user, ...user }
-      return this.getUser()
+      this.__user = { ...this.__user, ...user };
+      return this.getUser();
     }
-    this.__logger.warn(getErrorMessage(
-      'setUser should be an object and have up to 6 attributes',
-      user,
-    ))
-    return undefined
+    this.__logger.warn(
+      getErrorMessage("setUser should be an object and have up to 6 attributes", user),
+    );
+    return undefined;
   }
 
   /**
@@ -203,7 +199,7 @@ implements OhbugClient {
    * @param data
    */
   addMetadata(section: string, data: any) {
-    return addMetadata(this.__metadata, section, data)
+    return addMetadata(this.__metadata, section, data);
   }
 
   /**
@@ -213,7 +209,7 @@ implements OhbugClient {
    * @param section
    */
   getMetadata(section: string) {
-    return getMetadata(this.__metadata, section)
+    return getMetadata(this.__metadata, section);
   }
 
   /**
@@ -223,6 +219,6 @@ implements OhbugClient {
    * @param section
    */
   deleteMetadata(section: string) {
-    return deleteMetadata(this.__metadata, section)
+    return deleteMetadata(this.__metadata, section);
   }
-}
+};

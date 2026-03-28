@@ -1,4 +1,4 @@
-import { BrowserClient } from './client'
+import { BrowserClient } from "./client";
 
 export type {
   UncaughtErrorDetail,
@@ -8,6 +8,6 @@ export type {
   AjaxErrorDetail,
   FetchErrorDetail,
   WebsocketErrorDetail,
-} from './handle'
+} from "./handle";
 
-export default BrowserClient
+export default BrowserClient;

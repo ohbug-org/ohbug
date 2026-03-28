@@ -10,41 +10,41 @@ import type {
   OhbugReleaseStage,
   OhbugSDK,
   OhbugUser,
-} from '@ohbug/types'
+} from "@ohbug/types";
+import { isFunction, isObject, isString } from "@ohbug/utils";
 
-import { isFunction, isObject, isString } from '@ohbug/utils'
-import { Action } from './action'
-import { getErrorMessage } from './lib/getErrorMessage'
-import { addMetadata, deleteMetadata, getMetadata } from './lib/metadata'
+import { Action } from "./action";
+import { getErrorMessage } from "./lib/getErrorMessage";
+import { addMetadata, deleteMetadata, getMetadata } from "./lib/metadata";
 
 export class Event<D> implements OhbugEventWithMethods<D> {
-  readonly apiKey: string
+  readonly apiKey: string;
 
-  readonly appVersion?: string
+  readonly appVersion?: string;
 
-  readonly appType?: string
+  readonly appType?: string;
 
-  readonly timestamp: string
+  readonly timestamp: string;
 
-  readonly category?: OhbugCategory
+  readonly category?: OhbugCategory;
 
-  readonly type: string
+  readonly type: string;
 
-  readonly sdk: OhbugSDK
+  readonly sdk: OhbugSDK;
 
-  readonly device: OhbugDevice
+  readonly device: OhbugDevice;
 
-  readonly detail: D
+  readonly detail: D;
 
-  user?: OhbugUser
+  user?: OhbugUser;
 
-  readonly actions?: OhbugAction[]
+  readonly actions?: OhbugAction[];
 
-  readonly metadata: OhbugMetadata
+  readonly metadata: OhbugMetadata;
 
-  readonly releaseStage?: OhbugReleaseStage
+  readonly releaseStage?: OhbugReleaseStage;
 
-  readonly __client?: OhbugClient
+  readonly __client?: OhbugClient;
 
   constructor(values: OhbugEvent<D>, client?: OhbugClient) {
     const {
@@ -62,27 +62,27 @@ export class Event<D> implements OhbugEventWithMethods<D> {
       user,
       actions,
       metadata,
-    } = values
-    this.apiKey = apiKey
-    this.appVersion = appVersion
-    this.appType = appType
-    this.releaseStage = releaseStage
-    this.timestamp = timestamp
-    this.category = category
-    this.type = type
-    this.sdk = sdk
+    } = values;
+    this.apiKey = apiKey;
+    this.appVersion = appVersion;
+    this.appType = appType;
+    this.releaseStage = releaseStage;
+    this.timestamp = timestamp;
+    this.category = category;
+    this.type = type;
+    this.sdk = sdk;
 
-    this.detail = detail
-    this.device = device
-    this.user = user
-    this.actions = actions
-    this.metadata = metadata ?? {}
+    this.detail = detail;
+    this.device = device;
+    this.user = user;
+    this.actions = actions;
+    this.metadata = metadata ?? {};
 
-    this.__client = client
+    this.__client = client;
   }
 
   get __isOhbugEvent() {
-    return true
+    return true;
   }
 
   /**
@@ -96,23 +96,20 @@ export class Event<D> implements OhbugEventWithMethods<D> {
    * @param type
    * @param timestamp
    */
-  addAction(
-    message: string,
-    data: Record<string, any>,
-    type: string,
-    timestamp?: string,
-  ): void {
-    const actions = this.actions!
+  addAction(message: string, data: Record<string, any>, type: string, timestamp?: string): void {
+    const actions = this.actions!;
 
-    const targetMessage = isString(message) ? message : ''
-    const targetData = data || {}
-    const targetType = isString(type) ? type : ''
+    const targetMessage = isString(message) ? message : "";
+    const targetData = data || {};
+    const targetType = isString(type) ? type : "";
 
-    const action = new Action(targetMessage, targetData, targetType, timestamp)
-    const maxActions = this.__client?.__config.maxActions ?? 30
+    const action = new Action(targetMessage, targetData, targetType, timestamp);
+    const maxActions = this.__client?.__config.maxActions ?? 30;
     if (maxActions > 0) {
-      if (actions.length >= maxActions) { actions.shift() }
-      actions.push(action)
+      if (actions.length >= maxActions) {
+        actions.shift();
+      }
+      actions.push(action);
     }
   }
 
@@ -121,7 +118,7 @@ export class Event<D> implements OhbugEventWithMethods<D> {
    * 获取当前的用户信息
    */
   getUser(): OhbugUser | undefined {
-    return this.user
+    return this.user;
   }
 
   /**
@@ -130,14 +127,13 @@ export class Event<D> implements OhbugEventWithMethods<D> {
    */
   setUser(user: OhbugUser): OhbugUser | undefined {
     if (isObject(user) && Object.keys(user).length <= 6) {
-      this.user = { ...this.user, ...user }
-      return this.getUser()
+      this.user = { ...this.user, ...user };
+      return this.getUser();
     }
-    this.__client?.__logger.error(getErrorMessage(
-      'setUser should be an object and have up to 6 attributes',
-      user,
-    ))
-    return undefined
+    this.__client?.__logger.error(
+      getErrorMessage("setUser should be an object and have up to 6 attributes", user),
+    );
+    return undefined;
   }
 
   /**
@@ -148,7 +144,7 @@ export class Event<D> implements OhbugEventWithMethods<D> {
    * @param data
    */
   addMetadata(section: string, data: any) {
-    return addMetadata(this.metadata, section, data)
+    return addMetadata(this.metadata, section, data);
   }
 
   /**
@@ -158,7 +154,7 @@ export class Event<D> implements OhbugEventWithMethods<D> {
    * @param section
    */
   getMetadata(section: string) {
-    return getMetadata(this.metadata, section)
+    return getMetadata(this.metadata, section);
   }
 
   /**
@@ -168,7 +164,7 @@ export class Event<D> implements OhbugEventWithMethods<D> {
    * @param section
    */
   deleteMetadata(section: string) {
-    return deleteMetadata(this.metadata, section)
+    return deleteMetadata(this.metadata, section);
   }
 
   toJSON() {
@@ -186,7 +182,7 @@ export class Event<D> implements OhbugEventWithMethods<D> {
       actions,
       metadata,
       releaseStage,
-    } = this
+    } = this;
     return {
       apiKey,
       appVersion,
@@ -201,7 +197,7 @@ export class Event<D> implements OhbugEventWithMethods<D> {
       actions,
       metadata,
       releaseStage,
-    }
+    };
   }
 }
 
@@ -209,25 +205,24 @@ export function createEvent<D>(
   values: OhbugCreateEvent<D>,
   client: OhbugClient,
 ): OhbugEventWithMethods<D> {
-  const { apiKey, appVersion, appType, releaseStage } = client.__config
-  const timestamp = new Date().toISOString()
-  const device = client.__device(client)
-  let category: OhbugCategory
-  let type: string
-  let detail: D
+  const { apiKey, appVersion, appType, releaseStage } = client.__config;
+  const timestamp = new Date().toISOString();
+  const device = client.__device(client);
+  let category: OhbugCategory;
+  let type: string;
+  let detail: D;
   if (
-    isObject(values)
-    && Object.prototype.hasOwnProperty.call(values, 'type')
-    && Object.prototype.hasOwnProperty.call(values, 'detail')
+    isObject(values) &&
+    Object.prototype.hasOwnProperty.call(values, "type") &&
+    Object.prototype.hasOwnProperty.call(values, "detail")
   ) {
-    category = values.category || 'error'
-    type = values.type
-    detail = values.detail
-  }
-  else {
-    category = 'error'
-    type = 'unknownError'
-    detail = values as unknown as D
+    category = values.category || "error";
+    type = values.type;
+    detail = values.detail;
+  } else {
+    category = "error";
+    type = "unknownError";
+    detail = values as unknown as D;
   }
 
   return new Event(
@@ -247,7 +242,7 @@ export function createEvent<D>(
       releaseStage,
     },
     client,
-  )
+  );
 }
 
 export function handleEventCreated<D = any>(
@@ -257,19 +252,23 @@ export function handleEventCreated<D = any>(
   const funcs = [
     client.__config.onEvent,
     ...client.__extensions.map(({ onEvent }) => onEvent),
-  ].filter(v => isFunction(v)) as ((
+  ].filter((v) => isFunction(v)) as ((
     event: OhbugEventWithMethods<D>,
-    client: OhbugClient
-  ) => OhbugEventWithMethods<D> | null)[]
-  if (funcs.length === 0) { return event }
+    client: OhbugClient,
+  ) => OhbugEventWithMethods<D> | null)[];
+  if (funcs.length === 0) {
+    return event;
+  }
 
   return funcs.reduce<OhbugEventWithMethods<D> | null>((previous, current) => {
-    if (previous && isFunction(current)) { return current(previous, client) }
+    if (previous && isFunction(current)) {
+      return current(previous, client);
+    }
 
-    return null
-  }, event)
+    return null;
+  }, event);
 }
 
 export function isEvent(eventLike: any): eventLike is OhbugEventWithMethods<any> {
-  return Boolean(eventLike?.__isOhbugEvent)
+  return Boolean(eventLike?.__isOhbugEvent);
 }

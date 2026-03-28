@@ -1,34 +1,32 @@
-import type { OhbugGlobal, OhbugObject } from '@ohbug/types'
-import { error } from './warning'
+import type { OhbugGlobal, OhbugObject } from "@ohbug/types";
 
-const fallbackGlobalObject = {}
+import { error } from "./warning";
+
+const fallbackGlobalObject = {};
 export function getGlobal<T = Window>(): T & OhbugGlobal {
   return (
-    typeof window !== 'undefined'
+    typeof window !== "undefined"
       ? window
-      : typeof global !== 'undefined'
+      : typeof global !== "undefined"
         ? global
-        : typeof self !== 'undefined'
+        : typeof self !== "undefined"
           ? self
           : fallbackGlobalObject
-  ) as T & OhbugGlobal
+  ) as T & OhbugGlobal;
 }
 
 export function getOhbugObject<T = Window>(): OhbugObject {
-  const global = getGlobal<T>()
+  const global = getGlobal<T>();
 
-  error(
-    Boolean(global.__OHBUG__),
-    'Failed to get `OhbugObject`, please confirm if `Ohbug.setup`',
-  )
+  error(Boolean(global.__OHBUG__), "Failed to get `OhbugObject`, please confirm if `Ohbug.setup`");
 
-  return global.__OHBUG__
+  return global.__OHBUG__;
 }
 
 export function isNode(): boolean {
-  return typeof global !== 'undefined'
+  return typeof global !== "undefined";
 }
 
 export function isBrowser(): boolean {
-  return typeof window !== 'undefined'
+  return typeof window !== "undefined";
 }

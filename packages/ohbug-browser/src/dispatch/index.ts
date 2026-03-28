@@ -1,2 +1,2 @@
-export * from './scriptDispatcher'
-export * from './networkDispatcher'
+export * from "./scriptDispatcher";
+export * from "./networkDispatcher";

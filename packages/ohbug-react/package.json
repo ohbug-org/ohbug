@@ -2,36 +2,36 @@
   "name": "@ohbug/react",
   "version": "2.0.9",
   "description": "Ohbug SDK for React",
+  "homepage": "https://github.com/ohbug-org/ohbug#readme",
+  "bugs": {
+    "url": "https://github.com/ohbug-org/ohbug/issues"
+  },
   "license": "Apache-2.0",
   "author": {
     "name": "xinyao",
     "email": "hi@xinyao.me"
-  },
-  "homepage": "https://github.com/ohbug-org/ohbug#readme",
-  "bugs": {
-    "url": "https://github.com/ohbug-org/ohbug/issues"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ohbug-org/ohbug.git"
   },
   "funding": "https://github.com/sponsors/xinyao27",
+  "files": [
+    "dist"
+  ],
   "type": "module",
+  "sideEffects": false,
   "types": "dist/index.d.ts",
   "exports": {
     ".": "./dist/index.mjs",
     "./package.json": "./package.json"
   },
-  "files": [
-    "dist"
-  ],
-  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "vp pack",
     "dev": "vp pack --watch"
-  },
-  "peerDependencies": {
-    "react": "^16.8.6"
   },
   "dependencies": {
     "@ohbug/core": "workspace:*",
@@ -39,9 +39,9 @@
   },
   "devDependencies": {
     "@ohbug/browser": "workspace:*",
-    "@types/react": "^18.2.14"
+    "@types/react": "^19.2.14"
   },
-  "publishConfig": {
-    "access": "public"
+  "peerDependencies": {
+    "react": "^16.8.6"
   }
 }

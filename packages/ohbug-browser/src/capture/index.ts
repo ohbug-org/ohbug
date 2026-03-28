@@ -1,66 +1,55 @@
-import { getGlobal } from '@ohbug/utils'
-import { replaceAddEventListener } from '../replaceAddEventListener'
-import {
-  captureUrlChange,
-  removeCaptureUrlChange,
-} from './action/captureUrlChange'
-import { captureClick, removeCaptureClick } from './action/captureClick'
-import { captureConsole, removeCaptureConsole } from './console/captureConsole'
-import {
-  captureAjaxError,
-  removeCaptureAjaxError,
-} from './network/captureAjaxError'
-import {
-  captureFetchError,
-  removeCaptureFetchError,
-} from './network/captureFetchError'
-import { captureWebSocketError } from './network/captureWebSocketError'
-import {
-  captureUncaughtError,
-  removeCaptureUncaughtError,
-} from './script/captureUncaughtError'
+import { getGlobal } from "@ohbug/utils";
+
+import { replaceAddEventListener } from "../replaceAddEventListener";
+import { captureClick, removeCaptureClick } from "./action/captureClick";
+import { captureUrlChange, removeCaptureUrlChange } from "./action/captureUrlChange";
+import { captureConsole, removeCaptureConsole } from "./console/captureConsole";
+import { captureAjaxError, removeCaptureAjaxError } from "./network/captureAjaxError";
+import { captureFetchError, removeCaptureFetchError } from "./network/captureFetchError";
+import { captureWebSocketError } from "./network/captureWebSocketError";
+import { captureUncaughtError, removeCaptureUncaughtError } from "./script/captureUncaughtError";
 import {
   captureUnhandledrejectionError,
   removeCaptureUnhandledrejectionError,
-} from './script/captureUnhandledrejectionError'
+} from "./script/captureUnhandledrejectionError";
 
 export function captureAction() {
-  captureUrlChange()
-  captureClick()
+  captureUrlChange();
+  captureClick();
 }
 export function removeCaptureAction() {
-  removeCaptureUrlChange()
-  removeCaptureClick()
+  removeCaptureUrlChange();
+  removeCaptureClick();
 }
 
-export { captureConsole, removeCaptureConsole }
+export { captureConsole, removeCaptureConsole };
 
 export function captureNetwork() {
-  captureAjaxError()
-  captureFetchError()
-  captureWebSocketError()
+  captureAjaxError();
+  captureFetchError();
+  captureWebSocketError();
 }
 export function removeCaptureNetwork() {
-  removeCaptureAjaxError()
-  removeCaptureFetchError()
+  removeCaptureAjaxError();
+  removeCaptureFetchError();
 }
 
 export function captureScript() {
-  const global = getGlobal<Window>()
-  if (!global.addEventListener) return
+  const global = getGlobal<Window>();
+  if (!global.addEventListener) return;
 
-  captureUncaughtError()
-  captureUnhandledrejectionError()
+  captureUncaughtError();
+  captureUnhandledrejectionError();
 }
 export function removeCaptureScript() {
-  removeCaptureUncaughtError()
-  removeCaptureUnhandledrejectionError()
+  removeCaptureUncaughtError();
+  removeCaptureUnhandledrejectionError();
 }
 
 export function handleCapture() {
-  replaceAddEventListener()
-  captureScript()
-  captureNetwork()
-  captureAction()
-  captureConsole()
+  replaceAddEventListener();
+  captureScript();
+  captureNetwork();
+  captureAction();
+  captureConsole();
 }

@@ -1,1 +1,1 @@
-export type OhbugMetadata = Record<string, any>
+export type OhbugMetadata = Record<string, any>;

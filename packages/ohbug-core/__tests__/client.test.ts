@@ -1,291 +1,274 @@
-import { describe, expect, test, vi } from 'vitest'
-import type { OhbugMetadata, OhbugUser } from '@ohbug/types'
-import { isObject, isPromise } from '@ohbug/utils'
+import type { OhbugMetadata, OhbugUser } from "@ohbug/types";
+import { isObject, isPromise } from "@ohbug/utils";
+import { describe, expect, test, vi } from "vitest";
 
-import { Client } from '../src/client'
-import { defineExtension } from '../src/extension'
-import { isEvent } from '../src/event'
-import { Action } from '../src/action'
-import { apiKey, getValues } from './utils'
+import { Action } from "../src/action";
+import { Client } from "../src/client";
+import { isEvent } from "../src/event";
+import { defineExtension } from "../src/extension";
+import { apiKey, getValues } from "./utils";
 
-describe('@ohbug/core/client', () => {
-  describe('constructor', () => {
+describe("@ohbug/core/client", () => {
+  describe("constructor", () => {
     const logger = {
       log: vi.fn(),
       warn: vi.fn(),
       info: vi.fn(),
       error: vi.fn(),
-    }
-    test('an exception should be thrown when entering wrong parameter', () => {
+    };
+    test("an exception should be thrown when entering wrong parameter", () => {
       // @ts-expect-error no apiKey
-      expect(() => new Client()).toThrow()
-      const client = new Client(getValues({ apiKey: '', logger }))
-      expect(client).toBeTruthy()
-      expect(logger.warn).toBeCalledTimes(1)
-    })
-  })
+      expect(() => new Client()).toThrow();
+      const client = new Client(getValues({ apiKey: "", logger }));
+      expect(client).toBeTruthy();
+      expect(logger.warn).toBeCalledTimes(1);
+    });
+  });
 
-  describe('use()', () => {
-    test('should be support load extensions', () => {
-      const client = new Client(getValues())
+  describe("use()", () => {
+    test("should be support load extensions", () => {
+      const client = new Client(getValues());
       const extension = defineExtension({
-        name: 'test_extension',
+        name: "test_extension",
         onSetup: (_client) => {
-          expect(_client).toEqual(client)
+          expect(_client).toEqual(client);
         },
-      })
-      client.use(extension)
-      expect(client.__extensions).toEqual([extension])
-    })
-  })
+      });
+      client.use(extension);
+      expect(client.__extensions).toEqual([extension]);
+    });
+  });
 
-  describe('createEvent()', () => {
-    test('should be get an event', () => {
-      const client = new Client(getValues())
+  describe("createEvent()", () => {
+    test("should be get an event", () => {
+      const client = new Client(getValues());
       const event = client.createEvent({
-        category: 'error',
-        type: 'exception',
-        detail: 'should be get an event',
-      })
-      expect(isEvent(event)).toBe(true)
-      expect(event).toBeTruthy()
-      expect(isObject(event)).toBe(true)
-    })
+        category: "error",
+        type: "exception",
+        detail: "should be get an event",
+      });
+      expect(isEvent(event)).toBe(true);
+      expect(event).toBeTruthy();
+      expect(isObject(event)).toBe(true);
+    });
 
-    test('should be trigger all onEvent hooks', () => {
+    test("should be trigger all onEvent hooks", () => {
       const hooks = {
-        clientOnEvent: vi.fn(e => e),
-        extensionOnEvent: vi.fn(e => e),
-      }
-      const client = new Client(getValues({ apiKey, onEvent: hooks.clientOnEvent }))
+        clientOnEvent: vi.fn((e) => e),
+        extensionOnEvent: vi.fn((e) => e),
+      };
+      const client = new Client(getValues({ apiKey, onEvent: hooks.clientOnEvent }));
       const extension = defineExtension({
-        name: 'test_extension',
+        name: "test_extension",
         onEvent: hooks.extensionOnEvent,
-      })
-      client.use(extension)
+      });
+      client.use(extension);
 
       client.createEvent({
-        category: 'error',
-        type: 'exception',
-        detail: 'should be trigger all onEvent hooks',
-      })
+        category: "error",
+        type: "exception",
+        detail: "should be trigger all onEvent hooks",
+      });
 
-      expect(hooks.clientOnEvent).toBeCalledTimes(1)
-      expect(hooks.extensionOnEvent).toBeCalledTimes(1)
-    })
-  })
+      expect(hooks.clientOnEvent).toBeCalledTimes(1);
+      expect(hooks.extensionOnEvent).toBeCalledTimes(1);
+    });
+  });
 
-  describe('notify()', () => {
-    test('should be return a promise', () => {
-      const client = new Client(getValues())
-      const result = client.notify('should be return a promise')
-      expect(isPromise(result)).toBe(true)
-    })
+  describe("notify()", () => {
+    test("should be return a promise", () => {
+      const client = new Client(getValues());
+      const result = client.notify("should be return a promise");
+      expect(isPromise(result)).toBe(true);
+    });
 
-    test('should be called beforeNotify', () => {
-      const beforeNotify = vi.fn()
-      const client = new Client(getValues())
-      client.notify('should be package events', beforeNotify)
-      expect(beforeNotify).toBeCalledTimes(1)
-    })
+    test("should be called beforeNotify", () => {
+      const beforeNotify = vi.fn();
+      const client = new Client(getValues());
+      client.notify("should be package events", beforeNotify);
+      expect(beforeNotify).toBeCalledTimes(1);
+    });
 
-    test('should be package events', () => {
-      const client = new Client(getValues())
-      client.notify('should be package events', (event) => {
-        expect(isEvent(event)).toBe(true)
-        return event
-      })
-    })
+    test("should be package events", () => {
+      const client = new Client(getValues());
+      client.notify("should be package events", (event) => {
+        expect(isEvent(event)).toBe(true);
+        return event;
+      });
+    });
 
-    test('should be trigger all onNotify hooks', async() => {
+    test("should be trigger all onNotify hooks", async () => {
       const hooks = {
         clientNotified: vi.fn(),
         extensionNotified: vi.fn(),
-      }
-      const client = new Client(getValues({ apiKey, onNotify: hooks.clientNotified }))
+      };
+      const client = new Client(getValues({ apiKey, onNotify: hooks.clientNotified }));
       const extension = defineExtension({
-        name: 'test_extension',
+        name: "test_extension",
         onNotify: hooks.extensionNotified,
-      })
-      client.use(extension)
+      });
+      client.use(extension);
 
       const event = client.createEvent({
-        category: 'error',
-        type: 'exception',
-        detail: 'should be trigger all onNotify hooks',
-      })
-      await client.notify(event)
+        category: "error",
+        type: "exception",
+        detail: "should be trigger all onNotify hooks",
+      });
+      await client.notify(event);
 
-      expect(hooks.clientNotified).toBeCalledTimes(1)
-      expect(hooks.extensionNotified).toBeCalledTimes(1)
-    })
-  })
+      expect(hooks.clientNotified).toBeCalledTimes(1);
+      expect(hooks.extensionNotified).toBeCalledTimes(1);
+    });
+  });
 
-  describe('addAction()', () => {
-    test('action should be added to actions correctly', () => {
-      const client = new Client(getValues())
-      const now = new Date().toISOString()
+  describe("addAction()", () => {
+    test("action should be added to actions correctly", () => {
+      const client = new Client(getValues());
+      const now = new Date().toISOString();
       const action = {
-        message: 'action should be added to actions correctly',
+        message: "action should be added to actions correctly",
         data: { a: 1 },
-        type: 'test',
+        type: "test",
         timestamp: now,
-      }
-      expect(client.__actions.length).toBe(0)
-      client.addAction(
-        action.message,
-        action.data,
-        action.type,
-        action.timestamp,
-      )
-      expect(client.__actions.length).toBe(1)
-      expect(client.__actions[0]).toEqual(new Action(action.message, action.data, action.type, action.timestamp))
-    })
+      };
+      expect(client.__actions.length).toBe(0);
+      client.addAction(action.message, action.data, action.type, action.timestamp);
+      expect(client.__actions.length).toBe(1);
+      expect(client.__actions[0]).toEqual(
+        new Action(action.message, action.data, action.type, action.timestamp),
+      );
+    });
 
-    test('once the threshold is reached, delete the oldest actions', () => {
-      const maxActions = 5
-      const client = new Client(getValues({ apiKey, maxActions }))
-      const now = new Date().toISOString()
+    test("once the threshold is reached, delete the oldest actions", () => {
+      const maxActions = 5;
+      const client = new Client(getValues({ apiKey, maxActions }));
+      const now = new Date().toISOString();
       const action = {
-        message: 'once the threshold is reached, delete the oldest actions',
-        type: 'test',
+        message: "once the threshold is reached, delete the oldest actions",
+        type: "test",
         timestamp: now,
-      }
-      expect(client.__actions.length).toBe(0)
+      };
+      expect(client.__actions.length).toBe(0);
       for (let i = 1; i <= maxActions; i += 1) {
-        client.addAction(
-          action.message,
-          { index: i },
-          action.type,
-          action.timestamp,
-        )
+        client.addAction(action.message, { index: i }, action.type, action.timestamp);
       }
-      expect(client.__actions.length).toBe(maxActions)
-      expect(client.__actions[client.__actions.length - 1])
-        .toEqual(new Action(action.message, { index: 5 }, action.type, action.timestamp))
-      client.addAction(
-        action.message,
-        { index: 6 },
-        action.type,
-        action.timestamp,
-      )
-      expect(client.__actions[0]).toEqual(new Action(action.message, { index: 2 }, action.type, action.timestamp))
-      expect(client.__actions[client.__actions.length - 1])
-        .toEqual(new Action(action.message, { index: 6 }, action.type, action.timestamp))
-    })
+      expect(client.__actions.length).toBe(maxActions);
+      expect(client.__actions[client.__actions.length - 1]).toEqual(
+        new Action(action.message, { index: 5 }, action.type, action.timestamp),
+      );
+      client.addAction(action.message, { index: 6 }, action.type, action.timestamp);
+      expect(client.__actions[0]).toEqual(
+        new Action(action.message, { index: 2 }, action.type, action.timestamp),
+      );
+      expect(client.__actions[client.__actions.length - 1]).toEqual(
+        new Action(action.message, { index: 6 }, action.type, action.timestamp),
+      );
+    });
 
-    test('maxActions support settings to 0', () => {
-      const maxActions = 0
-      const client = new Client(getValues({ apiKey, maxActions }))
+    test("maxActions support settings to 0", () => {
+      const maxActions = 0;
+      const client = new Client(getValues({ apiKey, maxActions }));
 
-      const now = new Date().toISOString()
+      const now = new Date().toISOString();
       const action = {
-        message: 'once the threshold is reached, delete the oldest actions',
-        type: 'test',
+        message: "once the threshold is reached, delete the oldest actions",
+        type: "test",
         timestamp: now,
-      }
-      expect(client.__actions.length).toBe(0)
-      client.addAction(
-        action.message,
-        { index: 1 },
-        action.type,
-        action.timestamp,
-      )
-      expect(client.__actions.length).toBe(0)
-      client.addAction(
-        action.message,
-        { index: 2 },
-        action.type,
-        action.timestamp,
-      )
-      expect(client.__actions.length).toBe(0)
-    })
-  })
+      };
+      expect(client.__actions.length).toBe(0);
+      client.addAction(action.message, { index: 1 }, action.type, action.timestamp);
+      expect(client.__actions.length).toBe(0);
+      client.addAction(action.message, { index: 2 }, action.type, action.timestamp);
+      expect(client.__actions.length).toBe(0);
+    });
+  });
 
-  describe('user', () => {
-    test('should be get the user information correctly', () => {
+  describe("user", () => {
+    test("should be get the user information correctly", () => {
       const user: OhbugUser = {
         id: 1,
-        name: 'yueban',
-        email: 'yueban@ohbug.net',
-      }
-      const client = new Client(getValues({ apiKey, user }))
-      expect(client.getUser()).toEqual(user)
-    })
+        name: "yueban",
+        email: "yueban@ohbug.net",
+      };
+      const client = new Client(getValues({ apiKey, user }));
+      expect(client.getUser()).toEqual(user);
+    });
 
-    test('should be set the user information correctly', () => {
+    test("should be set the user information correctly", () => {
       const user: OhbugUser = {
         id: 1,
-        name: 'yueban',
-        email: 'yueban@ohbug.net',
-      }
+        name: "yueban",
+        email: "yueban@ohbug.net",
+      };
       const user2: OhbugUser = {
         id: 2,
-        name: 'yueban2',
-        email: 'yueban@ohbug.net',
-      }
-      const client = new Client(getValues({ apiKey, user }))
-      expect(client.setUser(user2)).toEqual(user2)
-      expect(client.getUser()).toEqual(user2)
-    })
-  })
+        name: "yueban2",
+        email: "yueban@ohbug.net",
+      };
+      const client = new Client(getValues({ apiKey, user }));
+      expect(client.setUser(user2)).toEqual(user2);
+      expect(client.getUser()).toEqual(user2);
+    });
+  });
 
-  describe('metadata', () => {
-    test('should be set the metadata correctly', () => {
+  describe("metadata", () => {
+    test("should be set the metadata correctly", () => {
       const metadata: OhbugMetadata = {
         organization: {
-          name: 'ohbug',
-          platform: 'test',
+          name: "ohbug",
+          platform: "test",
         },
-      }
-      const client = new Client(getValues({
-        apiKey,
-        metadata,
-      }))
-      expect(client.__metadata.organization).toEqual(metadata.organization)
-    })
+      };
+      const client = new Client(
+        getValues({
+          apiKey,
+          metadata,
+        }),
+      );
+      expect(client.__metadata.organization).toEqual(metadata.organization);
+    });
 
-    test('should be add the metadata correctly', () => {
+    test("should be add the metadata correctly", () => {
       const metadata: OhbugMetadata = {
         organization: {
-          name: 'ohbug',
-          platform: 'test',
+          name: "ohbug",
+          platform: "test",
         },
-      }
-      const client = new Client(getValues())
-      client.addMetadata('organization', {
-        name: 'ohbug',
-        platform: 'test',
-      })
-      expect(client.__metadata.organization).toEqual(metadata.organization)
-    })
+      };
+      const client = new Client(getValues());
+      client.addMetadata("organization", {
+        name: "ohbug",
+        platform: "test",
+      });
+      expect(client.__metadata.organization).toEqual(metadata.organization);
+    });
 
-    test('should be get the metadata correctly', () => {
+    test("should be get the metadata correctly", () => {
       const metadata: OhbugMetadata = {
         organization: {
-          name: 'ohbug',
-          platform: 'test',
+          name: "ohbug",
+          platform: "test",
         },
-      }
-      const client = new Client(getValues())
-      client.addMetadata('organization', {
-        name: 'ohbug',
-        platform: 'test',
-      })
-      expect(client.getMetadata('organization')).toEqual(metadata.organization)
-    })
+      };
+      const client = new Client(getValues());
+      client.addMetadata("organization", {
+        name: "ohbug",
+        platform: "test",
+      });
+      expect(client.getMetadata("organization")).toEqual(metadata.organization);
+    });
 
-    test('should be delete the metadata correctly', () => {
+    test("should be delete the metadata correctly", () => {
       const metadata: OhbugMetadata = {
         organization: {
-          name: 'ohbug',
-          platform: 'test',
+          name: "ohbug",
+          platform: "test",
         },
-      }
-      const client = new Client(getValues({ apiKey, metadata }))
-      client.deleteMetadata('organization')
-      expect(client.getMetadata('organization')).toBeUndefined()
-      expect(Object.keys(client.__metadata).length).toBe(0)
-    })
-  })
-})
+      };
+      const client = new Client(getValues({ apiKey, metadata }));
+      client.deleteMetadata("organization");
+      expect(client.getMetadata("organization")).toBeUndefined();
+      expect(Object.keys(client.__metadata).length).toBe(0);
+    });
+  });
+});

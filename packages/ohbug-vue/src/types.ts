@@ -1,7 +1,7 @@
 export interface Vue {
   config: {
-    errorHandler?: any
-    warnHandler?: any
-    silent?: boolean
-  }
+    errorHandler?: any;
+    warnHandler?: any;
+    silent?: boolean;
+  };
 }

@@ -1,14 +1,14 @@
-import { getOhbugObject } from '@ohbug/utils'
-import type { OhbugBaseDetail } from '@ohbug/types'
-import { EventTypes } from '@ohbug/core'
-import ErrorStackParser from 'error-stack-parser'
+import { EventTypes } from "@ohbug/core";
+import type { OhbugBaseDetail } from "@ohbug/types";
+import { getOhbugObject } from "@ohbug/utils";
+import ErrorStackParser from "error-stack-parser";
 
 export interface UnknownErrorDetail extends OhbugBaseDetail {
-  name: string
-  filename?: string
-  lineno?: number
-  colno?: number
-  stack: string
+  name: string;
+  filename?: string;
+  lineno?: number;
+  colno?: number;
+  stack: string;
 }
 
 export function unknownErrorHandler(e: any) {
@@ -19,25 +19,23 @@ export function unknownErrorHandler(e: any) {
     lineno: e?.lineno,
     colno: e?.colno,
     stack: e?.error?.stack,
-  }
+  };
   if (e.error) {
     try {
-      const stackFrame = ErrorStackParser.parse(e.error)?.[0]
+      const stackFrame = ErrorStackParser.parse(e.error)?.[0];
       if (stackFrame) {
-        detail.filename = stackFrame.fileName
-        detail.lineno = stackFrame.lineNumber
-        detail.colno = stackFrame.columnNumber
+        detail.filename = stackFrame.fileName;
+        detail.lineno = stackFrame.lineNumber;
+        detail.colno = stackFrame.columnNumber;
       }
-    }
-    catch (_) {
-    }
+    } catch (_) {}
   }
 
-  const { client } = getOhbugObject<Window>()
+  const { client } = getOhbugObject<Window>();
   const event = client.createEvent<UnknownErrorDetail>({
-    category: 'error',
+    category: "error",
     type: EventTypes.UNKNOWN_ERROR,
     detail,
-  })
-  client.notify(event)
+  });
+  client.notify(event);
 }

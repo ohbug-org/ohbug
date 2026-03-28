@@ -48,7 +48,6 @@ see [extensions](https://github.com/ohbug-org/extensions)
 
 - [ohbug-dashboard](https://github.com/ohbug-org/ohbug-dashboard): 控制台应用，基于 nestjs 和 nextjs。
 
-
 ## Contributors
 
 This project exists thanks to all the people who contribute.

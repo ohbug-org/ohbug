@@ -1,7 +1,5 @@
 {
   "private": true,
-  "type": "module",
-  "packageManager": "pnpm@10.32.1",
   "homepage": "https://github.com/ohbug-org/ohbug#readme",
   "bugs": {
     "url": "https://github.com/ohbug-org/ohbug/issues"
@@ -16,6 +14,7 @@
     "url": "git+https://github.com/ohbug-org/ohbug.git"
   },
   "funding": "https://github.com/sponsors/xinyao27",
+  "type": "module",
   "scripts": {
     "version": "changeset && changeset version",
     "publish": "pnpm run build && changeset publish",
@@ -29,13 +28,14 @@
     "prepare": "vp config"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.26.2",
+    "@changesets/cli": "^2.30.0",
     "jsdom": "^29.0.1",
     "taze": "latest",
-    "typescript": "~5.9.3",
+    "typescript": "~6.0.2",
     "vite": "npm:@voidzero-dev/vite-plus-core@latest",
     "vite-plus": "latest"
   },
+  "packageManager": "pnpm@10.33.0",
   "pnpm": {
     "overrides": {
       "vite": "npm:@voidzero-dev/vite-plus-core@latest",

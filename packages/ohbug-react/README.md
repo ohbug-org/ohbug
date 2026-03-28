@@ -14,11 +14,11 @@ pnpm instal @ohbug/browser @ohbug/react
 ## Usage
 
 ```jsx
-import React from 'react'
-import Ohbug from '@ohbug/browser'
-import { OhbugErrorBoundary } from '@ohbug/react'
+import React from "react";
+import Ohbug from "@ohbug/browser";
+import { OhbugErrorBoundary } from "@ohbug/react";
 
-const client = Ohbug.setup({ apiKey: 'YOUR_API_KEY' })
+const client = Ohbug.setup({ apiKey: "YOUR_API_KEY" });
 
 function App() {
   return (
@@ -27,6 +27,6 @@ function App() {
         <HelloWorld />
       </OhbugErrorBoundary>
     </div>
-  )
+  );
 }
 ```

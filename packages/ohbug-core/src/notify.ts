@@ -1,17 +1,14 @@
-import type { OhbugClient, OhbugEventWithMethods } from '@ohbug/types'
-import { isFunction } from '@ohbug/utils'
+import type { OhbugClient, OhbugEventWithMethods } from "@ohbug/types";
+import { isFunction } from "@ohbug/utils";
 
-function handleNotified<D>(
-  event: OhbugEventWithMethods<D>,
-  client: OhbugClient,
-) {
+function handleNotified<D>(event: OhbugEventWithMethods<D>, client: OhbugClient) {
   const funcs = [
     client.__config.onNotify,
     ...client.__extensions
       .filter(({ onNotify }) => isFunction(onNotify))
       .map(({ onNotify }) => onNotify),
-  ]
-  funcs.forEach(func => func?.(event, client))
+  ];
+  funcs.forEach((func) => func?.(event, client));
 }
 
 /**
@@ -25,14 +22,13 @@ export async function notify<D>(
   client: OhbugClient,
 ): Promise<any> {
   try {
-    let result = null
+    let result = null;
     if (event) {
-      result = await client.__notifier(event)
-      handleNotified(event, client)
+      result = await client.__notifier(event);
+      handleNotified(event, client);
     }
-    return result
-  }
-  catch (e) {
-    client.__logger.error(e)
+    return result;
+  } catch (e) {
+    client.__logger.error(e);
   }
 }

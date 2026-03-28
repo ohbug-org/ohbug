@@ -2,20 +2,23 @@
   "name": "@ohbug/types",
   "version": "2.2.1",
   "description": "Types for all Ohbug SDKs",
+  "homepage": "https://github.com/ohbug-org/ohbug#readme",
+  "bugs": {
+    "url": "https://github.com/ohbug-org/ohbug/issues"
+  },
   "license": "Apache-2.0",
   "author": {
     "name": "xinyao",
     "email": "hi@xinyao.me"
-  },
-  "homepage": "https://github.com/ohbug-org/ohbug#readme",
-  "bugs": {
-    "url": "https://github.com/ohbug-org/ohbug/issues"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ohbug-org/ohbug.git"
   },
   "funding": "https://github.com/sponsors/xinyao27",
+  "files": [
+    "src"
+  ],
   "type": "module",
   "types": "src/index.d.ts",
   "exports": {
@@ -23,9 +26,6 @@
       "types": "./src/index.d.ts"
     }
   },
-  "files": [
-    "src"
-  ],
   "publishConfig": {
     "access": "public"
   }

@@ -1,9 +1,9 @@
-import type { OhbugClient } from './client'
+import type { OhbugClient } from "./client";
 
 export interface OhbugObject {
-  client: OhbugClient
+  client: OhbugClient;
 }
 
 export interface OhbugGlobal {
-  __OHBUG__: OhbugObject
+  __OHBUG__: OhbugObject;
 }

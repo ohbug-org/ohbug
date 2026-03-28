@@ -1,2 +1,2 @@
-export type { AngularErrorDetail } from './createProvider'
-export { default } from './createProvider'
+export type { AngularErrorDetail } from "./createProvider";
+export { default } from "./createProvider";

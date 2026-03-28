@@ -2,47 +2,44 @@
 const groupParamsByKey = (params: URLSearchParams) =>
   // @ts-expect-error worked
   [...params.entries()].reduce<Record<string, any>>((acc, tuple) => {
-  // getting the key and value from each tuple
-    const [key, val] = tuple
+    // getting the key and value from each tuple
+    const [key, val] = tuple;
     // eslint-disable-next-line no-prototype-builtins
     if (acc.hasOwnProperty(key)) {
-    // if the current key is already an array, we'll add the value to it
+      // if the current key is already an array, we'll add the value to it
       if (Array.isArray(acc[key])) {
-        acc[key] = [...acc[key], val]
+        acc[key] = [...acc[key], val];
+      } else {
+        // if it's not an array, but contains a value, we'll convert it into an array
+        // and add the current value to it
+        acc[key] = [acc[key], val];
       }
-      else {
-      // if it's not an array, but contains a value, we'll convert it into an array
-      // and add the current value to it
-        acc[key] = [acc[key], val]
-      }
+    } else {
+      // plain assignment if no special case is present
+      acc[key] = val;
     }
-    else {
-    // plain assignment if no special case is present
-      acc[key] = val
-    }
-    return acc
-  }, {})
+    return acc;
+  }, {});
 
 export function getParams(data: string) {
   try {
-    const location = new URL(data)
-    const url = location.origin + location.pathname
-    const searchParams = location.search ? location.searchParams : undefined
-    const params = searchParams ? JSON.stringify(groupParamsByKey(searchParams)) : undefined
+    const location = new URL(data);
+    const url = location.origin + location.pathname;
+    const searchParams = location.search ? location.searchParams : undefined;
+    const params = searchParams ? JSON.stringify(groupParamsByKey(searchParams)) : undefined;
     return {
       url,
       params,
-    }
-  }
-  catch (_) {
-    const location = data.split('?')
-    const url = location?.[0]
-    const search = location?.[1]
-    const searchParams = search ? new URLSearchParams(search) : undefined
-    const params = searchParams ? JSON.stringify(groupParamsByKey(searchParams)) : undefined
+    };
+  } catch (_) {
+    const location = data.split("?");
+    const url = location?.[0];
+    const search = location?.[1];
+    const searchParams = search ? new URLSearchParams(search) : undefined;
+    const params = searchParams ? JSON.stringify(groupParamsByKey(searchParams)) : undefined;
     return {
       url,
       params,
-    }
+    };
   }
 }

@@ -1,28 +1,28 @@
-import { getGlobal } from '@ohbug/utils'
-import { EventTypes } from '@ohbug/core'
+import { EventTypes } from "@ohbug/core";
+import { getGlobal } from "@ohbug/utils";
 
-import { networkDispatcher } from '../../dispatch'
-import type { WebsocketErrorDetail } from '../../handle'
-import { getParams } from './getParams'
+import { networkDispatcher } from "../../dispatch";
+import type { WebsocketErrorDetail } from "../../handle";
+import { getParams } from "./getParams";
 
-const global = getGlobal<Window>()
+const global = getGlobal<Window>();
 
 /**
  * capture WEBSOCKET_ERROR
  */
 export function captureWebSocketError() {
-  if (!('WebSocket' in global)) return
+  if (!("WebSocket" in global)) return;
 
-  const wsProto = WebSocket?.prototype
+  const wsProto = WebSocket?.prototype;
 
-  const backup = Object.getOwnPropertyDescriptor(wsProto, 'onerror')
+  const backup = Object.getOwnPropertyDescriptor(wsProto, "onerror");
 
   // eslint-disable-next-line accessor-pairs
-  Object.defineProperty(wsProto, 'onerror', {
+  Object.defineProperty(wsProto, "onerror", {
     set() {
       // eslint-disable-next-line prefer-rest-params
-      const args = arguments
-      const arg = args[0]
+      const args = arguments;
+      const arg = args[0];
       backup?.set?.call(this, function call(e: any) {
         const {
           target: {
@@ -34,8 +34,8 @@ export function captureWebSocketError() {
             bufferedAmount,
           },
           timeStamp,
-        } = e
-        const { url, params } = getParams(originalUrl)
+        } = e;
+        const { url, params } = getParams(originalUrl);
         const detail: WebsocketErrorDetail = {
           url,
           params,
@@ -45,10 +45,10 @@ export function captureWebSocketError() {
           extensions,
           binaryType,
           bufferedAmount,
-        }
-        networkDispatcher(EventTypes.WEBSOCKET_ERROR, detail)
-        arg.apply(this, args)
-      })
+        };
+        networkDispatcher(EventTypes.WEBSOCKET_ERROR, detail);
+        arg.apply(this, args);
+      });
     },
-  })
+  });
 }

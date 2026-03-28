@@ -1,1 +1,1 @@
-export * from './OhbugErrorBoundary'
+export * from "./OhbugErrorBoundary";

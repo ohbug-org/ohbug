@@ -1,29 +1,28 @@
-import { EventTypes } from '@ohbug/core'
+import { EventTypes } from "@ohbug/core";
 
 import {
   ajaxErrorHandler,
   fetchErrorHandler,
   unknownErrorHandler,
   websocketErrorHandler,
-} from '../handle'
+} from "../handle";
 
 export function networkDispatcher(type: string, detail: any) {
   try {
     switch (type) {
       case EventTypes.AJAX_ERROR:
-        ajaxErrorHandler(detail)
-        break
+        ajaxErrorHandler(detail);
+        break;
       case EventTypes.FETCH_ERROR:
-        fetchErrorHandler(detail)
-        break
+        fetchErrorHandler(detail);
+        break;
       case EventTypes.WEBSOCKET_ERROR:
-        websocketErrorHandler(detail)
-        break
+        websocketErrorHandler(detail);
+        break;
       default:
-        break
+        break;
     }
-  }
-  catch (error) {
-    unknownErrorHandler(error)
+  } catch (error) {
+    unknownErrorHandler(error);
   }
 }

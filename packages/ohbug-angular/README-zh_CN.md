@@ -15,11 +15,11 @@ pnpm instal @ohbug/browser @ohbug/angular
 
 ```jsx
 // app.module.ts
-import Ohbug from '@ohbug/browser'
-import { ErrorHandler } from '@angular/core'
-import OhbugAngular from '@ohbug/angular'
+import Ohbug from "@ohbug/browser";
+import { ErrorHandler } from "@angular/core";
+import OhbugAngular from "@ohbug/angular";
 
-const client = Ohbug.setup({ apiKey: 'YOUR_API_KEY' })
+const client = Ohbug.setup({ apiKey: "YOUR_API_KEY" });
 
 @NgModule({
   // others

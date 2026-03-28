@@ -1,11 +1,12 @@
-import { defineExtension } from '@ohbug/core'
-import { handleCapture } from './capture'
-import { handleDestroy } from './destroy'
+import { defineExtension } from "@ohbug/core";
+
+import { handleCapture } from "./capture";
+import { handleDestroy } from "./destroy";
 
 export const extension = defineExtension({
-  name: 'OhbugBrowser',
+  name: "OhbugBrowser",
   onSetup: () => {
-    handleCapture()
-    handleDestroy()
+    handleCapture();
+    handleDestroy();
   },
-})
+});
