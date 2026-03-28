@@ -131,4 +131,85 @@ describe("@ohbug/vue/install", () => {
 
     errorSpy.mockRestore();
   });
+
+  test("errorHandler extracts Vue 3 <script setup> component info", () => {
+    const client = createMockClient();
+    const createEventSpy = vi.spyOn(client, "createEvent");
+    const vue = createMockVue();
+
+    install(client, vue);
+
+    const error = new Error("Vue 3 error");
+    // Simulate Vue 3 instance with <script setup> component
+    const vue3Root = {} as any;
+    const vue3Instance = {
+      $: {
+        type: { __name: "MySetupComponent", __file: "src/MySetupComponent.vue" },
+        root: vue3Root,
+      },
+      $options: {},
+      $props: { id: 42, title: "hello" },
+    };
+
+    const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+    vue.config.errorHandler(error, vue3Instance, "setup");
+
+    const eventArg = createEventSpy.mock.calls[0][0];
+    const detail = eventArg.detail as any;
+    expect(detail.component).toBe("MySetupComponent");
+    expect(detail.file).toBe("src/MySetupComponent.vue");
+    expect(detail.props).toEqual({ id: 42, title: "hello" });
+
+    errorSpy.mockRestore();
+  });
+
+  test("errorHandler identifies Vue 3 root component", () => {
+    const client = createMockClient();
+    const createEventSpy = vi.spyOn(client, "createEvent");
+    const vue = createMockVue();
+
+    install(client, vue);
+
+    const error = new Error("Vue 3 root error");
+    // Simulate Vue 3 root instance: instance.$.root === instance.$
+    const internal = { type: {}, root: null as any };
+    internal.root = internal; // self-referencing = root
+    const vue3RootInstance = { $: internal, $options: {}, $props: {} };
+
+    const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+    vue.config.errorHandler(error, vue3RootInstance, "mounted");
+
+    const eventArg = createEventSpy.mock.calls[0][0];
+    expect((eventArg.detail as any).component).toBe("Root");
+
+    errorSpy.mockRestore();
+  });
+
+  test("errorHandler falls back to Vue 3 defineComponent name", () => {
+    const client = createMockClient();
+    const createEventSpy = vi.spyOn(client, "createEvent");
+    const vue = createMockVue();
+
+    install(client, vue);
+
+    const error = new Error("Vue 3 defineComponent error");
+    // Simulate Vue 3 instance with defineComponent({ name: '...' })
+    const vue3Root = {} as any;
+    const vue3Instance = {
+      $: {
+        type: { name: "DefinedComponent" },
+        root: vue3Root,
+      },
+      $options: {},
+      $props: {},
+    };
+
+    const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+    vue.config.errorHandler(error, vue3Instance, "render");
+
+    const eventArg = createEventSpy.mock.calls[0][0];
+    expect((eventArg.detail as any).component).toBe("DefinedComponent");
+
+    errorSpy.mockRestore();
+  });
 });

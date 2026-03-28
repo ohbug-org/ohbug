@@ -12,19 +12,26 @@ export interface VueErrorDetail extends OhbugBaseDetail {
   props?: Record<string, any>;
 }
 
-const getComponent = (instance: any) => {
-  if (instance?.$root === instance) {
+const getComponent = (instance: any): { component?: string; file?: string } => {
+  if (!instance) return {};
+
+  // Vue 2: instance.$root === instance
+  // Vue 3: instance.$ exists and instance.$.root === instance.$
+  if (instance.$root === instance || (instance.$ && instance.$.root === instance.$)) {
     return { component: "Root" };
   }
 
-  const options = instance?.$options;
-  const component = options?.name;
-  const file = options?.__file;
+  // Vue 3: instance.$.type holds the component definition
+  const type = instance.$?.type;
+  const options = instance.$options;
 
-  return {
-    component,
-    file,
-  };
+  // Priority: Vue 3 <script setup> __name > Vue 3 name > Vue 2 name
+  const component = type?.__name || type?.name || options?.name || undefined;
+
+  // Priority: Vue 3 __file > Vue 2 __file
+  const file = type?.__file || options?.__file || undefined;
+
+  return { component, file };
 };
 
 export function install(client: OhbugClient, Vue: Vue) {
@@ -40,7 +47,8 @@ export function install(client: OhbugClient, Vue: Vue) {
       errorInfo: info,
       component,
       file,
-      props: instance ? instance.$options.propsData : undefined,
+      // Vue 3 uses $props, Vue 2 uses $options.propsData
+      props: instance?.$props ?? instance?.$options?.propsData,
     };
     const event = client.createEvent<VueErrorDetail>({
       category: "error",

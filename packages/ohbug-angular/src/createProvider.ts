@@ -3,6 +3,7 @@ import { EventTypes } from "@ohbug/core";
 import type { OhbugBaseDetail, OhbugClient } from "@ohbug/types";
 
 export interface AngularErrorDetail extends OhbugBaseDetail {
+  name: string;
   stack?: string;
 }
 
@@ -16,6 +17,7 @@ function createProvider(
   class OhbugErrorHandler implements ErrorHandler {
     handleError(err: Error): void {
       const detail: AngularErrorDetail = {
+        name: err.name,
         message: err.message,
         stack: err.stack,
       };

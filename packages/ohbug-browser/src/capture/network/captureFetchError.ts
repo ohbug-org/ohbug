@@ -56,7 +56,10 @@ export function captureFetchError() {
                 data: conf && conf.body,
                 params,
               },
-              res: { status: 400 },
+              res: {
+                status: 0,
+                statusText: err.message,
+              },
             };
             networkDispatcher(EventTypes.FETCH_ERROR, detail);
             throw err;

@@ -49,16 +49,24 @@ describe("@ohbug/browser/capture/network/captureFetchError integration", () => {
     expect(fetchActions.length).toBeGreaterThan(0);
   });
 
-  test("intercepts fetch and dispatches error on rejection", async () => {
-    const networkError = new Error("Network error");
-    // mockRejectedValue for immediate rejection
+  test("intercepts fetch and dispatches error on rejection with status 0", async () => {
+    const networkError = new Error("Failed to fetch");
+    // mockRejectedValue for immediate rejection (e.g. DNS failure, offline)
     window.fetch = vi.fn().mockRejectedValue(networkError);
 
     captureFetchError();
+    const client = (window as any).__OHBUG__.client;
+    const notifySpy = vi.spyOn(client, "notify");
 
     await expect(
       window.fetch("http://example.com/api/fail", { method: "POST", body: "data" }),
-    ).rejects.toThrow("Network error");
+    ).rejects.toThrow("Failed to fetch");
+
+    // Verify the dispatched event detail uses status 0 (not 400) for network errors
+    expect(notifySpy).toHaveBeenCalledTimes(1);
+    const event = notifySpy.mock.calls[0][0];
+    expect((event as any).detail.res.status).toBe(0);
+    expect((event as any).detail.res.statusText).toBe("Failed to fetch");
   });
 
   test("handles fetch with status 0 (no status)", async () => {

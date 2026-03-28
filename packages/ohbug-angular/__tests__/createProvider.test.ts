@@ -41,8 +41,24 @@ describe("@ohbug/angular/createProvider", () => {
     const eventArg = createEventSpy.mock.calls[0][0];
     expect(eventArg.type).toBe("angular");
     expect(eventArg.category).toBe("error");
+    expect((eventArg.detail as any).name).toBe("Error");
     expect((eventArg.detail as any).message).toBe("Angular error");
     expect((eventArg.detail as any).stack).toBe(error.stack);
     expect(notifySpy).toHaveBeenCalledTimes(1);
+  });
+
+  test("handleError captures error name for typed errors", () => {
+    const client = createMockClient();
+    const createEventSpy = vi.spyOn(client, "createEvent");
+    const mockErrorHandler = {} as any;
+
+    const { useClass: OhbugErrorHandler } = createProvider(client, mockErrorHandler);
+    const handler = new OhbugErrorHandler();
+
+    const error = new TypeError("Cannot read properties of undefined");
+    handler.handleError(error);
+
+    const eventArg = createEventSpy.mock.calls[0][0];
+    expect((eventArg.detail as any).name).toBe("TypeError");
   });
 });
