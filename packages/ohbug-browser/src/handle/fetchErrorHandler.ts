@@ -22,5 +22,5 @@ export function fetchErrorHandler(detail: FetchErrorDetail) {
     type: EventTypes.FETCH_ERROR,
     detail,
   });
-  client.notify(event);
+  void client.notify(event);
 }

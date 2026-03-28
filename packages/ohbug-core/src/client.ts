@@ -127,7 +127,7 @@ export const Client: OhbugClientConstructor = class Client implements OhbugClien
   notify<D = any>(
     eventLike: any,
     beforeNotify?: (event: OhbugEventWithMethods<D> | null) => OhbugEventWithMethods<D> | null,
-  ): Promise<any | null> {
+  ): Promise<any> {
     let event: OhbugEventWithMethods<D> | null;
     if (Boolean(eventLike) && !isEvent(eventLike)) {
       event = this.createEvent(eventLike);

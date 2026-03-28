@@ -9,8 +9,8 @@ const global = getGlobal<Window>();
 const access = "XMLHttpRequest" in global;
 const xhrOriginal = access
   ? {
-      open: XMLHttpRequest.prototype.open,
-      send: XMLHttpRequest.prototype.send,
+      open: XMLHttpRequest.prototype.open.bind(XMLHttpRequest.prototype),
+      send: XMLHttpRequest.prototype.send.bind(XMLHttpRequest.prototype),
     }
   : {};
 
@@ -33,7 +33,7 @@ export function captureAjaxError() {
     xhrProto,
     "open",
     (origin) =>
-      function call(...args: any[]) {
+      function call(this: any, ...args: any[]) {
         const [method, url] = args;
         desc.method = method;
         desc.url = url;
@@ -45,8 +45,8 @@ export function captureAjaxError() {
     xhrProto,
     "send",
     (origin) =>
-      function call(...args: any[]) {
-        this.addEventListener("readystatechange", function handle() {
+      function call(this: any, ...args: any[]) {
+        this.addEventListener("readystatechange", function handle(this: any) {
           if (this.readyState === 4) {
             if (desc.url !== client.__config.endpoint) {
               const { url, params } = getParams(desc.url);

@@ -4,7 +4,7 @@ const global = getGlobal<Window>();
 const access = "addEventListener" in global;
 const EventTargetProto = EventTarget?.prototype;
 const EventTargetOriginal = access
-  ? { addEventListener: EventTarget.prototype.addEventListener }
+  ? { addEventListener: EventTarget.prototype.addEventListener.bind(EventTarget.prototype) }
   : {};
 
 export function replaceAddEventListener() {
@@ -12,14 +12,9 @@ export function replaceAddEventListener() {
     EventTargetProto,
     "addEventListener",
     (origin) =>
-      function call(type: string, listener: any, options: any) {
-        const wrappedListener = function (...args: any[]) {
-          // eslint-disable-next-line no-useless-catch
-          try {
-            return listener.apply(this, args);
-          } catch (err) {
-            throw err;
-          }
+      function call(this: any, type: string, listener: any, options: any) {
+        const wrappedListener = (...args: any[]) => {
+          return listener.apply(this, args);
         };
         return origin.call(this, type, wrappedListener, options);
       },

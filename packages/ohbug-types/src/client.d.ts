@@ -41,6 +41,7 @@ export interface OhbugClient {
   notify: <D = any>(
     eventLike: any,
     beforeNotify?: (event: OhbugEventWithMethods<D> | null) => OhbugEventWithMethods<D> | null,
+    // eslint-disable-next-line typescript-eslint/no-redundant-type-constituents
   ) => Promise<any | null>;
   addAction: (message: string, data: Record<string, any>, type: string, timestamp?: string) => void;
   getUser: () => OhbugUser | undefined;

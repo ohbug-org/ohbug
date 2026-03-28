@@ -5,7 +5,7 @@ import { client } from "./ohbug";
 
 const instance = axios.create({ timeout: 1000 });
 instance.interceptors.response.use(
-  () => {},
+  (response) => response,
   (error) => {
     return Promise.reject(error);
   },
@@ -17,7 +17,7 @@ async function createCustomEvent() {
     type: "custom",
     detail: "im custom log",
   });
-  client.notify(event);
+  void client.notify(event);
 }
 
 function Trigger() {
@@ -28,10 +28,13 @@ function Trigger() {
     xhr.send();
   }, []);
   const onClickAbnormalFetch = useCallback(() => {
-    fetch("http://a.com/b/c?foo=bar", { method: "POST", body: JSON.stringify({ foo2: "bar2" }) });
+    void fetch("http://a.com/b/c?foo=bar", {
+      method: "POST",
+      body: JSON.stringify({ foo2: "bar2" }),
+    });
   }, []);
   const onClickAbnormalAxios = useCallback(() => {
-    instance.post("http://a.com/b/c", { foo2: "bar2" });
+    void instance.post("http://a.com/b/c", { foo2: "bar2" });
   }, []);
   const onClickTriggerUnhandledrejection = useCallback(async () => {
     // eslint-disable-next-line promise/param-names
@@ -45,7 +48,7 @@ function Trigger() {
     obj.noObj.noField = "no field";
   }, []);
   const onClickCustomLog = useCallback(() => {
-    createCustomEvent();
+    void createCustomEvent();
   }, []);
   const [renderError, setRenderError] = useState(false);
   const onClickRenderError = useCallback(() => {

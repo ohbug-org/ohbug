@@ -1,6 +1,5 @@
 // https://stackoverflow.com/questions/8648892/how-to-convert-url-parameters-to-a-javascript-object
 const groupParamsByKey = (params: URLSearchParams) =>
-  // @ts-expect-error worked
   [...params.entries()].reduce<Record<string, any>>((acc, tuple) => {
     // getting the key and value from each tuple
     const [key, val] = tuple;
@@ -31,7 +30,7 @@ export function getParams(data: string) {
       url,
       params,
     };
-  } catch (_) {
+  } catch {
     const location = data.split("?");
     const url = location?.[0];
     const search = location?.[1];

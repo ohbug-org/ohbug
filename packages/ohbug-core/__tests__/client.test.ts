@@ -54,8 +54,8 @@ describe("@ohbug/core/client", () => {
 
     test("should be trigger all onEvent hooks", () => {
       const hooks = {
-        clientOnEvent: vi.fn((e) => e),
-        extensionOnEvent: vi.fn((e) => e),
+        clientOnEvent: vi.fn((e: any) => e),
+        extensionOnEvent: vi.fn((e: any) => e),
       };
       const client = new Client(getValues({ apiKey, onEvent: hooks.clientOnEvent }));
       const extension = defineExtension({
@@ -85,13 +85,13 @@ describe("@ohbug/core/client", () => {
     test("should be called beforeNotify", () => {
       const beforeNotify = vi.fn();
       const client = new Client(getValues());
-      client.notify("should be package events", beforeNotify);
+      void client.notify("should be package events", beforeNotify);
       expect(beforeNotify).toBeCalledTimes(1);
     });
 
     test("should be package events", () => {
       const client = new Client(getValues());
-      client.notify("should be package events", (event) => {
+      void client.notify("should be package events", (event) => {
         expect(isEvent(event)).toBe(true);
         return event;
       });

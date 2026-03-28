@@ -3,7 +3,7 @@ import type { OhbugDevice } from "./device";
 import type { OhbugMetadata } from "./metadata";
 import type { OhbugUser } from "./user";
 
-export type OhbugReleaseStage = "development" | "production" | string;
+export type OhbugReleaseStage = string;
 export type OhbugCategory = "error" | "message" | "feedback" | "view" | "performance" | "other";
 export interface OhbugSDK {
   platform: string;

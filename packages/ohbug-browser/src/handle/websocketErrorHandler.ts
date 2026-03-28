@@ -20,5 +20,5 @@ export function websocketErrorHandler(detail: WebsocketErrorDetail) {
     type: EventTypes.WEBSOCKET_ERROR,
     detail,
   });
-  client.notify(event);
+  void client.notify(event);
 }

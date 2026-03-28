@@ -25,7 +25,7 @@ export function captureConsole() {
       console,
       level,
       (origin) =>
-        function call(...args: any[]) {
+        function call(this: any, ...args: any[]) {
           const isOhbugConsole = args.some(
             (arg) => typeof arg === "string" && arg.includes("Ohbug"),
           );

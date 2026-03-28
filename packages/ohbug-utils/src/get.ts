@@ -7,8 +7,8 @@ export function getGlobal<T = Window>(): T & OhbugGlobal {
   return (
     typeof window !== "undefined"
       ? window
-      : typeof global !== "undefined"
-        ? global
+      : typeof globalThis !== "undefined"
+        ? globalThis
         : typeof self !== "undefined"
           ? self
           : fallbackGlobalObject
@@ -24,7 +24,7 @@ export function getOhbugObject<T = Window>(): OhbugObject {
 }
 
 export function isNode(): boolean {
-  return typeof global !== "undefined";
+  return typeof globalThis !== "undefined" && typeof window === "undefined";
 }
 
 export function isBrowser(): boolean {

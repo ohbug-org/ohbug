@@ -36,7 +36,7 @@ export class OhbugErrorBoundary extends React.Component<ErrorBoundaryProp, Error
       type: EventTypes.REACT,
       detail,
     });
-    client.notify(event);
+    void client.notify(event);
     this.setState({ error });
   }
 

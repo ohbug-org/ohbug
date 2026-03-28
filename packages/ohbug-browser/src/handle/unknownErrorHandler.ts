@@ -28,7 +28,7 @@ export function unknownErrorHandler(e: any) {
         detail.lineno = stackFrame.lineNumber;
         detail.colno = stackFrame.columnNumber;
       }
-    } catch (_) {}
+    } catch {}
   }
 
   const { client } = getOhbugObject<Window>();
@@ -37,5 +37,5 @@ export function unknownErrorHandler(e: any) {
     type: EventTypes.UNKNOWN_ERROR,
     detail,
   });
-  client.notify(event);
+  void client.notify(event);
 }

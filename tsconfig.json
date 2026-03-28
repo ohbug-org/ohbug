@@ -5,9 +5,8 @@
     "lib": ["ES2023", "DOM", "DOM.Iterable"],
     "types": ["vite/client", "node"],
     "skipLibCheck": true,
-    "baseUrl": "./packages",
     "paths": {
-      "@ohbug/*": ["ohbug-*/src"]
+      "@ohbug/*": ["./packages/ohbug-*/src"]
     },
 
     /* Bundler mode */

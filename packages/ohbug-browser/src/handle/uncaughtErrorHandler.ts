@@ -28,7 +28,7 @@ export function uncaughtErrorHandler(e: ErrorEvent) {
         detail.lineno = stackFrame.lineNumber;
         detail.colno = stackFrame.columnNumber;
       }
-    } catch (_) {}
+    } catch {}
   }
 
   const { client } = getOhbugObject<Window>();
@@ -37,5 +37,5 @@ export function uncaughtErrorHandler(e: ErrorEvent) {
     type: EventTypes.UNCAUGHT_ERROR,
     detail,
   });
-  client.notify(event);
+  void client.notify(event);
 }

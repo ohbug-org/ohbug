@@ -8,7 +8,7 @@ import { getParams } from "./getParams";
 const global = getGlobal<Window>();
 const access = "fetch" in global;
 
-let fetchOriginal = access ? global.fetch : null;
+let fetchOriginal = access ? global.fetch.bind(global) : null;
 /**
  * capture FETCH_ERROR
  */
@@ -21,7 +21,7 @@ export function captureFetchError() {
     global,
     "fetch",
     (origin) =>
-      function call(...args: any[]) {
+      function call(this: any, ...args: any[]) {
         return origin.apply(this, args).then(
           (res: Response) => {
             const [originalUrl, conf] = args;

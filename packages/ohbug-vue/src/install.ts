@@ -48,7 +48,7 @@ export function install(client: OhbugClient, Vue: Vue) {
       detail,
     });
 
-    client.notify(event);
+    void client.notify(event);
 
     if (typeof console !== "undefined" && typeof console.error === "function") {
       console.error(error);

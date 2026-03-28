@@ -39,7 +39,7 @@ function handleUrlChange(from?: string, to?: string) {
 }
 
 function historyReplacement(original: (data: any, title: string, url?: string) => void) {
-  return function call(data: any, title: string, url?: string) {
+  return function call(this: any, data: any, title: string, url?: string) {
     if (url) {
       handleUrlChange(lastHref, String(url));
     }
@@ -49,8 +49,8 @@ function historyReplacement(original: (data: any, title: string, url?: string) =
 }
 
 const historyOriginal = {
-  pushState: global?.history?.pushState,
-  replaceState: global?.history?.replaceState,
+  pushState: global?.history?.pushState?.bind(global?.history),
+  replaceState: global?.history?.replaceState?.bind(global?.history),
   onpopstate: global?.onpopstate,
 };
 function historyListener() {
@@ -60,7 +60,7 @@ function historyListener() {
     global,
     "onpopstate",
     (origin) =>
-      function call(...args: any[]) {
+      function call(this: any, ...args: any[]) {
         const current = global?.location?.href;
         handleUrlChange(lastHref, current);
         return origin?.apply(this, args);

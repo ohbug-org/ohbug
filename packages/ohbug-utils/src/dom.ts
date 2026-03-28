@@ -24,12 +24,10 @@ export const getSelector = (event: Event) => {
     if (i) elements.push(target);
     i += 1;
   }
-  // @ts-expect-error error.path 只有 chrome 实现，需要 polyfill
   const path =
-    typeof event.path === "undefined"
+    typeof (event as any).path === "undefined"
       ? getPath(event.target as Node)
-      : // @ts-expect-error error.path 只有 chrome 实现，需要 polyfill
-        event.path;
+      : (event as any).path;
   const { outerHTML } = immutableTarget;
   return path
     .reverse()

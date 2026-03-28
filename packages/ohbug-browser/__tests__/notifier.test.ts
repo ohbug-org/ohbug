@@ -13,7 +13,7 @@ describe("@ohbug/browser/client", () => {
     BrowserClient.setup({ apiKey });
     navigator.sendBeacon = mockSendBeacon;
 
-    notifier(event);
+    void notifier(event);
 
     expect(mockSendBeacon).toBeCalledTimes(1);
   });

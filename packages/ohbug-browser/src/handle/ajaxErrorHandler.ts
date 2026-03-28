@@ -23,5 +23,5 @@ export function ajaxErrorHandler(detail: AjaxErrorDetail) {
     type: EventTypes.AJAX_ERROR,
     detail,
   });
-  client.notify(event);
+  void client.notify(event);
 }

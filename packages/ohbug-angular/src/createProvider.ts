@@ -24,7 +24,7 @@ function createProvider(
         type: EventTypes.ANGULAR,
         detail,
       });
-      client.notify(event);
+      void client.notify(event);
     }
   }
 

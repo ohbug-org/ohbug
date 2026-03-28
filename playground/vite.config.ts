@@ -1,3 +1,4 @@
+// @ts-expect-error - no type declarations available
 import OhbugUnplugin from "@ohbug/unplugin/vite";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite-plus";

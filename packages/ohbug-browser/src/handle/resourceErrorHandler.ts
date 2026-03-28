@@ -34,5 +34,5 @@ export function resourceErrorHandler(e: ErrorEvent) {
     type: EventTypes.RESOURCE_ERROR,
     detail,
   });
-  client.notify(event);
+  void client.notify(event);
 }

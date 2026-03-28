@@ -23,7 +23,7 @@ export function captureWebSocketError() {
       // eslint-disable-next-line prefer-rest-params
       const args = arguments;
       const arg = args[0];
-      backup?.set?.call(this, function call(e: any) {
+      backup?.set?.call(this, function call(this: any, e: any) {
         const {
           target: {
             url: originalUrl,
