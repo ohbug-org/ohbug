@@ -1,55 +1,84 @@
-import { describe, expect, test, vi } from "vitest";
+import { describe, expect, test } from "vitest";
 
 import { parseUrl, replace } from "../src/mixin";
 
 describe("@ohbug/utils/mixin", () => {
-  vi.useFakeTimers();
-
   describe("replace", () => {
-    test("if name does not exist with source, nothing should be done", () => {
-      const source = { foo: { name: "fooo" } };
-      const name = "foo1";
-      replace(source, name, () => ({ name: "bar" }));
+    test("returns undefined if name does not exist in source", () => {
+      const source = { foo: "bar" };
+      const result = replace(source, "baz", () => "replaced");
 
-      expect(source.foo.name).toBe("fooo");
+      expect(result).toBeUndefined();
+      expect(source.foo).toBe("bar");
     });
 
-    test("the source should be changed according to the requirements of the behavior", () => {
-      const source = { foo: { name: "fooo" } };
-      const name = "foo";
-      replace(source, name, () => ({ name: "bar" }));
+    test("replaces the property using the behavior function", () => {
+      const source = { foo: { name: "original" } };
+      replace(source, "foo", () => ({ name: "replaced" }));
 
-      expect(source.foo.name).toBe("bar");
+      expect(source.foo.name).toBe("replaced");
     });
 
-    test("should be return the original", () => {
-      const source = { foo: { name: "fooo" } };
-      const name = "foo";
-      const original = replace(source, name, () => ({ name: "bar" }));
+    test("returns the original value", () => {
+      const original = { name: "original" };
+      const source = { foo: original };
+      const returned = replace(source, "foo", () => ({ name: "replaced" }));
 
-      expect(source.foo.name).toBe("bar");
-      expect(original).toEqual({ name: "fooo" });
+      expect(returned).toBe(original);
+    });
+
+    test("passes the original value to behavior", () => {
+      const source = { count: 5 };
+      replace(source, "count", (original) => original * 2);
+
+      expect(source.count).toBe(10);
     });
   });
 
   describe("parseUrl", () => {
-    const target = "http://localhost:1234/bar";
-    const expectResult = {
-      host: "localhost:1234",
-      path: "/bar",
-      protocol: "http",
-      relative: "/bar",
-    };
-
-    test("URL should be parsed correctly", () => {
-      expect(parseUrl(target)).toEqual(expectResult);
+    test("parses a simple URL correctly", () => {
+      expect(parseUrl("http://localhost:1234/bar")).toEqual({
+        host: "localhost:1234",
+        path: "/bar",
+        protocol: "http",
+        relative: "/bar",
+      });
     });
 
-    test("should do fault tolerance", () => {
-      // @ts-expect-error 需要支持传入 string 以外的兜底
+    test("parses URL with query string", () => {
+      expect(parseUrl("https://example.com/path?foo=1&bar=2")).toEqual({
+        host: "example.com",
+        path: "/path",
+        protocol: "https",
+        relative: "/path?foo=1&bar=2",
+      });
+    });
+
+    test("parses URL with fragment", () => {
+      expect(parseUrl("https://example.com/path#section")).toEqual({
+        host: "example.com",
+        path: "/path",
+        protocol: "https",
+        relative: "/path#section",
+      });
+    });
+
+    test("parses URL with query and fragment", () => {
+      expect(parseUrl("https://example.com/path?q=1#hash")).toEqual({
+        host: "example.com",
+        path: "/path",
+        protocol: "https",
+        relative: "/path?q=1#hash",
+      });
+    });
+
+    test("returns empty object for non-string input", () => {
+      // @ts-expect-error testing non-string
       expect(parseUrl(undefined)).toEqual({});
-      // @ts-expect-error 需要支持传入 string 以外的兜底
+      // @ts-expect-error testing non-string
       expect(parseUrl(1)).toEqual({});
+      // @ts-expect-error testing non-string
+      expect(parseUrl(null)).toEqual({});
     });
   });
 });
