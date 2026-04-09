@@ -1,6 +1,11 @@
 import { defineConfig } from "vite-plus";
 
+import pkg from "./package.json";
+
 export default defineConfig({
+  define: {
+    __VERSION__: JSON.stringify(pkg.version),
+  },
   run: {
     tasks: {
       build: {
@@ -13,5 +18,8 @@ export default defineConfig({
     dts: true,
     exports: true,
     sourcemap: true,
+    define: {
+      __VERSION__: JSON.stringify(pkg.version),
+    },
   },
 });

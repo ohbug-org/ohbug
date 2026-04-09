@@ -2,6 +2,7 @@ import { Client } from "@ohbug/core";
 import type { OhbugClient, OhbugConfig } from "@ohbug/types";
 
 import { device } from "../src/device";
+import { version } from "../src/version";
 
 /**
  * Create a browser-like client for testing without triggering
@@ -9,7 +10,7 @@ import { device } from "../src/device";
  */
 export function setupTestClient(config: Partial<OhbugConfig> = {}): OhbugClient {
   const client = new Client({
-    sdk: { platform: "ohbug-browser", version: "__VERSION__" },
+    sdk: { platform: "ohbug-browser", version },
     config: { apiKey: "TEST_KEY", ...config } as OhbugConfig,
     device,
     notifier: async (event: any) => event,
