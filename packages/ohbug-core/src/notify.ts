@@ -21,14 +21,18 @@ export async function notify<D>(
   event: OhbugEventWithMethods<D> | null,
   client: OhbugClient,
 ): Promise<any> {
+  if (!event) return null;
+
+  let result = null;
   try {
-    let result = null;
-    if (event) {
-      result = await client.__notifier(event);
-      handleNotified(event, client);
-    }
-    return result;
+    result = await client.__notifier(event);
   } catch (e) {
     client.__logger.error(e);
   }
+
+  // Always run onNotify hooks, even if the built-in notifier failed.
+  // This lets extensions (e.g. custom OTLP exporters) handle events independently.
+  handleNotified(event, client);
+
+  return result;
 }

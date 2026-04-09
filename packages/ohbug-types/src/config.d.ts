@@ -1,6 +1,7 @@
 import type { OhbugClient } from "./client";
 import type { OhbugEventWithMethods, OhbugReleaseStage } from "./event";
 import type { OhbugMetadata } from "./metadata";
+import type { OhbugNotifier } from "./notify";
 import type { OhbugUser } from "./user";
 
 export interface OhbugLoggerConfig {
@@ -17,6 +18,7 @@ export interface OhbugConfig {
   appType?: string;
   releaseStage?: OhbugReleaseStage;
   endpoint?: string;
+  notifier?: OhbugNotifier;
   maxActions?: number;
   // hooks
   onEvent?: <D = any>(

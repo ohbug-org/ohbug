@@ -20,7 +20,13 @@ function createClient(config: OhbugConfig, handleDestroy: () => void) {
     platform: "ohbug-browser",
     version,
   };
-  const client = new Client({ sdk, config, device, notifier, destroy: handleDestroy });
+  const client = new Client({
+    sdk,
+    config,
+    device,
+    notifier: config.notifier ?? notifier,
+    destroy: handleDestroy,
+  });
 
   global.__OHBUG__ = { client };
   client.use(extension);

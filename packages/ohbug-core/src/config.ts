@@ -28,6 +28,11 @@ export const schema: OhbugSchema = {
     message: "should be a string",
     validate: (value) => value === undefined || isString(value),
   },
+  notifier: {
+    defaultValue: undefined,
+    message: "should be a function",
+    validate: (value) => value === undefined || isFunction(value),
+  },
   maxActions: {
     defaultValue: 30,
     message: "should be a number between 0 and 100",
