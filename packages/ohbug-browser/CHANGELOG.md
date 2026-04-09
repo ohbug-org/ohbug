@@ -1,5 +1,11 @@
 # @ohbug/browser
 
+## 2.5.3
+
+### Patch Changes
+
+- fix **VERSION**
+
 ## 2.5.2
 
 ### Patch Changes

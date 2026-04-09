@@ -1,6 +1,6 @@
 {
   "name": "@ohbug/browser",
-  "version": "2.5.2",
+  "version": "2.5.3",
   "description": "Ohbug SDK for browsers",
   "homepage": "https://github.com/ohbug-org/ohbug#readme",
   "bugs": {
