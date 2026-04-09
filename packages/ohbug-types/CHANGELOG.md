@@ -1,5 +1,11 @@
 # @ohbug/types
 
+## 2.2.2
+
+### Patch Changes
+
+- add custom notifier
+
 ## 2.2.1
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@ohbug/extension-feedback",
-  "version": "0.7.3",
+  "version": "0.7.4",
   "description": "Ohbug extension to collect user feedback",
   "homepage": "https://github.com/ohbug-org/ohbug#readme",
   "bugs": {

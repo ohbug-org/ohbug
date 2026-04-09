@@ -1,6 +1,6 @@
 {
   "name": "@ohbug/extension-web-vitals",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Ohbug extension to collect performance information",
   "homepage": "https://github.com/ohbug-org/ohbug#readme",
   "bugs": {

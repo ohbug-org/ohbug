@@ -1,6 +1,6 @@
 {
   "name": "@ohbug/extension-uuid",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "Ohbug extension to add uuid",
   "homepage": "https://github.com/ohbug-org/ohbug#readme",
   "bugs": {

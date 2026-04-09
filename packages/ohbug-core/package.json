@@ -1,6 +1,6 @@
 {
   "name": "@ohbug/core",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "Responsible for managing Ohbug's workflow",
   "homepage": "https://github.com/ohbug-org/ohbug#readme",
   "bugs": {

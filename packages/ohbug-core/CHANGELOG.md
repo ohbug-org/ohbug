@@ -1,5 +1,14 @@
 # @ohbug/core
 
+## 2.2.2
+
+### Patch Changes
+
+- add custom notifier
+- Updated dependencies
+  - @ohbug/types@2.2.2
+  - @ohbug/utils@2.0.9
+
 ## 2.2.1
 
 ### Patch Changes

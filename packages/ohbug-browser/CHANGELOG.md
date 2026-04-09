@@ -1,5 +1,15 @@
 # @ohbug/browser
 
+## 2.5.2
+
+### Patch Changes
+
+- add custom notifier
+- Updated dependencies
+  - @ohbug/core@2.2.2
+  - @ohbug/types@2.2.2
+  - @ohbug/utils@2.0.9
+
 ## 2.5.1
 
 ### Patch Changes

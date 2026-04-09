@@ -1,6 +1,6 @@
 {
   "name": "@ohbug/utils",
-  "version": "2.0.8",
+  "version": "2.0.9",
   "description": "Utilities for all Ohbug SDKs",
   "homepage": "https://github.com/ohbug-org/ohbug#readme",
   "bugs": {

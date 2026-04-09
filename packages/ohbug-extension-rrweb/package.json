@@ -1,6 +1,6 @@
 {
   "name": "@ohbug/extension-rrweb",
-  "version": "1.10.2",
+  "version": "1.10.3",
   "description": "Ohbug extension to 'screen recording'",
   "homepage": "https://github.com/ohbug-org/ohbug#readme",
   "bugs": {
