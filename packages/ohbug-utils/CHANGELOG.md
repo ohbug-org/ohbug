@@ -1,5 +1,11 @@
 # @ohbug/utils
 
+## 2.0.10
+
+### Patch Changes
+
+- ohbug node
+
 ## 2.0.9
 
 ### Patch Changes

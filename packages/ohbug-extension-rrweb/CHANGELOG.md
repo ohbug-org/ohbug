@@ -1,5 +1,11 @@
 # @ohbug/extension-rrweb
 
+## 1.10.4
+
+### Patch Changes
+
+- @ohbug/core@2.2.3
+
 ## 1.10.3
 
 ### Patch Changes

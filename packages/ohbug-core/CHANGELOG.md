@@ -1,5 +1,12 @@
 # @ohbug/core
 
+## 2.2.3
+
+### Patch Changes
+
+- Updated dependencies
+  - @ohbug/utils@2.0.10
+
 ## 2.2.2
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @ohbug/vue
 
+## 2.0.12
+
+### Patch Changes
+
+- @ohbug/core@2.2.3
+
 ## 2.0.11
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@ohbug/angular",
-  "version": "2.0.10",
+  "version": "2.0.11",
   "description": "Ohbug SDK for Angular",
   "homepage": "https://github.com/ohbug-org/ohbug#readme",
   "bugs": {

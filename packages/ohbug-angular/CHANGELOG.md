@@ -1,5 +1,11 @@
 # @ohbug/angular
 
+## 2.0.11
+
+### Patch Changes
+
+- @ohbug/core@2.2.3
+
 ## 2.0.10
 
 ### Patch Changes

@@ -1,5 +1,19 @@
 # playground
 
+## 0.0.10
+
+### Patch Changes
+
+- Updated dependencies
+  - @ohbug/node@0.0.1
+  - @ohbug/browser@2.5.4
+  - @ohbug/core@2.2.3
+  - @ohbug/extension-feedback@0.7.5
+  - @ohbug/extension-uuid@2.1.4
+  - @ohbug/extension-view@0.1.4
+  - @ohbug/react@2.0.11
+  - @ohbug/extension-rrweb@1.10.4
+
 ## 0.0.9
 
 ### Patch Changes

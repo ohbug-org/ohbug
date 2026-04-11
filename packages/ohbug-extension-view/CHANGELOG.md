@@ -1,5 +1,12 @@
 # @ohbug/extension-view
 
+## 0.1.4
+
+### Patch Changes
+
+- Updated dependencies
+  - @ohbug/utils@2.0.10
+
 ## 0.1.3
 
 ### Patch Changes
