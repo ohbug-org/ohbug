@@ -9,10 +9,10 @@ export default defineConfig({
   plugins: [
     react(),
     OhbugUnplugin({
-      apiKey: "2714c5cc067e104ea76f6074f38ab721e011b469ef7f2e12daabff8debe24ca2",
+      apiKey: "513d44f6-a2d3-443a-815d-597cbdcd7256",
       appVersion: pkg.version,
       appType: "react",
-    }) as any,
+    }),
   ],
   build: { sourcemap: true },
   server: { port: 4000 },

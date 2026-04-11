@@ -5,3 +5,5 @@ export * from "./validators";
 export * from "./get";
 export * from "./mixin";
 export * from "./dom";
+export * from "./safeCall";
+export * from "./getCircularReplacer";

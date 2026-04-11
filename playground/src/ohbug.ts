@@ -7,7 +7,7 @@ import OhbugExtensionWebVitals from "@ohbug/extension-web-vitals";
 import { OhbugErrorBoundary } from "@ohbug/react";
 
 export const client = Ohbug.setup({
-  apiKey: "180b265c-8d05-46fa-8f8a-d94e9ecbb717",
+  apiKey: "513d44f6-a2d3-443a-815d-597cbdcd7256",
   appType: "react",
   appVersion: __APP_VERSION__,
 });

@@ -1,0 +1,43 @@
+{
+  "name": "@ohbug/node",
+  "version": "1.0.0",
+  "description": "Ohbug SDK for Node.js and Bun",
+  "homepage": "https://github.com/ohbug-org/ohbug#readme",
+  "bugs": {
+    "url": "https://github.com/ohbug-org/ohbug/issues"
+  },
+  "license": "Apache-2.0",
+  "author": {
+    "name": "xinyao",
+    "email": "hi@xinyao.me"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ohbug-org/ohbug.git"
+  },
+  "funding": "https://github.com/sponsors/xinyao27",
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "types": "dist/index.d.mts",
+  "exports": {
+    ".": "./dist/index.mjs",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "dev": "vp pack --watch"
+  },
+  "dependencies": {
+    "@ohbug/core": "workspace:*",
+    "@ohbug/types": "workspace:*",
+    "@ohbug/utils": "workspace:*"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,19 +1,5 @@
 import type { OhbugEventWithMethods } from "@ohbug/types";
-import { getOhbugObject } from "@ohbug/utils";
-
-const getCircularReplacer = () => {
-  const seen = new WeakSet();
-  return (_: any, value: any) => {
-    if (typeof value === "object" && value !== null) {
-      if (seen.has(value)) {
-        return;
-      }
-
-      seen.add(value);
-    }
-    return value;
-  };
-};
+import { getCircularReplacer, getOhbugObject } from "@ohbug/utils";
 
 export function notifier<D>(event: OhbugEventWithMethods<D>) {
   const { client } = getOhbugObject<Window>();

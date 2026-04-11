@@ -1,4 +1,4 @@
-import { readdirSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
 import { defineConfig } from "vite-plus";
@@ -27,7 +27,21 @@ for (const pkg of ohbugPackages) {
   workspaceAlias[name] = resolve(import.meta.dirname, `packages/${pkg}/src`);
 }
 
+// Per-package vite.config.ts defines __VERSION__ for the build step (vp pack),
+// but vitest uses the root config — so we define it here for tests.
+const versionDefine: Record<string, string> = {};
+for (const pkg of ohbugPackages) {
+  const versionTsPath = resolve(import.meta.dirname, `packages/${pkg}/src/version.ts`);
+  if (existsSync(versionTsPath)) {
+    const pkgJsonPath = resolve(import.meta.dirname, `packages/${pkg}/package.json`);
+    const pkgJson = JSON.parse(readFileSync(pkgJsonPath, "utf-8"));
+    versionDefine.__VERSION__ = JSON.stringify(pkgJson.version);
+    break;
+  }
+}
+
 export default defineConfig({
+  define: versionDefine,
   resolve: {
     alias: workspaceAlias,
   },
